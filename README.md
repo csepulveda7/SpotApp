@@ -2,16 +2,13 @@
 
 # Product Vision
 
-Your vision statement should contain the following information and be formatted as one or more paragraphs. This statement must be included in your main README file and not linked externally. 
+This product will classify dog images by breeds and store the photos in to a database. Each photo will be associated with its breed and will display general information about the breed and if that breed is available at local shelters. The user's account will store the pictures they have taken and the associated breeds.
 
-1. For ... (the product’s target market)
-2. Who/That ... (describe what need your product solves)
-3. The product ... (product name,or product category)
-4. That leads to ... (main advantage, appealing reason for purchase)
-5. Unlike the ... (principal competing alternatives)
-6. Our product offers ... (describe main differentiation)
+We are creating this product for both education and entertainment. It can aid in animal shelters and dog rescues by raising awareness of local dogs. It is a project that would be educational while still making it exciting for people to use. For us, it would be a great project to work on as we would get experience in front- and back-end development and machine learning.
 
-As a general note, it is much easier (and less risky) to use inline markdown text for any text documents you create. If you choose to use Google Docs or Google Sheets, you run the risk of providing an invalid link or linking to a file that is not properly shared. If myself or the grader cannot access your artifact, you will not receive credit for it - even if you fix the problem after it has been graded.
+This project would benefit people of all ages, as it is both educational and enjoyment. It encourages going outside, meeting people, and helping local shelters. By suggesting local shelters, we enforce adopting dogs rather than going through breeders; the app also would allow for people to compete with each other to collect the most breeds.
+
+Most apps on the market strictly identify a dog breed, ours would not only suggest the most likely breed, but allows for people to collect different dog breeds and associate the breed with local shelters and give you information about that breed. Our app acts as a expandable digital encyclopedia.
 
 ## Team Members
 
