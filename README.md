@@ -1,10 +1,10 @@
 # Spot App
-
+ COP4331 Final Project
 # Product Vision
 
-This product will classify dog images by breeds and store the photos in to a database. Each photo will be associated with its breed and will display general information about the breed and if that breed is available at local shelters. The user's account will store the pictures they have taken and the associated breeds.
+This product will classify dog images by breeds and store the photos into a personal database. Each photo will be associated with its breed and will display general information about the breed along with if that breed is available at local shelters. The user's account will store the pictures they have taken and the associated breeds.
 
-We are creating this product for both education and entertainment. It can aid in animal shelters and dog rescues by raising awareness of local dogs. It is a project that would be educational while still making it exciting for people to use. For us, it would be a great project to work on as we would get experience in front- and back-end development and machine learning.
+We are creating this product for both education and entertainment. It can aid in animal shelters and dog rescues by raising awareness of dogs in the local community. It is a project that would be educational while still making it exciting for people to use. For us, it would be a great project to work on as we would get experience in front- and back-end development and machine learning.
 
 This project would benefit people of all ages, as it is both educational and enjoyment. It encourages going outside, meeting people, and helping local shelters. By suggesting local shelters, we enforce adopting dogs rather than going through breeders; the app also would allow for people to compete with each other to collect the most breeds.
 
@@ -12,12 +12,13 @@ Most apps on the market strictly identify a dog breed, ours would not only sugge
 
 ## Team Members
 
-- Dr. Hollander
-
+- Diego Cruces
+- Pablo Cuervo
+- Lucas Saber
+- Jordan Schneider
+- Cristobal Sepulveda
 
 # Sprint 1
-
-Each item should link to the actual product, be it a google spreadsheet, google doc, github markdown file, etc. Do not link to a markdown file that contains only a link to another location - link directly from the appropriate item below. Failure to adhere to this criteria wil result in the associated artifact not being graded. Add any additional items required for the specific sprint submission.
 
 - [Product Backlog](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/product_backlog.md)
 - [Sprint Backlog](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/sprint1_backlog.md)
@@ -32,9 +33,15 @@ Each item should link to the actual product, be it a google spreadsheet, google 
 
 ## Task Allocation
 
-Member 1 - main tasking
+Diego Cruces- main tasking
 
-Member 2 - main tasking
+Pablo Cuervo- main tasking
+
+Lucas Saber- main tasking
+
+Jordan Schneider- main tasking
+
+Cristobal Sepulveda- main tasking
 
 In this section, each group member needs to provide a brief description of what they worked on during the sprint. Keep this short and to the point. Your trello board and commit history will provide the details. 
 
@@ -56,9 +63,15 @@ In this section, each group member needs to provide a brief description of what 
 
 ## Task Allocation
 
-Member 1 - main tasking
+Diego Cruces- main tasking
 
-Member 2 - main tasking
+Pablo Cuervo- main tasking
+
+Lucas Saber- main tasking
+
+Jordan Schneider- main tasking
+
+Cristobal Sepulveda- main tasking
 
 **note**: For this sprint, I am anticipating that you will continue to work on the stories carried over from Sprint 1, with a focus on the design aspect of your system. I am expecting your architecture document and diagrams to reflect the system only in the context of these user stories, with some generalization to help plan for the other items currently in the backlog. I am not expecting a significant amount of implementation at this point, if any at all.
 
@@ -78,9 +91,15 @@ Member 2 - main tasking
 
 ## Task Allocation
 
-Member 1 - main tasking
+Diego Cruces- main tasking
 
-Member 2 - main tasking
+Pablo Cuervo- main tasking
+
+Lucas Saber- main tasking
+
+Jordan Schneider- main tasking
+
+Cristobal Sepulveda- main tasking
 
 **note**: At this point I am expecting that you have designed out a few of the initial user stories and started to implement this. From this point forward there should be continuous integration and deployment, producing working software that is demoed at the end of each sprint.
 
@@ -98,9 +117,15 @@ Member 2 - main tasking
 
 ## Task Allocation
 
-Member 1 - main tasking
+Diego Cruces- main tasking
 
-Member 2 - main tasking
+Pablo Cuervo- main tasking
+
+Lucas Saber- main tasking
+
+Jordan Schneider- main tasking
+
+Cristobal Sepulveda- main tasking
 
 **note**: Sprint 4 and onward will contain updates to your artifacts as appropriate for the current sprint, as well as continuous improvements to your software and updated product demos.
 
@@ -118,10 +143,15 @@ Member 2 - main tasking
 
 ## Task Allocation
 
-Member 1 - main tasking
+Diego Cruces- main tasking
 
-Member 2 - main tasking
+Pablo Cuervo- main tasking
 
+Lucas Saber- main tasking
+
+Jordan Schneider- main tasking
+
+Cristobal Sepulveda- main tasking
 
 # Sprint 6
 
@@ -136,10 +166,15 @@ Member 2 - main tasking
 
 ## Task Allocation
 
-Member 1 - main tasking
+Diego Cruces- main tasking
 
-Member 2 - main tasking
+Pablo Cuervo- main tasking
 
+Lucas Saber- main tasking
+
+Jordan Schneider- main tasking
+
+Cristobal Sepulveda- main tasking
 
 # Sprint 7
 
@@ -154,10 +189,15 @@ Member 2 - main tasking
 
 ## Task Allocation
 
-Member 1 - main tasking
+Diego Cruces- main tasking
 
-Member 2 - main tasking
+Pablo Cuervo- main tasking
 
+Lucas Saber- main tasking
+
+Jordan Schneider- main tasking
+
+Cristobal Sepulveda- main tasking
 
 # Sprint 8
 
@@ -172,6 +212,13 @@ Member 2 - main tasking
 
 ## Task Allocation
 
-Member 1 - main tasking
 
-Member 2 - main tasking
+Diego Cruces- main tasking
+
+Pablo Cuervo- main tasking
+
+Lucas Saber- main tasking
+
+Jordan Schneider- main tasking
+
+Cristobal Sepulveda- main tasking
