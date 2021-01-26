@@ -33,15 +33,15 @@ Most apps on the market strictly identify a dog breed, ours would not only sugge
 
 ## Task Allocation
 
-Diego Cruces- main tasking
+**Diego Cruces**- main tasking
 
-Pablo Cuervo- main tasking
+**Pablo Cuervo**- main tasking
 
-Lucas Saber- main tasking
+**Lucas Saber**- main tasking
 
-Jordan Schneider- main tasking
+**Jordan Schneider**- main tasking
 
-Cristobal Sepulveda- main tasking
+**Cristobal Sepulveda**- main tasking
 
 In this section, each group member needs to provide a brief description of what they worked on during the sprint. Keep this short and to the point. Your trello board and commit history will provide the details. 
 
@@ -63,15 +63,15 @@ In this section, each group member needs to provide a brief description of what 
 
 ## Task Allocation
 
-Diego Cruces- main tasking
+**Diego Cruces**- main tasking
 
-Pablo Cuervo- main tasking
+**Pablo Cuervo**- main tasking
 
-Lucas Saber- main tasking
+**Lucas Saber**- main tasking
 
-Jordan Schneider- main tasking
+**Jordan Schneider**- main tasking
 
-Cristobal Sepulveda- main tasking
+**Cristobal Sepulveda**- main tasking
 
 **note**: For this sprint, I am anticipating that you will continue to work on the stories carried over from Sprint 1, with a focus on the design aspect of your system. I am expecting your architecture document and diagrams to reflect the system only in the context of these user stories, with some generalization to help plan for the other items currently in the backlog. I am not expecting a significant amount of implementation at this point, if any at all.
 
@@ -91,15 +91,15 @@ Cristobal Sepulveda- main tasking
 
 ## Task Allocation
 
-Diego Cruces- main tasking
+**Diego Cruces**- main tasking
 
-Pablo Cuervo- main tasking
+**Pablo Cuervo**- main tasking
 
-Lucas Saber- main tasking
+**Lucas Saber**- main tasking
 
-Jordan Schneider- main tasking
+**Jordan Schneider**- main tasking
 
-Cristobal Sepulveda- main tasking
+**Cristobal Sepulveda**- main tasking
 
 **note**: At this point I am expecting that you have designed out a few of the initial user stories and started to implement this. From this point forward there should be continuous integration and deployment, producing working software that is demoed at the end of each sprint.
 
@@ -117,15 +117,15 @@ Cristobal Sepulveda- main tasking
 
 ## Task Allocation
 
-Diego Cruces- main tasking
+**Diego Cruces**- main tasking
 
-Pablo Cuervo- main tasking
+**Pablo Cuervo**- main tasking
 
-Lucas Saber- main tasking
+**Lucas Saber**- main tasking
 
-Jordan Schneider- main tasking
+**Jordan Schneider**- main tasking
 
-Cristobal Sepulveda- main tasking
+**Cristobal Sepulveda**- main tasking
 
 **note**: Sprint 4 and onward will contain updates to your artifacts as appropriate for the current sprint, as well as continuous improvements to your software and updated product demos.
 
@@ -143,15 +143,15 @@ Cristobal Sepulveda- main tasking
 
 ## Task Allocation
 
-Diego Cruces- main tasking
+**Diego Cruces**- main tasking
 
-Pablo Cuervo- main tasking
+**Pablo Cuervo**- main tasking
 
-Lucas Saber- main tasking
+**Lucas Saber**- main tasking
 
-Jordan Schneider- main tasking
+**Jordan Schneider**- main tasking
 
-Cristobal Sepulveda- main tasking
+**Cristobal Sepulveda**- main tasking
 
 # Sprint 6
 
@@ -166,15 +166,15 @@ Cristobal Sepulveda- main tasking
 
 ## Task Allocation
 
-Diego Cruces- main tasking
+**Diego Cruces**- main tasking
 
-Pablo Cuervo- main tasking
+**Pablo Cuervo**- main tasking
 
-Lucas Saber- main tasking
+**Lucas Saber**- main tasking
 
-Jordan Schneider- main tasking
+**Jordan Schneider**- main tasking
 
-Cristobal Sepulveda- main tasking
+**Cristobal Sepulveda**- main tasking
 
 # Sprint 7
 
@@ -189,15 +189,15 @@ Cristobal Sepulveda- main tasking
 
 ## Task Allocation
 
-Diego Cruces- main tasking
+**Diego Cruces**- main tasking
 
-Pablo Cuervo- main tasking
+**Pablo Cuervo**- main tasking
 
-Lucas Saber- main tasking
+**Lucas Saber**- main tasking
 
-Jordan Schneider- main tasking
+**Jordan Schneider**- main tasking
 
-Cristobal Sepulveda- main tasking
+**Cristobal Sepulveda**- main tasking
 
 # Sprint 8
 
@@ -213,12 +213,12 @@ Cristobal Sepulveda- main tasking
 ## Task Allocation
 
 
-Diego Cruces- main tasking
+**Diego Cruces**- main tasking
 
-Pablo Cuervo- main tasking
+**Pablo Cuervo**- main tasking
 
-Lucas Saber- main tasking
+**Lucas Saber**- main tasking
 
-Jordan Schneider- main tasking
+**Jordan Schneider**- main tasking
 
-Cristobal Sepulveda- main tasking
+**Cristobal Sepulveda**- main tasking
