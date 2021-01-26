@@ -18,6 +18,10 @@ Most apps on the market strictly identify a dog breed, ours would not only sugge
 - Jordan Schneider
 - Cristobal Sepulveda
 
+## Wiki
+
+Check out our [wiki](https://github.com/csepulveda7/SpotApp/wiki) for more info, guides, and documentation 😃
+
 # Sprint 1
 
 - [Product Backlog](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/product_backlog.md)
