@@ -1,5 +1,6 @@
 # Spot App
- ![SPOT APP](https://trello-logos.s3.amazonaws.com/dca5bf8218e097c0bc5ac950b4ab1236/170.png)
+ ![SpotLogo](src/assets/images/SpotLogo.png)
+ 
 # Product Vision
 
 This product will classify dog images by breeds and store the photos into a personal database. Each photo will be associated with its breed and will display general information about the breed along with if that breed is available at local shelters. The user's account will store the pictures they have taken and the associated breeds.
