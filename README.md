@@ -28,7 +28,7 @@ Check out our [wiki](https://github.com/csepulveda7/SpotApp/wiki) for more info,
 - [Product Backlog](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/product_backlog.md)
 - [Sprint Backlog](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/sprint1_backlog.md)
 - [Requirements](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/requirements.md)
-- [Trello Board](https://trello.com/)
+- [Trello Board](https://trello.com/b/npDmfBrX/spotapp)
 - [Burndown Chart](https://www.google.com/search?tbm=isch&q=sprint+burndown+chart)
 - [Velocity Chart](https://www.google.com/search?tbm=isch&q=agile+velocity+chart)
 - System Architecture
@@ -58,7 +58,7 @@ In this section, each group member needs to provide a brief description of what 
 - [Product Backlog](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/product_backlog.md)
 - [Sprint Backlog](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/sprint2_backlog.md)
 - [Requirements](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/requirements.md)
-- [Trello Board](https://trello.com/)
+- [Trello Board](https://trello.com/b/npDmfBrX/spotapp)
 - [Burndown Chart](https://www.google.com/search?tbm=isch&q=sprint+burndown+chart)
 - [Velocity Chart](https://www.google.com/search?tbm=isch&q=agile+velocity+chart)
 - [System Architecture](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/architecture.md)
@@ -86,7 +86,7 @@ In this section, each group member needs to provide a brief description of what 
 - [Product Backlog](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/product_backlog.md)
 - [Sprint Backlog](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/sprint3_backlog.md)
 - [Requirements](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/requirements.md)
-- [Trello Board](https://trello.com/)
+- [Trello Board](https://trello.com/b/npDmfBrX/spotapp)
 - [Burndown Chart](https://www.google.com/search?tbm=isch&q=sprint+burndown+chart)
 - [Velocity Chart](https://www.google.com/search?tbm=isch&q=agile+velocity+chart)
 - [System Architecture](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/architecture.md)
@@ -111,7 +111,7 @@ In this section, each group member needs to provide a brief description of what 
 
 # Sprint 4
 
-- [Trello Board](https://trello.com/)
+- [Trello Board](https://trello.com/b/npDmfBrX/spotapp)
 - [Requirements](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/requirements.md)
 - [Burndown Chart](https://www.google.com/search?tbm=isch&q=sprint+burndown+chart)
 - [Velocity Chart](https://www.google.com/search?tbm=isch&q=agile+velocity+chart)
@@ -137,7 +137,7 @@ In this section, each group member needs to provide a brief description of what 
 
 # Sprint 5
 
-- [Trello Board](https://trello.com/)
+- [Trello Board](https://trello.com/b/npDmfBrX/spotapp)
 - [Requirements](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/requirements.md)
 - [Burndown Chart](https://www.google.com/search?tbm=isch&q=sprint+burndown+chart)
 - [Velocity Chart](https://www.google.com/search?tbm=isch&q=agile+velocity+chart)
@@ -160,7 +160,7 @@ In this section, each group member needs to provide a brief description of what 
 
 # Sprint 6
 
-- [Trello Board](https://trello.com/)
+- [Trello Board](https://trello.com/b/npDmfBrX/spotapp)
 - [Requirements](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/requirements.md)
 - [Burndown Chart](https://www.google.com/search?tbm=isch&q=sprint+burndown+chart)
 - [Velocity Chart](https://www.google.com/search?tbm=isch&q=agile+velocity+chart)
@@ -183,7 +183,7 @@ In this section, each group member needs to provide a brief description of what 
 
 # Sprint 7
 
-- [Trello Board](https://trello.com/)
+- [Trello Board](https://trello.com/b/npDmfBrX/spotapp)
 - [Requirements](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/requirements.md)
 - [Burndown Chart](https://www.google.com/search?tbm=isch&q=sprint+burndown+chart)
 - [Velocity Chart](https://www.google.com/search?tbm=isch&q=agile+velocity+chart)
@@ -206,7 +206,7 @@ In this section, each group member needs to provide a brief description of what 
 
 # Sprint 8
 
-- [Trello Board](https://trello.com/)
+- [Trello Board](https://trello.com/b/npDmfBrX/spotapp)
 - [Requirements](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/requirements.md)
 - [Burndown Chart](https://www.google.com/search?tbm=isch&q=sprint+burndown+chart)
 - [Velocity Chart](https://www.google.com/search?tbm=isch&q=agile+velocity+chart)
