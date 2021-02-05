@@ -8,7 +8,7 @@ class App extends Component {
 
   componentDidMount() {
 	
-  	fetch(`http://localhost:3001/users`)
+  	fetch(`${config.API_ADDR}/users`)
   		.then(res => res.json())
   		.then(users => this.setState({ users }));
   }
