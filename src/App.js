@@ -1,12 +1,14 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
+import config from './config';
 
 class App extends Component {
   state = { users: [] }
 
   componentDidMount() {
-  	fetch('http://localhost:3001/users')
+	
+  	fetch(`http://localhost:3001/users`)
   		.then(res => res.json())
   		.then(users => this.setState({ users }));
   }
