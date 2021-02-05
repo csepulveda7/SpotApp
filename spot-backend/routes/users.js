@@ -8,7 +8,15 @@ router.get('/', function(req, res, next) {
 		username: 'Lucas Saber'
 	}, {
 		id: 2,
-		username: 'D0loresH4ze'
+		username: 'Pablo Cuervo'
+	},
+	{
+		id: 3,
+		username: 'Diego Slovaco'
+	},
+	{
+		id: 4,
+		username: 'Cristobal Sepulveda'
 	}]);
 });
 

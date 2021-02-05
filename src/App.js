@@ -1,43 +1,40 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 import React, { Component } from 'react';
-import { ActivityIndicator, FlatList, Text, View } from 'react-native';
+import { View, Text } from 'react-native';
 
-export default class App extends Component {
-	constructor(props) {
-		super(props);
+class App extends Component {
+  state = { users: [] }
 
-		this.state = {
-			data: [],
-			isLoading: true
-		};
-	}
+  componentDidMount() {
+  	fetch('http://localhost:3001/users')
+  		.then(res => res.json())
+  		.then(users => this.setState({ users }));
+  }
 
-	componentDidMount() {
-		fetch('/users')
-			.then((response) => response.json())
-			.then((users) => {
-				this.setState({ users });
-			})
-			.catch((error) => console.error(error))
-			.finally(() => {
-				this.setState({ isLoading: false });
-			});
-	}
+  render() {
+	  const { container, userText } = styles;
 
-	render() {
-		const { data, isLoading } = this.state;
-
-		return (
-			<View style = {{ flex: 1, padding: 24 }}>
-				{ isLoading ? <ActivityIndicator /> : (
-					<FlatList
-						data = { data }
-						keyExtractor = { ({ id }) => id }
-						renderItem = { ({ user }) => (
-							<Text>{ user.username }</Text>
-						) }
-					/>
-				) }
-			</View>
-		);
-	}
+  	return (
+  		<View style = { container }>
+  			<Text style = { userText }>Users</Text>
+  			{ this.state.users.map(user =>
+  				<Text key = { user.id }>{ user.username }</Text>
+  			) }
+  		</View>
+  	);
+  }
 }
+
+const styles = {
+	container: {
+		backgroundColor: 'pink',
+		height: '100%',
+		justifyContent: 'center',
+		alignItems: 'center'
+	},
+	userText: {
+		fontSize: 30
+	}
+};
+
+export default App;
