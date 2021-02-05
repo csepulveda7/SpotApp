@@ -1,41 +1,20 @@
-/* eslint-disable no-mixed-spaces-and-tabs */
-import React, { Component } from 'react';
-import { View, Text } from 'react-native';
-import config from './config';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Login from './screens/Login.js';
+import Splash from './screens/Splash.js';
 
-class App extends Component {
-  state = { users: [] }
+const Stack = createStackNavigator();
 
-  componentDidMount() {
-  	fetch(`${config.API_ADDR}/users`)
-  		.then(res => res.json())
-  		.then(users => this.setState({ users }));
-  }
-
-  render() {
-	  const { container, userText } = styles;
-
-  	return (
-  		<View style = { container }>
-  			<Text style = { userText }>Users</Text>
-  			{ this.state.users.map(user =>
-  				<Text key = { user.id }>{ user.username }</Text>
-  			) }
-  		</View>
-  	);
-  }
+function App() {
+	return (
+		<NavigationContainer>
+			<Stack.Navigator initialRouteName = 'Splash' screenOptions = {{ headerShown: false }}>
+				<Stack.Screen name = 'Splash' component = { Splash } />
+				<Stack.Screen name = 'Login' component = { Login } />
+			</Stack.Navigator>
+		</NavigationContainer>
+	);
 }
-
-const styles = {
-	container: {
-		backgroundColor: 'pink',
-		height: '100%',
-		justifyContent: 'center',
-		alignItems: 'center'
-	},
-	userText: {
-		fontSize: 30
-	}
-};
 
 export default App;
