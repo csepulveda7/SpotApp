@@ -25,29 +25,21 @@ Check out our [wiki](https://github.com/csepulveda7/SpotApp/wiki) for more info,
 
 # Sprint 1
 
-- [Product Backlog](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/product_backlog.md)
-- [Sprint Backlog](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/sprint1_backlog.md)
-- [Requirements](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/requirements.md)
-- [Trello Board](https://trello.com/b/npDmfBrX/spotapp)
-- [Burndown Chart](https://www.google.com/search?tbm=isch&q=sprint+burndown+chart)
-- [Velocity Chart](https://www.google.com/search?tbm=isch&q=agile+velocity+chart)
+- [Requirements](https://trello.com/b/npDmfBrX/spotapp)
+- [Trello Board](https://trello.com/b/npDmfBrX/spotapp) *(Including Product and Sprint Backlog)*
+- [Burndown and Velocity Charts](https://docs.google.com/spreadsheets/d/1K3txZ8Pok9edqcNp2OvZtr9fh09ts-curiPDKsvQhks/edit?usp=sharing)
 
 ## Task Allocation
 
-**Diego Cruces**- main tasking
+**Diego Cruces**- Node.js, Express, React Native, and Environment Setup, Landing Page
 
-**Pablo Cuervo**- main tasking
+**Pablo Cuervo**- React Native and Environment Setup, Landing Page
 
-**Lucas Saber**- main tasking
+**Lucas Saber**- React Native and Environment Setup, Splash Screen UI
 
-**Jordan Schneider**- main tasking
+**Jordan Schneider**- React Native and Environment Setup, Splash Screen UI, Documentation
 
-**Cristobal Sepulveda**- main tasking
-
-In this section, each group member needs to provide a brief description of what they worked on during the sprint. Keep this short and to the point. Your trello board and commit history will provide the details. 
-
-**note**: For this first sprint, I am anticipating that you will have selected one or two user stories for the Sprint Backlog, and most likely not have completed them since the majority if this week will consist of getting your product backlog, requirements, and development environment fleshed out and stood up. The only implementation I am expecting to see is that your development environment is properly configured to where it can at least run a basic "hello world" type application. 
-
+**Cristobal Sepulveda**- GitHub Initialization and Setup, Wiki/Dev Documentation, React Native front-end setup, connect and test Node/Express back-end to front-end.
 
 # Sprint 2
 

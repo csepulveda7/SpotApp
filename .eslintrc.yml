@@ -29,9 +29,6 @@ rules:
   one-var:                                 # require one variable declaration per let/const
     - error
     - never
-  no-mixed-spaces-and-tabs:                # disallow tabs + spaces for indentation except for smart-tabs
-    - error
-    - smart-tabs
   no-unused-vars:                          # disallow unused variables/imports
     - error
     - varsIgnorePattern: "Style|Props"
