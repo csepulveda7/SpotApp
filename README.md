@@ -3,13 +3,13 @@
  
 # Product Vision
 
-This product will classify dog images by breeds and store the photos into a personal database. Each photo will be associated with its breed and will display general information about the breed along with if that breed is available at local shelters. The user's account will store the pictures they have taken and the associated breeds.
+SPOT will be an app that will classify a dog's breed from an image of them and store the photo into a personal database. Each photo will be associated with its breed and will display general information about the breed along with if that breed is available at local shelters. The user's account will store the pictures they have taken and the associated breeds.
 
-We are creating this product for both education and entertainment. It can aid in animal shelters and dog rescues by raising awareness of dogs in the local community. It is a project that would be educational while still making it exciting for people to use. For us, it would be a great project to work on as we would get experience in front- and back-end development and machine learning.
+We are creating this product for both education and entertainment. It can aid in animal shelters and dog rescues by raising awareness of dogs in the local community. It is a project that would be educational while still making it exciting for people to use due to the given incentive of 'collecting' as many breeds as possible. For us, it would be a great project to work on as we would get experience in front-end and back-end development, and working with machine learning models.
 
-This project would benefit people of all ages, as it is both educational and enjoyment. It encourages going outside, meeting people, and helping local shelters. By suggesting local shelters, we enforce adopting dogs rather than going through breeders; the app also would allow for people to compete with each other to collect the most breeds.
+This project would benefit people of all ages who seek to learn more about dog breeds in a fun and innovative way. It encourages going outside, meeting people, and helping local shelters. By suggesting local shelters, we promote adopting dogs rather than going through breeders; the app also would allow for people to compete with each other to collect the most breeds.
 
-Most apps on the market strictly identify a dog breed, ours would not only suggest the most likely breed, but allows for people to collect different dog breeds and associate the breed with local shelters and give you information about that breed. Our app acts as a expandable digital encyclopedia.
+Most apps on the market strictly identify a dog breed; however, ours would not only suggest the most likely breed, but also allow for people to collect different dog breeds and associate the breed with local shelters and give you usefule information about that breed. Our app acts as a expandable digital encyclopedia.
 
 ## Team Members
 
@@ -31,10 +31,6 @@ Check out our [wiki](https://github.com/csepulveda7/SpotApp/wiki) for more info,
 - [Trello Board](https://trello.com/b/npDmfBrX/spotapp)
 - [Burndown Chart](https://www.google.com/search?tbm=isch&q=sprint+burndown+chart)
 - [Velocity Chart](https://www.google.com/search?tbm=isch&q=agile+velocity+chart)
-- System Architecture
-- Source Code
-- Automated Tests
-- Product Demonstration
 
 ## Task Allocation
 
