@@ -25,7 +25,7 @@ Check out our [wiki](https://github.com/csepulveda7/SpotApp/wiki) for more info,
 
 # Sprint 1
 
-- [Requirements](https://trello.com/b/npDmfBrX/spotapp)
+- [Requirements (Inside of backlog cards)](https://trello.com/b/npDmfBrX/spotapp)
 - [Trello Board](https://trello.com/b/npDmfBrX/spotapp) *(Including Product and Sprint Backlog)*
 - [Burndown and Velocity Charts](https://docs.google.com/spreadsheets/d/1K3txZ8Pok9edqcNp2OvZtr9fh09ts-curiPDKsvQhks/edit?usp=sharing)
 
