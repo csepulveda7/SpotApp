@@ -31,9 +31,23 @@ const Login = ({ navigation }) => {
 			<Button
 				title = 'Login'
 				buttonStyle = {{ marginVertical: '5%' }}
-				color = '#F5D8A1'
 				onPress = {() => {navigation.navigate('Main')}} 
 			/>
+			<Text>
+				{"New Here? "}  
+				<Text
+					style = {{ color: '#EDBB18' }}
+					onPress = {() => { navigation.navigate('SignUp') }}>
+					Register
+				</Text>
+			</Text>
+			<Text>
+				{"Forgot Your Password? "}   
+				<Text
+					style = {{color: '#EDBB18'}}> 
+					Reset Password
+				</Text>
+			</Text>
 		</View>
 	);
 };

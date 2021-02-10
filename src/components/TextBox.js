@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Dimensions } from 'react-native';
-import { Input, } from 'react-native-elements';
+import { Input } from 'react-native-elements';
 import { SafeAreaInsetsContext } from 'react-native-safe-area-context';
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 const { height, width } = Dimensions.get("screen");
 

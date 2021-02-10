@@ -30,7 +30,7 @@ const SignUp = ({ navigation }) => {
 			<Button
 				title = 'Sign Up'
 				buttonStyle = {{ marginVertical: '5%' }}
-				// onPress = {() => {navigation.navigate('Login')}}
+				onPress = {() => { navigation.navigate('Login') }}
 			/>
 		</View>
 	);

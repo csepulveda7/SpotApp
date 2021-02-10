@@ -10,6 +10,12 @@ const Main = ({ navigation }) => {
 	return (
 		<View style = { container }>
 			<Text>Main Page</Text>
+			
+			<Button
+				title = 'Log Out'
+				buttonStyle = {{ marginVertical: '5%' }}
+				onPress = {() => { navigation.navigate('Login') }}
+			/>
 		</View>
 	);
 };
