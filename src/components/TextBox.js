@@ -5,7 +5,7 @@ import { SafeAreaInsetsContext } from 'react-native-safe-area-context';
 
 const { height, width } = Dimensions.get("screen");
 
-const TextBox = ({ defaultValue, labelText, secureInput }) => {
+const TextBox = ({ defaultValue, labelText, icon, secureInput }) => {
 	const [input, setInput] = useState('');
   
 	const { container, textField } = styles;
@@ -17,6 +17,7 @@ const TextBox = ({ defaultValue, labelText, secureInput }) => {
 				label = { labelText }
 				placeholder = { defaultValue }
 				secureTextEntry = { secureInput }
+				leftIcon = { icon }
 			/>
 		</View>
 	);

@@ -12,20 +12,44 @@ const SignUp = ({ navigation }) => {
 			<TextBox 
 				defaultValue = 'email@address.com'
 				labelText = 'Email'
+				icon = {{ 
+					type: 'font-awesome', 
+					name: 'envelope', 
+					color: '#404040', 
+					size: 20 
+				}}
 			/>
 			<TextBox 
 				defaultValue = 'John Doe'
 				labelText = 'Name'
+					icon = {{ 
+					type: 'font-awesome',
+					name: 'user',
+					color: '#404040',
+					size: 26
+				}}
 			/>
 			<TextBox 
 				defaultValue = 'Password'
 				labelText = 'Password'
 				secureInput = { true }
+					icon = {{ 
+					type: 'font-awesome',
+					name: 'lock',
+					color: '#404040',
+					size: 26
+				}}
 			/>
 			<TextBox 
 				defaultValue = 'Password'
 				labelText = 'Confirm Password'
 				secureInput = { true }
+				icon = {{ 
+					type: 'font-awesome',
+					name: 'lock',
+					color: '#404040',
+					size: 26
+				}}
 			/>
 			<Button
 				title = 'Sign Up'

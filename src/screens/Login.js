@@ -22,16 +22,28 @@ const Login = ({ navigation }) => {
 			<TextBox 
 				defaultValue = 'Email'
 				labelText = 'email@address.com'
+				icon = {{ 
+					type: 'font-awesome', 
+					name: 'envelope', 
+					color: '#404040', 
+					size: 20 
+				}}
 			/>
 			<TextBox 
 				defaultValue = 'Password'
 				labelText = 'Password'
 				secureInput = { true }
+				icon = {{ 
+					type: 'font-awesome',
+					name: 'lock',
+					color: '#404040',
+					size: 26
+				}}
 			/>
 			<Button
 				title = 'Login'
 				buttonStyle = {{ marginVertical: '5%' }}
-				onPress = {() => {navigation.navigate('Main')}} 
+				onPress = {() => { navigation.navigate('Main') }} 
 			/>
 			<Text>
 				{"New Here? "}  
@@ -44,7 +56,7 @@ const Login = ({ navigation }) => {
 			<Text>
 				{"Forgot Your Password? "}   
 				<Text
-					style = {{color: '#EDBB18'}}> 
+					style = {{ color: '#EDBB18' }}> 
 					Reset Password
 				</Text>
 			</Text>
