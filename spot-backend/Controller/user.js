@@ -1,8 +1,5 @@
-let express = require('express');
-let router = express.Router();
-
-/* GET users listing. */
-router.get('/', function(req, res, next) {
+// Controller communitcates to the model and frontend to make a response or request
+exports.getUsers = function(req, res) {
 	res.json([{
 		id: 1,
 		username: 'Lucas Saber'
@@ -18,6 +15,4 @@ router.get('/', function(req, res, next) {
 		id: 4,
 		username: 'Cristobal Sepulveda'
 	}]);
-});
-
-module.exports = router;
+};
