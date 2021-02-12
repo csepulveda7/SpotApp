@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "adb reverse tcp:3001 tcp:3001 && set port=3001 && node ./bin/www"
+    "start": "adb reverse tcp:3001 tcp:3001 && set port=3001 && node ./bin/www",
+    "devstart": "nodemon ./bin/www",
+    "server": "SET DEBUG=spot-backend:* & npm run devstart"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -12,5 +14,8 @@
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "pug": "^3.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }
