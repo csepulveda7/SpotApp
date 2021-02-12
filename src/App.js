@@ -7,14 +7,7 @@ import SignUp from './screens/SignUp.js';
 import Main from './screens/Main.js';
 import { ThemeProvider } from 'react-native-elements';
 
-
 const Stack = createStackNavigator();
-
-const theme = {
-	colors: {
-		primary: '#EDBB18'
-	}
-}
 
 function App() {
 	return (
@@ -30,5 +23,13 @@ function App() {
 		</ThemeProvider>
 	);
 }
+
+const theme = {
+	Button: {
+		colors: {
+			primary: '#EDBB18'
+		}
+	}
+};
 
 export default App;
