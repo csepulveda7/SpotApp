@@ -3,21 +3,25 @@ import { View, Text, Dimensions } from 'react-native';
 import { Input } from 'react-native-elements';
 import { SafeAreaInsetsContext } from 'react-native-safe-area-context';
 
-const { height, width } = Dimensions.get("screen");
+const { height, width } = Dimensions.get('screen');
 
-const TextBox = ({ defaultValue, labelText, icon, secureInput }) => {
+const TextBox = ({ defaultValue, labelText, secureInput }) => {
 	const [input, setInput] = useState('');
-  
+
 	const { container, textField } = styles;
+
+	const handleInput = (e) => setInput(e.target.value);
 
 	return (
 		<View style = { container }>
-			<Input 
-				style = { input }
+			<Input
+				style = { textField }
+				input = { handleInput }
+				inputStyle = {{ borderBottomWidth: 2, borderBottomColor: '#BC6F27' }}
 				label = { labelText }
+				labelStyle = {{ color: '#BC6F27' }}
 				placeholder = { defaultValue }
 				secureTextEntry = { secureInput }
-				leftIcon = { icon }
 			/>
 		</View>
 	);
@@ -25,14 +29,11 @@ const TextBox = ({ defaultValue, labelText, icon, secureInput }) => {
 
 const styles = {
 	container: {
-		backgroundColor: '#E5E5E5',
 		width: '75%',
 		margin: '4%'
 	},
-	input: { 
-		height: 40, 
-		borderColor: 'gray', 
-		borderWidth: 0 
+	textField: {
+		height: 40
 	}
 };
 
