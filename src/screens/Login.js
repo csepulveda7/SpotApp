@@ -1,64 +1,50 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text } from 'react-native';
 import TextBox from '../components/TextBox';
 import { Button } from 'react-native-elements';
-import config from '../config';
 
 const Login = ({ navigation }) => {
-	
 	// state = { users: [] };
-	
-	// componentDidMount() {
-	// 	fetch(`${config.API_ADDR}/users`)
-	// 	.then(res => res.json())
-	// 	.then(users => this.setState({ users }));
-	// }
-	
+
+	/*
+	 * componentDidMount() {
+	 * 	fetch(`${config.API_ADDR}/users`)
+	 * 	.then(res => res.json())
+	 * 	.then(users => this.setState({ users }));
+	 * }
+	 */
+
 	const { textStyle, container } = styles;
-	
+
 	return (
 		<View style = { container }>
-			<TextBox 
+			<TextBox
 				defaultValue = 'Email'
 				labelText = 'email@address.com'
-				icon = {{ 
-					type: 'font-awesome', 
-					name: 'envelope', 
-					color: '#404040', 
-					size: 20 
-				}}
+				icon = {{ type: 'font-awesome', name: 'envelope', color: '#404040', size: 20 }}
 			/>
-			<TextBox 
+			<TextBox
 				defaultValue = 'Password'
 				labelText = 'Password'
 				secureInput = { true }
-				icon = {{ 
-					type: 'font-awesome',
-					name: 'lock',
-					color: '#404040',
-					size: 26
-				}}
+				icon = {{ type: 'font-awesome', name: 'lock', color: '#404040', size: 26 }}
 			/>
 			<Button
 				title = 'Login'
 				buttonStyle = {{ marginVertical: '5%' }}
-				onPress = {() => { navigation.navigate('Main') }} 
+				onPress = { () => { navigation.navigate('Main') } }
 			/>
 			<Text>
-				{"New Here? "}  
+				{ 'New Here? ' }
 				<Text
 					style = {{ color: '#EDBB18' }}
-					onPress = {() => { navigation.navigate('SignUp') }}>
+					onPress = { () => { navigation.navigate('SignUp') } }>
 					Register
 				</Text>
 			</Text>
 			<Text>
-				{"Forgot Your Password? "}   
-				<Text
-					style = {{ color: '#EDBB18' }}> 
-					Reset Password
-				</Text>
+				{ 'Forgot Your Password? ' }<Text style = {{ color: '#EDBB18' }}> Reset Password </Text>
 			</Text>
 		</View>
 	);
