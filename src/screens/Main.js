@@ -1,6 +1,5 @@
-import React, { Component, useState, Input } from 'react';
+import React from 'react';
 import { View, Text } from 'react-native';
-import TextBox from '../components/TextBox';
 import { Button } from 'react-native-elements';
 
 const Main = ({ navigation }) => {
@@ -10,11 +9,10 @@ const Main = ({ navigation }) => {
 	return (
 		<View style = { container }>
 			<Text>Main Page</Text>
-			
 			<Button
 				title = 'Log Out'
 				buttonStyle = {{ marginVertical: '5%' }}
-				onPress = {() => { navigation.navigate('Login') }}
+				onPress = { () => { navigation.navigate('Login') } }
 			/>
 		</View>
 	);

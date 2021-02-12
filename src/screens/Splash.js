@@ -19,16 +19,12 @@ const Splash = ({ navigation }) => {
 
 	return (
 		<View style = { container }>
+			<StatusBar translucent backgroundColor = 'transparent' />
 			<View>
 				<Animated.View style = { animationStyle }>
 					<Image style = { logoStyle } source = { SpotLogo } />
 				</Animated.View>
 			</View>
-
-			<Text style = {{ alignItems: 'bottom' }}>
-				Hello
-			</Text>
-
 		</View>
 	);
 };
