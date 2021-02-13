@@ -41,7 +41,7 @@ const SignUp = ({ navigation }) => {
 				title = 'Sign Up'
 				containerStyle = { buttonContainer }
 				buttonStyle = {{ marginVertical: '5%', width: '100%', height: '100%' }}
-				onPress = { () => { navigation.navigate('Main') }}
+				onPress = { () => { navigation.navigate('Login') }}
 			/>
 			<Text style = {{ marginTop: '5%' }}>
 				{ 'Already have an account? ' }

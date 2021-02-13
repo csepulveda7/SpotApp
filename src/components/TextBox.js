@@ -23,8 +23,6 @@ const TextBox = ({ defaultValue, labelText, secureInput }) => {
 				placeholder = { defaultValue }
 				secureTextEntry = { secureInput }
 				fontSize = { 14 }
-				labelStyle = {{ fontSize: 14, color: '#BC6F27' }}
-				containerStyle = {{ height: '20%' }}
 			/>
 		</View>
 	);
@@ -32,8 +30,7 @@ const TextBox = ({ defaultValue, labelText, secureInput }) => {
 
 const styles = {
 	container: {
-		width: '75%',
-		margin: '2%'
+		width: '75%'
 	},
 	textField: {
 		height: 40
