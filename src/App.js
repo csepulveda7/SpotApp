@@ -26,8 +26,11 @@ function App() {
 
 const theme = {
 	Button: {
-		colors: {
-			primary: '#EDBB18'
+		titleStyle: {
+			color: '#404040'
+		},
+		buttonStyle: {
+			backgroundColor: '#E2B865'
 		}
 	}
 };
