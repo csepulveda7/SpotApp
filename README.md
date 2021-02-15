@@ -1,3 +1,4 @@
+
 # Spot App
  ![SpotLogo](src/assets/images/SpotLogo.png)
  
@@ -9,7 +10,7 @@ We are creating this product for both education and entertainment. It can aid in
 
 This project would benefit people of all ages who seek to learn more about dog breeds in a fun and innovative way. It encourages going outside, meeting people, and helping local shelters. By suggesting local shelters, we promote adopting dogs rather than going through breeders; the app also would allow for people to compete with each other to collect the most breeds.
 
-Most apps on the market strictly identify a dog breed; however, ours would not only suggest the most likely breed, but also allow for people to collect different dog breeds and associate the breed with local shelters and give you usefule information about that breed. Our app acts as a expandable digital encyclopedia.
+Most apps on the market strictly identify a dog breed; however, ours would not only suggest the most likely breed, but also allow for people to collect different dog breeds and associate the breed with local shelters and give you usefule information about that breed. Our app acts as a expandable digital dog encyclopedia.
 
 ## Team Members
 
@@ -23,195 +24,48 @@ Most apps on the market strictly identify a dog breed; however, ours would not o
 
 Check out our [wiki](https://github.com/csepulveda7/SpotApp/wiki) for more info, guides, and documentation 😃
 
-# Sprint 1
-
-- [Requirements (Inside of backlog cards)](https://trello.com/b/npDmfBrX/spotapp)
-- [Trello Board](https://trello.com/b/npDmfBrX/spotapp) *(Including Product and Sprint Backlog)*
-- [Burndown and Velocity Charts](https://docs.google.com/spreadsheets/d/1K3txZ8Pok9edqcNp2OvZtr9fh09ts-curiPDKsvQhks/edit?usp=sharing)
-
-## Task Allocation
-
-**Diego Cruces**- Node.js, Express, React Native, and Environment Setup, Landing Page
-
-**Pablo Cuervo**- React Native and Environment Setup, Landing Page
-
-**Lucas Saber**- React Native and Environment Setup, Splash Screen UI
-
-**Jordan Schneider**- React Native and Environment Setup, Splash Screen UI, Documentation
-
-**Cristobal Sepulveda**- GitHub Initialization and Setup, Wiki/Dev Documentation, React Native front-end setup, connect and test Node/Express back-end to front-end.
-
-# Sprint 2
-
-- [Product Backlog](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/product_backlog.md)
-- [Sprint Backlog](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/sprint2_backlog.md)
-- [Requirements](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/requirements.md)
 - [Trello Board](https://trello.com/b/npDmfBrX/spotapp)
-- [Burndown Chart](https://www.google.com/search?tbm=isch&q=sprint+burndown+chart)
-- [Velocity Chart](https://www.google.com/search?tbm=isch&q=agile+velocity+chart)
-- [System Architecture](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/architecture.md)
-- Source Code
-- Automated Tests
-- Product Demonstration
+	- *The Trello Board holds our Product Backlog, Requirements, and Sprint Backlog*
+- [Burndown and Velocity Diagrams](https://github.com/csepulveda7/SpotApp/blob/main/charts.md)
+- [Burndown and Velocity Charts Raw Data](https://docs.google.com/spreadsheets/d/1K3txZ8Pok9edqcNp2OvZtr9fh09ts-curiPDKsvQhks/edit?usp=sharing)
+- [System Design Documents](https://github.com/csepulveda7/SpotApp/blob/main/architecture.md)
 
-## Task Allocation
+## Sprint 1
 
-**Diego Cruces**- main tasking
+### Task Allocation
 
-**Pablo Cuervo**- main tasking
+**Diego Cruces**
+Node.js, Express, React Native, and Environment Setup, Landing Page
 
-**Lucas Saber**- main tasking
+**Pablo Cuervo**
+React Native and Environment Setup, Landing Page
 
-**Jordan Schneider**- main tasking
+**Lucas Saber**
+React Native and Environment Setup, Splash Screen UI
 
-**Cristobal Sepulveda**- main tasking
+**Jordan Schneider**
+React Native and Environment Setup, Splash Screen UI, Documentation
 
-**note**: For this sprint, I am anticipating that you will continue to work on the stories carried over from Sprint 1, with a focus on the design aspect of your system. I am expecting your architecture document and diagrams to reflect the system only in the context of these user stories, with some generalization to help plan for the other items currently in the backlog. I am not expecting a significant amount of implementation at this point, if any at all.
+**Cristobal Sepulveda**
+GitHub Initialization and Setup, Wiki/Dev Documentation, React Native front-end setup, connect and test Node/Express back-end to front-end.
 
+## Sprint 2
 
-# Sprint 3
+*[Demonstration](https://youtu.be/pMURrVveU6g)*
 
-- [Product Backlog](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/product_backlog.md)
-- [Sprint Backlog](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/sprint3_backlog.md)
-- [Requirements](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/requirements.md)
-- [Trello Board](https://trello.com/b/npDmfBrX/spotapp)
-- [Burndown Chart](https://www.google.com/search?tbm=isch&q=sprint+burndown+chart)
-- [Velocity Chart](https://www.google.com/search?tbm=isch&q=agile+velocity+chart)
-- [System Architecture](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/architecture.md)
-- [Source Code](https://github.com/drhollander/COP4331_Sample/blob/master/project/readme.md)
-- [Automated Tests](https://github.com/drhollander/COP4331_Sample/blob/master/project/readme.md)
-- [Product Demonstration](https://www.youtube.com)
+### Task Allocation
 
-## Task Allocation
+**Diego Cruces**
+Designed and created high level diagrams to increase the structural understanding of the Spot App; worked on Context, Container, and Components Diagrams. Worked on setting up the database and backend MVC architecture.
 
-**Diego Cruces**- main tasking
+**Pablo Cuervo**
+Aided in the design and construction of UML-diagrams to visualize the software components of the front end design. Coordinated with team to create and prioritize user stories and helped discuss improvements to the structure of the teams Trello Board.
 
-**Pablo Cuervo**- main tasking
+**Lucas Saber**
+Created layout and stylization of the registration page along with setting up the overarching app theming. Configured page navigation for built pages. Worked on the required C4 diagrams.
 
-**Lucas Saber**- main tasking
+**Jordan Schneider**
+Set up app navigation and set up layout and stylization for the login page; dealt with the UI mockup and further styling of the login and signup pages. Organizational chores with the GitHub repo, Trello Board, and documentation files.
 
-**Jordan Schneider**- main tasking
-
-**Cristobal Sepulveda**- main tasking
-
-**note**: At this point I am expecting that you have designed out a few of the initial user stories and started to implement this. From this point forward there should be continuous integration and deployment, producing working software that is demoed at the end of each sprint.
-
-
-# Sprint 4
-
-- [Trello Board](https://trello.com/b/npDmfBrX/spotapp)
-- [Requirements](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/requirements.md)
-- [Burndown Chart](https://www.google.com/search?tbm=isch&q=sprint+burndown+chart)
-- [Velocity Chart](https://www.google.com/search?tbm=isch&q=agile+velocity+chart)
-- [System Architecture](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/architecture.md)
-- [Source Code](https://github.com/drhollander/COP4331_Sample/blob/master/project/readme.md)
-- [Automated Tests](https://github.com/drhollander/COP4331_Sample/blob/master/project/readme.md)
-- [Product Demonstration](https://www.youtube.com)
-
-## Task Allocation
-
-**Diego Cruces**- main tasking
-
-**Pablo Cuervo**- main tasking
-
-**Lucas Saber**- main tasking
-
-**Jordan Schneider**- main tasking
-
-**Cristobal Sepulveda**- main tasking
-
-**note**: Sprint 4 and onward will contain updates to your artifacts as appropriate for the current sprint, as well as continuous improvements to your software and updated product demos.
-
-
-# Sprint 5
-
-- [Trello Board](https://trello.com/b/npDmfBrX/spotapp)
-- [Requirements](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/requirements.md)
-- [Burndown Chart](https://www.google.com/search?tbm=isch&q=sprint+burndown+chart)
-- [Velocity Chart](https://www.google.com/search?tbm=isch&q=agile+velocity+chart)
-- [System Architecture](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/architecture.md)
-- [Source Code](https://github.com/drhollander/COP4331_Sample/blob/master/project/readme.md)
-- [Automated Tests](https://github.com/drhollander/COP4331_Sample/blob/master/project/readme.md)
-- [Product Demonstration](https://www.youtube.com)
-
-## Task Allocation
-
-**Diego Cruces**- main tasking
-
-**Pablo Cuervo**- main tasking
-
-**Lucas Saber**- main tasking
-
-**Jordan Schneider**- main tasking
-
-**Cristobal Sepulveda**- main tasking
-
-# Sprint 6
-
-- [Trello Board](https://trello.com/b/npDmfBrX/spotapp)
-- [Requirements](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/requirements.md)
-- [Burndown Chart](https://www.google.com/search?tbm=isch&q=sprint+burndown+chart)
-- [Velocity Chart](https://www.google.com/search?tbm=isch&q=agile+velocity+chart)
-- [System Architecture](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/architecture.md)
-- [Source Code](https://github.com/drhollander/COP4331_Sample/blob/master/project/readme.md)
-- [Automated Tests](https://github.com/drhollander/COP4331_Sample/blob/master/project/readme.md)
-- [Product Demonstration](https://www.youtube.com)
-
-## Task Allocation
-
-**Diego Cruces**- main tasking
-
-**Pablo Cuervo**- main tasking
-
-**Lucas Saber**- main tasking
-
-**Jordan Schneider**- main tasking
-
-**Cristobal Sepulveda**- main tasking
-
-# Sprint 7
-
-- [Trello Board](https://trello.com/b/npDmfBrX/spotapp)
-- [Requirements](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/requirements.md)
-- [Burndown Chart](https://www.google.com/search?tbm=isch&q=sprint+burndown+chart)
-- [Velocity Chart](https://www.google.com/search?tbm=isch&q=agile+velocity+chart)
-- [System Architecture](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/architecture.md)
-- [Source Code](https://github.com/drhollander/COP4331_Sample/blob/master/project/readme.md)
-- [Automated Tests](https://github.com/drhollander/COP4331_Sample/blob/master/project/readme.md)
-- [Product Demonstration](https://www.youtube.com)
-
-## Task Allocation
-
-**Diego Cruces**- main tasking
-
-**Pablo Cuervo**- main tasking
-
-**Lucas Saber**- main tasking
-
-**Jordan Schneider**- main tasking
-
-**Cristobal Sepulveda**- main tasking
-
-# Sprint 8
-
-- [Trello Board](https://trello.com/b/npDmfBrX/spotapp)
-- [Requirements](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/requirements.md)
-- [Burndown Chart](https://www.google.com/search?tbm=isch&q=sprint+burndown+chart)
-- [Velocity Chart](https://www.google.com/search?tbm=isch&q=agile+velocity+chart)
-- [System Architecture](https://github.com/drhollander/COP4331_Sample/blob/master/artifacts/architecture.md)
-- [Source Code](https://github.com/drhollander/COP4331_Sample/blob/master/project/readme.md)
-- [Automated Tests](https://github.com/drhollander/COP4331_Sample/blob/master/project/readme.md)
-- [Product Demonstration](https://www.youtube.com)
-
-## Task Allocation
-
-
-**Diego Cruces**- main tasking
-
-**Pablo Cuervo**- main tasking
-
-**Lucas Saber**- main tasking
-
-**Jordan Schneider**- main tasking
-
-**Cristobal Sepulveda**- main tasking
+**Cristobal Sepulveda**
+Integrated MVC architecture to express backend, connected and configured firebase authentication, database, and storage to backend. Wrote and tested backend HTTP request methods.
