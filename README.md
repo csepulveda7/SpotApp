@@ -1,7 +1,6 @@
-
-
-# Spot App
- ![SpotLogo](src/assets/images/SpotLogo.svg)
+<p align="center">
+  <img width="400" src = "src/assets/images/SpotLogo.svg">
+</p>
  
 # Product Vision
 
