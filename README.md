@@ -1,7 +1,7 @@
 
 
 # Spot App
- ![SpotLogo](src/assets/images/SpotLogo.png)
+ ![SpotLogo](src/assets/images/SpotLogo.svg)
  
 # Product Vision
 
