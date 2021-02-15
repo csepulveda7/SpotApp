@@ -1,4 +1,5 @@
 
+
 # Spot App
  ![SpotLogo](src/assets/images/SpotLogo.png)
  
@@ -34,19 +35,19 @@ Check out our [wiki](https://github.com/csepulveda7/SpotApp/wiki) for more info,
 
 ### Task Allocation
 
-**Diego Cruces**
+**Diego Cruces**  
 Node.js, Express, React Native, and Environment Setup, Landing Page
 
-**Pablo Cuervo**
+**Pablo Cuervo**  
 React Native and Environment Setup, Landing Page
 
-**Lucas Saber**
+**Lucas Saber**  
 React Native and Environment Setup, Splash Screen UI
 
-**Jordan Schneider**
+**Jordan Schneider**  
 React Native and Environment Setup, Splash Screen UI, Documentation
 
-**Cristobal Sepulveda**
+**Cristobal Sepulveda**  
 GitHub Initialization and Setup, Wiki/Dev Documentation, React Native front-end setup, connect and test Node/Express back-end to front-end.
 
 ## Sprint 2
@@ -55,17 +56,17 @@ GitHub Initialization and Setup, Wiki/Dev Documentation, React Native front-end 
 
 ### Task Allocation
 
-**Diego Cruces**
+**Diego Cruces**  
 Designed and created high level diagrams to increase the structural understanding of the Spot App; worked on Context, Container, and Components Diagrams. Worked on setting up the database and backend MVC architecture.
 
-**Pablo Cuervo**
+**Pablo Cuervo**  
 Aided in the design and construction of UML-diagrams to visualize the software components of the front end design. Coordinated with team to create and prioritize user stories and helped discuss improvements to the structure of the teams Trello Board.
 
-**Lucas Saber**
+**Lucas Saber**  
 Created layout and stylization of the registration page along with setting up the overarching app theming. Configured page navigation for built pages. Worked on the required C4 diagrams.
 
-**Jordan Schneider**
+**Jordan Schneider**  
 Set up app navigation and set up layout and stylization for the login page; dealt with the UI mockup and further styling of the login and signup pages. Organizational chores with the GitHub repo, Trello Board, and documentation files.
 
-**Cristobal Sepulveda**
+**Cristobal Sepulveda**  
 Integrated MVC architecture to express backend, connected and configured firebase authentication, database, and storage to backend. Wrote and tested backend HTTP request methods.
