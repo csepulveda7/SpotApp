@@ -24,8 +24,6 @@ Most apps on the market strictly identify a dog breed; however, ours would not o
 
 Check out our [wiki](https://github.com/csepulveda7/SpotApp/wiki) for more info, guides, and documentation 😃
 
-# Resources
-
 - [Trello Board](https://trello.com/b/npDmfBrX/spotapp)
 	- *The Trello Board holds our Product Backlog, Requirements, and Sprint Backlog*
 - [Burndown and Velocity Diagrams](https://github.com/csepulveda7/SpotApp/blob/main/charts.md)

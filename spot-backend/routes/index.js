@@ -7,6 +7,6 @@ router.get('/', function(req, res, next) {
 });
 
 // All routes to /Users are being solved in /routes/users
-router.use('/users', require('./user'));
+router.use('/users', require('./User'));
 
 module.exports = router;
