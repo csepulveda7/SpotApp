@@ -204,7 +204,7 @@ Check out our [wiki](https://github.com/csepulveda7/SpotApp/wiki) for more info,
 - [Product Demonstration](https://www.youtube.com)
 
 ## Task Allocation
-
+ 
 
 **Diego Cruces**- main tasking
 
