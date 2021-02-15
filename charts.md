@@ -6,4 +6,4 @@
 ![BurndownSprint1](diagrams/BurndownSprint1.png)
 
 ### Sprint 2
-![BurndownSprint1](diagrams/BurndownSprint1.png)
+![BurndownSprint2](diagrams/BurndownSprint2.png)
