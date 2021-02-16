@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 
-const Main = ({ navigation }) => {
+export const Main = ({ navigation }) => {
 	const { textStyle, container, buttonContainer, buttons } = styles;
 
 	return (
@@ -53,5 +53,3 @@ const styles = {
 		justifyContent: 'center'
 	}
 };
-
-export default Main;

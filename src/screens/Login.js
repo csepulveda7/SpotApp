@@ -4,7 +4,7 @@ import TextBox from '../components/TextBox';
 import { Button } from 'react-native-elements';
 import DogeLogo from '../assets/images/DogeLogo.png';
 
-const Login = ({ navigation }) => {
+export const Login = ({ navigation }) => {
 	// state = { users: [] };
 
 	/*
@@ -114,5 +114,3 @@ const styles = {
 		marginVertical: '8%'
 	}
 };
-
-export default Login;

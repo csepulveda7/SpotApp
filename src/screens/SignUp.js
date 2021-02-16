@@ -7,7 +7,7 @@ import DogeLogo from '../assets/images/DogeLogo.png';
 
 const { height, width } = Dimensions.get('screen');
 
-const SignUp = ({ navigation }) => {
+export const SignUp = ({ navigation }) => {
 	const { textStyle, container, textBoxes, rectangle, topGraphics, logoStyle, buttonContainer} = styles;
 
 	return (
@@ -104,5 +104,3 @@ const styles = {
 	}
 
 };
-
-export default SignUp;

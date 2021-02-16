@@ -4,7 +4,7 @@ import SpotLogo from '../assets/images/SpotLogo.png';
 
 const { height, width } = Dimensions.get('screen');
 
-const Splash = ({ navigation }) => {
+export const Splash = ({ navigation }) => {
 	const [logo] = useState(new Animated.Value(0));
 	const animationStyle = { translateY: logo.interpolate({ inputRange: [0, 1], outputRange: [100, 0] }) };
 	const { container, logoStyle } = styles;
@@ -41,5 +41,3 @@ const styles = {
 		width: width * 0.7
 	}
 };
-
-export default Splash;
