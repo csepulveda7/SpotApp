@@ -20,11 +20,11 @@ const Login = ({ navigation }) => {
 	return (
 		<View style = { container }>
 			<View style = { topGraphics }>
-				<View style = { [rectangle, { backgroundColor: '#E2B865', height: '65%'}]} />
+				<View style = { [rectangle, { backgroundColor: '#E2B865', height: '65%' }] } />
 				<Image style = { logoStyle } source = { DogeLogo } />
-				<View style = { [rectangle, { backgroundColor: '#F5D8A1', height: '50%'}]}/>
+				<View style = { [rectangle, { backgroundColor: '#F5D8A1', height: '50%' }] } />
 			</View>
-			<View style = { [textBoxes, {marginTop: '30%'}] }>
+			<View style = { [textBoxes, { marginTop: '30%' }] }>
 				<TextBox
 					defaultValue = 'email@address.com'
 					labelText = 'Email'
@@ -36,9 +36,9 @@ const Login = ({ navigation }) => {
 				/>
 			</View>
 			<Text
-					style = { forgotPass }>
-					{ 'Forgot Your Password? ' }
-				</Text>
+				style = { forgotPass }>
+				{ 'Forgot Your Password? ' }
+			</Text>
 			<Button
 				title = 'Login'
 				buttonStyle = {{ width: '100%', height: '100%' }}
