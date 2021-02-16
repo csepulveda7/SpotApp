@@ -28,9 +28,8 @@ Check out our [wiki](https://github.com/csepulveda7/SpotApp/wiki) for more info,
 
 - [Trello Board](https://trello.com/b/npDmfBrX/spotapp)
 	- *The Trello Board holds our Product Backlog, Requirements, and Sprint Backlog*
-- [Burndown and Velocity Diagrams](https://github.com/csepulveda7/SpotApp/blob/main/charts.md)
-- [Burndown and Velocity Charts Raw Data](https://docs.google.com/spreadsheets/d/1K3txZ8Pok9edqcNp2OvZtr9fh09ts-curiPDKsvQhks/edit?usp=sharing)
-- [System Design Documents](https://github.com/csepulveda7/SpotApp/blob/main/architecture.md)
+- [Burndown and Velocity Charts](https://docs.google.com/spreadsheets/d/1K3txZ8Pok9edqcNp2OvZtr9fh09ts-curiPDKsvQhks/edit?usp=sharing)
+- [System Design Documents](https://github.com/csepulveda7/SpotApp/wiki/Technical-Documentation)
 
 ## Sprint 1
 
