@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Image, Animated, StatusBar, Dimensions } from 'react-native';
-import SpotLogo from '../assets/images/SpotLogo.png';
+import SpotAppLogo from '../assets/images/SpotAppLogo.js';
 
 const { height, width } = Dimensions.get('screen');
 
@@ -22,7 +22,7 @@ export const Splash = ({ navigation }) => {
 			<StatusBar translucent backgroundColor = 'transparent' />
 			<View>
 				<Animated.View style = { animationStyle }>
-					<Image style = { logoStyle } source = { SpotLogo } />
+					<SpotAppLogo style = { logoStyle } />
 				</Animated.View>
 			</View>
 		</View>
@@ -37,7 +37,7 @@ const styles = {
 		alignItems: 'center'
 	},
 	logoStyle: {
-		height: height * 0.1,
-		width: width * 0.7
+		height: height * 0.35,
+		width: width * 0.55
 	}
 };

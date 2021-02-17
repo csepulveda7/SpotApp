@@ -1,19 +1,10 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text } from 'react-native';
 import TextBox from '../components/TextBox';
 import { Button } from 'react-native-elements';
-import DogeLogo from '../assets/images/DogeLogo.png';
+import DogeFaceWithinCircle from '../assets/images/DogeFaceWithinCircle';
 
 export const Login = ({ navigation }) => {
-	// state = { users: [] };
-
-	/*
-	 * componentDidMount() {
-	 * 	fetch(`${config.API_ADDR}/users`)
-	 * 	.then(res => res.json())
-	 * 	.then(users => this.setState({ users }));
-	 * }
-	 */
 
 	const { textStyle, container, forgotPass, rectangle, logoStyle, topGraphics, textBoxes, buttonContainer } = styles;
 
@@ -21,7 +12,7 @@ export const Login = ({ navigation }) => {
 		<View style = { container }>
 			<View style = { topGraphics }>
 				<View style = { [rectangle, { backgroundColor: '#E2B865', height: '65%' }] } />
-				<Image style = { logoStyle } source = { DogeLogo } />
+				<DogeFaceWithinCircle style = { logoStyle } />
 				<View style = { [rectangle, { backgroundColor: '#F5D8A1', height: '50%' }] } />
 			</View>
 			<View style = { [textBoxes, { marginTop: '30%' }] }>
@@ -86,11 +77,12 @@ const styles = {
 		height: '15%'
 	},
 	logoStyle: {
-		height: '50%',
+		height: '60%',
+		width: '50%',
 		resizeMode: 'center',
 		position: 'absolute',
 		zIndex: 2,
-		top: '40%'
+		top: '35%'
 	},
 	textBoxes: {
 		height: '20%',

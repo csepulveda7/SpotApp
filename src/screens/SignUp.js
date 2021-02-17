@@ -1,9 +1,9 @@
 import React, { Component, useState, Input } from 'react';
-import { View, Image, Text, TextPropTypes, Dimensions } from 'react-native';
+import { View, Text, TextPropTypes, Dimensions } from 'react-native';
 import TextBox from '../components/TextBox';
 import { Button } from 'react-native-elements';
 import { baseProps } from 'react-native-gesture-handler/dist/src/handlers/gestureHandlers';
-import DogeLogo from '../assets/images/DogeLogo.png';
+import DogeFaceWithinCircle from '../assets/images/DogeFaceWithinCircle';
 
 const { height, width } = Dimensions.get('screen');
 
@@ -14,7 +14,7 @@ export const SignUp = ({ navigation }) => {
 		<View style = { container }>
 			<View style = { topGraphics }>
 				<View style = { [rectangle, { backgroundColor: '#E2B865', height: '65%'}]} />
-				<Image style = { logoStyle } source = { DogeLogo } />
+				<DogeFaceWithinCircle style = { logoStyle } />
 				<View style = { [rectangle, { backgroundColor: '#F5D8A1', height: '50%'}]}/>
 			</View>
 			<View style = { textBoxes }>
@@ -88,11 +88,12 @@ const styles = {
 		zIndex: 0
 	},
 	logoStyle: {
-		height: '70%',
+		height: '60%',
+		width: '50%',
 		resizeMode: 'center',
 		position: 'absolute',
 		zIndex: 2,
-		top: '30%'
+		top: '35%'
 	},
 	buttonContainer: {
 		width: '65%',
