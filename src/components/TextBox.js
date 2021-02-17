@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
-import { View, Text, Dimensions } from 'react-native';
+import { View } from 'react-native';
 import { Input } from 'react-native-elements';
-import { SafeAreaInsetsContext } from 'react-native-safe-area-context';
 
-const { height, width } = Dimensions.get("screen");
 
-const TextBox = ({ defaultValue, labelText, icon, secureInput }) => {
-	const [input, setInput] = useState('');
-  
+const TextBox = ({ onChange, defaultValue, labelText, secureInput, value }) => {
 	const { container, textField } = styles;
 
 	return (
 		<View style = { container }>
-			<Input 
-				style = { input }
+			<Input
+				style = { textField }
+				onChangeText = { onChange }
+				inputStyle = {{ borderBottomWidth: 2, borderBottomColor: '#BC6F27' }}
 				label = { labelText }
+				labelStyle = {{ color: '#BC6F27' }}
 				placeholder = { defaultValue }
 				secureTextEntry = { secureInput }
-				leftIcon = { icon }
+				fontSize = { 14 }
+				value = { value }
 			/>
 		</View>
 	);
@@ -25,14 +25,10 @@ const TextBox = ({ defaultValue, labelText, icon, secureInput }) => {
 
 const styles = {
 	container: {
-		backgroundColor: '#E5E5E5',
-		width: '75%',
-		margin: '4%'
+		width: '75%'
 	},
-	input: { 
-		height: 40, 
-		borderColor: 'gray', 
-		borderWidth: 0 
+	textField: {
+		height: 40
 	}
 };
 

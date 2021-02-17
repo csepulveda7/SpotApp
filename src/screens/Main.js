@@ -2,18 +2,23 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 
-const Main = ({ navigation }) => {
-
-	const { textStyle, container } = styles;
+export const Main = ({ navigation }) => {
+	const { textStyle, container, buttonContainer, buttons } = styles;
 
 	return (
 		<View style = { container }>
-			<Text>Main Page</Text>
-			<Button
-				title = 'Log Out'
-				buttonStyle = {{ marginVertical: '5%' }}
-				onPress = { () => { navigation.navigate('Login') } }
-			/>
+			<View style = { buttons }>
+				<Button
+					title = 'Collection'
+					containerStyle = { buttonContainer }
+					buttonStyle = {{ width: '100%', height: '100%' }}
+				/>
+				<Button
+					title = 'My Account'
+					containerStyle = { buttonContainer }
+					buttonStyle = {{ width: '100%', height: '100%' }}
+				/>
+			</View>
 		</View>
 	);
 };
@@ -24,7 +29,8 @@ const styles = {
 		height: '100%',
 		width: '100%',
 		justifyContent: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
+		position: 'relative'
 	},
 	textStyle: {
 		backgroundColor: 'white',
@@ -32,7 +38,18 @@ const styles = {
 		width: '100%',
 		justifyContent: 'center',
 		alignItems: 'center'
+	},
+	buttons: {
+		width: '90%',
+		height: '10%',
+		alignItems: 'center',
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		top: '83%'
+	},
+	buttonContainer: {
+		width: '40%',
+		height: '60%',
+		justifyContent: 'center'
 	}
-}
-
-export default Main;
+};
