@@ -1,12 +1,39 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, Alert } from 'react-native';
 import TextBox from '../components/TextBox';
 import { Button } from 'react-native-elements';
 import DogeFaceWithinCircle from '../assets/images/DogeFaceWithinCircle';
 
 export const Login = ({ navigation }) => {
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+	const [error, setError] = useState('');
 
-	const { textStyle, container, forgotPass, rectangle, logoStyle, topGraphics, textBoxes, buttonContainer } = styles;
+	const {
+		textStyle,
+		container,
+		forgotPass,
+		rectangle,
+		logoStyle,
+		topGraphics,
+		textBoxes,
+		buttonContainer,
+		errorText
+	} = styles;
+
+	const loginSubmit = () => {
+		if (!email)
+			setError("Please enter your email");
+		else if (!password)
+			setError("Please enter your password");
+		else
+			Alert.alert(email, password);
+	};
+
+	const renderError = () => {
+		if (error)
+			return (<Text style = { errorText }>{ error }</Text>);
+	};
 
 	return (
 		<View style = { container }>
@@ -19,22 +46,27 @@ export const Login = ({ navigation }) => {
 				<TextBox
 					defaultValue = 'email@address.com'
 					labelText = 'Email'
+					onChange = { (e) => setEmail(e) }
+					value = { email }
 				/>
 				<TextBox
 					defaultValue = 'Password'
 					labelText = 'Password'
 					secureInput = { true }
+					onChange = { (e) => setPassword(e) }
+					value = { password }
 				/>
 			</View>
 			<Text
 				style = { forgotPass }>
 				{ 'Forgot Your Password? ' }
 			</Text>
+			{ renderError() }
 			<Button
 				title = 'Login'
 				buttonStyle = {{ width: '100%', height: '100%' }}
 				containerStyle = { buttonContainer }
-				onPress = { () => { navigation.navigate('Main') } }
+				onPress = { loginSubmit }
 			/>
 			<Text>
 				{ 'Don\'t Have an Account? ' }
@@ -104,5 +136,11 @@ const styles = {
 		alignItems: 'center',
 		position: 'relative',
 		marginVertical: '8%'
+	},
+	errorText: {
+		fontSize: 14,
+		alignSelf: 'center',
+		color: 'red',
+		fontWeight: 'bold'
 	}
 };

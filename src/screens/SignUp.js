@@ -1,53 +1,83 @@
-import React, { Component, useState, Input } from 'react';
-import { View, Text, TextPropTypes, Dimensions } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, Alert } from 'react-native';
 import TextBox from '../components/TextBox';
 import { Button } from 'react-native-elements';
-import { baseProps } from 'react-native-gesture-handler/dist/src/handlers/gestureHandlers';
 import DogeFaceWithinCircle from '../assets/images/DogeFaceWithinCircle';
 
-const { height, width } = Dimensions.get('screen');
-
 export const SignUp = ({ navigation }) => {
-	const { textStyle, container, textBoxes, rectangle, topGraphics, logoStyle, buttonContainer} = styles;
+	const [email, setEmail] = useState('');
+	const [username, setUsername] = useState('');
+	const [password, setPassword] = useState('');
+	const [confirm, setConfirm] = useState('');
+	const [error, setError] = useState('');
+
+	const { textStyle, container, textBoxes, rectangle, topGraphics, logoStyle, buttonContainer, errorText } = styles;
+
+	const registerSubmit = () => {
+		if (!email) { setError('Please enter your email') }
+		else if (!username) { setError('Please enter your username') }
+		else if (!password) { setError('Please enter your password') }
+		else if (!confirm) { setError('Please confrim your password') }
+		else if (confirm !== password) { setError('Passwords do not match') }
+		else {
+			Alert.alert(email, username + password + confirm);
+			navigation.navigate('Login');
+		}
+	};
+
+	const renderError = () => {
+		if (error)
+			return (<Text style = { errorText }>{ error }</Text>);
+	};
 
 	return (
 		<View style = { container }>
 			<View style = { topGraphics }>
-				<View style = { [rectangle, { backgroundColor: '#E2B865', height: '65%'}]} />
+				<View style = { [rectangle, { backgroundColor: '#E2B865', height: '65%' }] } />
 				<DogeFaceWithinCircle style = { logoStyle } />
-				<View style = { [rectangle, { backgroundColor: '#F5D8A1', height: '50%'}]}/>
+				<View style = { [rectangle, { backgroundColor: '#F5D8A1', height: '50%' }] } />
 			</View>
 			<View style = { textBoxes }>
 				<TextBox
 					defaultValue = 'email@address.com'
 					labelText = 'Email'
+					onChange = { (e) => setEmail(e) }
+					value = { email }
 				/>
 				<TextBox
 					defaultValue = 'John Doe'
-					labelText = 'Name'
+					labelText = 'Username'
+					onChange = { (e) => setUsername(e) }
+					value = { username }
 				/>
 				<TextBox
 					defaultValue = 'Password'
 					labelText = 'Password'
 					secureInput = { true }
+					onChange = { (e) => setPassword(e) }
+					value = { password }
 				/>
 				<TextBox
 					defaultValue = 'Password'
 					labelText = 'Confirm Password'
 					secureInput = { true }
+					onChange = { (e) => setConfirm(e) }
+					value = { confirm }
 				/>
 			</View>
 			<Button
 				title = 'Sign Up'
 				containerStyle = { buttonContainer }
 				buttonStyle = {{ marginVertical: '5%', width: '100%', height: '100%' }}
-				onPress = { () => { navigation.navigate('Login') }}
+				onPress = { registerSubmit }
 			/>
+			{ renderError() }
 			<Text style = {{ marginTop: '5%' }}>
 				{ 'Already have an account? ' }
 				<Text style = {{ color: '#BC6F27' }}
-					onPress = { () => { navigation.navigate('Login') }}>
-					Log in Here! </Text>
+					onPress = { () => { navigation.navigate('Login') } }>
+					Log in Here!
+				</Text>
 			</Text>
 		</View>
 	);
@@ -102,6 +132,11 @@ const styles = {
 		alignItems: 'center',
 		marginTop: '5%',
 		position: 'relative'
+	},
+	errorText: {
+		fontSize: 14,
+		alignSelf: 'center',
+		color: 'red',
+		fontWeight: 'bold'
 	}
-
 };
