@@ -8,9 +8,17 @@ let userController = require('../Controller/User');
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
-/* GET users listing. */
-router.get('/getUser', userController.getUser);
+/* Users GET Requests. */
 
-router.post('/showUser', userController.showUser);
+// GET requests list of all users
+router.get('/getUsers', userController.getUsers);
+
+/* Users POST Requests. */
+
+// POST request for creating a new user
+router.post('/createUser', userController.createUser);
+
+// POST request for creating a new user
+router.post('/loginUser', userController.loginUser);
 
 module.exports = router;

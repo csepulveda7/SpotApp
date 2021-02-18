@@ -4,7 +4,7 @@ export const loginUser = (email, password) => {
 	try {
 		const user = { email: email, password: password };
 
-		fetch(`${config.API_ADDR}/user/showUser`, {
+		fetch(`${config.API_ADDR}/user/loginUser`, {
 			method: 'POST',
 			mode: 'no-cors',
 			headers: {

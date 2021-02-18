@@ -8,25 +8,54 @@
  *  orchestrates the work those service calls, but does not do the work itself.
  */
 
-exports.getUser = function(request, response) {
-	response.json([{
-		id: 1,
-		username: 'Lucas Saber'
-	}, {
-		id: 2,
-		username: 'Pablo Cuervo'
-	},
-	{
-		id: 3,
-		username: 'Diego Slovaco'
-	},
-	{
-		id: 4,
-		username: 'Cristobal Sepulveda'
-	}]);
+let userService = require('../services/user');
+
+exports.getUsers = function(request, response) {
+	try {
+		response.json([{
+			id: 1,
+			username: 'Lucas Saber'
+		}, {
+			id: 2,
+			username: 'Pablo Cuervo'
+		},
+		{
+			id: 3,
+			username: 'Diego Slovaco'
+		},
+		{
+			id: 4,
+			username: 'Cristobal Sepulveda'
+		}]);
+	}
+	catch (e) {
+		console.error(e);
+	}
 };
 
-exports.showUser = function(request, response) {
-	console.log('Got body:', request.body);
-	response.sendStatus(200);
+exports.createUser = async (request, response) => {
+	try {
+		/*
+		 * create new instance of User Model
+		 *   <----Insert Code Here---->
+		 */
+		userService.createUser(request.body);
+		response.sendStatus(200);
+	}
+	catch (e) {
+		console.error(e);
+	}
+};
+
+exports.loginUser = async (request, response) => {
+	try {
+		const { email, password } = request.body;
+
+		console.log('Email:', email);
+		console.log('Password:', password);
+		response.sendStatus(200);
+	}
+	catch (e) {
+		console.error(e);
+	}
 };

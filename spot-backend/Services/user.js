@@ -8,4 +8,16 @@
  *  - returns the completed work a response to the controller
  */
 
-import firebase from 'firebase';
+let admin = require('../index');
+
+exports.createUser = async (user) => {
+	admin.auth.createUser({
+		displayName: user.name,
+		email: user.email,
+		emailVerified: false,
+		password: user.password,
+		disabled: false
+	})
+		.then((userRecord) => console.log('Successfully created new user:', userRecord.uid))
+		.catch(error => console.log('Error creating new user:', error));
+};

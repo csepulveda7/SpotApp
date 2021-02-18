@@ -1,27 +1,23 @@
 // import firebase and the controllers
-import firebase from 'firebase-admin';
-import * as userController from './Controller/User';
+const admin = require('firebase-admin');
 
 // Config firebase keys
-const config = {
-	apiKey: process.env.apiKey,
-	authDomain: process.env.authDomain,
-	databaseURL: process.env.databaseURL,
-	projectId: process.env.projectId,
-	storageBucket: process.env.storageBucket,
-	messagingSenderId: process.env.messagingSenderId,
-	appId: process.env.appId
-};
+const serviceAccount = require('../serviceAccountKey.json');
 
-// Initalize firebase app and db
-const app = firebase.initializeApp(config);
-const db = firebase.firestore(app);
-
-// Specify custom db configurations
-db.settings({
-	ssl: false,
-	timestampsInSnapshots: true
+// Initalize firebase app
+admin.initializeApp({
+	credential: admin.credential.cert(serviceAccount),
+	databaseURL: 'https://spotappDB.firebaseio.com',
+	storageBucket: 'spotappBucket.appspot.com'
 });
 
-// export database reference
-export { db };
+// Initalize authentication, database, and storage bucket
+const auth = admin.auth();
+const db = admin.firestore();
+const bucket = admin.storage().bucket();
+
+module.exports = {
+	auth: auth,
+	db: db,
+	bucket: bucket
+};
