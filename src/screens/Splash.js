@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Image, Animated, StatusBar, Dimensions } from 'react-native';
+import { View, Animated, StatusBar, Dimensions } from 'react-native';
 import SpotAppLogo from '../assets/images/SpotAppLogo.js';
 
 const { height, width } = Dimensions.get('screen');

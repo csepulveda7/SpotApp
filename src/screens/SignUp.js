@@ -58,7 +58,7 @@ export const SignUp = ({ navigation }) => {
 					value = { password }
 				/>
 				<TextBox
-					defaultValue = 'Password'
+					defaultValue = 'Confirm Password'
 					labelText = 'Confirm Password'
 					secureInput = { true }
 					onChange = { (e) => setConfirm(e) }
