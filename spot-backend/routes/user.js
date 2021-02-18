@@ -2,9 +2,15 @@
 let express = require('express');
 let router = express.Router();
 
+let bodyParser = require('body-parser');
 let userController = require('../Controller/User');
 
+router.use(bodyParser.urlencoded({ extended: true }));
+router.use(bodyParser.json());
+
 /* GET users listing. */
-router.get('/getUsers', userController.getUsers);
+router.get('/getUser', userController.getUser);
+
+router.post('/showUser', userController.showUser);
 
 module.exports = router;
