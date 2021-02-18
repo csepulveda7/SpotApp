@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Alert } from 'react-native';
 import TextBox from '../components/TextBox';
 import { Button } from 'react-native-elements';
+import { loginUser } from '../services/userServices';
 import DogeFaceWithinCircle from '../assets/images/DogeFaceWithinCircle';
 
 export const Login = ({ navigation }) => {
@@ -22,12 +23,10 @@ export const Login = ({ navigation }) => {
 	} = styles;
 
 	const loginSubmit = () => {
-		if (!email)
-			setError("Please enter your email");
-		else if (!password)
-			setError("Please enter your password");
+		if (!email) setError('Please enter your email');
+		else if (!password) setError('Please enter your password');
 		else
-			Alert.alert(email, password);
+			loginUser(email, password);
 	};
 
 	const renderError = () => {
