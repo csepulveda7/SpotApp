@@ -21,3 +21,19 @@ exports.createUser = async (user) => {
 		.then((userRecord) => console.log('Successfully created new user:', userRecord.uid))
 		.catch(error => console.log('Error creating new user:', error));
 };
+
+
+exports.loginUser = async (user) => {
+	firebase.auth().signInWithEmailAndPassword(email, password)
+  	.then((userCredential) => {
+    	// Signed in
+    	var user = userCredential.user;
+		console.log('sign in successful');
+		
+  	})
+  	.catch((error) => {
+    	var errorCode = error.code;
+    	var errorMessage = error.message;
+		console.log(errorCode, errorMessage);
+  	});
+};
