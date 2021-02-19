@@ -23,7 +23,7 @@ export const Main = ({ navigation }) => {
 	);
 };
 
-const styles = {
+export const styles = {
 	container: {
 		backgroundColor: '#FFFFFF',
 		height: '100%',
