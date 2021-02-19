@@ -46,16 +46,3 @@ exports.createUser = async (request, response) => {
 		console.error(e);
 	}
 };
-
-exports.loginUser = async (request, response) => {
-	try {
-		const { email, password } = request.body;
-
-		console.log('Email:', email);
-		console.log('Password:', password);
-		response.sendStatus(200);
-	}
-	catch (e) {
-		console.error(e);
-	}
-};

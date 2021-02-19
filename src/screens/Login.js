@@ -23,8 +23,7 @@ export const Login = ({ navigation }) => {
 	const loginSubmit = () => {
 		if (!email) setError('Please enter your email');
 		else if (!password) setError('Please enter your password');
-		else
-			loginUser(email, password);
+		else loginUser(email, password);
 	};
 
 	const renderError = () => {
