@@ -43,16 +43,16 @@ export const SignUp = ({ navigation }) => {
 			<Header />
 			<View style = { textBoxes }>
 				<TextBox
-					defaultValue = 'email@address.com'
-					labelText = 'Email'
-					onChange = { (e) => setEmail(e) }
-					value = { email }
-				/>
-				<TextBox
 					defaultValue = 'John Doe'
 					labelText = 'Username'
 					onChange = { (e) => setUsername(e) }
 					value = { username }
+				/>
+				<TextBox
+					defaultValue = 'email@address.com'
+					labelText = 'Email'
+					onChange = { (e) => setEmail(e) }
+					value = { email }
 				/>
 				<TextBox
 					defaultValue = 'Password'
@@ -85,3 +85,4 @@ export const SignUp = ({ navigation }) => {
 		</View>
 	);
 };
+
