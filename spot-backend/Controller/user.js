@@ -37,9 +37,27 @@ exports.createUser = async (request, response) => {
 	try {
 		/*
 		 * create new instance of User Model
-		 *   <----Insert Code Here---->
+		 *   <----Insert Code Here----> uwu
 		 */
 		userService.createUser(request.body);
+		response.sendStatus(200);
+	}
+	catch (e) {
+		console.error(e);
+	}
+};
+
+exports.loginUser = async (request, response) => {
+	try {
+		const { email, password } = request.body;
+
+		console.log('Email:', email);
+		console.log('Password:', password);
+
+		userService.loginUser(request.body)
+			.then(() => response.status(200).send('Log in Successful'))
+			.catch(error => response.status(400).send(error));
+
 		response.sendStatus(200);
 	}
 	catch (e) {

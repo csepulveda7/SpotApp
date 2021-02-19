@@ -5,6 +5,7 @@ let router = express.Router();
 let bodyParser = require('body-parser');
 let userController = require('../Controller/User');
 
+//Parse POST request body data
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
