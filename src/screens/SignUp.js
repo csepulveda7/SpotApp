@@ -3,6 +3,7 @@ import { View, Text, Alert } from 'react-native';
 import { Header, TextBox } from '../components';
 import { Button } from 'react-native-elements';
 import { styles } from './styles';
+import { createUser } from '../services/userServices';
 
 export const SignUp = ({ navigation }) => {
 	const [email, setEmail] = useState('');
@@ -29,6 +30,7 @@ export const SignUp = ({ navigation }) => {
 		else if (confirm !== password) { setError('Passwords do not match') }
 		else {
 			Alert.alert(email, username + password + confirm);
+			createUser(username, email, password);
 			navigation.navigate('Login');
 		}
 	};
