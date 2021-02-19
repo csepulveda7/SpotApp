@@ -44,5 +44,9 @@ export const styles = {
 		textAlign: 'right',
 		marginRight: '30%',
 		marginBottom: '5%'
+	},
+	rightMargin: {
+		width: '100%',
+		marginRight: '30%'
 	}
 };

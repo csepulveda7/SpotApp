@@ -19,7 +19,8 @@ export const Login = ({ navigation }) => {
 		buttonContainer,
 		errorText,
 		fullWidthHeight,
-		forgotPassword
+		forgotPassword,
+		rightMargin
 	} = styles;
 
 	const loginSubmit = () => {
@@ -101,6 +102,7 @@ export const Login = ({ navigation }) => {
 					value = { password }
 				/>
 				<Pressable
+					style = { rightMargin }
 					onPress = { () => {
 						setModalVisible(true);
 						setForgotPasswordEmail('');
