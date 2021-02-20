@@ -1,23 +1,26 @@
 import React from 'react';
-import { View } from 'react-native';
-import { Button } from 'react-native-elements';
+import { View, Image, Pressable, Dimensions } from 'react-native';
+import BreedCollectionIcon from '../assets/images/BreedCollectionIcon.png';
+import AccountIcon from '../assets/images/AccountIcon.png';
 
 export const Main = ({ navigation }) => {
-	const { textStyle, container, buttonContainer, buttons } = styles;
+	const { textStyle, container, buttons, iconStyle, pressableStyle } = styles;
 
 	return (
 		<View style = { container }>
 			<View style = { buttons }>
-				<Button
-					title = 'Collection'
-					containerStyle = { buttonContainer }
-					buttonStyle = {{ width: '100%', height: '100%' }}
-				/>
-				<Button
-					title = 'My Account'
-					containerStyle = { buttonContainer }
-					buttonStyle = {{ width: '100%', height: '100%' }}
-				/>
+				<Pressable onPress = { () => { navigation.navigate('Collection') } }>
+					<Image
+						style = { iconStyle }
+						source = { BreedCollectionIcon }
+					/>
+				</Pressable>
+				<Pressable onPress = { () => { navigation.navigate('Account') } }>
+					<Image
+						style = { iconStyle }
+						source = { AccountIcon }
+					/>
+				</Pressable>
 			</View>
 		</View>
 	);
@@ -25,7 +28,7 @@ export const Main = ({ navigation }) => {
 
 export const styles = {
 	container: {
-		backgroundColor: '#FFFFFF',
+		backgroundColor: '#404040',
 		height: '100%',
 		width: '100%',
 		justifyContent: 'center',
@@ -40,16 +43,16 @@ export const styles = {
 		alignItems: 'center'
 	},
 	buttons: {
-		width: '90%',
+		width: '80%',
 		height: '10%',
 		alignItems: 'center',
 		flexDirection: 'row',
 		justifyContent: 'space-between',
-		top: '83%'
+		top: '75%'
 	},
-	buttonContainer: {
-		width: '40%',
-		height: '60%',
-		justifyContent: 'center'
+	iconStyle: {
+		height: '65%',
+		position: 'relative',
+		top: '0%'
 	}
 };

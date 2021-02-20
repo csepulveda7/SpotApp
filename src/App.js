@@ -5,7 +5,9 @@ import {
 	Splash,
 	Login,
 	SignUp,
-	Main
+	Main,
+	Collection,
+	Account
 } from './screens';
 import { ThemeProvider } from 'react-native-elements';
 
@@ -20,6 +22,8 @@ function App() {
 					<Stack.Screen name = 'Login' component = { Login } />
 					<Stack.Screen name = 'SignUp' component = { SignUp } />
 					<Stack.Screen name = 'Main' component = { Main } />
+					<Stack.Screen name = 'Collection' component = { Collection } />
+					<Stack.Screen name = 'Account' component = { Account } />
 				</Stack.Navigator>
 			</NavigationContainer>
 		</ThemeProvider>
