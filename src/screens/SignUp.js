@@ -26,7 +26,7 @@ export const SignUp = ({ navigation }) => {
 		if (!email) { setError('Please enter your email') }
 		else if (!username) { setError('Please enter your username') }
 		else if (!password) { setError('Please enter your password') }
-		else if (!confirm) { setError('Please confirmm your password') }
+		else if (!confirm) { setError('Please confirm your password') }
 		else if (confirm !== password) { setError('Passwords do not match') }
 		else {
 			Alert.alert(email, username + password + confirm);
@@ -71,13 +71,13 @@ export const SignUp = ({ navigation }) => {
 					value = { confirm }
 				/>
 			</View>
+			{ renderError() }
 			<Button
 				title = 'Sign Up'
 				containerStyle = { buttonContainer }
 				buttonStyle = { fullWidthHeight }
 				onPress = { registerSubmit }
 			/>
-			{ renderError() }
 			<Text style = { subtextButton }>
 				{ 'Already have an account? ' }
 				<Text style = {{ color: '#BC6F27' }} onPress = { () => { navigation.navigate('Login') } }>

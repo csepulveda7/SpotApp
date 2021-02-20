@@ -2,7 +2,7 @@ import * as React from 'react';
 import Svg, { Path } from 'react-native-svg';
 /* SVGR has dropped some elements not supported by react-native-svg: style */
 
-function SvgComponent(props) {
+export const DogeFace = (props) => {
 	return (
 		<Svg
 			id = 'svg'
@@ -34,6 +34,4 @@ function SvgComponent(props) {
 			/>
 		</Svg>
 	);
-}
-
-export default SvgComponent;
+};

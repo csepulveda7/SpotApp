@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, Pressable, Dimensions } from 'react-native';
+import { View, Image, Pressable } from 'react-native';
 import BreedCollectionIcon from '../assets/images/BreedCollectionIcon.png';
 import AccountIcon from '../assets/images/AccountIcon.png';
 

@@ -10,17 +10,18 @@ export const styles = {
 	textBoxes: {
 		width: '100%',
 		alignItems: 'center',
-		justifyContent: 'space-evenly',
+		justifyContent: 'flex-end',
 		flexDirection: 'column',
 		zIndex: 1,
 		marginTop: '18%'
 	},
 	buttonContainer: {
+		backgroundColor: 'green',
 		width: '65%',
 		height: '7%',
 		justifyContent: 'flex-end',
 		alignItems: 'center',
-		marginTop: '5%',
+		marginTop: '6%',
 		position: 'relative'
 	},
 	errorText: {
@@ -41,12 +42,17 @@ export const styles = {
 	forgotPassword: {
 		color: '#BC6F27',
 		width: '100%',
-		textAlign: 'right',
+		textAlign: 'center',
 		marginRight: '30%',
-		marginBottom: '5%'
+		marginBottom: '15%'
+	},
+	forgotPasswordButton: {
+		width: '30%'
 	},
 	rightMargin: {
-		width: '100%',
-		marginRight: '30%'
+		marginRight: '30%',
+		justifyContent: 'flex-end',
+		flexDirection: 'row',
+		width: '100%'
 	}
 };

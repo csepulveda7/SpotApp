@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Pressable, Modal } from 'react-native';
+import { View, Text, Pressable, Modal, Platform, KeyboardAvoidingView } from 'react-native';
 import { TextBox, Header } from '../components';
 import { Button } from 'react-native-elements';
 import { loginUser } from '../services/userServices';
@@ -20,6 +20,7 @@ export const Login = ({ navigation }) => {
 		errorText,
 		fullWidthHeight,
 		forgotPassword,
+		forgotPasswordButton,
 		rightMargin
 	} = styles;
 
@@ -36,11 +37,14 @@ export const Login = ({ navigation }) => {
 
 	const renderForgotPasswordModal = () => {
 		return (
-			<View style = { modalStyles.container }>
-				<Modal
-					animationType = 'slide'
-					transparent = { true }
-					visible = { modalVisible }
+			<Modal
+				animationType = 'slide'
+				transparent = { true }
+				visible = { modalVisible }
+			>
+				<KeyboardAvoidingView
+					behavior = { Platform.OS === 'ios' ? 'padding' : 'height' }
+					enabled
 				>
 					<View style = { modalStyles.centeredView }>
 						<View style = { modalStyles.ModalView }>
@@ -77,8 +81,8 @@ export const Login = ({ navigation }) => {
 							</View>
 						</View>
 					</View>
-				</Modal>
-			</View>
+				</KeyboardAvoidingView>
+			</Modal>
 		);
 	};
 
@@ -100,8 +104,9 @@ export const Login = ({ navigation }) => {
 					onChange = { (e) => setPassword(e) }
 					value = { password }
 				/>
-				<Pressable
-					style = { rightMargin }
+			</View>
+			<View style = { rightMargin }>
+				<Pressable style = { forgotPasswordButton }
 					onPress = { () => {
 						setModalVisible(true);
 						setForgotPasswordEmail('');
@@ -149,7 +154,7 @@ const modalStyles = {
 		alignItems: 'center',
 		backgroundColor: '#E5E5E5',
 		width: '90%',
-		height: '35%',
+		height: 250,
 		borderRadius: 10
 	},
 	promptText: {
