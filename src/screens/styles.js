@@ -41,12 +41,17 @@ export const styles = {
 	forgotPassword: {
 		color: '#BC6F27',
 		width: '100%',
-		textAlign: 'right',
+		textAlign: 'center',
 		marginRight: '30%',
 		marginBottom: '5%'
 	},
+	forgotPasswordButton: {
+		width: '30%'
+	},
 	rightMargin: {
-		width: '100%',
-		marginRight: '30%'
+		marginRight: '30%',
+		justifyContent: 'flex-end',
+		flexDirection: 'row',
+		width: '100%'
 	}
 };
