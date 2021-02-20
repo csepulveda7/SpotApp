@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import DogeFaceWithinCircle from '../assets/images/DogeFaceWithinCircle';
+import { DogeFaceWithinCircle } from '../assets/images';
 
 export const Header = ({ height }) => {
 	const { topRectangle, bottomRectangle, logoStyle, topGraphics } = styles;
