@@ -10,7 +10,7 @@
 
 let userService = require('../services/user');
 
-exports.getUsers = function(request, response) {
+exports.getDevs = function(request, response) {
 	try {
 		response.json([{
 			id: 1,
@@ -26,6 +26,7 @@ exports.getUsers = function(request, response) {
 		{
 			id: 4,
 			username: 'Cristobal Sepulveda'
+
 		}]);
 	}
 	catch (e) {
@@ -39,6 +40,7 @@ exports.createUser = async (request, response) => {
 		 * create new instance of User Model
 		 *   <----Insert Code Here----> uwu
 		 */
+
 		userService.createUser(request.body);
 		response.sendStatus(200);
 	}
@@ -49,15 +51,27 @@ exports.createUser = async (request, response) => {
 
 exports.loginUser = async (request, response) => {
 	try {
-		const { email, password } = request.body;
+		userService.loginUser(request.body);
+		response.sendStatus(200);
+	}
+	catch (e) {
+		console.error(e);
+	}
+};
 
-		console.log('Email:', email);
-		console.log('Password:', password);
+exports.logoutUser = async (request, response) => {
+	try {
+		userService.logoutUser();
+		response.sendStatus(200);
+	}
+	catch (e) {
+		console.error(e);
+	}
+};
 
-		userService.loginUser(request.body)
-			.then(() => response.status(200).send('Log in Successful'))
-			.catch(error => response.status(400).send(error));
-
+exports.resetPassword = async (request, response) => {
+	try {
+		userService.resetPassword(request.body);
 		response.sendStatus(200);
 	}
 	catch (e) {

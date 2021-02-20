@@ -2,9 +2,8 @@
 const firebase = require('firebase');
 const { config } = require('./config');
 
-// Import cloud storage and env file
+// Import cloud storage
 require('firebase/storage');
-require('dotenv').config({ path: '../.env' });
 
 // Initalize app, authentication, database, and storage bucket
 const app = firebase.initializeApp(config);

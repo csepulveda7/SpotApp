@@ -9,16 +9,4 @@
  *  - Also, Model is the first class which gets the data filled from DB when you retrieve the data from DB.
  */
 
-import firebase from 'firebase-admin';
-
-export const INITIAL_STATE = {
-	activeUser: {
-		id: '',
-		userName: '',
-		email: '',
-		picture: '',
-		score: 0
-	},
-	error: '',
-	loading: false
-};
+const { db } = require('../index');
