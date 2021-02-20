@@ -33,6 +33,7 @@ local.properties
 # Firebase API
 .env
 .env.production
+/spot-backend/config.js
 
 #Firebase Admin JSON
 serviceAccountKey.json
@@ -68,3 +69,6 @@ buck-out/
 
 # Draft Adobe Illustrator Files
 *.ai
+
+# charts file
+charts.md
