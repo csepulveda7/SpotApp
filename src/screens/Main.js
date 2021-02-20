@@ -1,25 +1,53 @@
 import React from 'react';
-import { View, Image, Pressable } from 'react-native';
-import BreedCollectionIcon from '../assets/images/BreedCollectionIcon.png';
-import AccountIcon from '../assets/images/AccountIcon.png';
+import { View, Pressable } from 'react-native';
+import Svg, { Circle } from 'react-native-svg';
+import { Book } from '../assets/images';
+import { Alert } from 'react-native';
 
 export const Main = ({ navigation }) => {
-	const { textStyle, container, buttons, iconStyle, pressableStyle } = styles;
+	const { container, buttons, smallButtonContainer, largeButtonContainer, icon, fixedSquare, centerItems } = styles;
+
+	const iconBackground = () => {
+		return (
+			<Svg
+				style = { fixedSquare }
+				width = '100%'
+				height = '100%'
+			>
+				<Circle
+					cx = '50%'
+					cy = '50%'
+					r = '50%'
+					fill = 'rgba(0, 0, 0, 0.5)'
+				/>
+			</Svg>
+		);
+	};
 
 	return (
 		<View style = { container }>
 			<View style = { buttons }>
-				<Pressable onPress = { () => { navigation.navigate('Collection') } }>
-					<Image
-						style = { iconStyle }
-						source = { BreedCollectionIcon }
-					/>
+				<Pressable style = { smallButtonContainer } onPress = { () => navigation.navigate('Collection') }>
+					{ iconBackground() }
+					<Book style = { icon } />
 				</Pressable>
-				<Pressable onPress = { () => { navigation.navigate('Account') } }>
-					<Image
-						style = { iconStyle }
-						source = { AccountIcon }
-					/>
+				<Pressable style = { largeButtonContainer } onPress = { () => Alert.alert('photo taken!') }>
+					<Svg
+						style = { centerItems }
+						width = '100%'
+						height = '100%'
+					>
+						<Circle
+							cx = '50%'
+							cy = '50%'
+							r = '45%'
+							stroke = 'rgb(255, 255, 255)'
+							strokeWidth = '4%'
+						/>
+					</Svg>
+				</Pressable>
+				<Pressable style = { smallButtonContainer } onPress = { () => navigation.navigate('Account') }>
+					{ iconBackground() }
 				</Pressable>
 			</View>
 		</View>
@@ -28,31 +56,40 @@ export const Main = ({ navigation }) => {
 
 export const styles = {
 	container: {
-		backgroundColor: '#404040',
+		backgroundColor: 'grey',
 		height: '100%',
 		width: '100%',
-		justifyContent: 'center',
 		alignItems: 'center',
-		position: 'relative'
-	},
-	textStyle: {
-		backgroundColor: 'white',
-		height: '100%',
-		width: '100%',
-		justifyContent: 'center',
-		alignItems: 'center'
+		justifyContent: 'flex-end',
+		flex: 1
 	},
 	buttons: {
-		width: '80%',
-		height: '10%',
-		alignItems: 'center',
+		height: '18%',
+		width: '100%',
+		alignItems: 'flex-end',
 		flexDirection: 'row',
-		justifyContent: 'space-between',
-		top: '75%'
+		justifyContent: 'space-around',
+		marginBottom: '8%'
 	},
-	iconStyle: {
+	largeButtonContainer: {
+		height: '100%',
+		aspectRatio: 1
+	},
+	smallButtonContainer: {
+		height: '30%',
+		width: '15%',
+		alignItems: 'center',
+		justifyContent: 'center',
+		aspectRatio: 1
+	},
+	icon: {
 		height: '65%',
-		position: 'relative',
-		top: '0%'
+		width: '65%',
+		position: 'absolute'
+	},
+	centerItems: {
+		alignItems: 'center',
+		justifyContent: 'center',
+		flex: 1
 	}
 };
