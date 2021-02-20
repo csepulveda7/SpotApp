@@ -8,32 +8,36 @@
  *  - returns the completed work a response to the controller
  */
 
-let admin = require('../index');
+const { auth } = require('../index');
+const lodash = require('lodash');
 
 exports.createUser = async (user) => {
-	admin.auth.createUser({
-		displayName: user.name,
-		email: user.email,
-		emailVerified: false,
-		password: user.password,
-		disabled: false
-	})
-		.then((userRecord) => console.log('Successfully created new user:', userRecord.uid))
-		.catch(error => console.log('Error creating new user:', error));
+	auth.createUserWithEmailAndPassword(user.email, user.password)
+		.then((userCredential) => {
+			// Signed in
+			let user = userCredential.user;
+
+			console.log(user);
+		})
+		.catch((error) => {
+			let errorCode = error.code;
+			let errorMessage = error.message;
+			console.log(errorMessage);
+		});
 };
 
-
 exports.loginUser = async (user) => {
-	firebase.auth().signInWithEmailAndPassword(email, password)
-  	.then((userCredential) => {
-    	// Signed in
-    	var user = userCredential.user;
-		console.log('sign in successful');
-		
-  	})
-  	.catch((error) => {
-    	var errorCode = error.code;
-    	var errorMessage = error.message;
-		console.log(errorCode, errorMessage);
-  	});
+	auth.signInWithEmailAndPassword(user.email, user.password)
+		.then((userCredential) => {
+			// Signed in
+			let user = userCredential.user;
+
+			console.log(user);
+		})
+		.catch((error) => {
+			let errorCode = error.code;
+			let errorMessage = error.message;
+
+			console.log(errorCode, errorMessage);
+		});
 };

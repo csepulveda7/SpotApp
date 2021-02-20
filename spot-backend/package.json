@@ -14,8 +14,8 @@
     "dotenv": "^8.2.0",
     "express": "~4.16.1",
     "firebase": "^8.2.8",
-    "firebase-admin": "^9.5.0",
     "http-errors": "~1.6.3",
+    "lodash": "^4.17.20",
     "morgan": "~1.9.1",
     "pug": "^3.0.0"
   },

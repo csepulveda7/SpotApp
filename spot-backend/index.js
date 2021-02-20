@@ -1,36 +1,20 @@
-// import firebase and the controllers
-const admin = require('firebase-admin');
-//const firebase = require('firebase');
+// Import firebase and keys config
+const firebase = require('firebase');
+const { config } = require('./config');
 
-// Config firebase keys
-const serviceAccount = require('../serviceAccountKey.json');
+// Import cloud storage and env file
+require('firebase/storage');
+require('dotenv').config({ path: '../.env' });
 
-// Initalize firebase app
-admin.initializeApp({
-	credential: admin.credential.cert(serviceAccount),
-	databaseURL: 'https://spotappDB.firebaseio.com',
-	storageBucket: 'spotappBucket.appspot.com'
-});
-
-// firebase.initializeApp({
-// 	apiKey: process.env.apiKey,
-//     authDomain: process.env.authDomain,
-//     databaseURL: process.env.databaseURL,
-//     projectId: process.env.projectId,
-//     storageBucket: process.env.storageBucket,
-//     messagingSenderId: process.env.messagingSenderId,
-//     appId: process.env.appId
-// });
-
-// Initalize authentication, database, and storage bucket
-const auth = admin.auth();
-const db = admin.firestore();
-const bucket = admin.storage().bucket();
-//const fireAuth = firebase.auth();
+// Initalize app, authentication, database, and storage bucket
+const app = firebase.initializeApp(config);
+const auth = firebase.auth(app);
+const db = firebase.firestore(app);
+const storage = firebase.storage();
 
 module.exports = {
+	firebase: firebase,
 	auth: auth,
 	db: db,
-	bucket: bucket,
-	//fireAuth: fireAuth
+	storage: storage
 };
