@@ -39,7 +39,7 @@ Check out our [wiki](https://github.com/csepulveda7/SpotApp/wiki) for more info,
 
 - [Manual Tests](https://github.com/csepulveda7/SpotApp/wiki/Validation-Testing)
 
-- [Automated Tests](https://github.com/csepulveda7/SpotApp/tree/main/src)
+- [Automated Tests](https://github.com/csepulveda7/SpotApp/tree/main/__tests__)
 
 - [Postman Automated API Testing](https://github.com/csepulveda7/SpotApp/wiki/Postman-API-Testing)
 
