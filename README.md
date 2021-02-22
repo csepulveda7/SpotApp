@@ -84,7 +84,7 @@ Integrated MVC architecture to express backend, connected and configured firebas
 Aided in the implementation of user log in, coded backend functions that connect with firebase to allow new user creation. Added validation to user stories in order to clarify their creation process.
 
 **Pablo Cuervo**  
-Helped front end develop main page and modal for login page. Helped coordinate meeting times for the group.
+Helped front end develop main page and modal for login page.
 
 **Lucas Saber**  
 Worked on adding the main page to navigate to the rest of the app. Also worked on getting the keyboard to not push up the rest of the app.
