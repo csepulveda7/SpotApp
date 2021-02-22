@@ -75,6 +75,9 @@ Integrated MVC architecture to express backend, connected and configured firebas
 
 *[Demonstration](https://www.youtube.com/watch?v=Jjmw2eP9g1g)*
 
+### Tests
+*[Tests](https://github.com/csepulveda7/SpotApp/tree/main/src)*
+
 ### Task Allocation
 
 **Diego Cruces**  
