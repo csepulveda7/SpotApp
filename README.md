@@ -39,7 +39,7 @@ Check out our [wiki](https://github.com/csepulveda7/SpotApp/wiki) for more info,
 
 - [Manual Tests](https://github.com/csepulveda7/SpotApp/wiki/Validation-Testing)
 
-- [Automated Tests (Not Included yet)](https://github.com/csepulveda7/SpotApp/tree/main/src)
+- [Automated Tests](https://github.com/csepulveda7/SpotApp/tree/main/src)
 
 - [Postman Automated API Testing](https://github.com/csepulveda7/SpotApp/wiki/Postman-API-Testing)
 
@@ -103,4 +103,3 @@ Refactoring of login and sign up pages and various bug fixes. Rearranged files i
 
 **Cristobal Sepulveda**  
 Added user authentication functions such as account creation, user login, email verification, account logout, and reset password. Set up the database and basic user model and breeds model. Connected back-end APIs to front-end. Unit tested server initialization and user services. Ran integration tests for sending HTTP requests from front-end to user controller.
-
