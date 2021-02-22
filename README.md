@@ -31,6 +31,14 @@ Check out our [wiki](https://github.com/csepulveda7/SpotApp/wiki) for more info,
 - [Burndown and Velocity Charts](https://docs.google.com/spreadsheets/d/1K3txZ8Pok9edqcNp2OvZtr9fh09ts-curiPDKsvQhks/edit?usp=sharing)
 - [System Design Documents](https://github.com/csepulveda7/SpotApp/wiki/Architecture-Documentation)
 
+*[Front-End Source Code](https://github.com/csepulveda7/SpotApp/tree/main/src)*
+
+*[Back-End Source Code](https://github.com/csepulveda7/SpotApp/tree/main/spot-backend)*
+
+*[Unit Tests](https://github.com/csepulveda7/SpotApp/wiki/Validation-Testing)*
+
+*[Integration Tests](https://github.com/csepulveda7/SpotApp/tree/main/src)*
+
 ## Sprint 1
 
 ### Task Allocation
@@ -74,16 +82,6 @@ Integrated MVC architecture to express backend, connected and configured firebas
 ## Sprint 3
 
 *[Demonstration](https://www.youtube.com/watch?v=Jjmw2eP9g1g)*
-
-*[Front-End Source Code](https://github.com/csepulveda7/SpotApp/tree/main/src)*
-
-*[Back-End Source Code](https://github.com/csepulveda7/SpotApp/tree/main/spot-backend)*
-
-*[Unit Tests](https://github.com/csepulveda7/SpotApp/tree/main/src)*
-
-*[Integration Tests](https://github.com/csepulveda7/SpotApp/tree/main/src)*
-
-
 
 ### Task Allocation
 
