@@ -10,6 +10,7 @@
 
 const { auth, db } = require('../index');
 const lodash = require('lodash');
+const myMock = jest.fn();
 
 const showFirebaseError = (error) => {
 	let errorMessage;
@@ -28,12 +29,12 @@ const showFirebaseError = (error) => {
 			errorMessage = error.message;
 	}
 
-	console.log(errorMessage);
+	//console.log(errorMessage);
 };
 
 const createUserSucceeded = async (user) => {
 	const { currentUser } = auth;
-
+	
 	db.collection('users').doc(`${currentUser.uid}`)
 		.set({
 			email: user.email,
@@ -46,17 +47,22 @@ const createUserSucceeded = async (user) => {
 		})
 		.then(() => {
 			currentUser.sendEmailVerification()
-				.catch(() => console.log('We were not able to send an email. Try again.'))
-				.then(() => console.log(`We sent a verification to: ${user.email}. Please open your email and verify your account`));
+			.catch((error) => showFirebaseError(error))
+			.then();
+			
+			//.catch(() => console.log('We were not able to send an email. Try again.'))
+			//.then(() => console.log(`We sent a verification to: ${user.email}. Please open your email and verify your account`));
 		})
 		.then(() => auth.signOut())
-		.catch((error) => console.log(error));
+		.catch((error) => showFirebaseError(error));
+		//.catch((error) => console.log(error));
 };
 
 exports.createUser = async (user) => {
 	auth.createUserWithEmailAndPassword(user.email, user.password)
 		.then(() => createUserSucceeded(user))
 		.catch((error) => showFirebaseError(error));
+		//.catch((error) => showFirebaseError(error));
 };
 
 exports.loginUser = async (user) => {

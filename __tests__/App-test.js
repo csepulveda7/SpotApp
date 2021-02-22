@@ -1,14 +1,36 @@
-/**
- * @format
- */
+var user = require('../spot-backend/Services/user');
 
-import 'react-native';
-import React from 'react';
-import App from '../App';
 
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer';
-
-it('renders correctly', () => {
-  renderer.create(<App />);
+it('tests user creation with same email must fail', async () => {
+  const userData = {name: 'username', email: 'email@email8.com', password: 'password' };
+  expect.assertions(1);
+  try {
+    await user.createUser(userData);
+  } catch (e) {
+    expect(e).toMatch(e);
+  }
 });
+
+test('Test User creation', () => {
+  const userData = {name: 'username', email: 'email@email9.com', password: 'password' };
+  
+  user.createUser(userData).then( res => {
+    expect(res).toBe(true);
+    done();
+  }).catch(error =>{
+    expect(error).not.toBeTruthy();
+    done();
+  });
+}); 
+
+// test('Test user log in', () => {
+//   const userData = {email: 'email@email8.com', password: 'password' };
+//   user.loginUser(userData).then( res => {
+//     expect(res).toBe(true);
+//     done();
+//   }).catch(error =>{
+//     expect(error).not.toBeTruthy();
+//     done();
+//   });
+// });
+
