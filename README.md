@@ -70,3 +70,25 @@ Set up app navigation and set up layout and stylization for the login page; deal
 
 **Cristobal Sepulveda**  
 Integrated MVC architecture to express backend, connected and configured firebase authentication, database, and storage to backend. Wrote and tested backend HTTP request methods.
+
+## Sprint 3
+
+*[Demonstration]()*
+
+### Task Allocation
+
+**Diego Cruces**  
+Aided in the implementation of user log in, coded backend functions that connect with firebase to allow new user creation. Added validation to user stories in order to clarify their creation process.
+
+**Pablo Cuervo**  
+Helped front end develop main page and modal for login page. Helped coordinate meeting times for the group.
+
+**Lucas Saber**  
+Worked on adding the main page to navigate to the rest of the app. Also worked on getting the keyboard to not push up the rest of the app.
+
+**Jordan Schneider**  
+Refactoring of login and sign up pages and various bug fixes. Rearranged files in front-end for easier styling and imports. Converted all images to SVGs; SVG creation of Logo(s), icons, and extraneous vector paths. Developed layout for main page. Implemented user notifications for forgot password and sign up email verification. 
+
+**Cristobal Sepulveda**  
+Added user authentication functions such as account creation, user login, email verification, account logout, and reset password. Set up the database and basic user model and breeds model. Connected back-end APIs to front-end. Unit tested server initialization and user services. Ran integration tests for sending HTTP requests from front-end to user controller.
+
