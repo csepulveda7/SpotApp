@@ -33,15 +33,15 @@ Check out our [wiki](https://github.com/csepulveda7/SpotApp/wiki) for more info,
 
 - [System Design Documents](https://github.com/csepulveda7/SpotApp/wiki/Architecture-Documentation)
 
+- [Front-End Source Code](https://github.com/csepulveda7/SpotApp/tree/main/src)
+
+- [Back-End Source Code](https://github.com/csepulveda7/SpotApp/tree/main/spot-backend)
+
 - [Manual Tests](https://github.com/csepulveda7/SpotApp/wiki/Validation-Testing)
 
 - [Automated Tests (Not Included yet)](https://github.com/csepulveda7/SpotApp/tree/main/src)
 
 - [Postman Automated API Testing](https://github.com/csepulveda7/SpotApp/wiki/Postman-API-Testing)
-
-- [Front-End Source Code](https://github.com/csepulveda7/SpotApp/tree/main/src)
-
-- [Back-End Source Code](https://github.com/csepulveda7/SpotApp/tree/main/spot-backend)
 
 ## Sprint 1
 
