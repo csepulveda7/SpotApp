@@ -33,9 +33,11 @@ Check out our [wiki](https://github.com/csepulveda7/SpotApp/wiki) for more info,
 
 - [System Design Documents](https://github.com/csepulveda7/SpotApp/wiki/Architecture-Documentation)
 
-- [Unit Tests](https://github.com/csepulveda7/SpotApp/wiki/Validation-Testing)
+- [Manual Tests](https://github.com/csepulveda7/SpotApp/wiki/Validation-Testing)
 
-- [Integration Tests](https://github.com/csepulveda7/SpotApp/tree/main/src)
+- [Automated Tests (Not Included yet)](https://github.com/csepulveda7/SpotApp/tree/main/src)
+
+- [Postman Automated API Testing](https://github.com/csepulveda7/SpotApp/wiki/Postman-API-Testing)
 
 - [Front-End Source Code](https://github.com/csepulveda7/SpotApp/tree/main/src)
 
