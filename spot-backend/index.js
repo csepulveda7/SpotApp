@@ -1,27 +1,19 @@
-// import firebase and the controllers
-import firebase from 'firebase-admin';
-import * as userController from './Controller/User'
+// Import firebase and keys config
+const firebase = require('firebase');
+const { config } = require('./config');
 
-// Config firebase keys
-const config = {
-    apiKey: process.env.apiKey,
-	authDomain: process.env.authDomain,
-	databaseURL: process.env.databaseURL,
-	projectId: process.env.projectId,
-	storageBucket: process.env.storageBucket,
-	messagingSenderId: process.env.messagingSenderId,
-	appId: process.env.appId
-};
+// Import cloud storage
+require('firebase/storage');
 
-// Initalize firebase app and db
+// Initalize app, authentication, database, and storage bucket
 const app = firebase.initializeApp(config);
+const auth = firebase.auth(app);
 const db = firebase.firestore(app);
+const storage = firebase.storage();
 
-// Specify custom db configurations
-db.settings({
-    ssl: false,
-    timestampsInSnapshots: true
-});
-
-// export database reference
-export { db };
+module.exports = {
+	firebase: firebase,
+	auth: auth,
+	db: db,
+	storage: storage
+};

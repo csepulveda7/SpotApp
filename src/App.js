@@ -1,10 +1,14 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Login from './screens/Login.js';
-import Splash from './screens/Splash.js';
-import SignUp from './screens/SignUp.js';
-import Main from './screens/Main.js';
+import {
+	Splash,
+	Login,
+	SignUp,
+	Main,
+	Collection,
+	Account
+} from './screens';
 import { ThemeProvider } from 'react-native-elements';
 
 const Stack = createStackNavigator();
@@ -18,6 +22,8 @@ function App() {
 					<Stack.Screen name = 'Login' component = { Login } />
 					<Stack.Screen name = 'SignUp' component = { SignUp } />
 					<Stack.Screen name = 'Main' component = { Main } />
+					<Stack.Screen name = 'Collection' component = { Collection } />
+					<Stack.Screen name = 'Account' component = { Account } />
 				</Stack.Navigator>
 			</NavigationContainer>
 		</ThemeProvider>

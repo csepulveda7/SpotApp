@@ -1,118 +1,189 @@
-import React from 'react';
-import { View, Text, Image } from 'react-native';
-import TextBox from '../components/TextBox';
+import React, { useState } from 'react';
+import { View, Text, Pressable, Modal, Platform, KeyboardAvoidingView } from 'react-native';
+import { TextBox, Header } from '../components';
 import { Button } from 'react-native-elements';
-import DogeLogo from '../assets/images/DogeLogo.png';
+import { loginUser } from '../services/userServices';
+import { styles } from './styles';
 
-const Login = ({ navigation }) => {
-	// state = { users: [] };
+export const Login = ({ navigation }) => {
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+	const [error, setError] = useState('');
+	const [modalVisible, setModalVisible] = useState(false);
+	const [forgotPasswordEmail, setForgotPasswordEmail] = useState('');
 
-	/*
-	 * componentDidMount() {
-	 * 	fetch(`${config.API_ADDR}/users`)
-	 * 	.then(res => res.json())
-	 * 	.then(users => this.setState({ users }));
-	 * }
-	 */
+	const {
+		container,
+		subtextButton,
+		textBoxes,
+		buttonContainer,
+		errorText,
+		fullWidthHeight,
+		forgotPassword,
+		forgotPasswordButton,
+		rightMargin
+	} = styles;
 
-	const { textStyle, container, forgotPass, rectangle, logoStyle, topGraphics, textBoxes, buttonContainer } = styles;
+	const loginSubmit = () => {
+		if (!email) setError('Please enter your email');
+		else if (!password) setError('Please enter your password');
+		else loginUser(email, password);
+	};
+
+	const renderError = () => {
+		if (error)
+			return (<Text style = { errorText }>{ error }</Text>);
+	};
+
+	const renderForgotPasswordModal = () => {
+		return (
+			<Modal
+				animationType = 'slide'
+				transparent = { true }
+				visible = { modalVisible }
+			>
+				<KeyboardAvoidingView
+					behavior = { Platform.OS === 'ios' ? 'padding' : 'height' }
+					enabled
+				>
+					<View style = { modalStyles.centeredView }>
+						<View style = { modalStyles.ModalView }>
+							<Text style = { modalStyles.promptText }>
+								Please Enter Your Email:
+							</Text>
+							<View style = { modalStyles.textbox }>
+								<TextBox
+									defaultValue = 'email@address.com'
+									labelText = 'Email'
+									onChange = { (e) => setForgotPasswordEmail(e) }
+									value = { forgotPasswordEmail }
+								/>
+							</View>
+							<View style = { modalStyles.buttonView }>
+								<Button
+									title = 'Cancel'
+									containerStyle = { modalStyles.buttonContainer }
+									buttonStyle = { modalStyles.buttonStyle }
+									onPress = { () => {
+										setForgotPasswordEmail('');
+										setModalVisible(!modalVisible);
+									} }
+								/>
+								<Button
+									title = 'Send Email'
+									containerStyle = { modalStyles.buttonContainer }
+									buttonStyle = { modalStyles.buttonStyle }
+									onPress = { () => {
+										// send email
+										setModalVisible(!modalVisible);
+									} }
+								/>
+							</View>
+						</View>
+					</View>
+				</KeyboardAvoidingView>
+			</Modal>
+		);
+	};
 
 	return (
 		<View style = { container }>
-			<View style = { topGraphics }>
-				<View style = { [rectangle, { backgroundColor: '#E2B865', height: '65%'}]} />
-				<Image style = { logoStyle } source = { DogeLogo } />
-				<View style = { [rectangle, { backgroundColor: '#F5D8A1', height: '50%'}]}/>
-			</View>
-			<View style = { [textBoxes, {marginTop: '30%'}] }>
+			{ renderForgotPasswordModal() }
+			<Header height = '30%' />
+			<View style = { textBoxes }>
 				<TextBox
 					defaultValue = 'email@address.com'
 					labelText = 'Email'
+					onChange = { (e) => setEmail(e) }
+					value = { email }
 				/>
 				<TextBox
 					defaultValue = 'Password'
 					labelText = 'Password'
 					secureInput = { true }
+					onChange = { (e) => setPassword(e) }
+					value = { password }
 				/>
 			</View>
-			<Text
-					style = { forgotPass }>
-					{ 'Forgot Your Password? ' }
-				</Text>
+			<View style = { rightMargin }>
+				<Pressable style = { forgotPasswordButton }
+					onPress = { () => {
+						setModalVisible(true);
+						setForgotPasswordEmail('');
+					} }
+				>
+					<Text style = { forgotPassword } >
+						Forgot password?
+					</Text>
+				</Pressable>
+			</View>
+			{ renderError() }
 			<Button
 				title = 'Login'
-				buttonStyle = {{ width: '100%', height: '100%' }}
+				buttonStyle = { fullWidthHeight }
 				containerStyle = { buttonContainer }
-				onPress = { () => { navigation.navigate('Main') } }
+				onPress = { loginSubmit }
 			/>
-			<Text>
-				{ 'Don\'t Have an Account? ' }
+			<Text style = { subtextButton }>
+				{ 'Don\'t have an account? ' }
 				<Text
 					style = {{ color: '#BC6F27' }}
-					onPress = { () => { navigation.navigate('SignUp') } }>
-					{ 'Register Here' }
+					onPress = { () => { navigation.navigate('SignUp') } }
+				>
+					Register here
 				</Text>
 			</Text>
 		</View>
 	);
 };
 
-const styles = {
+const modalStyles = {
 	container: {
-		backgroundColor: '#E5E5E5',
-		flex: 1,
-		top: 0,
-		height: '100%',
-		width: '100%',
-		alignItems: 'center'
-	},
-	textStyle: {
-		backgroundColor: 'white',
-		height: '100%',
-		width: '100%',
 		justifyContent: 'center',
 		alignItems: 'center'
 	},
-	forgotPass: {
-		color: '#404040',
-		textAlign: 'right',
-		alignSelf: 'stretch',
-		marginRight: 60
-	},
-	rectangle: {
-		zIndex: 0,
-		position: 'relative',
-		width: '100%',
-		height: '15%'
-	},
-	logoStyle: {
-		height: '50%',
-		resizeMode: 'center',
-		position: 'absolute',
-		zIndex: 2,
-		top: '40%'
-	},
-	textBoxes: {
-		height: '20%',
-		width: '100%',
+	centeredView: {
+		justifyContent: 'center',
 		alignItems: 'center',
-		position: 'relative',
-		zIndex: 1
-	},
-	topGraphics: {
-		height: '40%',
+		height: '100%',
 		width: '100%',
+		backgroundColor: 'rgba(0, 0, 0, 0.4)'
+	},
+	ModalView: {
+		justifyContent: 'space-around',
 		alignItems: 'center',
-		zIndex: 0
+		backgroundColor: '#E5E5E5',
+		width: '90%',
+		height: 250,
+		borderRadius: 10
+	},
+	promptText: {
+		paddingBottom: '3%',
+		marginTop: '8%',
+		marginHorizontal: '16%',
+		textAlign: 'center',
+		fontSize: 22,
+		borderBottomWidth: 1,
+		borderBottomColor: 'black'
+	},
+	buttonView: {
+		flexDirection: 'row',
+		justifyContent: 'space-around',
+		alignItems: 'center',
+		height: '30%',
+		width: '100%'
 	},
 	buttonContainer: {
-		width: '65%',
-		height: '7%',
-		justifyContent: 'center',
-		alignItems: 'center',
-		position: 'relative',
-		marginVertical: '8%'
+		width: '35%',
+		height: '50%',
+		justifyContent: 'center'
+	},
+	buttonStyle: {
+		backgroundColor: '#E2B865'
+	},
+	textbox: {
+		width: '120%',
+		marginTop: '9%',
+		alignItems: 'center'
 	}
 };
-
-export default Login;

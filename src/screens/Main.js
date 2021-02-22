@@ -1,57 +1,95 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { Button } from 'react-native-elements';
+import { View, Pressable } from 'react-native';
+import Svg, { Circle } from 'react-native-svg';
+import { Book } from '../assets/images';
+import { Alert } from 'react-native';
 
-const Main = ({ navigation }) => {
-	const { textStyle, container, buttonContainer, buttons } = styles;
+export const Main = ({ navigation }) => {
+	const { container, buttons, smallButtonContainer, largeButtonContainer, icon, fixedSquare, centerItems } = styles;
+
+	const iconBackground = () => {
+		return (
+			<Svg
+				style = { fixedSquare }
+				width = '100%'
+				height = '100%'
+			>
+				<Circle
+					cx = '50%'
+					cy = '50%'
+					r = '50%'
+					fill = 'rgba(0, 0, 0, 0.5)'
+				/>
+			</Svg>
+		);
+	};
 
 	return (
 		<View style = { container }>
 			<View style = { buttons }>
-				<Button
-					title = 'Collection'
-					containerStyle = { buttonContainer }
-					buttonStyle = {{ width: '100%', height: '100%' }}
-				/>
-				<Button
-					title = 'My Account'
-					containerStyle = { buttonContainer }
-					buttonStyle = {{ width: '100%', height: '100%' }}
-				/>
+				<Pressable style = { smallButtonContainer } onPress = { () => navigation.navigate('Collection') }>
+					{ iconBackground() }
+					<Book style = { icon } />
+				</Pressable>
+				<Pressable style = { largeButtonContainer } onPress = { () => Alert.alert('photo taken!') }>
+					<Svg
+						style = { centerItems }
+						width = '100%'
+						height = '100%'
+					>
+						<Circle
+							cx = '50%'
+							cy = '50%'
+							r = '45%'
+							stroke = 'rgb(255, 255, 255)'
+							strokeWidth = '4%'
+						/>
+					</Svg>
+				</Pressable>
+				<Pressable style = { smallButtonContainer } onPress = { () => navigation.navigate('Account') }>
+					{ iconBackground() }
+				</Pressable>
 			</View>
 		</View>
 	);
 };
 
-const styles = {
+export const styles = {
 	container: {
-		backgroundColor: '#FFFFFF',
+		backgroundColor: 'grey',
 		height: '100%',
 		width: '100%',
-		justifyContent: 'center',
 		alignItems: 'center',
-		position: 'relative'
-	},
-	textStyle: {
-		backgroundColor: 'white',
-		height: '100%',
-		width: '100%',
-		justifyContent: 'center',
-		alignItems: 'center'
+		justifyContent: 'flex-end',
+		flex: 1
 	},
 	buttons: {
-		width: '90%',
-		height: '10%',
-		alignItems: 'center',
+		height: '18%',
+		width: '100%',
+		alignItems: 'flex-end',
 		flexDirection: 'row',
-		justifyContent: 'space-between',
-		top: '83%'
+		justifyContent: 'space-around',
+		marginBottom: '8%'
 	},
-	buttonContainer: {
-		width: '40%',
-		height: '60%',
-		justifyContent: 'center'
+	largeButtonContainer: {
+		height: '100%',
+		aspectRatio: 1
+	},
+	smallButtonContainer: {
+		height: '30%',
+		width: '15%',
+		alignItems: 'center',
+		justifyContent: 'center',
+		aspectRatio: 1
+	},
+	icon: {
+		height: '65%',
+		width: '65%',
+		position: 'absolute'
+	},
+	centerItems: {
+		alignItems: 'center',
+		justifyContent: 'center',
+		flex: 1
 	}
 };
-
-export default Main;

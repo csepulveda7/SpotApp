@@ -24,7 +24,6 @@ rules:
   no-trailing-spaces: error                # disallow trailing whitespace
   no-floating-decimal: error               # require floating decimals to be complete
   space-before-blocks: error               # require space before curly brace for blocks
-  multiline-comment-style: error           # require block-style comments when longer than one line
   no-whitespace-before-property: error     # disallow whitespace before accessing properties
   one-var:                                 # require one variable declaration per let/const
     - error
