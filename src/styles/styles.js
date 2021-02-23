@@ -16,7 +16,6 @@ export const styles = {
 		marginTop: '18%'
 	},
 	buttonContainer: {
-		backgroundColor: 'green',
 		width: '65%',
 		height: '7%',
 		justifyContent: 'flex-end',

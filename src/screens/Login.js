@@ -3,7 +3,7 @@ import { View, Text, Pressable, Modal, Platform, KeyboardAvoidingView } from 're
 import { TextBox, Header } from '../components';
 import { Button } from 'react-native-elements';
 import { loginUser } from '../services/userServices';
-import { styles } from './styles';
+import { styles } from '../styles';
 
 export const Login = ({ navigation }) => {
 	const [email, setEmail] = useState('');

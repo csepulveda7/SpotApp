@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { Button } from 'react-native-elements';
-import { styles } from './styles';
+import { styles } from '../styles';
 
 export const Account = ({ navigation }) => {
 	const { container } = accountStyles;

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Alert } from 'react-native';
 import { Header, TextBox } from '../components';
 import { Button } from 'react-native-elements';
-import { styles } from './styles';
+import { styles } from '../styles';
 import { createUser } from '../services/userServices';
 
 export const SignUp = ({ navigation }) => {
