@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Alert } from 'react-native';
 import { Header, TextBox } from '../components';
 import { Button } from 'react-native-elements';
-import { styles } from '../styles';
+import { styles, colors } from '../styles';
 import { createUser } from '../services/userServices';
 
 export const SignUp = ({ navigation }) => {
@@ -80,7 +80,7 @@ export const SignUp = ({ navigation }) => {
 			/>
 			<Text style = { subtextButton }>
 				{ 'Already have an account? ' }
-				<Text style = {{ color: '#BC6F27' }} onPress = { () => { navigation.navigate('Login') } }>
+				<Text style = {{ color: colors.secondaryDark }} onPress = { () => { navigation.navigate('Login') } }>
 					Log in
 				</Text>
 			</Text>

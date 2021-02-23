@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Animated, StatusBar, Dimensions } from 'react-native';
 import { SpotAppLogo } from '../assets/images';
+import { colors } from '../styles';
 
 const { height, width } = Dimensions.get('screen');
 
@@ -32,7 +33,7 @@ export const Splash = ({ navigation }) => {
 const styles = {
 	container: {
 		flex: 1,
-		backgroundColor: '#F5D8A1',
+		backgroundColor: colors.primaryLight,
 		justifyContent: 'center',
 		alignItems: 'center'
 	},
