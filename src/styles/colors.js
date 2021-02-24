@@ -1,8 +1,8 @@
 export const colors = {
 	// Greyscale
 	white: '#FFFFFF',
-	offWhite: 'E5E5E5',
-	dark: '404040',
+	offWhite: '#E5E5E5',
+	dark: '#404040',
 
 	// Color Palette
 	primaryLight: '#F5D8A1',
