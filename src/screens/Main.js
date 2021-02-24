@@ -66,7 +66,7 @@ export const Main = ({ navigation }) => {
 							<Circle
 								cx = '50%'
 								cy = '50%'
-								r = '45%'
+								r = '40%'
 								stroke = 'rgb(255, 255, 255)'
 								strokeWidth = '4%'
 							/>
