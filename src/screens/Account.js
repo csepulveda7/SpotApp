@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { Button } from 'react-native-elements';
-import { styles, colors } from '../styles';
+import { styles } from '../styles';
 
 export const Account = ({ navigation }) => {
 	const { container } = accountStyles;
@@ -26,7 +26,7 @@ export const Account = ({ navigation }) => {
 
 const accountStyles = {
 	container: {
-		backgroundColor: colors.white,
+		backgroundColor: '#FFFFFF',
 		height: '100%',
 		width: '100%',
 		justifyContent: 'center',

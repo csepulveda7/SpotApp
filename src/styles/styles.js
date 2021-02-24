@@ -1,8 +1,6 @@
-import { colors } from './colors';
-
 export const styles = {
 	container: {
-		backgroundColor: colors.offWhite,
+		backgroundColor: '#E5E5E5',
 		flex: 1,
 		top: 0,
 		height: '100%',
@@ -34,14 +32,14 @@ export const styles = {
 	subtextButton: {
 		marginTop: '6%',
 		alignItems: 'center',
-		color: colors.dark
+		color: '#404040'
 	},
 	fullWidthHeight: {
 		width: '100%',
 		height: '100%'
 	},
 	forgotPassword: {
-		color: colors.secondaryDark,
+		color: '#BC6F27',
 		width: '100%',
 		textAlign: 'center',
 		marginRight: '30%',

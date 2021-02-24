@@ -1,7 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
 import { DogeFaceWithinCircle } from '../assets/images';
-import { colors } from '../styles';
 
 export const Header = ({ height }) => {
 	const { topRectangle, bottomRectangle, logoStyle, topGraphics } = styles;
@@ -17,14 +16,14 @@ export const Header = ({ height }) => {
 
 const styles = {
 	topRectangle: {
-		backgroundColor: colors.primaryDark,
+		backgroundColor: '#E2B865',
 		height: '65%',
 		zIndex: 0,
 		position: 'relative',
 		width: '100%'
 	},
 	bottomRectangle: {
-		backgroundColor: colors.primaryLight,
+		backgroundColor: '#F5D8A1',
 		height: '50%',
 		zIndex: 0,
 		position: 'relative',

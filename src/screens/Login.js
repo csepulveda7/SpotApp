@@ -3,7 +3,7 @@ import { View, Text, Pressable, Modal, Platform, KeyboardAvoidingView } from 're
 import { TextBox, Header } from '../components';
 import { Button } from 'react-native-elements';
 import { loginUser } from '../services/userServices';
-import { styles, colors } from '../styles';
+import { styles } from '../styles';
 
 export const Login = ({ navigation }) => {
 	const [email, setEmail] = useState('');
@@ -127,7 +127,7 @@ export const Login = ({ navigation }) => {
 			<Text style = { subtextButton }>
 				{ 'Don\'t have an account? ' }
 				<Text
-					style = {{ color: colors.secondaryDark }}
+					style = {{ color: '#BC6F27' }}
 					onPress = { () => { navigation.navigate('SignUp') } }
 				>
 					Register here
@@ -152,7 +152,7 @@ const modalStyles = {
 	ModalView: {
 		justifyContent: 'space-around',
 		alignItems: 'center',
-		backgroundColor: colors.offWhite,
+		backgroundColor: '#E5E5E5',
 		width: '90%',
 		height: 250,
 		borderRadius: 10
@@ -164,7 +164,7 @@ const modalStyles = {
 		textAlign: 'center',
 		fontSize: 22,
 		borderBottomWidth: 1,
-		borderBottomColor: colors.dark
+		borderBottomColor: 'black'
 	},
 	buttonView: {
 		flexDirection: 'row',
@@ -179,7 +179,7 @@ const modalStyles = {
 		justifyContent: 'center'
 	},
 	buttonStyle: {
-		backgroundColor: colors.primaryDark
+		backgroundColor: '#E2B865'
 	},
 	textbox: {
 		width: '120%',

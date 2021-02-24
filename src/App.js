@@ -10,7 +10,6 @@ import {
 	Account
 } from './screens';
 import { ThemeProvider } from 'react-native-elements';
-import { colors } from './styles';
 
 const Stack = createStackNavigator();
 
@@ -34,10 +33,10 @@ function App() {
 const theme = {
 	Button: {
 		titleStyle: {
-			color: colors.dark
+			color: '#404040'
 		},
 		buttonStyle: {
-			backgroundColor: colors.primaryDark
+			backgroundColor: '#E2B865'
 		}
 	}
 };
