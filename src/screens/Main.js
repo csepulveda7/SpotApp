@@ -3,9 +3,19 @@ import { View, Pressable } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
 import { Book } from '../assets/images';
 import { Alert } from 'react-native';
+import { RNCamera } from 'react-native-camera';
 
 export const Main = ({ navigation }) => {
-	const { container, buttons, smallButtonContainer, largeButtonContainer, icon, fixedSquare, centerItems } = styles;
+	const {
+		container,
+		buttons,
+		smallButtonContainer,
+		largeButtonContainer,
+		icon,
+		fixedSquare,
+		centerItems,
+		cameraContainer
+	} = styles;
 
 	const iconBackground = () => {
 		return (
@@ -26,30 +36,37 @@ export const Main = ({ navigation }) => {
 
 	return (
 		<View style = { container }>
-			<View style = { buttons }>
-				<Pressable style = { smallButtonContainer } onPress = { () => navigation.navigate('Collection') }>
-					{ iconBackground() }
-					<Book style = { icon } />
-				</Pressable>
-				<Pressable style = { largeButtonContainer } onPress = { () => Alert.alert('photo taken!') }>
-					<Svg
-						style = { centerItems }
-						width = '100%'
-						height = '100%'
+			<RNCamera
+				style = { cameraContainer }
+			>
+				<View style = { buttons }>
+					<Pressable style = { smallButtonContainer } onPress = { () => navigation.navigate('Collection') }>
+						{ iconBackground() }
+						<Book style = { icon } />
+					</Pressable>
+					<Pressable
+						style = { largeButtonContainer }
+						onPress = { () => Alert.alert('photo taken!') }
 					>
-						<Circle
-							cx = '50%'
-							cy = '50%'
-							r = '45%'
-							stroke = 'rgb(255, 255, 255)'
-							strokeWidth = '4%'
-						/>
-					</Svg>
-				</Pressable>
-				<Pressable style = { smallButtonContainer } onPress = { () => navigation.navigate('Account') }>
-					{ iconBackground() }
-				</Pressable>
-			</View>
+						<Svg
+							style = { centerItems }
+							width = '100%'
+							height = '100%'
+						>
+							<Circle
+								cx = '50%'
+								cy = '50%'
+								r = '45%'
+								stroke = 'rgb(255, 255, 255)'
+								strokeWidth = '4%'
+							/>
+						</Svg>
+					</Pressable>
+					<Pressable style = { smallButtonContainer } onPress = { () => navigation.navigate('Account') }>
+						{ iconBackground() }
+					</Pressable>
+				</View>
+			</RNCamera>
 		</View>
 	);
 };
@@ -61,6 +78,7 @@ export const styles = {
 		width: '100%',
 		alignItems: 'center',
 		justifyContent: 'flex-end',
+		flexDirection: 'column',
 		flex: 1
 	},
 	buttons: {
@@ -90,6 +108,13 @@ export const styles = {
 	centerItems: {
 		alignItems: 'center',
 		justifyContent: 'center',
+		flex: 1
+	},
+	cameraContainer: {
+		height: '100%', width: '100%',
+		alignItems: 'center',
+		justifyContent: 'flex-end',
+		flexDirection: 'column',
 		flex: 1
 	}
 };
