@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Pressable } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
-import { Book } from '../assets/images';
+import { Book, Flash, FlipCamera } from '../assets/images';
 import { Alert } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 
@@ -14,7 +14,9 @@ export const Main = ({ navigation }) => {
 		icon,
 		fixedSquare,
 		centerItems,
-		cameraContainer
+		cameraContainer,
+		iconContainer,
+		verticalIconContainer
 	} = styles;
 
 	const iconBackground = () => {
@@ -39,6 +41,14 @@ export const Main = ({ navigation }) => {
 			<RNCamera
 				style = { cameraContainer }
 			>
+				<View style = { iconContainer }>
+					<Pressable style = { verticalIconContainer }>
+						<FlipCamera style = { icon } />
+					</Pressable>
+					<Pressable style = { verticalIconContainer }>
+						<Flash style = { icon } />
+					</Pressable>
+				</View>
 				<View style = { buttons }>
 					<Pressable style = { smallButtonContainer } onPress = { () => navigation.navigate('Collection') }>
 						{ iconBackground() }
@@ -101,9 +111,8 @@ export const styles = {
 		aspectRatio: 1
 	},
 	icon: {
-		height: '65%',
 		width: '65%',
-		position: 'absolute'
+		aspectRatio: 1
 	},
 	centerItems: {
 		alignItems: 'center',
@@ -116,5 +125,25 @@ export const styles = {
 		justifyContent: 'flex-end',
 		flexDirection: 'column',
 		flex: 1
+	},
+	iconContainer: {
+		backgroundColor: 'rgba(0, 0, 0, 0.5)',
+		borderRadius: 40,
+		width: '13%',
+		height: '20%',
+		marginLeft: '80%',
+		marginBottom: '100%',
+		alignItems: 'center'
+	},
+	fixedSquare: {
+		aspectRatio: 1,
+		position: 'absolute'
+	},
+	verticalIconContainer: {
+		width: '100%',
+		padding: '3%',
+		flex: 1,
+		alignItems: 'center',
+		justifyContent: 'space-around'
 	}
 };
