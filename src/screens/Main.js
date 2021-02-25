@@ -4,8 +4,10 @@ import Svg, { Circle } from 'react-native-svg';
 import { Book, Flash, FlipCamera } from '../assets/images';
 import { Alert } from 'react-native';
 import { RNCamera } from 'react-native-camera';
+import { useCamera } from 'react-native-camera-hooks';
+import { takePicture } from 'react-native-camera-hooks/src/takePicture';
 
-export const Main = ({ navigation }) => {
+export const Main = ({ navigation, initialProps }) => {
 	const {
 		container,
 		buttons,
@@ -18,6 +20,15 @@ export const Main = ({ navigation }) => {
 		iconContainer,
 		verticalIconContainer
 	} = styles;
+
+	const [
+		{ cameraRef, type, ratio, autoFocus, autoFocusPoint, flash },
+		{
+			toggleFacing,
+			toggleFlash,
+			takePicture
+		}
+	] = useCamera(initialProps);
 
 	const iconBackground = () => {
 		return (
@@ -39,14 +50,28 @@ export const Main = ({ navigation }) => {
 	return (
 		<View style = { container }>
 			<RNCamera
+				ref = { cameraRef }
+				autoFocusPointOfInterest = { autoFocusPoint.normalized }
+				type = { type }
+				ratio = { ratio }
+				autoFocus = { autoFocus }
 				style = { cameraContainer }
 			>
 				<View style = { iconContainer }>
-					<Pressable style = { verticalIconContainer }>
+					<Pressable
+						style = { verticalIconContainer }
+						onPress = { () => toggleFacing() }
+					>
 						<FlipCamera style = { icon } />
 					</Pressable>
-					<Pressable style = { verticalIconContainer }>
-						<Flash style = { icon } />
+					<Pressable
+						style = { verticalIconContainer }
+						onPress = { () => toggleFlash() }
+					>
+						<Flash
+							style = { icon }
+							isOff = { (flash === 'off') ? '100' : '0' }
+						/>
 					</Pressable>
 				</View>
 				<View style = { buttons }>
@@ -54,9 +79,20 @@ export const Main = ({ navigation }) => {
 						{ iconBackground() }
 						<Book style = { icon } />
 					</Pressable>
+
 					<Pressable
 						style = { largeButtonContainer }
-						onPress = { () => Alert.alert('photo taken!') }
+						onPress = { async () => {
+							try {
+								const data = await takePicture();
+
+								console.warn(data.uri);
+								Alert.alert('Photo Taken!', data.uri);
+							}
+							catch (error) {
+								console.warn(error);
+							}
+						} }
 					>
 						<Svg
 							style = { centerItems }

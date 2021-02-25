@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { baseProps } from 'react-native-gesture-handler/dist/src/handlers/gestureHandlers';
 import Svg, { Path } from 'react-native-svg';
 /* SVGR has dropped some elements not supported by react-native-svg: style */
 
@@ -20,7 +21,7 @@ export const Flash = (props) => {
 				stroke = 'white'
 				strokeWidth = '4%'
 			/>
-			<Path id = 'flashOff' className = 'st0' d = 'M200.2 187.7L4.1 25.6' />
+			<Path id = 'flashOff' className = 'st0' d = 'M200.2 187.7L4.1 25.6' strokeWidth = '4%' stroke = 'white' strokeOpacity = { props.isOff } />
 		</Svg>
 	);
 };
