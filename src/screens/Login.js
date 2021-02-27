@@ -24,10 +24,14 @@ export const Login = ({ navigation }) => {
 		rightMargin
 	} = styles;
 
+	const goToAccount = () => { navigation.navigate('Account') };
+
 	const loginSubmit = () => {
 		if (!email) setError('Please enter your email');
 		else if (!password) setError('Please enter your password');
-		else loginUser(email, password);
+		else 
+			loginUser(email, password);
+			goToAccount(); 
 	};
 
 	const renderError = () => {

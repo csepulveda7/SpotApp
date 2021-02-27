@@ -7,6 +7,7 @@ import { colors } from '../styles'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { Pressable } from 'react-native';
+import { logoutUser } from '../services/userServices';
 
 export const Account = ({ navigation }) => {
 	const { container, navBar, infoBar, centerItems, headerText, infoText, backButton } = accountStyles;
@@ -16,6 +17,12 @@ export const Account = ({ navigation }) => {
 		fullWidthHeight
 	} = styles;
 
+
+	const goTologin = () => { navigation.navigate('Login') };
+	const logoutSubmit = () => {
+		logoutUser(); 
+		goTologin();
+	};
 	return (
 		<View style = { [fullWidthHeight, container] }>
 			<View style = { [navBar, centerItems] } >
@@ -49,6 +56,7 @@ export const Account = ({ navigation }) => {
 					title = 'Log out'
 					containerStyle = { [buttonContainer, { height: 60 }] }
 					buttonStyle = { fullWidthHeight }
+					onPress = { logoutSubmit }
 				/>
 			</View>
 		</View>

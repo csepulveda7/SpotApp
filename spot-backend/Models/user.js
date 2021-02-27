@@ -10,3 +10,5 @@
  */
 
 const { db } = require('../index');
+
+//conts userDocRef = db.collection('users').doc(da user)
