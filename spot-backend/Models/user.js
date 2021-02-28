@@ -11,4 +11,24 @@
 
 const { db } = require('../index');
 
-//conts userDocRef = db.collection('users').doc(da user)
+const userDocRef = db.collection('users');
+
+
+//In this scenario user is the primary key used to retrieve the user information.
+//This function returns an object which contains a reference to a single user.
+export const getUserModel = (user) =>{
+    
+    const userRef = userDocRef.doc(user);
+    const model = await userRef.get();
+    if(model.exists) return userRef;
+    
+}
+
+
+//Overwrites the user with user_name with its new data: userData
+export const setUserModel = (userData) =>{
+    await userDocRef.doc(userData.username).set({
+        username: userData.username, email: userData.email, score: userData.score,
+        collectedBreeds: userData.collectedBreeds
+    });
+}
