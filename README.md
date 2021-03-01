@@ -103,3 +103,22 @@ Refactoring of login and sign up pages and various bug fixes. Rearranged files i
 
 **Cristobal Sepulveda**  
 Added user authentication functions such as account creation, user login, email verification, account logout, and reset password. Set up the database and basic user model and breeds model. Connected back-end APIs to front-end. Unit tested server initialization and user services. Ran integration tests for sending HTTP requests from front-end to user controller.
+
+## Sprint 4
+
+*[Demonstration](https://www.youtube.com/watch?v=Jjmw2eP9g1g)*
+
+**Diego Cruces**  
+Implemented sign out functionality on the front end, created functions that retrieve user data from the database and populate the user model.
+
+**Pablo Cuervo**  
+Formatted account page.
+
+**Lucas Saber**  
+Setup the camera functionality on the main 'camera' page, picture capture, flash, flip camera buttons. Captured data from photo taken for storage.
+
+**Jordan Schneider**  
+Making of camera functionality button SVGs and camera set up, account page layout and formatting. Made modals for recognizing and not recognizing breeds when taking a photo.
+
+**Cristobal Sepulveda**  
+Worked on refactoring router, added different routing stacks for authorized and unauthorized users, added redux state management functionality, refactored user services.
