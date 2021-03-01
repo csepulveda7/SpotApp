@@ -118,7 +118,7 @@ Formatted account page.
 Setup the camera functionality on the main 'camera' page, picture capture, flash, flip camera buttons. Captured data from photo taken for storage.
 
 **Jordan Schneider**  
-Making of camera functionality button SVGs and camera set up, account page layout and formatting. Made modals for recognizing and not recognizing breeds when taking a photo.
+Making of camera functionality button SVGs and struggled with Lucas on camera set up. Made the account page, layout, formatting. Made modals for recognizing and not recognizing breeds when taking a photo.
 
 **Cristobal Sepulveda**  
 Worked on refactoring router, added different routing stacks for authorized and unauthorized users, added redux state management functionality, refactored user services.
