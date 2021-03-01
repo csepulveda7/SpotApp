@@ -1,3 +1,9 @@
+<p align="center">
+  <img width="400" src = "src/assets/images/SVG/SpotLogo.svg">
+</p>
+
+## Product Vision
+
 SPOT will be an app that will classify a dog's breed from an image of them and store the photo into a personal database. Each photo will be associated with its breed and will display general information about the breed along with if that breed is available at local shelters. The user's account will store the pictures they have taken and the associated breeds.
 
 We are creating this product for both education and entertainment. It can aid in animal shelters and dog rescues by raising awareness of dogs in the local community. It is a project that would be educational while still making it exciting for people to use due to the given incentive of 'collecting' as many breeds as possible. For us, it would be a great project to work on as we would get experience in front-end and back-end development, and working with machine learning models.
