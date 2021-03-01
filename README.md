@@ -106,7 +106,7 @@ Added user authentication functions such as account creation, user login, email 
 
 ## Sprint 4
 
-*[Demonstration](https://www.youtube.com/watch?v=zpqDihTS8IU)*
+*[Demonstration](https://youtu.be/LD3TZUdSkFw)*
 
 **Diego Cruces**  
 Implemented sign out functionality on the front end, created functions that retrieve user data from the database and populate the user model.
