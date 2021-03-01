@@ -129,6 +129,8 @@ android {
     }
 
     defaultConfig {
+        missingDimensionStrategy 'react-native-camera', 'general'
+        multiDexEnabled true
         applicationId "com.spotapp"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
@@ -207,6 +209,8 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+
+    implementation project(':react-native-camera')
 }
 
 // Run this once to be able to run the application with BUCK

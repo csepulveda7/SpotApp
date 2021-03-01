@@ -10,7 +10,7 @@
 
 const { auth, db } = require('../index');
 const lodash = require('lodash');
-const myMock = jest.fn();
+
 
 const showFirebaseError = (error) => {
 	let errorMessage;

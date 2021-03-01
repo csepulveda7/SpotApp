@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { View, Animated, StatusBar, Dimensions } from 'react-native';
 import { SpotAppLogo } from '../assets/images';
+import { colors } from '../styles';
 
 const { height, width } = Dimensions.get('screen');
 
-export const Splash = ({ navigation }) => {
+export const Splash = ({ route, navigation }) => {
+	const { nextScreen } = route.params;
 	const [logo] = useState(new Animated.Value(0));
 	const animationStyle = { translateY: logo.interpolate({ inputRange: [0, 1], outputRange: [100, 0] }) };
 	const { container, logoStyle } = styles;
@@ -14,7 +16,7 @@ export const Splash = ({ navigation }) => {
 			toValue: 1,
 			duration: 2000,
 			useNativeDriver: true
-		}).start(() => { setTimeout(() => navigation.navigate('Login'), 1500) });
+		}).start(() => { setTimeout(() => navigation.navigate(nextScreen), 1500) });
 	});
 
 	return (
@@ -32,7 +34,7 @@ export const Splash = ({ navigation }) => {
 const styles = {
 	container: {
 		flex: 1,
-		backgroundColor: '#F5D8A1',
+		backgroundColor: colors.primaryLight,
 		justifyContent: 'center',
 		alignItems: 'center'
 	},
