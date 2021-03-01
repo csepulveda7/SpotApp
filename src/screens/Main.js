@@ -1,13 +1,24 @@
-import React from 'react';
-import { View, Pressable } from 'react-native';
+import React, { useState } from 'react';
+import { View, Pressable, Platform, Modal, KeyboardAvoidingView, Text } from 'react-native';
+import { Button } from 'react-native-elements';
 import Svg, { Circle } from 'react-native-svg';
 import { Book, Flash, FlipCamera } from '../assets/images';
+import { styles, colors } from '../styles';
 import { Alert } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import { useCamera } from 'react-native-camera-hooks';
 import { takePicture } from 'react-native-camera-hooks/src/takePicture';
 
+// I'm very aware this code needs to be cleaned ~Jordan
 export const Main = ({ navigation, initialProps }) => {
+	const [pictureTakenModalVisible, setPictureTakenModalVisible ] = useState(true);
+
+	// this will be used for recognizing if the dog breed is found by the ML model
+	// both true and false work
+	const dogBreedFound = true;
+	const dogBreedName = 'BREED NAME';
+	const dogBreedPicture = 'PHOTO JUST TAKEN';
+
 	const {
 		container,
 		buttons,
@@ -19,16 +30,58 @@ export const Main = ({ navigation, initialProps }) => {
 		cameraContainer,
 		iconContainer,
 		verticalIconContainer
-	} = styles;
+	} = mainStyles;
 
 	const [
 		{ cameraRef, type, ratio, autoFocus, autoFocusPoint, flash },
-		{
-			toggleFacing,
-			toggleFlash,
-			takePicture
-		}
+		{ toggleFacing,	toggleFlash, takePicture }
 	] = useCamera(initialProps);
+
+	const breedRecognizedContentModal = () => {
+		return (
+			<View style = { modalStyles.contentContainer }>
+				<Text style = { modalStyles.headerText }> New Breed Spotted!</Text>
+				<View style = { modalStyles.infoContainer }>
+					<Text> { dogBreedPicture } </Text>
+					<Text> { dogBreedName } </Text>
+				</View>
+				<View style = { buttons }>
+					<Button
+						title = 'Add to Collection'
+						containerStyle = { [styles.buttonContainer, modalStyles.buttonHeight] }
+						buttonStyle = { styles.fullWidthHeight }
+						onPress = { () => setPictureTakenModalVisible(false) }
+					/>
+					<Button
+						title = 'Retake Photo'
+						containerStyle = { [styles.buttonContainer, modalStyles.buttonHeight] }
+						buttonStyle = { styles.fullWidthHeight }
+						onPress = { () => setPictureTakenModalVisible(false) }
+					/>
+				</View>
+			</View>
+		);
+	};
+
+	const breedNotRecognizedContentModal = () => {
+		return (
+			<View style = { modalStyles.contentContainer }>
+				<Text style = { modalStyles.headerText }> Couldn't Recognize the Breed...</Text>
+				<View style = { modalStyles.infoContainer }>
+					<Text> { dogBreedPicture } </Text>
+					<Text> Why don't you try Spotting this dog again? </Text>
+				</View>
+				<View style = { buttons }>
+					<Button
+						title = 'Retake Photo'
+						containerStyle = { [styles.buttonContainer, modalStyles.buttonHeight] }
+						buttonStyle = { styles.fullWidthHeight }
+						onPress = { () => setPictureTakenModalVisible(false) }
+					/>
+				</View>
+			</View>
+		);
+	};
 
 	const iconBackground = () => {
 		return (
@@ -49,6 +102,22 @@ export const Main = ({ navigation, initialProps }) => {
 
 	return (
 		<View style = { container }>
+			<Modal
+				animationType = 'slide'
+				transparent = { true }
+				visible = { pictureTakenModalVisible }
+			>
+				<KeyboardAvoidingView
+					behavior = { Platform.OS === 'ios' ? 'padding' : 'height' }
+					enabled
+				>
+					<View style = { modalStyles.centeredBottom }>
+						<View style = { modalStyles.modalView }>
+							{ (dogBreedFound) ? breedRecognizedContentModal() : breedNotRecognizedContentModal() }
+						</View>
+					</View>
+				</KeyboardAvoidingView>
+			</Modal>
 			<RNCamera
 				ref = { cameraRef }
 				autoFocusPointOfInterest = { autoFocusPoint.normalized }
@@ -86,7 +155,7 @@ export const Main = ({ navigation, initialProps }) => {
 							try {
 								const data = await takePicture();
 
-								console.warn(data.uri);
+								setPictureTakenModalVisible(true);
 								Alert.alert('Photo Taken!', data.uri);
 							}
 							catch (error) {
@@ -117,7 +186,47 @@ export const Main = ({ navigation, initialProps }) => {
 	);
 };
 
-export const styles = {
+const modalStyles = {
+	contentContainer: {
+		height: '100%',
+		width: '100%',
+		alignItems: 'center',
+		justifyContent: 'flex-start',
+		flexDirection: 'column'
+	},
+	centeredBottom: {
+		height: '100%',
+		width: '100%',
+		alignItems: 'center',
+		justifyContent: 'flex-end'
+	},
+	modalView: {
+		backgroundColor: colors.offWhite,
+		height: '50%',
+		width: '100%',
+		borderTopRightRadius: 20,
+		borderTopLeftRadius: 20
+	},
+	headerText: {
+		fontSize: 24,
+		padding: '4%',
+		borderBottomColor: colors.dark,
+		borderBottomWidth: 1
+	},
+	infoContainer: {
+		height: '50%',
+		width: '100%',
+		alignItems: 'center',
+		justifyContent: 'flex-end',
+		flexDirection: 'column'
+	},
+	buttonHeight: {
+		height: '65%',
+		width: '40%'
+	}
+};
+
+const mainStyles = {
 	container: {
 		backgroundColor: 'grey',
 		height: '100%',
