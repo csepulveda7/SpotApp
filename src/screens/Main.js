@@ -11,7 +11,7 @@ import { takePicture } from 'react-native-camera-hooks/src/takePicture';
 
 // I'm very aware this code needs to be cleaned ~Jordan
 export const Main = ({ navigation, initialProps }) => {
-	const [pictureTakenModalVisible, setPictureTakenModalVisible ] = useState(true);
+	const [pictureTakenModalVisible, setPictureTakenModalVisible ] = useState(false);
 
 	// this will be used for recognizing if the dog breed is found by the ML model
 	// both true and false work

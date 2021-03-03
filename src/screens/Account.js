@@ -3,11 +3,14 @@ import { View, Text } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
 import { Button } from 'react-native-elements';
 import { styles } from '../styles';
-import { colors } from '../styles'
+import { colors } from '../styles';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { Pressable } from 'react-native';
 import { logoutUser } from '../services/userServices';
+import { useDispatch } from 'react-redux';
+import { userStatus } from '../ducks';
+import { Alert } from 'react-native';
 
 export const Account = ({ navigation }) => {
 	const { container, navBar, infoBar, centerItems, headerText, infoText, backButton } = accountStyles;
@@ -17,12 +20,13 @@ export const Account = ({ navigation }) => {
 		fullWidthHeight
 	} = styles;
 
-
-	const goTologin = () => { navigation.navigate('Login') };
+	const dispatch = useDispatch();
 	const logoutSubmit = () => {
-		logoutUser(); 
-		goTologin();
+		logoutUser();
+		setTimeout(() => dispatch(userStatus()), 500);
+		Alert.alert('Logging off...', 'Have a nice day!');
 	};
+
 	return (
 		<View style = { [fullWidthHeight, container] }>
 			<View style = { [navBar, centerItems] } >

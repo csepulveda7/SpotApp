@@ -50,13 +50,9 @@ exports.createUser = async (request, response) => {
 };
 
 exports.loginUser = async (request, response) => {
-	try {
-		userService.loginUser(request.body);
-		response.sendStatus(200);
-	}
-	catch (e) {
-		console.error(e);
-	}
+	userService.loginUser(request.body)
+		.then(loginStatus => response.status(200).send(loginStatus))
+		.catch(error => response.status(400).send(error));
 };
 
 exports.logoutUser = async (request, response) => {
@@ -73,6 +69,16 @@ exports.resetPassword = async (request, response) => {
 	try {
 		userService.resetPassword(request.body);
 		response.sendStatus(200);
+	}
+	catch (e) {
+		console.error(e);
+	}
+};
+
+exports.userStatus = (request, response) => {
+	try {
+		userService.userStatus()
+			.then(status => response.send(status || false));
 	}
 	catch (e) {
 		console.error(e);

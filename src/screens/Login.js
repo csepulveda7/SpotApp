@@ -4,6 +4,8 @@ import { TextBox, Header } from '../components';
 import { Button } from 'react-native-elements';
 import { loginUser } from '../services/userServices';
 import { styles, colors } from '../styles';
+import { useDispatch } from 'react-redux';
+import { userStatus } from '../ducks';
 
 export const Login = ({ navigation }) => {
 	const [email, setEmail] = useState('');
@@ -11,6 +13,7 @@ export const Login = ({ navigation }) => {
 	const [error, setError] = useState('');
 	const [modalVisible, setModalVisible] = useState(false);
 	const [forgotPasswordEmail, setForgotPasswordEmail] = useState('');
+	const dispatch = useDispatch();
 
 	const {
 		container,
@@ -24,14 +27,19 @@ export const Login = ({ navigation }) => {
 		rightMargin
 	} = styles;
 
-	const goToAccount = () => { navigation.navigate('Account') };
-
-	const loginSubmit = () => {
-		if (!email) setError('Please enter your email');
-		else if (!password) setError('Please enter your password');
-		else 
-			loginUser(email, password);
-			goToAccount(); 
+	const loginSubmit = async () => {
+		if (!email) { setError('Please enter your email') }
+		else if (!password) { setError('Please enter your password') }
+		else {
+			loginUser(email, password)
+				.then(loginStatus => {
+					if (loginStatus == 'success') {
+						setTimeout(() => dispatch(userStatus()), 500);
+						setError('Please verify your email');
+					}
+					else { setError(loginStatus) }
+				});
+		}
 	};
 
 	const renderError = () => {
@@ -126,7 +134,7 @@ export const Login = ({ navigation }) => {
 				title = 'Login'
 				buttonStyle = { fullWidthHeight }
 				containerStyle = { buttonContainer }
-				onPress = { loginSubmit }
+				onPress = { () => loginSubmit() }
 			/>
 			<Text style = { subtextButton }>
 				{ 'Don\'t have an account? ' }

@@ -9,15 +9,13 @@
  */
 
 const { auth, db } = require('../index');
-const lodash = require('lodash');
-
 
 const showFirebaseError = (error) => {
 	let errorMessage;
 
 	switch (error.code) {
 		case 'auth/user-not-found':
-			errorMessage = 'There is no user record corresponding to this identifier';
+			errorMessage = 'Incorrect credentials';
 			break;
 		case 'auth/invalid-email':
 			errorMessage = 'Enter a valid email';
@@ -29,12 +27,12 @@ const showFirebaseError = (error) => {
 			errorMessage = error.message;
 	}
 
-	//console.log(errorMessage);
+	console.log(errorMessage);
 };
 
 const createUserSucceeded = async (user) => {
 	const { currentUser } = auth;
-	
+
 	db.collection('users').doc(`${currentUser.uid}`)
 		.set({
 			email: user.email,
@@ -47,36 +45,27 @@ const createUserSucceeded = async (user) => {
 		})
 		.then(() => {
 			currentUser.sendEmailVerification()
-			.catch((error) => showFirebaseError(error))
-			.then();
-			
-			//.catch(() => console.log('We were not able to send an email. Try again.'))
-			//.then(() => console.log(`We sent a verification to: ${user.email}. Please open your email and verify your account`));
+				.catch(() => console.log('We were not able to send an email. Try again.'))
+				.then(() => console.log(`We sent a verification to: ${user.email}. Please open your email and verify your account`));
 		})
 		.then(() => auth.signOut())
-		.catch((error) => showFirebaseError(error));
-		//.catch((error) => console.log(error));
+		.catch((error) => console.log(error));
 };
 
 exports.createUser = async (user) => {
 	auth.createUserWithEmailAndPassword(user.email, user.password)
 		.then(() => createUserSucceeded(user))
 		.catch((error) => showFirebaseError(error));
-		//.catch((error) => showFirebaseError(error));
 };
 
-exports.loginUser = async (user) => {
+exports.loginUser = (user) => new Promise((resolve, reject) => {
 	auth.signInWithEmailAndPassword(user.email, user.password)
-		.then((userCredential) => {
-			// Signed in
-			let user = userCredential.user;
-
-			console.log(user);
+		.then(userCredential => {
+			userCredential.user ?
+				resolve({ 'success': true }) : resolve({ 'success': false });
 		})
-		.catch((error) => {
-			console.log(error.code, error.message);
-		});
-};
+		.catch((error) => reject(error));
+});
 
 // Insert loadUser service here  //
 // ---------------------------- //
@@ -91,3 +80,7 @@ exports.resetPassword = async (email) => {
 		.then(() => console.log(`Reset Started.\n If an account with email ${email} exists, a reset password email will be sent. Please check your email.`))
 		.catch(error => showFirebaseError(error));
 };
+
+exports.userStatus = () => new Promise((resolve) => {
+	auth.onAuthStateChanged(user => resolve(user && user.emailVerified));
+});
