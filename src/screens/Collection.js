@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 import { styles, colors } from '../styles';
+import NavBar from '../components/NavBar';
 
 export const Collection = ({ navigation }) => {
 	const { container } = accountStyles;
@@ -13,6 +14,7 @@ export const Collection = ({ navigation }) => {
 
 	return (
 		<View style = { container }>
+			<NavBar navigation={navigation} screenName='Collections'/>
 			<Text style = {{ fontSize: 20 }}> Collection Page </Text>
 			<Button
 				title = 'Back'
