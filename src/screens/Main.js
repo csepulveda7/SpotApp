@@ -36,7 +36,7 @@ export const Main = ({ navigation, initialProps }) => {
 
 	const [
 		{ cameraRef, type, ratio, autoFocus, autoFocusPoint, flash },
-		{ toggleFacing,	toggleFlash, takePicture }
+		{ toggleFacing, setFlash, takePicture }
 	] = useCamera(initialProps);
 
 	const showCapturedPicture = () => {
@@ -153,7 +153,19 @@ export const Main = ({ navigation, initialProps }) => {
 					</Pressable>
 					<Pressable
 						style = { verticalIconContainer }
-						onPress = { () => toggleFlash() }
+						onPress = { () => {
+							switch (flash) {
+								case 'on':
+									setFlash('off');
+									break;
+								case 'off':
+									setFlash('on');
+									break;
+								default:
+									setFlash('off');
+									break;
+							}
+						} }
 					>
 						<Flash
 							style = { icon }
