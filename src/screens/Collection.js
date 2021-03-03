@@ -14,7 +14,7 @@ export const Collection = ({ navigation }) => {
 
 	return (
 		<View style = { container }>
-			<NavBar navigation={navigation} screenName='Collections'/>
+			<NavBar navigation = { navigation } screenName = 'Collections' />
 			<Text style = {{ fontSize: 20 }}> Collection Page </Text>
 			<Button
 				title = 'Back'
@@ -31,7 +31,7 @@ const accountStyles = {
 		backgroundColor: colors.white,
 		height: '100%',
 		width: '100%',
-		justifyContent: 'center',
+		justifyContent: 'flex-start',
 		alignItems: 'center',
 		position: 'relative'
 	}
