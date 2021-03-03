@@ -41,8 +41,9 @@ exports.createUser = async (request, response) => {
 		 *   <----Insert Code Here----> uwu
 		 */
 
-		userService.createUser(request.body);
-		response.sendStatus(200);
+		userService.createUser(request.body)
+			.then(registerStatus => response.send(registerStatus))
+			.catch(error => response.status(400).send(error));
 	}
 	catch (e) {
 		console.error(e);
@@ -67,8 +68,9 @@ exports.logoutUser = async (request, response) => {
 
 exports.resetPassword = async (request, response) => {
 	try {
-		userService.resetPassword(request.body);
-		response.sendStatus(200);
+		userService.resetPassword(request.body)
+			.then(resetStatus => response.status(200).send(resetStatus))
+			.catch(error => response.status(400).send(error));
 	}
 	catch (e) {
 		console.error(e);

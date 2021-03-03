@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, Pressable, Modal, Platform, KeyboardAvoidingView } from 'react-native';
+import { View, Text, Pressable, Modal, Platform, KeyboardAvoidingView, Alert } from 'react-native';
 import { TextBox, Header } from '../components';
 import { Button } from 'react-native-elements';
-import { loginUser } from '../services/userServices';
+import { loginUser, resetPassword } from '../services/userServices';
 import { styles, colors } from '../styles';
 import { useDispatch } from 'react-redux';
 import { userStatus } from '../ducks';
@@ -11,8 +11,9 @@ export const Login = ({ navigation }) => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [error, setError] = useState('');
+	const [modalError, setModalError] = useState('');
 	const [modalVisible, setModalVisible] = useState(false);
-	const [forgotPasswordEmail, setForgotPasswordEmail] = useState('');
+	const [resetEmail, setResetEmail] = useState('');
 	const dispatch = useDispatch();
 
 	const {
@@ -21,6 +22,7 @@ export const Login = ({ navigation }) => {
 		textBoxes,
 		buttonContainer,
 		errorText,
+		modalErrorText,
 		fullWidthHeight,
 		forgotPassword,
 		forgotPasswordButton,
@@ -34,10 +36,27 @@ export const Login = ({ navigation }) => {
 			loginUser(email, password)
 				.then(loginStatus => {
 					if (loginStatus == 'success') {
+						setError('');
 						setTimeout(() => dispatch(userStatus()), 500);
-						setError('Please verify your email');
+						setTimeout(() => setError('Please verify your email'), 550);
 					}
 					else { setError(loginStatus) }
+				});
+		}
+	};
+
+	const resetPassSubmit = async () => {
+		if (!resetEmail) { setModalError('Please enter your email') }
+		else {
+			resetPassword(resetEmail)
+				.then(resetStatus => {
+					if (resetStatus.success) {
+						Alert.alert('Reset Initiated', resetStatus.success);
+						setModalError('');
+						setResetEmail('');
+						setModalVisible(!modalVisible);
+					}
+					else { setModalError(resetStatus) }
 				});
 		}
 	};
@@ -45,6 +64,11 @@ export const Login = ({ navigation }) => {
 	const renderError = () => {
 		if (error)
 			return (<Text style = { errorText }>{ error }</Text>);
+	};
+
+	const renderModalError = () => {
+		if (modalError)
+			return (<Text style = { modalErrorText }>{ modalError }</Text>);
 	};
 
 	const renderForgotPasswordModal = () => {
@@ -61,14 +85,14 @@ export const Login = ({ navigation }) => {
 					<View style = { modalStyles.centeredView }>
 						<View style = { modalStyles.ModalView }>
 							<Text style = { modalStyles.promptText }>
-								Please Enter Your Email:
+								Reset Password
 							</Text>
 							<View style = { modalStyles.textbox }>
 								<TextBox
 									defaultValue = 'email@address.com'
 									labelText = 'Email'
-									onChange = { (e) => setForgotPasswordEmail(e) }
-									value = { forgotPasswordEmail }
+									onChange = { (e) => setResetEmail(e) }
+									value = { resetEmail }
 								/>
 							</View>
 							<View style = { modalStyles.buttonView }>
@@ -77,7 +101,8 @@ export const Login = ({ navigation }) => {
 									containerStyle = { modalStyles.buttonContainer }
 									buttonStyle = { modalStyles.buttonStyle }
 									onPress = { () => {
-										setForgotPasswordEmail('');
+										setResetEmail('');
+										setModalError('');
 										setModalVisible(!modalVisible);
 									} }
 								/>
@@ -85,12 +110,10 @@ export const Login = ({ navigation }) => {
 									title = 'Send Email'
 									containerStyle = { modalStyles.buttonContainer }
 									buttonStyle = { modalStyles.buttonStyle }
-									onPress = { () => {
-										// send email
-										setModalVisible(!modalVisible);
-									} }
+									onPress = { () => resetPassSubmit() }
 								/>
 							</View>
+							{ renderModalError() }
 						</View>
 					</View>
 				</KeyboardAvoidingView>
@@ -121,7 +144,8 @@ export const Login = ({ navigation }) => {
 				<Pressable style = { forgotPasswordButton }
 					onPress = { () => {
 						setModalVisible(true);
-						setForgotPasswordEmail('');
+						setError('');
+						setResetEmail('');
 					} }
 				>
 					<Text style = { forgotPassword } >
@@ -140,7 +164,7 @@ export const Login = ({ navigation }) => {
 				{ 'Don\'t have an account? ' }
 				<Text
 					style = {{ color: colors.secondaryDark }}
-					onPress = { () => { navigation.navigate('SignUp') } }
+					onPress = { () => { navigation.navigate('SignUp'); setError('') } }
 				>
 					Register here
 				</Text>

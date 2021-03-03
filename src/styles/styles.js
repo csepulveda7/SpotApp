@@ -31,6 +31,13 @@ export const styles = {
 		color: 'red',
 		fontWeight: 'bold'
 	},
+	modalErrorText: {
+		fontSize: 14,
+		alignSelf: 'center',
+		color: 'red',
+		fontWeight: 'bold',
+		marginBottom: 15
+	},
 	subtextButton: {
 		marginTop: '6%',
 		alignItems: 'center',

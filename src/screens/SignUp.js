@@ -29,9 +29,15 @@ export const SignUp = ({ navigation }) => {
 		else if (!confirm) { setError('Please confirm your password') }
 		else if (confirm !== password) { setError('Passwords do not match') }
 		else {
-			Alert.alert(email, username + password + confirm);
-			createUser(username, email, password);
-			navigation.navigate('Login');
+			createUser(username, email, password)
+				.then(registerStatus => {
+					if (registerStatus.success) {
+						Alert.alert('Account Created', registerStatus.success);
+						setError('');
+						navigation.navigate('Login');
+					}
+					else { setError(registerStatus) }
+				});
 		}
 	};
 

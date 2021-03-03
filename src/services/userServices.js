@@ -37,7 +37,7 @@ export const getDevs = () => {
 	}
 };
 
-export const createUser = (username, email, password) => {
+export const createUser = (username, email, password) => new Promise((resolve) => {
 	try {
 		const user = { name: username, email: email, password: password };
 
@@ -49,12 +49,17 @@ export const createUser = (username, email, password) => {
 				'Content-type': 'application/json'
 			},
 			body: JSON.stringify(user)
-		});
+		})
+			.then(res => res.json())
+			.then(registerStatus => {
+				if (registerStatus.success) resolve(registerStatus);
+				else resolve(showFirebaseError(registerStatus));
+			});
 	}
 	catch (e) {
 		console.error(e);
 	}
-};
+});
 
 export const loginUser = (email, password) => new Promise((resolve) => {
 	try {
@@ -96,8 +101,10 @@ export const logoutUser = () => {
 	}
 };
 
-export const resetPassword = (email) => {
+export const resetPassword = (email) => new Promise((resolve) => {
 	try {
+		const user = { email: email };
+
 		fetch(`${config.API_ADDR}/user/resetPassword`, {
 			method: 'POST',
 			mode: 'no-cors',
@@ -105,13 +112,18 @@ export const resetPassword = (email) => {
 				'Accept': 'application/json',
 				'Content-type': 'application/json'
 			},
-			body: JSON.stringify(email)
-		});
+			body: JSON.stringify(user)
+		})
+			.then(res => res.json())
+			.then(resetStatus => {
+				if (resetStatus.success) resolve(resetStatus);
+				else resolve(showFirebaseError(resetStatus));
+			});
 	}
 	catch (e) {
 		console.error(e);
 	}
-};
+});
 
 export const getUserStatus = () => new Promise((resolve) => {
 	try {
