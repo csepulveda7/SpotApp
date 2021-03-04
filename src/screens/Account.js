@@ -1,11 +1,9 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
+import { Button } from 'react-native-elements';
 import { styles } from '../styles';
 import { colors } from '../styles';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import { Pressable } from 'react-native';
 import { logoutUser } from '../services/userServices';
 import { useDispatch } from 'react-redux';
 import { userStatus } from '../ducks';
@@ -13,9 +11,10 @@ import { Alert } from 'react-native';
 import NavBar from '../components/NavBar';
 
 export const Account = ({ navigation }) => {
-	const { container, infoBar, centerItems, infoText, logoutContainer } = accountStyles;
+	const { container, infoBar, centerItems, infoText } = accountStyles;
 
 	const {
+		buttonContainer,
 		fullWidthHeight
 	} = styles;
 
@@ -47,13 +46,12 @@ export const Account = ({ navigation }) => {
 				<Text style = { infoText }>Email: </Text>
 				<Text style = { infoText }>Total Dogs Seen: </Text>
 				<Text style = { infoText }>Total Breeds Seen: </Text>
-				<Pressable style = { logoutContainer } onPress = { logoutSubmit }>
-					<FontAwesomeIcon
-						icon = { faSignOutAlt }
-						size = '100%'
-						color = { colors.dark }
-					/>
-				</Pressable>
+				<Button
+					title = 'Log out'
+					containerStyle = { [buttonContainer, { height: 60 }] }
+					buttonStyle = { fullWidthHeight }
+					onPress = { logoutSubmit }
+				/>
 			</View>
 		</View>
 	);
@@ -61,13 +59,13 @@ export const Account = ({ navigation }) => {
 
 const accountStyles = {
 	container: {
-		backgroundColor: '#E2B865',
+		backgroundColor: colors.primaryDark,
 		flexDirection: 'column',
 		flex: 1,
 		zIndex: 1
 	},
 	infoBar: {
-		backgroundColor: '#E5E5E5',
+		backgroundColor: colors.offWhite,
 		height: '55%',
 		width: '100%',
 		zIndex: 5,
@@ -85,14 +83,5 @@ const accountStyles = {
 		fontSize: 16,
 		alignSelf: 'flex-start',
 		marginLeft: '10%'
-	},
-	logoutContainer: {
-		height: '12%',
-		width: '12%',
-		flexDirection: 'column',
-		justifyContent: 'flex-end',
-		alignSelf: 'flex-end',
-		marginRight: '10%',
-		marginBottom: '5%'
 	}
 };
