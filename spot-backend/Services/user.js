@@ -8,21 +8,20 @@
  *  - returns the completed work a response to the controller
  */
 
+const { userConverter } = require('../Models/user');
 const { auth, db } = require('../index');
+
+function getUserCollection() {
+	return db.collection('users').withConverter(userConverter);
+}
 
 const createUserSucceeded = (user) => new Promise((resolve, reject) => {
 	const { currentUser } = auth;
+	const userCollection = getUserCollection();
 
-	db.collection('users').doc(`${currentUser.uid}`)
-		.set({
-			email: user.email,
-			name: user.name,
-			picture: '',
-			score: 0,
-			collectedBreeds: {
-				total: 0
-			}
-		})
+	console.log(user);
+
+	userCollection.doc(`${currentUser.uid}`).set(user)
 		.then(() => {
 			currentUser.sendEmailVerification()
 				.then(() => resolve({ 'success': `We sent a verification to: ${user.email}. Please open your email and verify your account` }))
@@ -32,8 +31,8 @@ const createUserSucceeded = (user) => new Promise((resolve, reject) => {
 		.catch((error) => console.log(error));
 });
 
-exports.createUser = (user) => new Promise((resolve, reject) => {
-	auth.createUserWithEmailAndPassword(user.email, user.password)
+exports.createUser = (user, password) => new Promise((resolve, reject) => {
+	auth.createUserWithEmailAndPassword(user.email, password)
 		.then(() => resolve(createUserSucceeded(user)))
 		.catch((error) => reject(error));
 });

@@ -39,7 +39,16 @@ export const getDevs = () => {
 
 export const createUser = (username, email, password) => new Promise((resolve) => {
 	try {
-		const user = { name: username, email: email, password: password };
+		const user = {
+			name: username,
+			email: email,
+			password: password,
+			picture: '',
+			score: 0,
+			collectedBreeds: {
+				total: 0
+			}
+		};
 
 		fetch(`${config.API_ADDR}/user/createUser`, {
 			method: 'POST',

@@ -4,7 +4,7 @@ import { getUserStatus } from '../services/userServices';
 const ACTIONS = createActionTypes([
 	'USER_STATUS',
 	'APP_LOADING',
-	'LOAD_USER_AND_PRIVILEGE'
+	'LOAD_USER'
 ]);
 
 const INITIAL_STATE = {
@@ -19,7 +19,7 @@ export default (state = INITIAL_STATE, { payload, type }) => {
 			return { ...state, isLoggedIn: payload };
 		case ACTIONS.APP_LOADING:
 			return { ...state, isLoading: payload };
-		case ACTIONS.LOAD_USER_AND_PRIVILEGE:
+		case ACTIONS.LOAD_USER:
 			return { ...state, activeUser: payload };
 		default:
 			return state;
@@ -37,6 +37,6 @@ export const appLoading = () => dispatch => {
 
 /*
 export const loadUser = () => dispatch => {
-	loadCurrentUser().then(payload => dispatch({ type: ACTIONS.LOAD_USER_AND_PRIVILEGE, payload }));
+	loadCurrentUser().then(payload => dispatch({ type: ACTIONS.LOAD_USER, payload }));
 };
 */

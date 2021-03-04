@@ -8,6 +8,7 @@
  *  orchestrates the work those service calls, but does not do the work itself.
  */
 
+let { User } = require('../Models/user');
 let userService = require('../services/user');
 
 exports.getDevs = function(request, response) {
@@ -36,12 +37,9 @@ exports.getDevs = function(request, response) {
 
 exports.createUser = async (request, response) => {
 	try {
-		/*
-		 * create new instance of User Model
-		 *   <----Insert Code Here----> uwu
-		 */
+		const user = new User(request.body);
 
-		userService.createUser(request.body)
+		userService.createUser(user, request.body.password)
 			.then(registerStatus => response.send(registerStatus))
 			.catch(error => response.status(400).send(error));
 	}
