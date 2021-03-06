@@ -85,11 +85,15 @@ exports.userStatus = (request, response) => {
 	}
 };
 
-exports.loadUser =  (request, response) => {
+exports.loadUser = async (request, response) => {
 	try {
 		userService.loadUser()
-		.then(userData => console.log('user Data:' + userData.data()));
-			//.then(userData => response.send(userData));
+		.then(userData => {
+			JSON.parse(userData);
+			console.log('user Data in Controller:' + userData);
+		})
+		.then(userData => response.send(userData))
+		.catch(error => console.log('No data: ' + error));
 	}
 	catch (e) {
 		console.error(e);
