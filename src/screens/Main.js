@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Pressable, Platform, Modal, KeyboardAvoidingView, Text, Image } from 'react-native';
+import { View, Pressable, Platform, Modal, KeyboardAvoidingView, Text, Image, Dimensions } from 'react-native';
 import { Button } from 'react-native-elements';
 import Svg, { Circle } from 'react-native-svg';
 import { Book, Flash, FlipCamera } from '../assets/images';
@@ -7,14 +7,14 @@ import { styles, colors } from '../styles';
 import { RNCamera } from 'react-native-camera';
 import { useCamera } from 'react-native-camera-hooks';
 
+const { height, width } = Dimensions.get('screen');
+
 // I'm very aware this code needs to be cleaned ~Jordan
 export const Main = ({ navigation, initialProps }) => {
 	const [pictureTakenModalVisible, setPictureTakenModalVisible ] = useState(false);
 	const [capturedImage, setCapturedImage] = useState(' ');
-	const [capturedImageWidth, setCapturedImageWidth] = useState(0);
-	const [capturedImageHeight, setCapturedImageHeight] = useState(0);
 
-	const capturedImageScale = 0.25;
+	const capturedImageScale = 0.4;
 
 	// this will be used for recognizing if the dog breed is found by the ML model
 	// both true and false work
@@ -44,8 +44,8 @@ export const Main = ({ navigation, initialProps }) => {
 			<Image
 				source = {{ uri: capturedImage }}
 				style = {{
-					height: capturedImageHeight * capturedImageScale,
-					width: capturedImageWidth * capturedImageScale
+					height: height * capturedImageScale,
+					width: width * capturedImageScale
 				}}
 			/>
 		);
@@ -186,8 +186,6 @@ export const Main = ({ navigation, initialProps }) => {
 								const data = await takePicture();
 
 								setCapturedImage(data.uri);
-								setCapturedImageWidth(data.width);
-								setCapturedImageHeight(data.height);
 								setPictureTakenModalVisible(true);
 							}
 							catch (error) {
