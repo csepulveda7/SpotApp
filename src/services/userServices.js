@@ -165,3 +165,22 @@ export const loadCurrentUser = () => new Promise(resolve => {
 });
 
 */
+
+
+// export const getUserStatus = () => new Promise((resolve) => {
+// 	try {
+// 		fetch(`${config.API_ADDR}/user/loadUser`, {
+// 			method: 'GET',
+// 			mode: 'no-cors',
+// 			headers: {
+// 				'Accept': 'application/json',
+// 				'Content-type': 'application/json'
+// 			}
+// 		})
+// 			.then(res => res.json())
+// 			.then(status => resolve(status));
+// 	}
+// 	catch (e) {
+// 		console.error(e);
+// 	}
+// });

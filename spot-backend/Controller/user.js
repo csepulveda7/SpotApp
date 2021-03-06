@@ -84,3 +84,14 @@ exports.userStatus = (request, response) => {
 		console.error(e);
 	}
 };
+
+exports.loadUser =  (request, response) => {
+	try {
+		userService.loadUser()
+		.then(userData => console.log('user Data:' + userData.data()));
+			//.then(userData => response.send(userData));
+	}
+	catch (e) {
+		console.error(e);
+	}
+};

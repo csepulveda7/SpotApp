@@ -46,9 +46,21 @@ exports.loginUser = (user) => new Promise((resolve, reject) => {
 		.catch((error) => reject(error));
 });
 
-// -------------------------------//
-// Insert loadUser service here  //
-// ---------------------------- //
+exports.loadUser = () => new Promise((resolve, reject) =>{
+	
+	const { currentUser } = auth;
+	const userCollection = db.collection('users');
+
+	userCollection.doc(`${currentUser.uid}`).get()
+	.then(function(userData){
+		if (userData.exists) {
+			console.log("User data:", userData.data());
+		} else {
+			console.log("No User Data!");
+		}
+	})
+
+});
 
 exports.logoutUser = () => {
 	auth.signOut()
