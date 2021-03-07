@@ -10,6 +10,7 @@
 
 const { userConverter } = require('../Models/user');
 const { auth, db } = require('../index');
+const { faEyeDropper } = require('@fortawesome/free-solid-svg-icons');
 
 function getUserCollection() {
 	return db.collection('users').withConverter(userConverter);
@@ -52,13 +53,11 @@ exports.loadUser = () => new Promise((resolve, reject) =>{
 	const userCollection = db.collection('users');
 
 	userCollection.doc(`${currentUser.uid}`).get()
-	.then(function(userData){
-		if (userData.exists) {
-			console.log("User data:", userData.data());
-		} else {
-			console.log("No User Data!");
-		}
+	.then((userData) => {
+		console.log(userData.data());
+		resolve(JSON.stringify(userData.data()));
 	})
+	.catch(error => reject(error));
 
 });
 
