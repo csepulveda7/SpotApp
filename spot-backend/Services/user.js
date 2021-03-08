@@ -44,7 +44,7 @@ exports.loginUser = (user) => new Promise((resolve, reject) => {
 			userCredential.user ?
 				resolve({ 'success': true }) : resolve({ 'success': false });
 		})
-		.catch((error) => reject(error));
+		.catch((error) => reject(error.toString()));
 });
 
 exports.loadUser = () => new Promise((resolve, reject) =>{
