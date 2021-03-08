@@ -14,11 +14,11 @@ Most apps on the market strictly identify a dog breed; however, ours would not o
 
 ## Team Members
 
-- Diego Cruces
-- Pablo Cuervo
-- Lucas Saber
-- Jordan Schneider
-- Cristobal Sepulveda
+- Diego Cruces (Diegoslovaco)
+- Pablo Cuervo (pablocuervo-commits)
+- Lucas Saber (LSaber36)
+- Jordan Schneider (schneidercorn)
+- Cristobal Sepulveda (csepulveda7)
 
 ## Wiki
 
