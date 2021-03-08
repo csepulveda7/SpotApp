@@ -24,4 +24,9 @@ router.get('/logoutUser', userController.logoutUser);
 // POST request for resetting user account password
 router.post('/resetPassword', userController.resetPassword);
 
+// GET request for user's current status (logged in or out)
+router.get('/userStatus', userController.userStatus);
+
+router.get('/loadUser', userController.loadUser);
+
 module.exports = router;

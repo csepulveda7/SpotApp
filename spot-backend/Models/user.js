@@ -9,26 +9,37 @@
  *  - Also, Model is the first class which gets the data filled from DB when you retrieve the data from DB.
  */
 
-const { db } = require('../index');
+// const { db } = require('../index');
 
-const userDocRef = db.collection('users');
+class User {
+	constructor (user) {
+		const { email, name, picture, score, collectedBreeds } = user;
 
-
-//In this scenario user is the primary key used to retrieve the user information.
-//This function returns an object which contains a reference to a single user.
-export const getUserModel = (user) =>{
-    
-    const userRef = userDocRef.doc(user);
-    const model = await userRef.get();
-    if(model.exists) return userRef;
-    
+		this.email = email;
+		this.name = name;
+		this.picture = picture;
+		this.score = score;
+		this.collectedBreeds = collectedBreeds;
+	}
+	toString() {
+		return this.email + ', ' + this.name + ', ' + this.picture
+            + ', ' + this.score + ', ' + this.collectedBreeds;
+	}
 }
 
+// Firestore data converter
+const userConverter = {
+	toFirestore: function(user) {
+		const { email, name, picture, score, collectedBreeds } = user;
 
-//Overwrites the user with user_name with its new data: userData
-export const setUserModel = (userData) =>{
-    await userDocRef.doc(userData.username).set({
-        username: userData.username, email: userData.email, score: userData.score,
-        collectedBreeds: userData.collectedBreeds
-    });
-}
+		return { email, name, picture, score, collectedBreeds };
+	},
+	fromFirestore: function(snapshot) {
+		const data = snapshot;
+
+		return new User(data);
+	}
+};
+
+module.exports.User = User;
+module.exports.userConverter = userConverter;

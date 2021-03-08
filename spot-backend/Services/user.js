@@ -8,86 +8,70 @@
  *  - returns the completed work a response to the controller
  */
 
+const { userConverter } = require('../Models/user');
 const { auth, db } = require('../index');
-const lodash = require('lodash');
+const { faEyeDropper } = require('@fortawesome/free-solid-svg-icons');
 
+function getUserCollection() {
+	return db.collection('users').withConverter(userConverter);
+}
 
-const showFirebaseError = (error) => {
-	let errorMessage;
-
-	switch (error.code) {
-		case 'auth/user-not-found':
-			errorMessage = 'There is no user record corresponding to this identifier';
-			break;
-		case 'auth/invalid-email':
-			errorMessage = 'Enter a valid email';
-			break;
-		case 'auth/wrong-password':
-			errorMessage = 'Incorrect credentials';
-			break;
-		default:
-			errorMessage = error.message;
-	}
-
-	//console.log(errorMessage);
-};
-
-const createUserSucceeded = async (user) => {
+const createUserSucceeded = (user) => new Promise((resolve, reject) => {
 	const { currentUser } = auth;
-	
-	db.collection('users').doc(`${currentUser.uid}`)
-		.set({
-			email: user.email,
-			name: user.name,
-			picture: '',
-			score: 0,
-			collectedBreeds: {
-				total: 0
-			}
-		})
+	const userCollection = getUserCollection();
+
+	console.log(user);
+
+	userCollection.doc(`${currentUser.uid}`).set(user)
 		.then(() => {
 			currentUser.sendEmailVerification()
-			.catch((error) => showFirebaseError(error))
-			.then();
-			
-			//.catch(() => console.log('We were not able to send an email. Try again.'))
-			//.then(() => console.log(`We sent a verification to: ${user.email}. Please open your email and verify your account`));
+				.then(() => resolve({ 'success': `We sent a verification to: ${user.email}. Please open your email and verify your account` }))
+				.catch(() => reject({ 'fail': 'We were not able to send an email. Try again.' }));
 		})
 		.then(() => auth.signOut())
-		.catch((error) => showFirebaseError(error));
-		//.catch((error) => console.log(error));
-};
+		.catch((error) => console.log(error));
+});
 
-exports.createUser = async (user) => {
-	auth.createUserWithEmailAndPassword(user.email, user.password)
-		.then(() => createUserSucceeded(user))
-		.catch((error) => showFirebaseError(error));
-		//.catch((error) => showFirebaseError(error));
-};
+exports.createUser = (user, password) => new Promise((resolve, reject) => {
+	auth.createUserWithEmailAndPassword(user.email, password)
+		.then(() => resolve(createUserSucceeded(user)))
+		.catch((error) => reject(error));
+});
 
-exports.loginUser = async (user) => {
+exports.loginUser = (user) => new Promise((resolve, reject) => {
 	auth.signInWithEmailAndPassword(user.email, user.password)
-		.then((userCredential) => {
-			// Signed in
-			let user = userCredential.user;
-
-			console.log(user);
+		.then(userCredential => {
+			userCredential.user ?
+				resolve({ 'success': true }) : resolve({ 'success': false });
 		})
-		.catch((error) => {
-			console.log(error.code, error.message);
-		});
-};
+		.catch((error) => reject(error.toString()));
+});
 
-// Insert loadUser service here  //
-// ---------------------------- //
+exports.loadUser = () => new Promise((resolve, reject) =>{
+	
+	const { currentUser } = auth;
+	const userCollection = db.collection('users');
+
+	userCollection.doc(`${currentUser.uid}`).get()
+	.then((userData) => {
+		console.log(userData.data());
+		resolve(JSON.stringify(userData.data()));
+	})
+	.catch(error => reject(error));
+
+});
 
 exports.logoutUser = () => {
 	auth.signOut()
 		.then(() => console.log('Logged Out: Have a great day!'));
 };
 
-exports.resetPassword = async (email) => {
-	auth.sendPasswordResetEmail(email)
-		.then(() => console.log(`Reset Started.\n If an account with email ${email} exists, a reset password email will be sent. Please check your email.`))
-		.catch(error => showFirebaseError(error));
-};
+exports.resetPassword = (user) => new Promise((resolve, reject) => {
+	auth.sendPasswordResetEmail(user.email)
+		.then(() => resolve({ 'success': `If an account with email ${user.email} exists, a reset password email will be sent. Please check your email.` }))
+		.catch(error => reject(error));
+});
+
+exports.userStatus = () => new Promise((resolve) => {
+	auth.onAuthStateChanged(user => resolve(user && user.emailVerified));
+});

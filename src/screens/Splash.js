@@ -2,21 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { View, Animated, StatusBar, Dimensions } from 'react-native';
 import { SpotAppLogo } from '../assets/images';
 import { colors } from '../styles';
+import { useDispatch } from 'react-redux';
+import { appLoading } from '../ducks';
 
 const { height, width } = Dimensions.get('screen');
 
-export const Splash = ({ route, navigation }) => {
-	const { nextScreen } = route.params;
+export const Splash = ({ navigation }) => {
 	const [logo] = useState(new Animated.Value(0));
 	const animationStyle = { translateY: logo.interpolate({ inputRange: [0, 1], outputRange: [100, 0] }) };
 	const { container, logoStyle } = styles;
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		Animated.spring(logo, {
 			toValue: 1,
-			duration: 2000,
+			duration: 2500,
 			useNativeDriver: true
-		}).start(() => { setTimeout(() => navigation.navigate(nextScreen), 1500) });
+		}).start(() => { setTimeout(() => dispatch(appLoading()), 1500) });
 	});
 
 	return (

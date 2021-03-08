@@ -1,23 +1,25 @@
 import React, { useState } from 'react';
-import { View, Pressable, Platform, Modal, KeyboardAvoidingView, Text } from 'react-native';
+import { View, Pressable, Platform, Modal, KeyboardAvoidingView, Text, Image, Dimensions } from 'react-native';
 import { Button } from 'react-native-elements';
 import Svg, { Circle } from 'react-native-svg';
 import { Book, Flash, FlipCamera } from '../assets/images';
 import { styles, colors } from '../styles';
-import { Alert } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import { useCamera } from 'react-native-camera-hooks';
-import { takePicture } from 'react-native-camera-hooks/src/takePicture';
+
+const { height, width } = Dimensions.get('screen');
 
 // I'm very aware this code needs to be cleaned ~Jordan
 export const Main = ({ navigation, initialProps }) => {
-	const [pictureTakenModalVisible, setPictureTakenModalVisible ] = useState(true);
+	const [pictureTakenModalVisible, setPictureTakenModalVisible ] = useState(false);
+	const [capturedImage, setCapturedImage] = useState(' ');
+
+	const capturedImageScale = 0.4;
 
 	// this will be used for recognizing if the dog breed is found by the ML model
 	// both true and false work
 	const dogBreedFound = true;
-	const dogBreedName = 'BREED NAME';
-	const dogBreedPicture = 'PHOTO JUST TAKEN';
+	const dogBreedName = 'Breed Name';
 
 	const {
 		container,
@@ -34,18 +36,30 @@ export const Main = ({ navigation, initialProps }) => {
 
 	const [
 		{ cameraRef, type, ratio, autoFocus, autoFocusPoint, flash },
-		{ toggleFacing,	toggleFlash, takePicture }
+		{ toggleFacing, setFlash, takePicture }
 	] = useCamera(initialProps);
+
+	const showCapturedPicture = () => {
+		return (
+			<Image
+				source = {{ uri: capturedImage }}
+				style = {{
+					height: height * capturedImageScale,
+					width: width * capturedImageScale
+				}}
+			/>
+		);
+	};
 
 	const breedRecognizedContentModal = () => {
 		return (
 			<View style = { modalStyles.contentContainer }>
-				<Text style = { modalStyles.headerText }> New Breed Spotted!</Text>
+				<Text style = { modalStyles.headerText }>Dog Breed Spotted!</Text>
 				<View style = { modalStyles.infoContainer }>
-					<Text> { dogBreedPicture } </Text>
-					<Text> { dogBreedName } </Text>
+					{ showCapturedPicture() }
+					<Text style = { modalStyles.photoText } > { dogBreedName } </Text>
 				</View>
-				<View style = { buttons }>
+				<View style = { modalStyles.modalButtons }>
 					<Button
 						title = 'Add to Collection'
 						containerStyle = { [styles.buttonContainer, modalStyles.buttonHeight] }
@@ -68,10 +82,10 @@ export const Main = ({ navigation, initialProps }) => {
 			<View style = { modalStyles.contentContainer }>
 				<Text style = { modalStyles.headerText }> Couldn't Recognize the Breed...</Text>
 				<View style = { modalStyles.infoContainer }>
-					<Text> { dogBreedPicture } </Text>
-					<Text> Why don't you try Spotting this dog again? </Text>
+					{ showCapturedPicture() }
+					<Text style = { modalStyles.photoText }> Why don't you try Spotting this dog again? </Text>
 				</View>
-				<View style = { buttons }>
+				<View style = { modalStyles.modalButtons }>
 					<Button
 						title = 'Retake Photo'
 						containerStyle = { [styles.buttonContainer, modalStyles.buttonHeight] }
@@ -112,6 +126,10 @@ export const Main = ({ navigation, initialProps }) => {
 					enabled
 				>
 					<View style = { modalStyles.centeredBottom }>
+						<Image
+							source = {{ uri: capturedImage }}
+							style = { modalStyles.imageStyle }
+						/>
 						<View style = { modalStyles.modalView }>
 							{ (dogBreedFound) ? breedRecognizedContentModal() : breedNotRecognizedContentModal() }
 						</View>
@@ -135,7 +153,19 @@ export const Main = ({ navigation, initialProps }) => {
 					</Pressable>
 					<Pressable
 						style = { verticalIconContainer }
-						onPress = { () => toggleFlash() }
+						onPress = { () => {
+							switch (flash) {
+								case 'on':
+									setFlash('off');
+									break;
+								case 'off':
+									setFlash('on');
+									break;
+								default:
+									setFlash('off');
+									break;
+							}
+						} }
 					>
 						<Flash
 							style = { icon }
@@ -155,8 +185,8 @@ export const Main = ({ navigation, initialProps }) => {
 							try {
 								const data = await takePicture();
 
+								setCapturedImage(data.uri);
 								setPictureTakenModalVisible(true);
-								Alert.alert('Photo Taken!', data.uri);
 							}
 							catch (error) {
 								console.warn(error);
@@ -191,7 +221,7 @@ const modalStyles = {
 		height: '100%',
 		width: '100%',
 		alignItems: 'center',
-		justifyContent: 'flex-start',
+		justifyContent: 'space-between',
 		flexDirection: 'column'
 	},
 	centeredBottom: {
@@ -202,10 +232,11 @@ const modalStyles = {
 	},
 	modalView: {
 		backgroundColor: colors.offWhite,
-		height: '50%',
+		height: '80%',
 		width: '100%',
 		borderTopRightRadius: 20,
-		borderTopLeftRadius: 20
+		borderTopLeftRadius: 20,
+		zIndex: 1
 	},
 	headerText: {
 		fontSize: 24,
@@ -213,16 +244,35 @@ const modalStyles = {
 		borderBottomColor: colors.dark,
 		borderBottomWidth: 1
 	},
+	photoText: {
+		marginTop: '6%',
+		fontSize: 18
+	},
 	infoContainer: {
 		height: '50%',
 		width: '100%',
 		alignItems: 'center',
-		justifyContent: 'flex-end',
-		flexDirection: 'column'
+		justifyContent: 'center',
+		marginTop: '5%'
+	},
+	imageStyle: {
+		height: '100%',
+		position: 'absolute',
+		width: '100%',
+		justifyContent: 'center',
+		alignItems: 'center',
+		zIndex: 0
 	},
 	buttonHeight: {
-		height: '65%',
+		height: '55%',
 		width: '40%'
+	},
+	modalButtons: {
+		height: '15%',
+		width: '100%',
+		flexDirection: 'row',
+		justifyContent: 'space-around',
+		marginBottom: '5%'
 	}
 };
 
@@ -242,7 +292,8 @@ const mainStyles = {
 		alignItems: 'flex-end',
 		flexDirection: 'row',
 		justifyContent: 'space-around',
-		marginBottom: '8%'
+		marginBottom: '8%',
+		flex: 1
 	},
 	largeButtonContainer: {
 		height: '100%',

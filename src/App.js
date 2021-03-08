@@ -1,11 +1,20 @@
-import * as React from 'react';
-
+import 'react-native-gesture-handler';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Router from './router';
+import { userStatus } from './ducks';
 
-function App() {
+const App = () => {
+	const dispatch = useDispatch();
+	const { isLoggedIn, isLoading } = useSelector(state => state.user);
+
+	useEffect(() => {
+		dispatch(userStatus());
+	}, [isLoggedIn]);
+
 	return (
-		<Router isLoggedIn = { false } />
+		<Router isLoggedIn = { isLoggedIn } isLoading = { isLoading } />
 	);
-}
+};
 
 export default App;
