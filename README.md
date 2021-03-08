@@ -122,3 +122,22 @@ Making of camera functionality button SVGs and struggled with Lucas on camera se
 
 **Cristobal Sepulveda**  
 Worked on refactoring router, added different routing stacks for authorized and unauthorized users, added redux state management functionality, refactored user services.
+
+## Sprint 5
+
+*[Demonstration](https://youtu.be/LD3TZUdSkFw)*
+
+**Diego Cruces**  
+Created loadUser Service, Controller, and Router to communicate with firebase in order to obtain current logged user information, made such information into a JSON file such that it can be store and rendered in the front end when needed.
+
+**Pablo Cuervo**  
+Set up an avatar for the profile picture on account page and set up a modal to allow the user to edit their profile picture on the app.
+
+**Lucas Saber**  
+Setup the camera to display the captured image from the main page in a modal.  Also updated the camera modal to use uniform picture sizes and the flash button to toggle between on/off only. I also helped setup the collections page, which gets data of a specific format and displays it properly.
+
+**Jordan Schneider**  
+Reformatting of main page and fixing of icons on camera page. Implemeted Carousel and FlatList on Collection page to sync to whatever the user clicks. Worked on importing a js file as an object to use in FlatList for easy implementation from Cloud Firestore.
+
+**Cristobal Sepulveda**  
+Successfully got user authentication info from Firebase to enforce email verification before login. Refactored routing, added secure routing so only verified accounts can login, and only logged in accounts can access the rest of the app. Set up and connected userStatus reducer in redux to create a global state for userStatus. Added checks to handle user creation success/failures and show appropriate alerts/send users to the appropriate screens based on user creation status. Added email verification alert after successful account creation and send the verification email to the appropriate address. Render appropriate error messages if user info is wrong or unable to be processed by Firebase, when creating an account, logging in, or resetting their password. Handle clearing rendered error messages when user fixes their issue or navigates away from page/modal. Added full MVC architecture by completely decoupling Model from View/Controller/Services
