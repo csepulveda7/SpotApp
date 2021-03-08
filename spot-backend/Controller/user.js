@@ -84,3 +84,18 @@ exports.userStatus = (request, response) => {
 		console.error(e);
 	}
 };
+
+exports.loadUser = async (request, response) => {
+	try {
+		userService.loadUser()
+		.then(userData => {
+			JSON.parse(userData);
+			console.log('user Data in Controller:' + userData);
+		})
+		.then(userData => response.send(userData))
+		.catch(error => console.log('No data: ' + error));
+	}
+	catch (e) {
+		console.error(e);
+	}
+};
