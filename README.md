@@ -128,7 +128,7 @@ Worked on refactoring router, added different routing stacks for authorized and 
 *[Demonstration](https://youtu.be/LD3TZUdSkFw)*
 
 **Diego Cruces**  
-Created loadUser Service, Controller, and Router to communicate with firebase in order to obtain current logged user information, made such information into a JSON file such that it can be store and rendered in the front end when needed.
+Created loadUser Service, Controller, and Router to communicate with firebase in order to obtain current logged user information, made such information into a JSON file such that it can be store and rendered in the front end when needed. Wrote automated tests for backend.
 
 **Pablo Cuervo**  
 Set up an avatar for the profile picture on account page and set up a modal to allow the user to edit their profile picture on the app.
