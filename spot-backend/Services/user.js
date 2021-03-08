@@ -19,8 +19,6 @@ const createUserSucceeded = (user) => new Promise((resolve, reject) => {
 	const { currentUser } = auth;
 	const userCollection = getUserCollection();
 
-	console.log(user);
-
 	userCollection.doc(`${currentUser.uid}`).set(user)
 		.then(() => {
 			currentUser.sendEmailVerification()
