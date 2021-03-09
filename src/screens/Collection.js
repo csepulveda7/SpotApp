@@ -4,6 +4,7 @@ import { Button, ListItem } from 'react-native-elements';
 import { styles, colors } from '../styles';
 import NavBar from '../components/NavBar';
 import Carousel, { ParallaxImage } from 'react-native-snap-carousel';
+import { getBreeds } from '../services/breedServices';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -55,7 +56,13 @@ export const Collection = ({ navigation }) => {
 	useEffect(() => {
 		setEntries(list);
 		carouselRef.current.snapToItem(30);
+		parseObject();
 	}, []);
+
+	const parseObject = async () => {
+		getBreeds()
+			.then(doggyData => console.log(doggyData));
+	};
 
 	const renderItem = ({ item, index }, parallaxProps) => {
 		return (
