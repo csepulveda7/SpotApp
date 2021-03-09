@@ -1,6 +1,8 @@
 import config from '../config';
 
 export const getBreeds = () => new Promise((resolve) => {
+	let data = [];
+
 	try {
 		fetch(`${config.API_ADDR}/breeds/getBreeds`, {
 			method: 'GET',
@@ -11,7 +13,14 @@ export const getBreeds = () => new Promise((resolve) => {
 			}
 		})
 			.then(res => res.json())
-			.then(data => resolve(data));
+			.then(data => {
+				let dogArray = [];
+
+				for (let i = 0; i < data.length; i++) {
+					dogArray.push({ breed: data[i].name, id: data[i].id });
+				}
+				resolve(dogArray);
+			});
 	}
 	catch (e) {
 		console.error(e);
