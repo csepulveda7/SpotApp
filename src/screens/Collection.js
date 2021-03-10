@@ -42,7 +42,7 @@ export const Collection = ({ navigation }) => {
 					{ ...parallaxProps }
 				/> */ }
 				<Text style = { carouselStyles.title }>
-					{ item.breed }_{ index + 1 }
+					{ item.breed }_{ item.id }
 				</Text>
 			</View>
 		);
@@ -77,11 +77,11 @@ export const Collection = ({ navigation }) => {
 						entries.map((dog, i) => (
 							<ListItem
 								key = { i } bottomDivider
-								onPress = { () => carouselRef.current.snapToItem(i) }
+								onPress = { () => carouselRef.current.snapToItem(dog.id - 1) }
 							>
 								<ListItem.Content style = { contentStyle }>
 									<ListItem.Title>{ dog.breed }</ListItem.Title>
-									<ListItem.Subtitle>{ i + 1 }</ListItem.Subtitle>
+									<ListItem.Subtitle>{ dog.id }</ListItem.Subtitle>
 								</ListItem.Content>
 							</ListItem>
 						))
