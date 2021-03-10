@@ -10,7 +10,6 @@
 
 const { userConverter } = require('../Models/user');
 const { auth, db } = require('../index');
-const { faEyeDropper } = require('@fortawesome/free-solid-svg-icons');
 
 function getUserCollection() {
 	return db.collection('users').withConverter(userConverter);
@@ -42,23 +41,21 @@ exports.loginUser = (user) => new Promise((resolve, reject) => {
 			userCredential.user ?
 				resolve({ 'success': true }) : resolve({ 'success': false });
 		})
-		.catch((error) => reject(error.toString()));
+		.catch((error) => reject(error));
 });
-
+/*
 exports.loadUser = () => new Promise((resolve, reject) =>{
-	
 	const { currentUser } = auth;
 	const userCollection = db.collection('users');
 
 	userCollection.doc(`${currentUser.uid}`).get()
-	.then((userData) => {
-		console.log(userData.data());
-		resolve(JSON.stringify(userData.data()));
-	})
-	.catch(error => reject(error));
-
+		.then((userData) => {
+			console.log(userData.data());
+			resolve(JSON.stringify(userData.data()));
+		})
+		.catch(error => reject(error));
 });
-
+*/
 exports.logoutUser = () => {
 	auth.signOut()
 		.then(() => console.log('Logged Out: Have a great day!'));

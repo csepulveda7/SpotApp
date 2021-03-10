@@ -9,7 +9,12 @@ const App = () => {
 	const { isLoggedIn, isLoading } = useSelector(state => state.user);
 
 	useEffect(() => {
-		dispatch(userStatus());
+		let mounted = true;
+
+		if (mounted)
+			dispatch(userStatus());
+
+		return () => { mounted = false };
 	}, [isLoggedIn]);
 
 	return (

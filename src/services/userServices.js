@@ -151,36 +151,3 @@ export const getUserStatus = () => new Promise((resolve) => {
 		console.error(e);
 	}
 });
-
-/*
-
-export const loadCurrentUser = () => new Promise(resolve => {
-	const { currentUser } = firebase.auth();
-
-	firebase.database().ref(`/users/${currentUser.uid}/`).on('value', userSnapshot => {
-		firebase.database().ref(`/privileges/${currentUser.uid}/`).on('value', privilegeSnapshot => {
-			resolve({ ...userSnapshot.val(), privilege: privilegeSnapshot.val() });
-		});
-	});
-});
-
-*/
-
-
-// export const getUserStatus = () => new Promise((resolve) => {
-// 	try {
-// 		fetch(`${config.API_ADDR}/user/loadUser`, {
-// 			method: 'GET',
-// 			mode: 'no-cors',
-// 			headers: {
-// 				'Accept': 'application/json',
-// 				'Content-type': 'application/json'
-// 			}
-// 		})
-// 			.then(res => res.json())
-// 			.then(status => resolve(status));
-// 	}
-// 	catch (e) {
-// 		console.error(e);
-// 	}
-// });
