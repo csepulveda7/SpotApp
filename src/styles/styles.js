@@ -55,7 +55,7 @@ export const styles = {
 		marginBottom: '15%'
 	},
 	forgotPasswordButton: {
-		width: '30%'
+		width: '40%'
 	},
 	rightMargin: {
 		marginRight: '30%',
