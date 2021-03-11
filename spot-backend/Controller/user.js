@@ -93,13 +93,6 @@ exports.loadUser = async (request, response) => {
 			console.log('user Data in Controller:' + userData);
 			response.json(userData);
 		})
-		// .then(userDataJSON => response.json([{
-		// 	id: 1,
-		// 	username: userDataJSON.name,
-		// 	email: userDataJSON.email,
-		// 	score: userDataJSON.score,
-		// 	collectedBreeds: userDataJSON.collectedBreeds
-		// }]))
 		.catch(error => console.log('No data: ' + error));
 	}
 	catch (e) {
