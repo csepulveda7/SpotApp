@@ -50,7 +50,7 @@ export const Account = ({ navigation }) => {
 				visible = { modalVisible }
 			>
 				<KeyboardAvoidingView
-					behavior = { Platform.OS === 'ios' ? 'padding' : 'height' }
+					behavior = 'height'
 					enabled
 				>
 					<View style = { modalStyles.centeredView }>

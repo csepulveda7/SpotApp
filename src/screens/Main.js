@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Pressable, Platform, Modal, KeyboardAvoidingView, Text, Image, Dimensions } from 'react-native';
+import { View, Pressable, Modal, KeyboardAvoidingView, Text, Image, Dimensions } from 'react-native';
 import { Button } from 'react-native-elements';
 import Svg, { Circle } from 'react-native-svg';
 import { Book, Flash, FlipCamera } from '../assets/images';
@@ -41,12 +41,8 @@ export const Main = ({ navigation, initialProps }) => {
 
 	const showCapturedPicture = () => {
 		return (
-			<Image
-				source = {{ uri: capturedImage }}
-				style = {{
-					height: height * capturedImageScale,
-					width: width * capturedImageScale
-				}}
+			<Image source = {{ uri: capturedImage }}
+				style = {{ height: height * capturedImageScale, width: width * capturedImageScale }}
 			/>
 		);
 	};
@@ -99,37 +95,18 @@ export const Main = ({ navigation, initialProps }) => {
 
 	const iconBackground = () => {
 		return (
-			<Svg
-				style = { fixedSquare }
-				width = '100%'
-				height = '100%'
-			>
-				<Circle
-					cx = '50%'
-					cy = '50%'
-					r = '50%'
-					fill = 'rgba(0, 0, 0, 0.5)'
-				/>
+			<Svg style = { fixedSquare } width = '100%' height = '100%'>
+				<Circle cx = '50%' cy = '50%' r = '50%' fill = 'rgba(0, 0, 0, 0.5)' />
 			</Svg>
 		);
 	};
 
 	return (
 		<View style = { container }>
-			<Modal
-				animationType = 'slide'
-				transparent = { true }
-				visible = { pictureTakenModalVisible }
-			>
-				<KeyboardAvoidingView
-					behavior = { Platform.OS === 'ios' ? 'padding' : 'height' }
-					enabled
-				>
+			<Modal animationType = 'slide' transparent = { true } visible = { pictureTakenModalVisible } >
+				<KeyboardAvoidingView behavior = 'height' enabled>
 					<View style = { modalStyles.centeredBottom }>
-						<Image
-							source = {{ uri: capturedImage }}
-							style = { modalStyles.imageStyle }
-						/>
+						<Image source = {{ uri: capturedImage }} style = { modalStyles.imageStyle } />
 						<View style = { modalStyles.modalView }>
 							{ (dogBreedFound) ? breedRecognizedContentModal() : breedNotRecognizedContentModal() }
 						</View>
@@ -145,32 +122,23 @@ export const Main = ({ navigation, initialProps }) => {
 				style = { cameraContainer }
 			>
 				<View style = { iconContainer }>
-					<Pressable
-						style = { verticalIconContainer }
-						onPress = { () => toggleFacing() }
-					>
+					<Pressable style = { verticalIconContainer } onPress = { () => toggleFacing() }>
 						<FlipCamera style = { icon } />
 					</Pressable>
-					<Pressable
-						style = { verticalIconContainer }
-						onPress = { () => {
-							switch (flash) {
-								case 'on':
-									setFlash('off');
-									break;
-								case 'off':
-									setFlash('on');
-									break;
-								default:
-									setFlash('off');
-									break;
-							}
-						} }
-					>
-						<Flash
-							style = { icon }
-							isOff = { (flash === 'off') ? '100' : '0' }
-						/>
+					<Pressable style = { verticalIconContainer } onPress = { () => {
+						switch (flash) {
+							case 'on':
+								setFlash('off');
+								break;
+							case 'off':
+								setFlash('on');
+								break;
+							default:
+								setFlash('off');
+								break;
+						}
+					} }>
+						<Flash style = { icon } isOff = { (flash === 'off') ? '100' : '0' } />
 					</Pressable>
 				</View>
 				<View style = { buttons }>
@@ -179,32 +147,17 @@ export const Main = ({ navigation, initialProps }) => {
 						<Book style = { icon } />
 					</Pressable>
 
-					<Pressable
-						style = { largeButtonContainer }
-						onPress = { async () => {
-							try {
-								const data = await takePicture();
+					<Pressable style = { largeButtonContainer } onPress = { async () => {
+						try {
+							const data = await takePicture();
 
-								setCapturedImage(data.uri);
-								setPictureTakenModalVisible(true);
-							}
-							catch (error) {
-								console.warn(error);
-							}
-						} }
-					>
-						<Svg
-							style = { centerItems }
-							width = '100%'
-							height = '100%'
-						>
-							<Circle
-								cx = '50%'
-								cy = '50%'
-								r = '40%'
-								stroke = 'rgb(255, 255, 255)'
-								strokeWidth = '4%'
-							/>
+							setCapturedImage(data.uri);
+							setPictureTakenModalVisible(true);
+						}
+						catch (error) { console.warn(error); }
+					} }>
+						<Svg style = { centerItems } width = '100%' height = '100%'>
+							<Circle cx = '50%' cy = '50%' r = '40%' stroke = 'rgb(255, 255, 255)' strokeWidth = '4%' />
 						</Svg>
 					</Pressable>
 					<Pressable style = { smallButtonContainer } onPress = { () => navigation.navigate('Account') }>
