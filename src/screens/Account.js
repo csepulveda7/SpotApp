@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Modal, KeyboardAvoidingView } from 'react-native';
 import { Button } from 'react-native-elements';
 import { styles } from '../styles';
@@ -9,9 +9,10 @@ import { userStatus } from '../ducks';
 import { Alert } from 'react-native';
 import NavBar from '../components/NavBar';
 import { Avatar } from 'react-native-elements';
+import { loadUserData } from '../services/userServices';
+import config from '../config';
 
-
-export const Account = ({ navigation }) => {
+export const Account  = ({ navigation }) => {
 	const { container, infoBar, centerItems, infoText } = accountStyles;
 
 	const {
@@ -24,7 +25,22 @@ export const Account = ({ navigation }) => {
 	const [error, setError] = useState(''); 
 	const [modalError, setModalError] = useState('');
 	const [modalVisible, setModalVisible] = useState(false);
+	const [userData, setUserData] = useState([{}]);
+	const [loading, setLoading] = useState(false);
+	
+	
 
+	const loadData = async () => {		
+		setUserData(await loadUserData());
+		console.log('user data:' + userData[0].name);
+	};
+
+	useEffect(() => {
+		loadData();
+		//console.log(userData[0].email);
+		setLoading(true);
+	}, []);
+	
 	const dispatch = useDispatch();
 	const logoutSubmit = () => {
 		logoutUser();
@@ -32,6 +48,7 @@ export const Account = ({ navigation }) => {
 		Alert.alert('Logging off...', 'Have a nice day!');
 	};
 
+	
 	const renderError = () => {
 		if (error)
 			return (<Text style = { errorText }>{ error }</Text>);
@@ -42,6 +59,7 @@ export const Account = ({ navigation }) => {
 			return (<Text style = { modalErrorText }>{ modalError }</Text>);
 	};
 
+	
 	const renderSetProfilePictureModal = () => {
 		return (
 			<Modal
@@ -105,8 +123,12 @@ export const Account = ({ navigation }) => {
 		);
 	};
 
-
-	return (
+	if(!loading){
+		return (
+			<View/>
+		);
+	}else{
+		return (
 		<View style = { [fullWidthHeight, container] }>
 			{ renderSetProfilePictureModal() }
 			<NavBar navigation = { navigation } screenName = 'Account' />
@@ -131,20 +153,29 @@ export const Account = ({ navigation }) => {
 				</Avatar>
 			</View>
 			{ renderError() } 
+
+
+			
+			
+				
+			
+			
 			<View style = { [centerItems, infoBar] }>
-				<Text style = { infoText }>Username: </Text>
-				<Text style = { infoText }>Email: </Text>
-				<Text style = { infoText }>Total Dogs Seen: </Text>
-				<Text style = { infoText }>Total Breeds Seen: </Text>
+				<Text style = { infoText }>Username: {userData[0].name} </Text>
+				<Text style = { infoText }>Email: {userData[0].email}</Text>
+				<Text style = { infoText }>Total Dogs Seen: {userData[0].score}</Text>
+				<Text style = { infoText }>Total Breeds Seen: {userData[0].CollectedBreeds}</Text>
 				<Button
 					title = 'Log out'
 					containerStyle = { [buttonContainer, { height: 60 }] }
 					buttonStyle = { fullWidthHeight }
 					onPress = { logoutSubmit }
 				/>
-			</View>
+			</View> 
 		</View>
-	);
+
+
+	);}
 };
 
 const accountStyles = {

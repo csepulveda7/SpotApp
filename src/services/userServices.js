@@ -151,3 +151,27 @@ export const getUserStatus = () => new Promise((resolve) => {
 		console.error(e);
 	}
 });
+
+export const loadUserData = () => new Promise((resolve) => {
+	try {
+		fetch(`${config.API_ADDR}/user/loadUser`, {
+			method: 'GET',
+			mode: 'no-cors',
+			headers: {
+				'Accept': 'application/json',
+				'Content-type': 'application/json'
+			}
+		})
+			.then(res => res.json())
+			.then(userData => {
+				let formattedUserData = [];
+				let JSONData = JSON.parse(userData);
+
+				formattedUserData.push({ name: JSONData.name, email: JSONData.email, score: JSONData.score,
+					picture: JSONData.picture, CollectedBreeds: JSONData.collectedBreeds.total });
+				console.log(formattedUserData[0].name);
+				resolve(formattedUserData);
+			});
+	}
+	catch (e) { console.error(e) }
+});

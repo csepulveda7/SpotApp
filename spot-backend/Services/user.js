@@ -43,19 +43,20 @@ exports.loginUser = (user) => new Promise((resolve, reject) => {
 		})
 		.catch((error) => reject(error));
 });
-/*
+
 exports.loadUser = () => new Promise((resolve, reject) =>{
 	const { currentUser } = auth;
 	const userCollection = db.collection('users');
 
 	userCollection.doc(`${currentUser.uid}`).get()
 		.then((userData) => {
-			console.log(userData.data());
+		// console.log(userData.data());
 			resolve(JSON.stringify(userData.data()));
+		// resolve(userData);
 		})
 		.catch(error => reject(error));
 });
-*/
+
 exports.logoutUser = () => {
 	auth.signOut()
 		.then(() => console.log('Logged Out: Have a great day!'));
