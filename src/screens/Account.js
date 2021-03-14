@@ -11,6 +11,7 @@ import NavBar from '../components/NavBar';
 import { Avatar } from 'react-native-elements';
 import { loadUserData } from '../services/userServices';
 import config from '../config';
+import ImagePicker from 'react-native-image-crop-picker';
 
 export const Account  = ({ navigation }) => {
 	const { container, infoBar, centerItems, infoText } = accountStyles;
@@ -92,7 +93,19 @@ export const Account  = ({ navigation }) => {
 									containerStyle = { modalStyles.buttonContainer }
 									buttonStyle = { modalStyles.buttonStyle }
 									onPress = { () => { 
-										// Use picker cropper to get picture from gallary 
+										setModalError('');
+										setModalVisible(!modalVisible);
+										ImagePicker.openPicker({
+											width: 300,
+											height: 400,
+											cropping: true,
+											freeStyleCropEnabled: true,
+										}).then ((image) => {
+											// Update user's profile picture with image
+											console.log('image', image);
+										}).catch((error) => {
+											console.log('error', error);
+										});
 									} }
 								/>
 								<Button
@@ -100,7 +113,19 @@ export const Account  = ({ navigation }) => {
 									containerStyle = { modalStyles.buttonContainer }
 									buttonStyle = { modalStyles.buttonStyle }
 									onPress = { () => { 
-										// Use picker cropper to get picture from camera 
+										setModalError('');
+										setModalVisible(!modalVisible);
+										ImagePicker.openCamera({
+											width: 300,
+											height: 400,
+											cropping: true,
+											freeStyleCropEnabled: true,
+										}).then ((image) => {
+											// Update user's profile picture with image
+											console.log('image', image);
+										}).catch((error) => {
+											console.log('error', error);
+										});
 									} }
 								/>
 							</View>
@@ -140,6 +165,7 @@ export const Account  = ({ navigation }) => {
 				<Avatar
 					size={200}
 					rounded
+					// Make source equal to user's profile picture variable so it can vary
 					source = {require("../assets/default_profile_icon.png")} 
 					>
 					<Avatar.Accessory 
@@ -147,7 +173,7 @@ export const Account  = ({ navigation }) => {
 						underlayColor = '#8C9095'
 						onPress = { () => {
 							setModalVisible(true);
-							setError(''); 
+							setError('');
 						} }
 					/>
 				</Avatar>
