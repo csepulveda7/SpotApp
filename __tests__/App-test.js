@@ -1,4 +1,6 @@
 import { render, fireEvent } from '@testing-library/react-native';
+// import React from 'react';
+// import { TextBox } from '../src/components';
 
 let user = require('../spot-backend/Services/user');
 
@@ -6,7 +8,7 @@ let user = require('../spot-backend/Services/user');
 // BACKEND TESTING //
 // ============== //
 
-describe ('Backend Testing', () => {
+describe('Backend Testing', () => {
 	test('Test User creation', () => {
 		const userData = { name: 'username', email: 'email@email9.com', password: 'password' };
 
@@ -75,15 +77,31 @@ describe ('Backend Testing', () => {
 // FRONTEND TESTING //
 // =============== //
 
+/*
 describe('Frontend Testing', () => {
 	test.skip('Login page loads after splash page', () => {
-		
+
 	});
 	test.skip('Login page hyperlinks to registration page', () => {
 
 	});
-	test.skip('Global Textbox component returns data', () => {
+	test('Global Textbox component returns data', () => {
+		let testText = 'input';
+		const { getByPlaceholderText, getAllByText } = render(
+			<TextBox
+				defaultValue = 'box'
+				value = { testText }
+				onChange = { () => testText = 'new value' }
+			/>
+		);
 
+		const input = undefined;
+		const crate = getByPlaceholderText('box');
+
+		fireEvent.changeText(crate, 'pog');
+		// const item = getAllByText('pog');
+		
+		expect(input).toBeUndefined();
 	});
 	test.skip('Logging in with correct information navgiates to main page', () => {
 
@@ -110,3 +128,4 @@ describe('Frontend Testing', () => {
 
 	});
 });
+*/
