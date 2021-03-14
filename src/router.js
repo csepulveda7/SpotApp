@@ -29,8 +29,8 @@ const AuthStackNavigator = () => (
 const MainStackNavigator = () => (
 	<MainStack.Navigator screenOptions = {{ headerShown: false }}>
 		<MainStack.Screen name = 'Main' component = { Main } />
-		<MainStack.Screen name = 'Collection' component = { Collection } />
 		<MainStack.Screen name = 'Account' component = { Account } />
+		<MainStack.Screen name = 'Collection' component = { Collection } />
 	</MainStack.Navigator>
 );
 

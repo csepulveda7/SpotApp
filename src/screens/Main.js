@@ -1,25 +1,24 @@
 import React, { useState } from 'react';
-import { View, Pressable, Platform, Modal, KeyboardAvoidingView, Text, Image, Dimensions } from 'react-native';
+import { View, Pressable, Modal, KeyboardAvoidingView, Text, Image, Dimensions, Alert } from 'react-native';
 import { Button } from 'react-native-elements';
 import Svg, { Circle } from 'react-native-svg';
 import { Book, Flash, FlipCamera } from '../assets/images';
 import { styles, colors } from '../styles';
 import { RNCamera } from 'react-native-camera';
 import { useCamera } from 'react-native-camera-hooks';
+import * as jpeg from 'jpeg-js';
+
+import { classifyBreed } from '../services/breedServices';
 
 const { height, width } = Dimensions.get('screen');
 
-// I'm very aware this code needs to be cleaned ~Jordan
 export const Main = ({ navigation, initialProps }) => {
-	const [pictureTakenModalVisible, setPictureTakenModalVisible ] = useState(false);
-	const [capturedImage, setCapturedImage] = useState(' ');
+	const [modalVisible, setModalVisible ] = useState(false);
+	const [capturedImage, setCapturedImage] = useState('');
+	const [breedFound, setBreedFound] = useState(true);
+	const [breedName, setBreedName] = useState('Golden Retriever');
 
-	const capturedImageScale = 0.4;
-
-	// this will be used for recognizing if the dog breed is found by the ML model
-	// both true and false work
-	const dogBreedFound = true;
-	const dogBreedName = 'Breed Name';
+	const capturedImageScale = 0.5;
 
 	const {
 		container,
@@ -41,97 +40,66 @@ export const Main = ({ navigation, initialProps }) => {
 
 	const showCapturedPicture = () => {
 		return (
-			<Image
-				source = {{ uri: capturedImage }}
-				style = {{
-					height: height * capturedImageScale,
-					width: width * capturedImageScale
-				}}
+			<Image source = {{ uri: capturedImage }}
+				style = {{ height: height * capturedImageScale, width: width * capturedImageScale }}
 			/>
 		);
 	};
+	/*
+	const imageToBuffer = async (base64) => {
+		const jpegData = Buffer.from(base64, 'base64');
+		const rawImageData = jpeg.decode(jpegData);
 
-	const breedRecognizedContentModal = () => {
+		classifyBreed(rawImageData.data);
+	};
+	*/
+	const classificationModal = () => {
 		return (
 			<View style = { modalStyles.contentContainer }>
-				<Text style = { modalStyles.headerText }>Dog Breed Spotted!</Text>
+				{ breedFound ? <Text style = { modalStyles.headerText }> { breedName } Spotted!</Text>
+					: <Text style = { modalStyles.headerText }> Couldn't Recognize the Breed...</Text> }
 				<View style = { modalStyles.infoContainer }>
 					{ showCapturedPicture() }
-					<Text style = { modalStyles.photoText } > { dogBreedName } </Text>
 				</View>
 				<View style = { modalStyles.modalButtons }>
-					<Button
+					{ breedFound ? <Button
 						title = 'Add to Collection'
 						containerStyle = { [styles.buttonContainer, modalStyles.buttonHeight] }
 						buttonStyle = { styles.fullWidthHeight }
-						onPress = { () => setPictureTakenModalVisible(false) }
-					/>
+						onPress = { () => {
+							setModalVisible(false);
+							setBreedName('');
+						} }
+					/> : false }
 					<Button
 						title = 'Retake Photo'
 						containerStyle = { [styles.buttonContainer, modalStyles.buttonHeight] }
 						buttonStyle = { styles.fullWidthHeight }
-						onPress = { () => setPictureTakenModalVisible(false) }
+						onPress = { () => {
+							setModalVisible(false);
+							setBreedName('');
+						} }
 					/>
 				</View>
 			</View>
 		);
 	};
-
-	const breedNotRecognizedContentModal = () => {
-		return (
-			<View style = { modalStyles.contentContainer }>
-				<Text style = { modalStyles.headerText }> Couldn't Recognize the Breed...</Text>
-				<View style = { modalStyles.infoContainer }>
-					{ showCapturedPicture() }
-					<Text style = { modalStyles.photoText }> Why don't you try Spotting this dog again? </Text>
-				</View>
-				<View style = { modalStyles.modalButtons }>
-					<Button
-						title = 'Retake Photo'
-						containerStyle = { [styles.buttonContainer, modalStyles.buttonHeight] }
-						buttonStyle = { styles.fullWidthHeight }
-						onPress = { () => setPictureTakenModalVisible(false) }
-					/>
-				</View>
-			</View>
-		);
-	};
-
 	const iconBackground = () => {
 		return (
-			<Svg
-				style = { fixedSquare }
-				width = '100%'
-				height = '100%'
-			>
-				<Circle
-					cx = '50%'
-					cy = '50%'
-					r = '50%'
-					fill = 'rgba(0, 0, 0, 0.5)'
-				/>
+			<Svg style = { fixedSquare } width = '100%' height = '100%'>
+				<Circle cx = '50%' cy = '50%' r = '50%' fill = 'rgba(0, 0, 0, 0.5)' />
 			</Svg>
 		);
 	};
 
 	return (
 		<View style = { container }>
-			<Modal
-				animationType = 'slide'
-				transparent = { true }
-				visible = { pictureTakenModalVisible }
-			>
-				<KeyboardAvoidingView
-					behavior = { Platform.OS === 'ios' ? 'padding' : 'height' }
-					enabled
-				>
+			<Modal animationType = 'slide' transparent = { true } visible = { modalVisible } >
+				<KeyboardAvoidingView behavior = 'height' enabled>
 					<View style = { modalStyles.centeredBottom }>
-						<Image
-							source = {{ uri: capturedImage }}
-							style = { modalStyles.imageStyle }
-						/>
+						<Image source = {{ uri: capturedImage }} style = { modalStyles.imageStyle } />
 						<View style = { modalStyles.modalView }>
-							{ (dogBreedFound) ? breedRecognizedContentModal() : breedNotRecognizedContentModal() }
+							{ classificationModal() }
 						</View>
 					</View>
 				</KeyboardAvoidingView>
@@ -145,32 +113,23 @@ export const Main = ({ navigation, initialProps }) => {
 				style = { cameraContainer }
 			>
 				<View style = { iconContainer }>
-					<Pressable
-						style = { verticalIconContainer }
-						onPress = { () => toggleFacing() }
-					>
+					<Pressable style = { verticalIconContainer } onPress = { () => toggleFacing() }>
 						<FlipCamera style = { icon } />
 					</Pressable>
-					<Pressable
-						style = { verticalIconContainer }
-						onPress = { () => {
-							switch (flash) {
-								case 'on':
-									setFlash('off');
-									break;
-								case 'off':
-									setFlash('on');
-									break;
-								default:
-									setFlash('off');
-									break;
-							}
-						} }
-					>
-						<Flash
-							style = { icon }
-							isOff = { (flash === 'off') ? '100' : '0' }
-						/>
+					<Pressable style = { verticalIconContainer } onPress = { () => {
+						switch (flash) {
+							case 'on':
+								setFlash('off');
+								break;
+							case 'off':
+								setFlash('on');
+								break;
+							default:
+								setFlash('off');
+								break;
+						}
+					} }>
+						<Flash style = { icon } isOff = { (flash === 'off') ? '100' : '0' } />
 					</Pressable>
 				</View>
 				<View style = { buttons }>
@@ -179,32 +138,31 @@ export const Main = ({ navigation, initialProps }) => {
 						<Book style = { icon } />
 					</Pressable>
 
-					<Pressable
-						style = { largeButtonContainer }
-						onPress = { async () => {
-							try {
-								const data = await takePicture();
+					<Pressable style = { largeButtonContainer } onPress = { async () => {
+						try {
+							const options = { base64: true };
+							const data = await takePicture(options);
 
-								setCapturedImage(data.uri);
-								setPictureTakenModalVisible(true);
-							}
-							catch (error) {
-								console.warn(error);
-							}
-						} }
-					>
-						<Svg
-							style = { centerItems }
-							width = '100%'
-							height = '100%'
-						>
-							<Circle
-								cx = '50%'
-								cy = '50%'
-								r = '40%'
-								stroke = 'rgb(255, 255, 255)'
-								strokeWidth = '4%'
-							/>
+							setCapturedImage(data.uri);
+							classifyBreed({
+								uri: data.uri,
+								type: 'image/jpeg',
+								name: 'breedImage'
+							})
+								.then(breed => {
+									setBreedFound(true);
+									setBreedName(breed);
+									setModalVisible(true);
+								})
+								.catch(() => {
+									setBreedName('');
+									setModalVisible(true);
+								});
+						}
+						catch (error) { console.warn(error) }
+					} }>
+						<Svg style = { centerItems } width = '100%' height = '100%'>
+							<Circle cx = '50%' cy = '50%' r = '40%' stroke = 'rgb(255, 255, 255)' strokeWidth = '4%' />
 						</Svg>
 					</Pressable>
 					<Pressable style = { smallButtonContainer } onPress = { () => navigation.navigate('Account') }>
