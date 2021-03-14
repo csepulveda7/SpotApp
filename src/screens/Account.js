@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Modal, KeyboardAvoidingView, Alert } from 'react-native';
 import { Button, Avatar } from 'react-native-elements';
 import NavBar from '../components/NavBar';
-import { Avatar } from 'react-native-elements';
 import { loadUserData } from '../services/userServices';
 import config from '../config';
 import ImagePicker from 'react-native-image-crop-picker';
