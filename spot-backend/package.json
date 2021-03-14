@@ -9,6 +9,8 @@
     "test": "ava"
   },
   "dependencies": {
+    "@mapbox/node-pre-gyp": "^1.0.1",
+    "@tensorflow/tfjs": "^3.3.0",
     "@tensorflow/tfjs-node": "^3.3.0",
     "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.4",
