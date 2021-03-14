@@ -1,10 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, ScrollView, Dimensions, Platform } from 'react-native';
+import { View, Text, ScrollView, Dimensions, Platform, Pressable, Modal, KeyboardAvoidingView } from 'react-native';
 import { Button, ListItem } from 'react-native-elements';
 import { styles, colors } from '../styles';
 import NavBar from '../components/NavBar';
 import Carousel, { ParallaxImage } from 'react-native-snap-carousel';
 import { getBreeds } from '../services/breedServices';
+import { set } from 'react-native-reanimated';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -12,6 +13,7 @@ export const Collection = ({ navigation }) => {
 	const { container, bottomContainer, topContainer, contentStyle } = collectionStyles;
 
 	let [breedsLoaded, setBreedsLoaded] = useState(false);
+	let [showTopModal, setShowTopModal] = useState(false);
 
 	const {
 		buttonContainer,
@@ -28,6 +30,30 @@ export const Collection = ({ navigation }) => {
 
 	const loadData = async () => {
 		setEntries(await getBreeds());
+	};
+
+	const renderTopModal = () => {
+		return (
+			<Modal
+				visible = { showTopModal }
+				transparent = { true }
+			>
+				<Pressable
+					style = { modalStyles.background }
+					onPress = { () => setShowTopModal(false) }
+				>
+
+				</Pressable>
+				<KeyboardAvoidingView
+					behavior = { Platform.OS === 'ios' ? 'padding' : 'height' }
+					enabled
+				>
+					<View style = { modalStyles.container }>
+
+					</View>
+				</KeyboardAvoidingView>
+			</Modal>
+		);
 	};
 
 	const renderItem = ({ item, index }, parallaxProps) => {
@@ -57,19 +83,22 @@ export const Collection = ({ navigation }) => {
 			<View style = { container }>
 				<NavBar navigation = { navigation } screenName = 'Collections' />
 				<View style = { topContainer }>
-					<Carousel
-						ref = { carouselRef }
-						sliderWidth = { screenWidth }
-						sliderHeight = { 400 }
-						itemWidth = { screenWidth - 100 }
-						data = { entries }
-						renderItem = { renderItem }
-						hasParallaxImages = { true }
-						enableSnap = { true }
-						initialNumToRender = { entries.length }
-						scrollEnabled = { false }
-						firstItem = { 0 }
-					/>
+					<Pressable style = { fullWidthHeight } onPress = { () => setShowTopModal(true) } >
+						{ renderTopModal() }
+						<Carousel
+							ref = { carouselRef }
+							sliderWidth = { screenWidth }
+							sliderHeight = { 400 }
+							itemWidth = { screenWidth - 100 }
+							data = { entries }
+							renderItem = { renderItem }
+							hasParallaxImages = { true }
+							enableSnap = { true }
+							initialNumToRender = { entries.length }
+							scrollEnabled = { false }
+							firstItem = { 0 }
+						/>
+					</Pressable>
 				</View>
 
 				<ScrollView style = { bottomContainer }>
@@ -90,6 +119,21 @@ export const Collection = ({ navigation }) => {
 
 			</View>
 		);
+	}
+};
+
+const modalStyles = {
+	container: {
+		marginTop: '18%',
+		height: '50%',
+		width: '100%',
+		backgroundColor: 'blue'
+	},
+	background: {
+		position: 'absolute',
+		backgroundColor: 'rgba(0, 0, 0, 0.5)',
+		height: '100%',
+		width: '100%'
 	}
 };
 

@@ -152,82 +152,25 @@ export const getUserStatus = () => new Promise((resolve) => {
 	}
 });
 
-
-// export const loadUserData = () => new Promise((resolve) =>{
-	
-// 	try {
-// 		fetch(`${config.API_ADDR}/user/loadUser`, {
-// 			method: 'GET',
-// 			mode: 'no-cors',
-// 			headers: {
-// 			'Accept': 'application/json',
-// 				'Content-type': 'application/json'
-// 			}
-// 		})
-// 			.then(userData => console.log(userData))
-// 			.then(res => res.json());
-// 	}
-// 	catch (e) {
-// 		console.error(e);
-// 	}
-	
-// }); 
-
 export const loadUserData = () => new Promise((resolve) => {
-	
 	try {
 		fetch(`${config.API_ADDR}/user/loadUser`, {
 			method: 'GET',
 			mode: 'no-cors',
 			headers: {
-			'Accept': 'application/json',
+				'Accept': 'application/json',
 				'Content-type': 'application/json'
 			}
 		})
-		.then(res => res.json())
-		.then(userData => {
-			let formattedUserData = [];
-			let JSONData = JSON.parse(userData);
-			formattedUserData.push({ name: JSONData.name, email: JSONData.email, score: JSONData.score, picture: JSONData.picture, CollectedBreeds: JSONData.collectedBreeds.total });
-			console.log(formattedUserData[0].name);
-			resolve(formattedUserData);
-		});
+			.then(res => res.json())
+			.then(userData => {
+				let formattedUserData = [];
+				let JSONData = JSON.parse(userData);
+
+				formattedUserData.push({ name: JSONData.name, email: JSONData.email, score: JSONData.score,
+					picture: JSONData.picture, CollectedBreeds: JSONData.collectedBreeds.total });
+				resolve(formattedUserData[0]);
+			});
 	}
-	catch (e) {
-		console.error(e);
-	}
+	catch (e) { console.error(e) }
 });
-
-
-/*
-
-export const loadCurrentUser = () => new Promise(resolve => {
-	const { currentUser } = firebase.auth();
-
-	firebase.database().ref(`/users/${currentUser.uid}/`).on('value', userSnapshot => {
-		firebase.database().ref(`/privileges/${currentUser.uid}/`).on('value', privilegeSnapshot => {
-			resolve({ ...userSnapshot.val(), privilege: privilegeSnapshot.val() });
-		});
-	});
-});
-
-*/
-
-
-// export const getUserStatus = () => new Promise((resolve) => {
-// 	try {
-// 		fetch(`${config.API_ADDR}/user/loadUser`, {
-// 			method: 'GET',
-// 			mode: 'no-cors',
-// 			headers: {
-// 				'Accept': 'application/json',
-// 				'Content-type': 'application/json'
-// 			}
-// 		})
-// 			.then(res => res.json())
-// 			.then(status => resolve(status));
-// 	}
-// 	catch (e) {
-// 		console.error(e);
-// 	}
-// });

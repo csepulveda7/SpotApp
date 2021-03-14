@@ -3,6 +3,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Router from './router';
 import { userStatus } from './ducks';
+import { Buffer } from 'buffer';
+global.Buffer = Buffer;
 
 const App = () => {
 	const dispatch = useDispatch();
@@ -10,7 +12,7 @@ const App = () => {
 
 	useEffect(() => {
 		dispatch(userStatus());
-	}, [isLoggedIn]);
+	}, []);
 
 	return (
 		<Router isLoggedIn = { isLoggedIn } isLoading = { isLoading } />
