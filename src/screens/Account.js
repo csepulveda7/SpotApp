@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Modal, KeyboardAvoidingView } from 'react-native';
-import { Button } from 'react-native-elements';
-import { styles } from '../styles';
-import { colors } from '../styles';
-import { logoutUser } from '../services/userServices';
-import { useDispatch } from 'react-redux';
-import { userStatus } from '../ducks';
-import { Alert } from 'react-native';
+import { View, Text, Modal, KeyboardAvoidingView, Alert } from 'react-native';
+import { Button, Avatar } from 'react-native-elements';
 import NavBar from '../components/NavBar';
-import { Avatar } from 'react-native-elements';
-import { loadUserData } from '../services/userServices';
-import config from '../config';
+import { styles, colors } from '../styles';
+import { logoutUser } from '../services/userServices';
+import { useDispatch, useSelector } from 'react-redux';
+import { userStatus, loadUser } from '../ducks';
 
-export const Account  = ({ navigation }) => {
+export const Account = ({ navigation }) => {
 	const { container, infoBar, centerItems, infoText } = accountStyles;
 
 	const {
@@ -22,33 +17,24 @@ export const Account  = ({ navigation }) => {
 		modalErrorText
 	} = styles;
 
-	const [error, setError] = useState(''); 
+	const [error, setError] = useState('');
 	const [modalError, setModalError] = useState('');
 	const [modalVisible, setModalVisible] = useState(false);
-	const [userData, setUserData] = useState([{}]);
 	const [loading, setLoading] = useState(false);
-	
-	
-
-	const loadData = async () => {		
-		setUserData(await loadUserData());
-		console.log('user data:' + userData[0].name);
-	};
+	const { activeUser } = useSelector(state => state.user);
+	const dispatch = useDispatch();
 
 	useEffect(() => {
-		loadData();
-		//console.log(userData[0].email);
+		dispatch(loadUser());
 		setLoading(true);
 	}, []);
-	
-	const dispatch = useDispatch();
+
 	const logoutSubmit = () => {
 		logoutUser();
 		setTimeout(() => dispatch(userStatus()), 500);
 		Alert.alert('Logging off...', 'Have a nice day!');
 	};
 
-	
 	const renderError = () => {
 		if (error)
 			return (<Text style = { errorText }>{ error }</Text>);
@@ -59,7 +45,6 @@ export const Account  = ({ navigation }) => {
 			return (<Text style = { modalErrorText }>{ modalError }</Text>);
 	};
 
-	
 	const renderSetProfilePictureModal = () => {
 		return (
 			<Modal
@@ -91,16 +76,16 @@ export const Account  = ({ navigation }) => {
 									title = 'Choose from Gallery'
 									containerStyle = { modalStyles.buttonContainer }
 									buttonStyle = { modalStyles.buttonStyle }
-									onPress = { () => { 
-										// Use picker cropper to get picture from gallary 
+									onPress = { () => {
+										// Use picker cropper to get picture from gallary
 									} }
 								/>
 								<Button
 									title = 'Use Camera'
 									containerStyle = { modalStyles.buttonContainer }
 									buttonStyle = { modalStyles.buttonStyle }
-									onPress = { () => { 
-										// Use picker cropper to get picture from camera 
+									onPress = { () => {
+										// Use picker cropper to get picture from camera
 									} }
 								/>
 							</View>
@@ -109,7 +94,7 @@ export const Account  = ({ navigation }) => {
 									title = 'Cancel'
 									containerStyle = { modalStyles.buttonContainer }
 									buttonStyle = { modalStyles.buttonStyle }
-									onPress = { () => { 
+									onPress = { () => {
 										setModalError('');
 										setModalVisible(!modalVisible);
 									} }
@@ -123,59 +108,54 @@ export const Account  = ({ navigation }) => {
 		);
 	};
 
-	if(!loading){
+	if (!loading) {
 		return (
-			<View/>
+			<View />
 		);
-	}else{
+	}
+	else {
 		return (
-		<View style = { [fullWidthHeight, container] }>
-			{ renderSetProfilePictureModal() }
-			<NavBar navigation = { navigation } screenName = 'Account' />
-			
-			<View style = { [centerItems] }
-				width = '100%'
-				height = '35%'
-			>
-				<Avatar
-					size={200}
-					rounded
-					source = {require("../assets/default_profile_icon.png")} 
+			<View style = { [fullWidthHeight, container] }>
+				{ renderSetProfilePictureModal() }
+				<NavBar navigation = { navigation } screenName = 'Account' />
+
+				<View style = { [centerItems] }
+					width = '100%'
+					height = '35%'
+				>
+					<Avatar
+						size = { 200 }
+						rounded
+						source = { require('../assets/default_profile_icon.png') }
 					>
-					<Avatar.Accessory 
-						size={20}
-						underlayColor = '#8C9095'
-						onPress = { () => {
-							setModalVisible(true);
-							setError(''); 
-						} }
+						<Avatar.Accessory
+							size = { 20 }
+							underlayColor = '#8C9095'
+							onPress = { () => {
+								setModalVisible(true);
+								setError('');
+							} }
+						/>
+					</Avatar>
+				</View>
+				{ renderError() }
+
+				<View style = { [centerItems, infoBar] }>
+					<Text style = { infoText }>Username: { activeUser.name } </Text>
+					<Text style = { infoText }>Email: { activeUser.email }</Text>
+					<Text style = { infoText }>Total Breeds Seen: { activeUser.CollectedBreeds }</Text>
+					<Text style = { infoText }>Points: { activeUser.score }</Text>
+					<Button
+						title = 'Log out'
+						containerStyle = { [buttonContainer, { height: 60 }] }
+						buttonStyle = { fullWidthHeight }
+						onPress = { logoutSubmit }
 					/>
-				</Avatar>
+				</View>
 			</View>
-			{ renderError() } 
 
-
-			
-			
-				
-			
-			
-			<View style = { [centerItems, infoBar] }>
-				<Text style = { infoText }>Username: {userData[0].name} </Text>
-				<Text style = { infoText }>Email: {userData[0].email}</Text>
-				<Text style = { infoText }>Total Dogs Seen: {userData[0].score}</Text>
-				<Text style = { infoText }>Total Breeds Seen: {userData[0].CollectedBreeds}</Text>
-				<Button
-					title = 'Log out'
-					containerStyle = { [buttonContainer, { height: 60 }] }
-					buttonStyle = { fullWidthHeight }
-					onPress = { logoutSubmit }
-				/>
-			</View> 
-		</View>
-
-
-	);}
+		);
+	}
 };
 
 const accountStyles = {

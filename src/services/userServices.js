@@ -169,8 +169,7 @@ export const loadUserData = () => new Promise((resolve) => {
 
 				formattedUserData.push({ name: JSONData.name, email: JSONData.email, score: JSONData.score,
 					picture: JSONData.picture, CollectedBreeds: JSONData.collectedBreeds.total });
-				console.log(formattedUserData[0].name);
-				resolve(formattedUserData);
+				resolve(formattedUserData[0]);
 			});
 	}
 	catch (e) { console.error(e) }
