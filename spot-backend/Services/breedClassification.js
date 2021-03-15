@@ -6,28 +6,48 @@ const fs = require('fs');
 // this should recieve and image (as a byte array)
 exports.classifyBreed = () => new Promise((resolve) => {
 	async function run() {
-		// Load the model.
-		const model = await mobilenet.load();
+		try {
+			// Load the model.
+			const model = await mobilenet.load();
 
-		// remove imageBuffer and just pass in bytearray to tfimage
-		const imageBuffer = fs.readFileSync(__dirname + '/breedImage.jpg');
-		const tfimage = tfnode.node.decodeImage(imageBuffer);
+			// remove imageBuffer and just pass in bytearray to tfimage
+			const imageBuffer = fs.readFileSync(__dirname + '/breedImage.jpg');
+			const tfimage = tfnode.node.decodeImage(imageBuffer);
 
-		// Classify the image.
-		const predictions = await model.classify(tfimage);
+			// Classify the image.
+			const predictions = await model.classify(tfimage);
 
-		// Convert the raw text to capitalizing each first letter of a sentence
-		const resultRaw = predictions[0].className.split(',')[0];
-		const finalRead = resultRaw.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+			// Convert the raw text to capitalizing each first letter of a sentence
+			const resultRaw = predictions[0].className.split(',')[0];
+			let finalRead = resultRaw.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
 
-		const breedData = require('./breedData.json');
+			const breedData = require('./breedData.json');
 
-		for (let i = 0; i < breedData.length; i++) {
-			if (breedData[i].name === finalRead)
-				resolve(finalRead);
+			const exceptionBreeds = [
+				['Cardigan', 'Cardigan Welsh Corgi'],
+				['Pembroke', 'Pembroke Welsh Corgi'],
+				['Dingo', 'Shiba Inu'],
+				['Mexican Hairless', 'Xoloitzcuintli']
+			];
+
+			for (let i = 0; i < exceptionBreeds.length; i++) {
+				if (exceptionBreeds[i][0] === finalRead)
+					finalRead = exceptionBreeds[i][1];
+			}
+
+			console.log(finalRead);
+
+			for (let i = 0; i < breedData.length; i++) {
+				if (breedData[i].name === finalRead)
+					resolve(finalRead);
+			}
+
+			resolve(false);
 		}
-
-		resolve(false);
+		catch (e) {
+			console.error(e);
+			resolve(false);
+		}
 	}
 
 	run();
