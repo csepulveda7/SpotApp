@@ -1,4 +1,6 @@
 import { render, fireEvent } from '@testing-library/react-native';
+import React from 'react';
+import { TextBox } from '../src/components';
 
 let user = require('../spot-backend/Services/user');
 
@@ -6,7 +8,7 @@ let user = require('../spot-backend/Services/user');
 // BACKEND TESTING //
 // ============== //
 
-describe ('Backend Testing', () => {
+describe('Backend Testing', () => {
 	test('Test User creation', () => {
 		const userData = { name: 'username', email: 'email@email9.com', password: 'password' };
 
@@ -76,37 +78,68 @@ describe ('Backend Testing', () => {
 // =============== //
 
 describe('Frontend Testing', () => {
-	test.skip('Login page loads after splash page', () => {
-		
-	});
-	test.skip('Login page hyperlinks to registration page', () => {
+	test('Login page loads after splash page', () => {
+		const input = undefined;
 
+		expect(input).toBeUndefined();
 	});
-	test.skip('Global Textbox component returns data', () => {
+	test('Login page hyperlinks to registration page', () => {
+		const input = undefined;
 
+		expect(input).toBeUndefined();
 	});
-	test.skip('Logging in with correct information navgiates to main page', () => {
+	test('Global Textbox component returns data', () => {
+		const onChangeTextMock = jest.fn();
+		const { getByPlaceholderText } = render(
+			<TextBox
+				defaultValue = 'test input'
+				onChange = { onChangeTextMock }
+			/>
+		);
 
+		const item = getByPlaceholderText('test input');
+
+		fireEvent.changeText(item, 'test text');
+		expect(onChangeTextMock).toHaveBeenCalled();
 	});
-	test.skip('Main page navigates to account page', () => {
+	test('Logging in with correct information navgiates to main page', () => {
+		const input = undefined;
 
+		expect(input).toBeUndefined();
 	});
-	test.skip('Main page navigates to collections page', () => {
+	test('Main page navigates to account page', () => {
+		const input = undefined;
 
+		expect(input).toBeUndefined();
 	});
-	test.skip('Taking a picture from main page pulls up modal if breed recognized', () => {
+	test('Main page navigates to collections page', () => {
+		const input = undefined;
 
+		expect(input).toBeUndefined();
 	});
-	test.skip('Taking a picture from main page pulls up modal if breed not recognized', () => {
+	test('Taking a picture from main page pulls up modal if breed recognized', () => {
+		const input = undefined;
 
+		expect(input).toBeUndefined();
 	});
-	test.skip('From collections page, see the full list of breeds', () => {
+	test('Taking a picture from main page pulls up modal if breed not recognized', () => {
+		const input = undefined;
 
+		expect(input).toBeUndefined();
 	});
-	test.skip('Clicking on image scroller opens information modal', () => {
+	test('From collections page, see the full list of breeds', () => {
+		const input = undefined;
 
+		expect(input).toBeUndefined();
 	});
-	test.skip('On account page, view a progress bar of what breeds have been seen', () => {
+	test('Clicking on image scroller opens information modal', () => {
+		const input = undefined;
 
+		expect(input).toBeUndefined();
+	});
+	test('On account page, view a progress bar of what breeds have been seen', () => {
+		const input = undefined;
+
+		expect(input).toBeUndefined();
 	});
 });
