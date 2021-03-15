@@ -1,48 +1,21 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, ScrollView, Dimensions, Platform } from 'react-native';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
+import { View, Text, ScrollView, Dimensions, Platform, Pressable, Modal, KeyboardAvoidingView, Image } from 'react-native';
 import { Button, ListItem } from 'react-native-elements';
 import { styles, colors } from '../styles';
 import NavBar from '../components/NavBar';
-import Carousel, { ParallaxImage } from 'react-native-snap-carousel';
+// import Carousel, { ParallaxImage } from 'react-native-snap-carousel';
+import { getBreeds, getBreedInfo, getBreedPhoto } from '../services/breedServices';
+import { set } from 'react-native-reanimated';
 
 const { width: screenWidth } = Dimensions.get('window');
 
-const list = [
-	{ title: 'Bebo', subtitle: '0', id: 0 },
-	{ title: 'Bebo', subtitle: '1', id: 1 },
-	{ title: 'Bebo', subtitle: '2', id: 2 },
-	{ title: 'Bebo', subtitle: '3', id: 3 },
-	{ title: 'Bebo', subtitle: '4', id: 4 },
-	{ title: 'Bebo', subtitle: '5', id: 5 },
-	{ title: 'Bebo', subtitle: '6', id: 6 },
-	{ title: 'Bebo', subtitle: '7', id: 7 },
-	{ title: 'Bebo', subtitle: '8', id: 8 },
-	{ title: 'Bebo', subtitle: '9', id: 9 },
-	{ title: 'Bebo', subtitle: '10', id: 10 },
-	{ title: 'Bebo', subtitle: '11', id: 11 },
-	{ title: 'Bebo', subtitle: '12', id: 12 },
-	{ title: 'Bebo', subtitle: '13', id: 13 },
-	{ title: 'Bebo', subtitle: '14', id: 14 },
-	{ title: 'Bebo', subtitle: '15', id: 15 },
-	{ title: 'Bebo', subtitle: '16', id: 16 },
-	{ title: 'Bebo', subtitle: '17', id: 17 },
-	{ title: 'Bebo', subtitle: '18', id: 18 },
-	{ title: 'Bebo', subtitle: '19', id: 19 },
-	{ title: 'Bebo', subtitle: '20', id: 20 },
-	{ title: 'Bebo', subtitle: '21', id: 21 },
-	{ title: 'Bebo', subtitle: '22', id: 22 },
-	{ title: 'Bebo', subtitle: '23', id: 23 },
-	{ title: 'Bebo', subtitle: '24', id: 24 },
-	{ title: 'Bebo', subtitle: '25', id: 25 },
-	{ title: 'Bebo', subtitle: '26', id: 26 },
-	{ title: 'Bebo', subtitle: '27', id: 27 },
-	{ title: 'Bebo', subtitle: '28', id: 28 },
-	{ title: 'Bebo', subtitle: '29', id: 29 },
-	{ title: 'Bebo', subtitle: '30', id: 30 }
-];
-
 export const Collection = ({ navigation }) => {
-	const { container, bottomContainer, topContainer, contentStyle } = accountStyles;
+	const { container, bottomContainer, topContainer, contentStyle, divider } = collectionStyles;
+
+	let [breedsLoaded, setBreedsLoaded] = useState(false);
+	let [showTopModal, setShowTopModal] = useState(false);
+	let [info, setInfo] = useState({});
+	let [breedImage, setBreedImage] = useState('');
 
 	const {
 		buttonContainer,
@@ -50,73 +23,116 @@ export const Collection = ({ navigation }) => {
 	} = styles;
 
 	const [entries, setEntries] = useState([]);
-	const carouselRef = useRef(null);
 
-	useEffect(() => {
-		setEntries(list);
-		carouselRef.current.snapToItem(30);
+	useEffect(async () => {
+		setEntries(await getBreeds());
+		setInfo(await loadInfo(1));
+		setBreedImage(await loadPhoto(1));
+
+		setBreedsLoaded(true);
 	}, []);
 
-	const renderItem = ({ item, index }, parallaxProps) => {
+	const loadInfo = async (id) => await getBreedInfo(id);
+	const loadPhoto = async (id) => await getBreedPhoto(id);
+
+	const renderTopModal = () => {
 		return (
-			<View style = { carouselStyles.item }>
-				{ /* Left for dog captured images */ }
-				{ /* <ParallaxImage
-					source = {{ uri: item.illustration }}
-					containerStyle = { carouselStyles.imageContainer }
-					style = { carouselStyles.image }
-					parallaxFactor = { 0.4 }
-					{ ...parallaxProps }
-				/> */ }
-				<Text style = { carouselStyles.title } numberOfLines = { 2 }>
-					{ item.title }
-					_
-					{ item.subtitle }
-				</Text>
-			</View>
+			<Modal
+				visible = { showTopModal }
+				transparent = { true }
+				animationType = { 'fade' }
+			>
+				<Pressable
+					style = { modalStyles.background }
+					onPress = { () => setShowTopModal(false) }
+				/>
+				<View style = { modalStyles.container }>
+					<Text style = { modalStyles.heading } > { info.breed } </Text>
+					<Text style = { modalStyles.paragraph } > Bred For: { info.bredFor } </Text>
+					<Text style = { modalStyles.paragraph } > Breed Group: { info.breedGroup } </Text>
+					<Text style = { modalStyles.paragraph } > Height: { info.height } in</Text>
+					<Text style = { modalStyles.paragraph } > Life Span: { info.lifeSpan } </Text>
+					<Text style = { modalStyles.paragraph } > Temperament: { info.temperament } </Text>
+					<Text style = { modalStyles.paragraph } > Weight: { info.weight } lbs </Text>
+				</View>
+			</Modal>
 		);
 	};
 
-	return (
-		<View style = { container }>
-			<NavBar navigation = { navigation } screenName = 'Collections' />
-			<View style = { topContainer }>
-				<Carousel
-					ref = { carouselRef }
-					sliderWidth = { screenWidth }
-					sliderHeight = { 400 }
-					itemWidth = { screenWidth - 100 }
-					data = { entries }
-					renderItem = { renderItem }
-					hasParallaxImages = { true }
-					enableSnap = { true }
-					initialNumToRender = { 31 }
-					scrollEnabled = { false }
-					firstItem = { 0 }
-				/>
+	// this is going to be where loading animation goes
+	if (!breedsLoaded) {
+		return <View />;
+	}
+	else {
+		return (
+			<View style = { container }>
+				<NavBar navigation = { navigation } screenName = 'Collections' />
+				<View style = { divider } />
+				<Pressable style = { topContainer } onPress = { () => setShowTopModal(true) } >
+					{ renderTopModal() }
+					<Image
+						style = { modalStyles.breedImage }
+						source = {{ uri: breedImage.url }}
+					/>
+				</Pressable>
+				<View style = { divider } />
+
+				<ScrollView style = { bottomContainer }>
+					{
+						entries.map((dog, i) => (
+							<ListItem
+								key = { i } bottomDivider
+								onPress = { async () => {
+									try {
+										setBreedImage(await loadPhoto(dog.id));
+										setInfo(await loadInfo(dog.id));
+									}
+									catch (e) {
+										console.log(e);
+									}
+								} }
+							>
+								<ListItem.Content style = { contentStyle }>
+									<ListItem.Title>{ dog.breed }</ListItem.Title>
+									<ListItem.Subtitle>{ dog.id }</ListItem.Subtitle>
+								</ListItem.Content>
+							</ListItem>
+						))
+					}
+				</ScrollView>
 			</View>
-
-			<ScrollView style = { bottomContainer }>
-				{
-					list.map((item, i) => (
-						<ListItem
-							key = { i } bottomDivider
-							onPress = { () => carouselRef.current.snapToItem(item.id) }
-						>
-							<ListItem.Content style = { contentStyle }>
-								<ListItem.Title>{ item.title }</ListItem.Title>
-								<ListItem.Subtitle>{ item.subtitle }</ListItem.Subtitle>
-							</ListItem.Content>
-						</ListItem>
-					))
-				}
-			</ScrollView>
-
-		</View>
-	);
+		);
+	}
 };
 
-const accountStyles = {
+const modalStyles = {
+	container: {
+		marginTop: '17%',
+		height: '41%',
+		width: '100%',
+		backgroundColor: colors.primaryLight
+	},
+	background: {
+		position: 'absolute',
+		backgroundColor: 'rgba(0, 0, 0, 0.5)',
+		height: '100%',
+		width: '100%'
+	},
+	breedImage: {
+		width: '100%',
+		height: '100%'
+	},
+	heading: {
+		fontSize: 24,
+		textAlign: 'center'
+	},
+	paragraph: {
+		fontSize: 20,
+		textAlign: 'left'
+	}
+};
+
+const collectionStyles = {
 	container: {
 		backgroundColor: colors.white,
 		height: '100%',
@@ -126,8 +142,11 @@ const accountStyles = {
 		position: 'relative'
 	},
 	topContainer: {
-		height: '35%',
-		width: '100%'
+		zIndex: 100,
+		height: '40%',
+		width: '100%',
+		alignItems: 'center',
+		justifyContent: 'center'
 	},
 	bottomContainer: {
 		height: '65%',
@@ -136,6 +155,11 @@ const accountStyles = {
 	contentStyle: {
 		flexDirection: 'row',
 		justifyContent: 'space-between'
+	},
+	divider: {
+		backgroundColor: colors.dark,
+		height: 2,
+		width: '100%'
 	}
 };
 
@@ -144,7 +168,7 @@ const carouselStyles = {
 		flex: 1
 	},
 	item: {
-		backgroundColor: '#40E0D0',
+		backgroundColor: 'red',
 		width: '100%',
 		height: '75%',
 		alignItems: 'center'
@@ -152,7 +176,7 @@ const carouselStyles = {
 	imageContainer: {
 		flex: 1,
 		marginBottom: Platform.select({ ios: 0, android: 1 }), // Prevent a random Android rendering issue
-		backgroundColor: 'white',
+		backgroundColor: 'red',
 		borderRadius: 8
 	},
 	image: {

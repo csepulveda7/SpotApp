@@ -88,12 +88,11 @@ exports.userStatus = (request, response) => {
 exports.loadUser = async (request, response) => {
 	try {
 		userService.loadUser()
-		.then(userData => {
-			JSON.parse(userData);
-			console.log('user Data in Controller:' + userData);
-		})
-		.then(userData => response.send(userData))
-		.catch(error => console.log('No data: ' + error));
+			.then(function (userData) {
+				JSON.parse(userData);
+				response.json(userData);
+			})
+			.catch(error => console.log('No data: ' + error));
 	}
 	catch (e) {
 		console.error(e);

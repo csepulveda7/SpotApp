@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import { View, Text, Modal, KeyboardAvoidingView } from 'react-native';
-import { Button } from 'react-native-elements';
-import { styles } from '../styles';
-import { colors } from '../styles';
-import { logoutUser } from '../services/userServices';
-import { useDispatch } from 'react-redux';
-import { userStatus } from '../ducks';
-import { Alert } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, Modal, KeyboardAvoidingView, Alert } from 'react-native';
+import { Button, Avatar } from 'react-native-elements';
 import NavBar from '../components/NavBar';
-import { Avatar } from 'react-native-elements';
-
+import { loadUserData } from '../services/userServices';
+import config from '../config';
+import ImagePicker from 'react-native-image-crop-picker';
+import { styles, colors } from '../styles';
+import { logoutUser } from '../services/userServices';
+import { useDispatch, useSelector } from 'react-redux';
+import { userStatus, loadUser } from '../ducks';
 
 export const Account = ({ navigation }) => {
 	const { container, infoBar, centerItems, infoText } = accountStyles;
@@ -21,11 +20,18 @@ export const Account = ({ navigation }) => {
 		modalErrorText
 	} = styles;
 
-	const [error, setError] = useState(''); 
+	const [error, setError] = useState('');
 	const [modalError, setModalError] = useState('');
 	const [modalVisible, setModalVisible] = useState(false);
-
+	const [loading, setLoading] = useState(false);
+	const { activeUser } = useSelector(state => state.user);
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(loadUser());
+		setLoading(true);
+	}, []);
+
 	const logoutSubmit = () => {
 		logoutUser();
 		setTimeout(() => dispatch(userStatus()), 500);
@@ -50,7 +56,7 @@ export const Account = ({ navigation }) => {
 				visible = { modalVisible }
 			>
 				<KeyboardAvoidingView
-					behavior = { Platform.OS === 'ios' ? 'padding' : 'height' }
+					behavior = 'height'
 					enabled
 				>
 					<View style = { modalStyles.centeredView }>
@@ -64,7 +70,7 @@ export const Account = ({ navigation }) => {
 									containerStyle = { modalStyles.buttonContainer }
 									buttonStyle = { modalStyles.buttonStyle }
 									onPress = { () => {
-										// Make profile picture defaultProfilePicture.png
+										// TODO - Make profile picture defaultProfilePicture.png
 										setModalError('');
 										setModalVisible(!modalVisible);
 									} }
@@ -74,7 +80,19 @@ export const Account = ({ navigation }) => {
 									containerStyle = { modalStyles.buttonContainer }
 									buttonStyle = { modalStyles.buttonStyle }
 									onPress = { () => { 
-										// Use picker cropper to get picture from gallary 
+										setModalError('');
+										setModalVisible(!modalVisible);
+										ImagePicker.openPicker({
+											width: 300,
+											height: 400,
+											cropping: true,
+											freeStyleCropEnabled: true,
+										}).then ((image) => {
+											// TODO - Update user's profile picture with image
+											console.log('image', image);
+										}).catch((error) => {
+											console.log('error', error);
+										});
 									} }
 								/>
 								<Button
@@ -82,7 +100,19 @@ export const Account = ({ navigation }) => {
 									containerStyle = { modalStyles.buttonContainer }
 									buttonStyle = { modalStyles.buttonStyle }
 									onPress = { () => { 
-										// Use picker cropper to get picture from camera 
+										setModalError('');
+										setModalVisible(!modalVisible);
+										ImagePicker.openCamera({
+											width: 300,
+											height: 400,
+											cropping: true,
+											freeStyleCropEnabled: true,
+										}).then ((image) => {
+											// TODO - Update user's profile picture with image
+											console.log('image', image);
+										}).catch((error) => {
+											console.log('error', error);
+										});
 									} }
 								/>
 							</View>
@@ -91,7 +121,7 @@ export const Account = ({ navigation }) => {
 									title = 'Cancel'
 									containerStyle = { modalStyles.buttonContainer }
 									buttonStyle = { modalStyles.buttonStyle }
-									onPress = { () => { 
+									onPress = { () => {
 										setModalError('');
 										setModalVisible(!modalVisible);
 									} }
@@ -105,46 +135,55 @@ export const Account = ({ navigation }) => {
 		);
 	};
 
+	if (!loading) {
+		return (
+			<View />
+		);
+	}
+	else {
+		return (
+			<View style = { [fullWidthHeight, container] }>
+				{ renderSetProfilePictureModal() }
+				<NavBar navigation = { navigation } screenName = 'Account' />
 
-	return (
-		<View style = { [fullWidthHeight, container] }>
-			{ renderSetProfilePictureModal() }
-			<NavBar navigation = { navigation } screenName = 'Account' />
-			
-			<View style = { [centerItems] }
-				width = '100%'
-				height = '35%'
-			>
-				<Avatar
-					size={200}
-					rounded
-					source = {require("../assets/default_profile_icon.png")} 
+				<View style = { [centerItems] }
+					width = '100%'
+					height = '35%'
+				>
+					<Avatar
+						size = { 200 }
+						rounded
+						// TODO - Make source equal to user's profile picture variable so it can vary
+						source = { require('../assets/default_profile_icon.png') }
 					>
-					<Avatar.Accessory 
-						size={20}
-						underlayColor = '#8C9095'
-						onPress = { () => {
-							setModalVisible(true);
-							setError(''); 
-						} }
+						<Avatar.Accessory
+							size = { 20 }
+							underlayColor = '#8C9095'
+							onPress = { () => {
+								setModalVisible(true);
+								setError('');
+							} }
+						/>
+					</Avatar>
+				</View>
+				{ renderError() }
+
+				<View style = { [centerItems, infoBar] }>
+					<Text style = { infoText }>Username: { activeUser.name } </Text>
+					<Text style = { infoText }>Email: { activeUser.email }</Text>
+					<Text style = { infoText }>Total Breeds Seen: { activeUser.CollectedBreeds }</Text>
+					<Text style = { infoText }>Points: { activeUser.score }</Text>
+					<Button
+						title = 'Log out'
+						containerStyle = { [buttonContainer, { height: 60 }] }
+						buttonStyle = { fullWidthHeight }
+						onPress = { logoutSubmit }
 					/>
-				</Avatar>
+				</View>
 			</View>
-			{ renderError() } 
-			<View style = { [centerItems, infoBar] }>
-				<Text style = { infoText }>Username: </Text>
-				<Text style = { infoText }>Email: </Text>
-				<Text style = { infoText }>Total Dogs Seen: </Text>
-				<Text style = { infoText }>Total Breeds Seen: </Text>
-				<Button
-					title = 'Log out'
-					containerStyle = { [buttonContainer, { height: 60 }] }
-					buttonStyle = { fullWidthHeight }
-					onPress = { logoutSubmit }
-				/>
-			</View>
-		</View>
-	);
+
+		);
+	}
 };
 
 const accountStyles = {

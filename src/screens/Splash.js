@@ -14,12 +14,18 @@ export const Splash = ({ navigation }) => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		Animated.spring(logo, {
-			toValue: 1,
-			duration: 2500,
-			useNativeDriver: true
-		}).start(() => { setTimeout(() => dispatch(appLoading()), 1500) });
-	});
+		let mounted = true;
+
+		if (mounted) {
+			Animated.spring(logo, {
+				toValue: 1,
+				duration: 2500,
+				useNativeDriver: true
+			}).start(() => { setTimeout(() => dispatch(appLoading()), 1500) });
+		}
+
+		return () => { mounted = false };
+	}, []);
 
 	return (
 		<View style = { container }>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Pressable, Modal, Platform, KeyboardAvoidingView, Alert } from 'react-native';
+import { View, Text, Pressable, Modal, KeyboardAvoidingView, Alert } from 'react-native';
 import { TextBox, Header } from '../components';
 import { Button } from 'react-native-elements';
 import { loginUser, resetPassword } from '../services/userServices';
@@ -79,7 +79,7 @@ export const Login = ({ navigation }) => {
 				visible = { modalVisible }
 			>
 				<KeyboardAvoidingView
-					behavior = { Platform.OS === 'ios' ? 'padding' : 'height' }
+					behavior = 'height'
 					enabled
 				>
 					<View style = { modalStyles.centeredView }>

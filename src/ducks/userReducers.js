@@ -1,5 +1,5 @@
 import { createActionTypes } from './utils';
-import { getUserStatus } from '../services/userServices';
+import { getUserStatus, loadUserData } from '../services/userServices';
 
 const ACTIONS = createActionTypes([
 	'USER_STATUS',
@@ -35,8 +35,6 @@ export const appLoading = () => dispatch => {
 	dispatch({ type: ACTIONS.APP_LOADING, payload: false });
 };
 
-/*
 export const loadUser = () => dispatch => {
-	loadCurrentUser().then(payload => dispatch({ type: ACTIONS.LOAD_USER, payload }));
+	loadUserData().then(payload => dispatch({ type: ACTIONS.LOAD_USER, payload }));
 };
-*/
