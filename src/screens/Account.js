@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Modal, KeyboardAvoidingView, Alert } from 'react-native';
 import { Button, Avatar } from 'react-native-elements';
 import NavBar from '../components/NavBar';
+import { loadUserData } from '../services/userServices';
+import config from '../config';
+import ImagePicker from 'react-native-image-crop-picker';
 import { styles, colors } from '../styles';
 import { logoutUser } from '../services/userServices';
 import { useDispatch, useSelector } from 'react-redux';
@@ -67,7 +70,7 @@ export const Account = ({ navigation }) => {
 									containerStyle = { modalStyles.buttonContainer }
 									buttonStyle = { modalStyles.buttonStyle }
 									onPress = { () => {
-										// Make profile picture defaultProfilePicture.png
+										// TODO - Make profile picture defaultProfilePicture.png
 										setModalError('');
 										setModalVisible(!modalVisible);
 									} }
@@ -76,16 +79,40 @@ export const Account = ({ navigation }) => {
 									title = 'Choose from Gallery'
 									containerStyle = { modalStyles.buttonContainer }
 									buttonStyle = { modalStyles.buttonStyle }
-									onPress = { () => {
-										// Use picker cropper to get picture from gallary
+									onPress = { () => { 
+										setModalError('');
+										setModalVisible(!modalVisible);
+										ImagePicker.openPicker({
+											width: 300,
+											height: 400,
+											cropping: true,
+											freeStyleCropEnabled: true,
+										}).then ((image) => {
+											// TODO - Update user's profile picture with image
+											console.log('image', image);
+										}).catch((error) => {
+											console.log('error', error);
+										});
 									} }
 								/>
 								<Button
 									title = 'Use Camera'
 									containerStyle = { modalStyles.buttonContainer }
 									buttonStyle = { modalStyles.buttonStyle }
-									onPress = { () => {
-										// Use picker cropper to get picture from camera
+									onPress = { () => { 
+										setModalError('');
+										setModalVisible(!modalVisible);
+										ImagePicker.openCamera({
+											width: 300,
+											height: 400,
+											cropping: true,
+											freeStyleCropEnabled: true,
+										}).then ((image) => {
+											// TODO - Update user's profile picture with image
+											console.log('image', image);
+										}).catch((error) => {
+											console.log('error', error);
+										});
 									} }
 								/>
 							</View>
@@ -126,6 +153,7 @@ export const Account = ({ navigation }) => {
 					<Avatar
 						size = { 200 }
 						rounded
+						// TODO - Make source equal to user's profile picture variable so it can vary
 						source = { require('../assets/default_profile_icon.png') }
 					>
 						<Avatar.Accessory

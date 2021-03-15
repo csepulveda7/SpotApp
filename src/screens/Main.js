@@ -150,9 +150,15 @@ export const Main = ({ navigation, initialProps }) => {
 								name: 'breedImage'
 							})
 								.then(breed => {
-									setBreedFound(true);
-									setBreedName(breed);
-									setModalVisible(true);
+									if (!breed) {
+										setBreedFound(false);
+										setModalVisible(true);
+									}
+									else {
+										setBreedFound(true);
+										setBreedName(breed);
+										setModalVisible(true);
+									}
 								})
 								.catch(() => {
 									setBreedName('');

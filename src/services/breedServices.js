@@ -1,8 +1,6 @@
 import config from '../config';
 
 export const getBreeds = () => new Promise((resolve) => {
-	let data = [];
-
 	try {
 		fetch(`${config.API_ADDR}/breeds/getBreeds`, {
 			method: 'GET',
@@ -26,29 +24,6 @@ export const getBreeds = () => new Promise((resolve) => {
 		console.error(e);
 	}
 });
-
-/*
-export const classifyBreed = (uri) => new Promise((resolve) => {
-	try {
-		const img = { uri: uri };
-
-		fetch(`${config.API_ADDR}/breeds/classifyBreed`, {
-			method: 'POST',
-			mode: 'no-cors',
-			headers: {
-				'Accept': 'application/json',
-				'Content-type': 'application/json'
-			},
-			body: JSON.stringify(img)
-		})
-			.then(res => res.json())
-			.then(breed => { resolve(breed) });
-	}
-	catch (e) {
-		console.error(e);
-	}
-});
-*/
 
 export const classifyBreed = (image) => new Promise((resolve, reject) => {
 	try {
