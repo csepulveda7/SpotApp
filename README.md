@@ -24,6 +24,8 @@ Most apps on the market strictly identify a dog breed; however, ours would not o
 
 Check out our [wiki](https://github.com/csepulveda7/SpotApp/wiki) for more info, guides, and documentation 😃
 
+> Want to see if a dog breed is compatible? Check [here](https://github.com/csepulveda7/SpotApp/wiki/Compatible-Breeds).
+
 ## Resources
 
 - [Trello Board](https://trello.com/b/npDmfBrX/spotapp)
