@@ -141,3 +141,22 @@ Reformatting of main page and fixing of icons on camera page. Implemeted Carouse
 
 **Cristobal Sepulveda**  
 Successfully got user authentication info from Firebase to enforce email verification before login. Refactored routing, added secure routing so only verified accounts can login, and only logged in accounts can access the rest of the app. Set up and connected userStatus reducer in redux to create a global state for userStatus. Added checks to handle user creation success/failures and show appropriate alerts/send users to the appropriate screens based on user creation status. Added email verification alert after successful account creation and send the verification email to the appropriate address. Render appropriate error messages if user info is wrong or unable to be processed by Firebase, when creating an account, logging in, or resetting their password. Handle clearing rendered error messages when user fixes their issue or navigates away from page/modal. Added full MVC architecture by completely decoupling Model from View/Controller/Services
+
+## Sprint 6
+
+*[Demonstration](https://youtu.be/oOoqHmydFrI)*
+
+**Diego Cruces**  
+Fully connected backend loadUser function that retrieves current logged user information and returns a Json to the front end in order to render the user information in the account page.
+
+**Pablo Cuervo**  
+Imported Image Crop Picker and used it to allow users to choose a picture from camera or gallery to be used as their profile picture.
+
+**Lucas Saber**  
+Fixed collections indexing and page styling. Worked on frontend UI unit testing, helped with the development of the JSON parsing and sending to frontend.
+
+**Jordan Schneider**  
+Brought in local JSON file to parse, package, then send to frontend; reconfigured JSON file's id's to reflect actual dog ids and cleaned up JSON's format. Enable the ML model to only return breeds of dogs that are currently in the database and ignore other possible objects; return whether the picture is a dog or not. Show information of dog on collection page when dog image is clicked.
+
+**Cristobal Sepulveda**  
+Successfully got user authentication info from Firebase to enforce email verification before login. Refactored routing, added secure routing so only verified accounts can login, and only logged in accounts can access the rest of the app. Set up and connected userStatus reducer in redux to create a global state for userStatus. Added checks to handle user creation success/failures and show appropriate alerts/send users to the appropriate screens based on user creation status. Added email verification alert after successful account creation and send the verification email to the appropriate address. Render appropriate error messages if user info is wrong or unable to be processed by Firebase, when creating an account, logging in, or resetting their password. Handle clearing rendered error messages when user fixes their issue or navigates away from page/modal. Added full MVC architecture by completely decoupling Model from View/Controller/Services
