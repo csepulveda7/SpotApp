@@ -69,7 +69,7 @@ buck-out/
 
 # Draft Adobe Illustrator Files and pictures
 *.ai
-*/spot-backend\Services\breedImage.jpg
+*/spot-backend/Services/breedImage.jpg
 
 # charts file
 charts.md
