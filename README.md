@@ -144,7 +144,7 @@ Successfully got user authentication info from Firebase to enforce email verific
 
 ## Sprint 6
 
-*[Demonstration](https://youtu.be/oOoqHmydFrI)*
+*[Demonstration](https://youtu.be/g252lG3rnSE)*
 
 **Diego Cruces**  
 Fully connected backend loadUser function that retrieves current logged user information and returns a Json to the front end in order to render the user information in the account page.
