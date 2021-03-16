@@ -67,8 +67,9 @@ buck-out/
 # CocoaPods
 /ios/Pods/
 
-# Draft Adobe Illustrator Files
+# Draft Adobe Illustrator Files and pictures
 *.ai
+*/spot-backend/Services/breedImage.jpg
 
 # charts file
 charts.md
