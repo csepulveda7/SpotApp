@@ -174,3 +174,29 @@ export const loadUserData = () => new Promise((resolve) => {
 	}
 	catch (e) { console.error(e) }
 });
+
+export const uploadImage = (image) => new Promise((resolve, reject) => {
+	try {
+		const payload = new FormData();
+
+		payload.append('image', image);
+
+		fetch(`${config.API_ADDR}/user/uploadImage`, {
+			method: 'POST',
+			mode: 'no-cors',
+			headers: {
+				'Accept': 'application/json',
+				'Content-type': 'multipart/form-data'
+			},
+			body: payload
+		})
+			.then(res => res.json())
+			.then(result => {
+				result.success ? resolve(result.success)
+					: reject(result.success);
+			});
+	}
+	catch (e) {
+		console.error(e);
+	}
+});

@@ -9,7 +9,10 @@
  */
 
 const { userConverter } = require('../Models/user');
-const { auth, db } = require('../index');
+const { auth, db, storage } = require('../index');
+const fs = require('fs');
+
+global.XMLHttpRequest = require('xhr2');
 
 function getUserCollection() {
 	return db.collection('users').withConverter(userConverter);
@@ -68,4 +71,31 @@ exports.resetPassword = (user) => new Promise((resolve, reject) => {
 
 exports.userStatus = () => new Promise((resolve) => {
 	auth.onAuthStateChanged(user => resolve(user && user.emailVerified));
+});
+
+function storeImageUrl(filePath, url) {
+	const userCollection = getUserCollection();
+
+	userCollection.doc(filePath).update({ picture: url });
+}
+
+exports.handleUpload = (image) => new Promise((resolve, reject) => {
+	const { currentUser } = auth;
+	const uid = currentUser.uid;
+	let imageRef = null;
+	let uploadBlob = null;
+
+	console.log('here');
+	imageRef = storage.ref(`users/${ uid }`).child('profilePic');
+	console.log('here again');
+
+	const imageBuffer = fs.readFileSync(__dirname + '/tempImage.jpg');
+
+	imageRef.put(imageBuffer, { contentType: 'image/jpg' })
+		.then((snapshot) => {
+			return imageRef.getDownloadURL();
+		})
+		.then((url) => storeImageUrl(uid, url))
+		.then(() => resolve())
+		.catch(() => reject());
 });
