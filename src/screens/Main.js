@@ -169,7 +169,7 @@ export const Main = ({ navigation, initialProps }) => {
 					</Pressable>
 					<Pressable style = { smallButtonContainer } onPress = { () => navigation.navigate('Account') }>
 						{ iconBackground() }
-						<Image source = {{ uri: activeUser.picture }} style = { pfpIcon } />
+						<Image source = { activeUser.picture ? { uri: activeUser.picture } : require('../assets/default_profile_icon.png') } style = { pfpIcon } />
 					</Pressable>
 				</View>
 			</RNCamera>
@@ -272,7 +272,7 @@ const mainStyles = {
 		aspectRatio: 1
 	},
 	pfpIcon: {
-		width: '90%',
+		height: '90%',
 		aspectRatio: 1,
 		borderRadius: 100
 	},
