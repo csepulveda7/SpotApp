@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Pressable, Modal, KeyboardAvoidingView, Text, Image, Dimensions } from 'react-native';
+import { View, Pressable, Modal, KeyboardAvoidingView, Text, Image, Dimensions, Alert } from 'react-native';
 import { Button } from 'react-native-elements';
 import Svg, { Circle } from 'react-native-svg';
 import { Book, Flash, FlipCamera } from '../assets/images';
@@ -9,6 +9,7 @@ import { useCamera } from 'react-native-camera-hooks';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadUser } from '../ducks';
 import { classifyBreed } from '../services/breedServices';
+import { updateCollectedBreeds } from '../services/userServices';
 
 const { height, width } = Dimensions.get('screen');
 
@@ -67,6 +68,9 @@ export const Main = ({ navigation, initialProps }) => {
 						containerStyle = { [styles.buttonContainer, modalStyles.buttonHeight] }
 						buttonStyle = { styles.fullWidthHeight }
 						onPress = { () => {
+							updateCollectedBreeds(breedName)
+								.then(() => Alert.alert(`${breedName} added to collection!`))
+								.catch(() => Alert.alert('Error', `Unable to add ${breedName} to collection. Try again`));
 							setModalVisible(false);
 							setBreedName('');
 						} }

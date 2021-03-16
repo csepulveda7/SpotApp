@@ -44,6 +44,9 @@ router.get('/userStatus', userController.userStatus);
 // GET request to load a user's profile information
 router.get('/loadUser', userController.loadUser);
 
+// POST request for adding new breed to User collection
+router.post('/updateCollectedBreeds', userController.updateCollectedBreeds);
+
 // POST request for updating user's profile picture
 router.post('/uploadImage', upload.single('image'), (req, res) => {
 	if (!req.file) {

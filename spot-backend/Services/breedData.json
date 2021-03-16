@@ -644,7 +644,7 @@
 		},
 		"life_span": "12 - 15 years",
 		"name": "Chow",
-		"points": 10,
+		"points": 25,
 		"reference_image_id": "ry8KWgqEQ",
 		"temperament": "Aloof, Loyal, Independent, Quiet",
 		"weight": {
@@ -1675,7 +1675,7 @@
 		},
 		"life_span": "12 - 14 years",
 		"name": "Pug",
-		"points": 10,
+		"points": 5,
 		"reference_image_id": "HyJvcl9N7",
 		"temperament": "Docile, Clever, Charming, Stubborn, Sociable, Playful, Quiet, Attentive",
 		"weight": {
@@ -1987,7 +1987,7 @@
 		},
 		"life_span": "12 years",
 		"name": "Siberian Husky",
-		"points": 10,
+		"points": 15,
 		"reference_image_id": "S17ZilqNm",
 		"temperament": "Outgoing, Friendly, Alert, Gentle, Intelligent",
 		"weight": {

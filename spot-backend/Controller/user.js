@@ -98,3 +98,14 @@ exports.loadUser = async (request, response) => {
 		console.error(e);
 	}
 };
+
+exports.updateCollectedBreeds = async (request, response) => {
+	try {
+		userService.updateCollectedBreeds(request.body)
+			.then(() => response.status(200).send({ success: true }))
+			.catch(() => response.status(400).send({ success: false }));
+	}
+	catch (e) {
+		console.error(e);
+	}
+};

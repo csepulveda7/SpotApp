@@ -2,6 +2,7 @@ const tf = require('@tensorflow/tfjs');
 const mobilenet = require('@tensorflow-models/mobilenet');
 const tfnode = require('@tensorflow/tfjs-node');
 const fs = require('fs');
+const breedData = require('./breedData.json');
 
 // this should recieve and image (as a byte array)
 exports.classifyBreed = () => new Promise((resolve) => {
@@ -20,8 +21,6 @@ exports.classifyBreed = () => new Promise((resolve) => {
 			// Convert the raw text to capitalizing each first letter of a sentence
 			const resultRaw = predictions[0].className.split(',')[0];
 			let finalRead = resultRaw.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
-
-			const breedData = require('./breedData.json');
 
 			const exceptionBreeds = [
 				['Cardigan', 'Cardigan Welsh Corgi'],
