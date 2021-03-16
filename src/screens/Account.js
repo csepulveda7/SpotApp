@@ -2,11 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Modal, KeyboardAvoidingView, Alert } from 'react-native';
 import { Button, Avatar } from 'react-native-elements';
 import NavBar from '../components/NavBar';
-import { loadUserData } from '../services/userServices';
-import config from '../config';
 import ImagePicker from 'react-native-image-crop-picker';
 import { styles, colors } from '../styles';
-import { logoutUser } from '../services/userServices';
+import { logoutUser, uploadImage } from '../services/userServices';
 import { useDispatch, useSelector } from 'react-redux';
 import { userStatus, loadUser } from '../ducks';
 
@@ -23,31 +21,21 @@ export const Account = ({ navigation }) => {
 	const {
 		buttonContainer,
 		fullWidthHeight,
-		errorText,
 		modalErrorText
 	} = styles;
 
-	const [error, setError] = useState('');
-	const [modalError, setModalError] = useState('');
 	const [modalVisible, setModalVisible] = useState(false);
-	const [loading, setLoading] = useState(false);
 	const { activeUser } = useSelector(state => state.user);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		dispatch(loadUser());
-		setLoading(true);
 	}, []);
 
 	const logoutSubmit = () => {
 		logoutUser();
 		setTimeout(() => dispatch(userStatus()), 500);
 		Alert.alert('Logging off...', 'Have a nice day!');
-	};
-
-	const renderError = () => {
-		if (error)
-			return (<Text style = { errorText }>{ error }</Text>);
 	};
 
 	const renderModalError = () => {
@@ -57,15 +45,8 @@ export const Account = ({ navigation }) => {
 
 	const renderSetProfilePictureModal = () => {
 		return (
-			<Modal
-				animationType = 'slide'
-				transparent = { true }
-				visible = { modalVisible }
-			>
-				<KeyboardAvoidingView
-					behavior = 'height'
-					enabled
-				>
+			<Modal animationType = 'slide' transparent = { true } visible = { modalVisible } >
+				<KeyboardAvoidingView behavior = 'height' enabled >
 					<View style = { modalStyles.centeredView }>
 						<View style = { modalStyles.ModalView }>
 							<Text style = { modalStyles.promptText }>
@@ -76,30 +57,28 @@ export const Account = ({ navigation }) => {
 									title = 'No Picture'
 									containerStyle = { modalStyles.buttonContainer }
 									buttonStyle = { modalStyles.buttonStyle }
-									onPress = { () => {
-										// TODO - Make profile picture defaultProfilePicture.png
-										setModalError('');
-										setModalVisible(!modalVisible);
-									} }
+									onPress = { () => setModalVisible(!modalVisible) }
 								/>
 								<Button
 									title = 'Choose from Gallery'
 									containerStyle = { modalStyles.buttonContainer }
 									buttonStyle = { modalStyles.buttonStyle }
 									onPress = { () => {
-										setModalError('');
 										setModalVisible(!modalVisible);
 										ImagePicker.openPicker({
 											width: 300,
 											height: 400,
 											cropping: true,
 											freeStyleCropEnabled: true
-										}).then((image) => {
-											// TODO - Update user's profile picture with image
-											console.log('image', image);
-										}).catch((error) => {
-											console.log('error', error);
-										});
+										}).then((image) =>
+											uploadImage({
+												uri: image.path,
+												type: 'image/jpeg',
+												name: 'profileImage'
+											})
+										)
+											.then(() => dispatch(loadUser()))
+											.catch((error) => Alert.alert('Error', error));
 									} }
 								/>
 								<Button
@@ -107,19 +86,21 @@ export const Account = ({ navigation }) => {
 									containerStyle = { modalStyles.buttonContainer }
 									buttonStyle = { modalStyles.buttonStyle }
 									onPress = { () => {
-										setModalError('');
 										setModalVisible(!modalVisible);
 										ImagePicker.openCamera({
 											width: 300,
 											height: 400,
 											cropping: true,
 											freeStyleCropEnabled: true
-										}).then((image) => {
-											// TODO - Update user's profile picture with image
-											console.log('image', image);
-										}).catch((error) => {
-											console.log('error', error);
-										});
+										}).then((image) =>
+											uploadImage({
+												uri: image.path,
+												type: 'image/jpeg',
+												name: 'profileImage'
+											})
+										)
+											.then(() => dispatch(loadUser()))
+											.catch((error) => Alert.alert('Error', error));
 									} }
 								/>
 							</View>
@@ -128,13 +109,9 @@ export const Account = ({ navigation }) => {
 									title = 'Cancel'
 									containerStyle = { modalStyles.buttonContainer }
 									buttonStyle = { modalStyles.buttonStyle }
-									onPress = { () => {
-										setModalError('');
-										setModalVisible(!modalVisible);
-									} }
+									onPress = { () => setModalVisible(!modalVisible) }
 								/>
 							</View>
-							{ renderModalError() }
 						</View>
 					</View>
 				</KeyboardAvoidingView>
@@ -142,61 +119,47 @@ export const Account = ({ navigation }) => {
 		);
 	};
 
-	if (!loading) {
-		return (
-			<View />
-		);
-	}
-	else {
-		return (
-			<View style = { [fullWidthHeight, container] }>
-				{ renderSetProfilePictureModal() }
-				<NavBar navigation = { navigation } screenName = 'Account' />
+	return (
+		<View style = { [fullWidthHeight, container] }>
+			{ renderSetProfilePictureModal() }
+			<NavBar navigation = { navigation } screenName = 'Account' />
 
-				<View style = { [centerItems] }
-					width = '100%'
-					height = '48%'
+			<View style = { [centerItems] }
+				width = '100%'
+				height = '35%'
+			>
+				<Avatar
+					size = { 200 }
+					rounded
+					source = { activeUser ? { uri: activeUser.picture } : require('../assets/default_profile_icon.png') }
 				>
-					<Avatar
-						size = { 200 }
-						rounded
-						// TODO - Make source equal to user's profile picture variable so it can vary
-						source = { require('../assets/default_profile_icon.png') }
-					>
-						<Avatar.Accessory
-							size = { 20 }
-							underlayColor = '#8C9095'
-							onPress = { () => {
-								setModalVisible(true);
-								setError('');
-							} }
-						/>
-					</Avatar>
-					<Text style = { infoText2 }>{ activeUser.name }</Text>
-					<Text style = { infoText2 }>{ activeUser.email }</Text>
-				</View>
-				{ renderError() }
-
-				<View style = { [centerItems, statsLogoutArea] }>
-					<View style = { statsContainer }>
-						<View>
-							<Text style = { infoText }>Total Dogs Seen: { activeUser.score }</Text>
-						</View>
-						<Text style = { infoText }>Total Breeds Seen: { activeUser.CollectedBreeds }</Text>
-						<Text style = { infoText }>[Insert bar here]</Text>
-					</View>
-
-					<Button
-						title = 'Log out'
-						containerStyle = { [buttonContainer, { height: 60 }] }
-						buttonStyle = { fullWidthHeight }
-						onPress = { logoutSubmit }
+					<Avatar.Accessory
+						size = { 20 }
+						underlayColor = '#8C9095'
+						onPress = { () => setModalVisible(true) }
 					/>
-				</View>
+				</Avatar>
+				<Text style = { infoText2 }>{ activeUser.name }</Text>
+				<Text style = { infoText2 }>{ activeUser.email }</Text>
 			</View>
 
-		);
-	}
+			<View style = { [centerItems, statsLogoutArea] }>
+				<View style = { statsContainer }>
+					<Text style = { infoText }>Total Dogs Seen: { activeUser.score }</Text>
+					<Text style = { infoText }>Total Breeds Seen: { activeUser.CollectedBreeds }</Text>
+					<Text style = { infoText }>[Insert bar here]</Text>
+				</View>
+
+				<Button
+					title = 'Log out'
+					containerStyle = { [buttonContainer, { height: 60 }] }
+					buttonStyle = { fullWidthHeight }
+					onPress = { logoutSubmit }
+				/>
+			</View>
+		</View>
+
+	);
 };
 
 const accountStyles = {

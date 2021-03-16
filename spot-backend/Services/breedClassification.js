@@ -10,7 +10,7 @@ exports.classifyBreed = () => new Promise((resolve) => {
 			// Load the model.
 			const model = await mobilenet.load();
 
-			// remove imageBuffer and just pass in bytearray to tfimage
+			// Create image buffer array and decode
 			const imageBuffer = fs.readFileSync(__dirname + '/breedImage.jpg');
 			const tfimage = tfnode.node.decodeImage(imageBuffer);
 
