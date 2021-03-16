@@ -10,6 +10,7 @@
 
 const { userConverter } = require('../Models/user');
 const { auth, db, storage } = require('../index');
+const breedData = require('./breedData.json');
 const fs = require('fs');
 
 global.XMLHttpRequest = require('xhr2');
@@ -96,6 +97,36 @@ exports.handleUpload = (image) => new Promise((resolve, reject) => {
 			return imageRef.getDownloadURL();
 		})
 		.then((url) => storeImageUrl(uid, url))
+		.then(() => resolve())
+		.catch(() => reject());
+});
+
+exports.updateCollectedBreeds = (breed) => new Promise((resolve, reject) => {
+	const { currentUser } = auth;
+	const userRef = db.collection('users').doc(`${currentUser.uid}`);
+	let points = 0;
+
+	for (let i = 0; i < breedData.length; i++) {
+		if (breedData[i].name === breed.name)
+			points = breedData[i].points;
+	}
+
+	userRef.get()
+		.then((doc) => {
+			console.log(doc.data());
+
+			return doc.data();
+		})
+		.then(user => {
+			userRef.set({
+				score: (user.collectedBreeds[breed.name])
+					? user.score + 1 : user.score + points,
+				collectedBreeds: {
+					total: user.collectedBreeds.total + 1,
+					[breed.name]: user.collectedBreeds[breed.name] + 1 || 1
+				}
+			}, { merge: true });
+		})
 		.then(() => resolve())
 		.catch(() => reject());
 });

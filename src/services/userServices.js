@@ -200,3 +200,27 @@ export const uploadImage = (image) => new Promise((resolve, reject) => {
 		console.error(e);
 	}
 });
+
+export const updateCollectedBreeds = (breedName) => new Promise((resolve, reject) => {
+	try {
+		const breed = { name: breedName };
+
+		fetch(`${config.API_ADDR}/user/updateCollectedBreeds`, {
+			method: 'POST',
+			mode: 'no-cors',
+			headers: {
+				'Accept': 'application/json',
+				'Content-type': 'application/json'
+			},
+			body: JSON.stringify(breed)
+		})
+			.then(res => res.json())
+			.then(status => {
+				(status.success) ? resolve(status.success)
+					: reject(status.success);
+			});
+	}
+	catch (e) {
+		console.error(e);
+	}
+});
