@@ -7,24 +7,32 @@ import { styles, colors } from '../styles';
 import { logoutUser, uploadImage } from '../services/userServices';
 import { useDispatch, useSelector } from 'react-redux';
 import { userStatus, loadUser } from '../ducks';
+import { stat } from 'react-native-fs';
 
 export const Account = ({ navigation }) => {
 	const {
 		container,
+		topContainer,
 		statsLogoutArea,
 		centerItems,
-		infoText,
-		infoText2,
-		statsContainer
+		midStatsInfo,
+		statsInfo,
+		breedsSeen,
+		perosnalInfoContainer,
+		personalInfoText,
+		statsContainer,
+		outerBarStyle,
+		innerBarStyle,
+		bottomButtonStyle
 	} = accountStyles;
 
 	const {
 		buttonContainer,
-		fullWidthHeight,
-		modalErrorText
+		fullWidthHeight
 	} = styles;
 
 	const [modalVisible, setModalVisible] = useState(false);
+	const [barPercent, setBarPercent] = useState(100);
 	const { activeUser } = useSelector(state => state.user);
 	const dispatch = useDispatch();
 
@@ -38,6 +46,15 @@ export const Account = ({ navigation }) => {
 		Alert.alert('Logging off...', 'Have a nice day!');
 	};
 
+	const updateBarPercent = (numBreeds) => {
+		// maxPercent comes from remainder of width from the progress bar
+		const maxPercent = 96;
+		const totalBreeds = 100;
+		let newPercent = numBreeds * (maxPercent / totalBreeds);
+
+		if (newPercent != barPercent) setBarPercent(newPercent);
+	};
+
 	const renderSetProfilePictureModal = () => {
 		return (
 			<Modal animationType = 'slide' transparent = { true } visible = { modalVisible } >
@@ -48,6 +65,13 @@ export const Account = ({ navigation }) => {
 								Set Profile Picture
 							</Text>
 							<View style = { modalStyles.buttonView }>
+								{ /*
+									TODO:
+									- Remove 'No Picture' button
+									- Remove label for modal
+									- Fix Button styling to reflect figma
+									- Fix modal style to reflect figma
+								*/ }
 								<Button
 									title = 'No Picture'
 									containerStyle = { modalStyles.buttonContainer }
@@ -64,7 +88,8 @@ export const Account = ({ navigation }) => {
 											width: 300,
 											height: 400,
 											cropping: true,
-											freeStyleCropEnabled: true
+											freeStyleCropEnabled: true,
+											cropperCircleOverlay: true
 										}).then((image) =>
 											uploadImage({
 												uri: image.path,
@@ -86,7 +111,8 @@ export const Account = ({ navigation }) => {
 											width: 300,
 											height: 400,
 											cropping: true,
-											freeStyleCropEnabled: true
+											freeStyleCropEnabled: true,
+											cropperCircleOverlay: true
 										}).then((image) =>
 											uploadImage({
 												uri: image.path,
@@ -119,35 +145,49 @@ export const Account = ({ navigation }) => {
 			{ renderSetProfilePictureModal() }
 			<NavBar navigation = { navigation } screenName = 'Account' />
 
-			<View style = { [centerItems] }
-				width = '100%'
-				height = '35%'
-			>
+			<View style = { [centerItems, topContainer] }>
 				<Avatar
 					size = { 200 }
-					rounded
+					rounded = { true }
 					source = { activeUser.picture ? { uri: activeUser.picture } : require('../assets/default_profile_icon.png') }
 				>
 					<Avatar.Accessory
+						// TODO:
+						// - Change to color pallete colors
+						// - Change size to fit in position
 						size = { 20 }
 						underlayColor = '#8C9095'
 						onPress = { () => setModalVisible(true) }
 					/>
 				</Avatar>
-				<Text style = { infoText2 }>{ activeUser.name }</Text>
-				<Text style = { infoText2 }>{ activeUser.email }</Text>
+				<View style = { perosnalInfoContainer }>
+					<Text style = { personalInfoText }>{ activeUser.name }</Text>
+					<Text style = { personalInfoText }>{ activeUser.email }</Text>
+				</View>
 			</View>
 
 			<View style = { [centerItems, statsLogoutArea] }>
 				<View style = { statsContainer }>
-					<Text style = { infoText }>Total Dogs Seen: { activeUser.score }</Text>
-					<Text style = { infoText }>Total Breeds Seen: { activeUser.CollectedBreeds }</Text>
-					<Text style = { infoText }>[Insert bar here]</Text>
+					{ /*
+						TODO:
+						- Fix horizontal space between labeling and value (see collections list formatting)
+					*/ }
+					<Text style = { statsInfo }>Score: { activeUser.score }</Text>
+					<Text style = { statsInfo }>Total Dogs Seen: { activeUser.score }</Text>
+					<View style = { breedsSeen }>
+						<Text style = { [ statsInfo, midStatsInfo] }>
+							Total Breeds Seen: { activeUser.CollectedBreeds } / 100
+						</Text>
+						<View style = { outerBarStyle }>
+							{ updateBarPercent(75) }
+							<View style = { [innerBarStyle, { width: `${ barPercent }%` }] } />
+						</View>
+					</View>
 				</View>
 
 				<Button
 					title = 'Log out'
-					containerStyle = { [buttonContainer, { height: 60 }] }
+					containerStyle = { [buttonContainer, bottomButtonStyle] }
 					buttonStyle = { fullWidthHeight }
 					onPress = { logoutSubmit }
 				/>
@@ -161,15 +201,22 @@ const accountStyles = {
 	container: {
 		backgroundColor: colors.primaryDark,
 		flexDirection: 'column',
+		justifyContent: 'space-between',
 		flex: 1,
 		zIndex: 1
 	},
+	topContainer: {
+		width: '100%',
+		height: '35%'
+	},
 	statsLogoutArea: {
-		backgroundColor: colors.offWhite,
 		height: '42%',
 		width: '100%',
-		justifyContent: 'space-around',
-		alignItems: 'center'
+		backgroundColor: colors.offWhite,
+		justifyContent: 'space-evenly',
+		alignItems: 'center',
+		borderTopLeftRadius: 12,
+		borderTopRightRadius: 12
 	},
 	centerItems: {
 		flexDirection: 'column',
@@ -178,37 +225,63 @@ const accountStyles = {
 	},
 	statsContainer: {
 		width: '84%',
-		height: '30%',
-		marginLeft: '8%',
-		marginRight: '8%',
-		marginTop: 20,
-		justifyContent: 'space-between'
+		height: '45%'
 	},
-	infoText: {
+	breedsSeen: {
+		width: '100%',
+		height: '100%'
+	},
+	statsInfo: {
 		fontSize: 18
 	},
-	infoText2: {
-		fontSize: 24,
+	midStatsInfo: {
+		marginTop: '5%'
+	},
+	bottomButtonStyle: {
+		height: '20%',
+		marginTop: '2%'
+	},
+	perosnalInfoContainer: {
+		width: '100%',
+		height: '30%',
+		justifyContent: 'space-around',
+		marginTop: '3%'
+	},
+	personalInfoText: {
+		fontSize: 22,
 		alignSelf: 'center',
-		marginTop: 10,
 		color: 'rgb(64, 64, 64)'
+	},
+	outerBarStyle: {
+		width: '100%',
+		height: '25%',
+		justifyContent: 'center',
+		borderRadius: 11,
+		marginTop: '2%',
+		backgroundColor: colors.dark
+	},
+	innerBarStyle: {
+		height: '55%',
+		borderRadius: 6,
+		marginLeft: '2%',
+		backgroundColor: colors.primaryLight
 	}
 };
 
 const modalStyles = {
 	centeredView: {
+		width: '100%',
+		height: '100%',
 		justifyContent: 'center',
 		alignItems: 'center',
-		height: '100%',
-		width: '100%',
 		backgroundColor: 'rgba(0, 0, 0, 0.4)'
 	},
 	ModalView: {
+		width: '90%',
+		height: 250,
 		justifyContent: 'space-around',
 		alignItems: 'center',
 		backgroundColor: colors.offWhite,
-		width: '90%',
-		height: 250,
 		borderRadius: 10
 	},
 	promptText: {
@@ -221,11 +294,11 @@ const modalStyles = {
 		borderBottomColor: colors.dark
 	},
 	buttonView: {
+		width: '100%',
+		height: '25%',
 		flexDirection: 'row',
 		justifyContent: 'space-around',
-		alignItems: 'center',
-		height: '25%',
-		width: '100%'
+		alignItems: 'center'
 	},
 	buttonContainer: {
 		width: '30%',
