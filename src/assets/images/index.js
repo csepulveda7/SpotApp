@@ -5,3 +5,4 @@ export { SpotText } from './SpotText';
 export { Book } from './Book';
 export { Flash } from './Flash';
 export { FlipCamera } from './FlipCamera';
+export { CapturedIcon } from './CapturedIcon';

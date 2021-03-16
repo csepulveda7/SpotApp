@@ -1,26 +1,30 @@
-import React, { useState, useRef, useEffect, useMemo } from 'react';
-import { View, Text, ScrollView, Dimensions, Platform, Pressable, Modal, KeyboardAvoidingView, Image } from 'react-native';
-import { Button, ListItem } from 'react-native-elements';
-import { styles, colors } from '../styles';
+import React, { useState, useEffect } from 'react';
+import { View, Text, ScrollView, Pressable, Modal, Image } from 'react-native';
+import { ListItem } from 'react-native-elements';
+import { colors } from '../styles';
 import NavBar from '../components/NavBar';
-// import Carousel, { ParallaxImage } from 'react-native-snap-carousel';
 import { getBreeds, getBreedInfo, getBreedPhoto } from '../services/breedServices';
-import { set } from 'react-native-reanimated';
+import { CapturedIcon } from '../assets/images/';
 
-const { width: screenWidth } = Dimensions.get('window');
-
+// @cris: look at line 101 for where to put if dog is captured
 export const Collection = ({ navigation }) => {
-	const { container, bottomContainer, topContainer, contentStyle, divider } = collectionStyles;
+	const {
+		container,
+		bottomContainer,
+		topContainer,
+		divider,
+		contentStyle,
+		breedItem,
+		breedItemContainer,
+		breedItemText,
+		capturedBox,
+		captureIconStyle
+	} = collectionStyles;
 
 	let [breedsLoaded, setBreedsLoaded] = useState(false);
 	let [showTopModal, setShowTopModal] = useState(false);
 	let [info, setInfo] = useState({});
 	let [breedImage, setBreedImage] = useState('');
-
-	const {
-		buttonContainer,
-		fullWidthHeight
-	} = styles;
 
 	const [entries, setEntries] = useState([]);
 
@@ -67,7 +71,6 @@ export const Collection = ({ navigation }) => {
 		return (
 			<View style = { container }>
 				<NavBar navigation = { navigation } screenName = 'Collections' />
-				<View style = { divider } />
 				<Pressable style = { topContainer } onPress = { () => setShowTopModal(true) } >
 					{ renderTopModal() }
 					<Image
@@ -75,13 +78,16 @@ export const Collection = ({ navigation }) => {
 						source = {{ uri: breedImage.url }}
 					/>
 				</Pressable>
-				<View style = { divider } />
-
+				<View style = { divider }>
+					<Text style = { modalStyles.paragraph }>{ info.breed }</Text>
+				</View>
 				<ScrollView style = { bottomContainer }>
 					{
 						entries.map((dog, i) => (
 							<ListItem
-								key = { i } bottomDivider
+								key = { i }
+								style = { breedItem }
+								containerStyle = { breedItemContainer }
 								onPress = { async () => {
 									try {
 										setBreedImage(await loadPhoto(dog.id));
@@ -92,9 +98,12 @@ export const Collection = ({ navigation }) => {
 									}
 								} }
 							>
+								{/* this is where we would mark the dog as captured or not */}
+								<View style = { capturedBox }>
+									{ (true) ? <CapturedIcon style = { captureIconStyle } /> : <></> }
+								</View>
 								<ListItem.Content style = { contentStyle }>
-									<ListItem.Title>{ dog.breed }</ListItem.Title>
-									<ListItem.Subtitle>{ dog.id }</ListItem.Subtitle>
+									<ListItem.Title style = { breedItemText }>{ dog.breed }</ListItem.Title>
 								</ListItem.Content>
 							</ListItem>
 						))
@@ -134,7 +143,7 @@ const modalStyles = {
 
 const collectionStyles = {
 	container: {
-		backgroundColor: colors.white,
+		backgroundColor: colors.dark,
 		height: '100%',
 		width: '100%',
 		justifyContent: 'flex-start',
@@ -142,49 +151,101 @@ const collectionStyles = {
 		position: 'relative'
 	},
 	topContainer: {
-		zIndex: 100,
-		height: '40%',
+		zIndex: 4,
+		height: '45%',
 		width: '100%',
+		alignItems: 'center',
+		justifyContent: 'center',
+		// tuck picture under navBar
+		marginTop: '-6%'
+	},
+	bottomContainer: {
+		height: '60%',
+		width: '100%'
+	},
+	bottomContentContainer: {
+		alignItems: 'center'
+	},
+	contentStyle: {
+		width: '100%',
+		height: '100%',
+		flexDirection: 'row',
+		justifyContent: 'flex-start',
+		alignItems: 'center'
+	},
+	divider: {
+		backgroundColor: colors.offWhite,
+		height: '4%',
+		width: '100%',
+		alignItems: 'center',
+		borderBottomLeftRadius: 30,
+		borderBottomRightRadius: 30,
+
+		shadowColor: 'black',
+		shadowOffset: {
+			width: 0,
+			height: 50
+		},
+		shadowOpacity: 1,
+		shadowRadius: 10,
+
+		elevation: 10
+	},
+	breedItem: {
+		width: '85%',
+		height: 48,
+		alignSelf: 'center',
+		marginVertical: '1%',
+		backgroundColor: colors.primaryLight,
+		borderBottomRightRadius: 30,
+		borderTopRightRadius: 5,
+		borderBottomLeftRadius: 5,
+		borderTopLeftRadius: 5,
+
+		shadowColor: 'black',
+		shadowOffset: {
+			width: 15,
+			height: 8
+		},
+		shadowOpacity: 1,
+		shadowRadius: 10,
+
+		elevation: 16
+	},
+	breedItemContainer: {
+		width: '100%',
+		height: 48,
+		backgroundColor: colors.primaryDark,
+		padding: '0%',
+		borderBottomRightRadius: 30,
+		borderTopRightRadius: 5,
+		borderBottomLeftRadius: 5,
+		borderTopLeftRadius: 5,
+
+		shadowColor: 'black',
+		shadowOffset: {
+			width: 15,
+			height: 8
+		},
+		shadowOpacity: 1,
+		shadowRadius: 10,
+
+		elevation: 16
+	},
+	breedItemText: {
+		fontSize: 18
+	},
+	capturedBox: {
+		width: '15%',
+		height: '100%',
+		backgroundColor: colors.primaryLight,
+		borderBottomLeftRadius: 5,
+		borderTopLeftRadius: 5,
 		alignItems: 'center',
 		justifyContent: 'center'
 	},
-	bottomContainer: {
-		height: '65%',
-		width: '100%'
-	},
-	contentStyle: {
-		flexDirection: 'row',
-		justifyContent: 'space-between'
-	},
-	divider: {
-		backgroundColor: colors.dark,
-		height: 2,
-		width: '100%'
-	}
-};
-
-const carouselStyles = {
-	container: {
-		flex: 1
-	},
-	item: {
-		backgroundColor: 'red',
-		width: '100%',
-		height: '75%',
-		alignItems: 'center'
-	},
-	imageContainer: {
-		flex: 1,
-		marginBottom: Platform.select({ ios: 0, android: 1 }), // Prevent a random Android rendering issue
-		backgroundColor: 'red',
-		borderRadius: 8
-	},
-	image: {
-		height: '100%',
-		width: '100%',
-		resizeMode: 'cover'
-	},
-	title: {
-		fontSize: 28
+	captureIconStyle: {
+		height: '60%',
+		aspectRatio: 1
 	}
 };
