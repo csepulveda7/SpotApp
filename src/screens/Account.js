@@ -11,14 +11,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { userStatus, loadUser } from '../ducks';
 
 export const Account = ({ navigation }) => {
-	const { 
-		container, 
-		statsLogoutArea, 
-		centerItems, 
-		infoText, 
-		infoText2, 
-		statsContainer,
-		innerText
+	const {
+		container,
+		statsLogoutArea,
+		centerItems,
+		infoText,
+		infoText2,
+		statsContainer
 	} = accountStyles;
 
 	const {
@@ -87,15 +86,15 @@ export const Account = ({ navigation }) => {
 									title = 'Choose from Gallery'
 									containerStyle = { modalStyles.buttonContainer }
 									buttonStyle = { modalStyles.buttonStyle }
-									onPress = { () => { 
+									onPress = { () => {
 										setModalError('');
 										setModalVisible(!modalVisible);
 										ImagePicker.openPicker({
 											width: 300,
 											height: 400,
 											cropping: true,
-											freeStyleCropEnabled: true,
-										}).then ((image) => {
+											freeStyleCropEnabled: true
+										}).then((image) => {
 											// TODO - Update user's profile picture with image
 											console.log('image', image);
 										}).catch((error) => {
@@ -107,15 +106,15 @@ export const Account = ({ navigation }) => {
 									title = 'Use Camera'
 									containerStyle = { modalStyles.buttonContainer }
 									buttonStyle = { modalStyles.buttonStyle }
-									onPress = { () => { 
+									onPress = { () => {
 										setModalError('');
 										setModalVisible(!modalVisible);
 										ImagePicker.openCamera({
 											width: 300,
 											height: 400,
 											cropping: true,
-											freeStyleCropEnabled: true,
-										}).then ((image) => {
+											freeStyleCropEnabled: true
+										}).then((image) => {
 											// TODO - Update user's profile picture with image
 											console.log('image', image);
 										}).catch((error) => {
@@ -225,10 +224,10 @@ const accountStyles = {
 		marginLeft: '8%',
 		marginRight: '8%',
 		marginTop: 20,
-		justifyContent: 'space-between',
+		justifyContent: 'space-between'
 	},
 	infoText: {
-		fontSize: 18,
+		fontSize: 18
 	},
 	infoText2: {
 		fontSize: 24,
