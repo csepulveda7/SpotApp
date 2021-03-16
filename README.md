@@ -162,3 +162,22 @@ Brought in local JSON file to parse, package, then send to frontend; reconfigure
 
 **Cristobal Sepulveda**  
 Configured TensorflowJS in Node backend and successfully fetch Mobilenet image classification model. Packaged captured image uri and file data in a Form and send it to backend server through post request. Process image in backend and send it through the image classification model, capture the returned object, extract and reformat breed name and send back to frontend. Handle both classification success and fail states and render appropriate modals for each.
+
+## Sprint 7
+
+*[Demonstration]()*
+
+**Diego Cruces**  
+
+
+**Pablo Cuervo**  
+
+
+**Lucas Saber**  
+
+
+**Jordan Schneider**  
+
+
+**Cristobal Sepulveda**  
+
