@@ -38,11 +38,6 @@ export const Account = ({ navigation }) => {
 		Alert.alert('Logging off...', 'Have a nice day!');
 	};
 
-	const renderModalError = () => {
-		if (modalError)
-			return (<Text style = { modalErrorText }>{ modalError }</Text>);
-	};
-
 	const renderSetProfilePictureModal = () => {
 		return (
 			<Modal animationType = 'slide' transparent = { true } visible = { modalVisible } >
@@ -131,7 +126,7 @@ export const Account = ({ navigation }) => {
 				<Avatar
 					size = { 200 }
 					rounded
-					source = { activeUser ? { uri: activeUser.picture } : require('../assets/default_profile_icon.png') }
+					source = { activeUser.picture ? { uri: activeUser.picture } : require('../assets/default_profile_icon.png') }
 				>
 					<Avatar.Accessory
 						size = { 20 }
