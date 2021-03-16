@@ -9,17 +9,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { userStatus, loadUser } from '../ducks';
 
 export const Account = ({ navigation }) => {
-	const { container, infoBar, centerItems, infoText } = accountStyles;
+	const {
+		container,
+		statsLogoutArea,
+		centerItems,
+		infoText,
+		infoText2,
+		statsContainer
+	} = accountStyles;
 
 	const {
 		buttonContainer,
 		fullWidthHeight,
-		errorText,
 		modalErrorText
 	} = styles;
 
-	const [error, setError] = useState('');
-	const [modalError, setModalError] = useState('');
 	const [modalVisible, setModalVisible] = useState(false);
 	const { activeUser } = useSelector(state => state.user);
 	const dispatch = useDispatch();
@@ -32,11 +36,6 @@ export const Account = ({ navigation }) => {
 		logoutUser();
 		setTimeout(() => dispatch(userStatus()), 500);
 		Alert.alert('Logging off...', 'Have a nice day!');
-	};
-
-	const renderError = () => {
-		if (error)
-			return (<Text style = { errorText }>{ error }</Text>);
 	};
 
 	const renderModalError = () => {
@@ -58,17 +57,13 @@ export const Account = ({ navigation }) => {
 									title = 'No Picture'
 									containerStyle = { modalStyles.buttonContainer }
 									buttonStyle = { modalStyles.buttonStyle }
-									onPress = { () => {
-										setModalError('');
-										setModalVisible(!modalVisible);
-									} }
+									onPress = { () => setModalVisible(!modalVisible) }
 								/>
 								<Button
 									title = 'Choose from Gallery'
 									containerStyle = { modalStyles.buttonContainer }
 									buttonStyle = { modalStyles.buttonStyle }
 									onPress = { () => {
-										setModalError('');
 										setModalVisible(!modalVisible);
 										ImagePicker.openPicker({
 											width: 300,
@@ -91,7 +86,6 @@ export const Account = ({ navigation }) => {
 									containerStyle = { modalStyles.buttonContainer }
 									buttonStyle = { modalStyles.buttonStyle }
 									onPress = { () => {
-										setModalError('');
 										setModalVisible(!modalVisible);
 										ImagePicker.openCamera({
 											width: 300,
@@ -115,13 +109,9 @@ export const Account = ({ navigation }) => {
 									title = 'Cancel'
 									containerStyle = { modalStyles.buttonContainer }
 									buttonStyle = { modalStyles.buttonStyle }
-									onPress = { () => {
-										setModalError('');
-										setModalVisible(!modalVisible);
-									} }
+									onPress = { () => setModalVisible(!modalVisible) }
 								/>
 							</View>
-							{ renderModalError() }
 						</View>
 					</View>
 				</KeyboardAvoidingView>
@@ -146,20 +136,20 @@ export const Account = ({ navigation }) => {
 					<Avatar.Accessory
 						size = { 20 }
 						underlayColor = '#8C9095'
-						onPress = { () => {
-							setModalVisible(true);
-							setError('');
-						} }
+						onPress = { () => setModalVisible(true) }
 					/>
 				</Avatar>
+				<Text style = { infoText2 }>{ activeUser.name }</Text>
+				<Text style = { infoText2 }>{ activeUser.email }</Text>
 			</View>
-			{ renderError() }
 
-			<View style = { [centerItems, infoBar] }>
-				<Text style = { infoText }>Username: { activeUser.name } </Text>
-				<Text style = { infoText }>Email: { activeUser.email }</Text>
-				<Text style = { infoText }>Total Breeds Seen: { activeUser.CollectedBreeds }</Text>
-				<Text style = { infoText }>Points: { activeUser.score }</Text>
+			<View style = { [centerItems, statsLogoutArea] }>
+				<View style = { statsContainer }>
+					<Text style = { infoText }>Total Dogs Seen: { activeUser.score }</Text>
+					<Text style = { infoText }>Total Breeds Seen: { activeUser.CollectedBreeds }</Text>
+					<Text style = { infoText }>[Insert bar here]</Text>
+				</View>
+
 				<Button
 					title = 'Log out'
 					containerStyle = { [buttonContainer, { height: 60 }] }
@@ -179,25 +169,34 @@ const accountStyles = {
 		flex: 1,
 		zIndex: 1
 	},
-	infoBar: {
+	statsLogoutArea: {
 		backgroundColor: colors.offWhite,
-		height: '55%',
+		height: '42%',
 		width: '100%',
-		zIndex: 5,
 		justifyContent: 'space-around',
-		alignItems: 'center',
-		borderTopLeftRadius: 12,
-		borderTopRightRadius: 12
+		alignItems: 'center'
 	},
 	centerItems: {
 		flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'center'
 	},
+	statsContainer: {
+		width: '84%',
+		height: '30%',
+		marginLeft: '8%',
+		marginRight: '8%',
+		marginTop: 20,
+		justifyContent: 'space-between'
+	},
 	infoText: {
-		fontSize: 16,
-		alignSelf: 'flex-start',
-		marginLeft: '10%'
+		fontSize: 18
+	},
+	infoText2: {
+		fontSize: 24,
+		alignSelf: 'center',
+		marginTop: 10,
+		color: 'rgb(64, 64, 64)'
 	}
 };
 
