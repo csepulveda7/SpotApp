@@ -173,7 +173,7 @@ export const Account = ({ navigation }) => {
 						- Fix horizontal space between labeling and value (see collections list formatting)
 					*/ }
 					<Text style = { statsInfo }>Score: { activeUser.score }</Text>
-					<Text style = { statsInfo }>Total Dogs Seen: { activeUser.score }</Text>
+					<Text style = { statsInfo }>Total Dogs Seen: { activeUser.CollectedBreeds }</Text>
 					<View style = { breedsSeen }>
 						<Text style = { [ statsInfo, midStatsInfo] }>
 							Total Breeds Seen: { activeUser.CollectedBreeds } / 100
