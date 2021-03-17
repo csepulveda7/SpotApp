@@ -83,7 +83,7 @@ export const Login = ({ navigation }) => {
 					enabled
 				>
 					<View style = { modalStyles.centeredView }>
-						<View style = { modalStyles.ModalView }>
+						<View style = { modalStyles.modalView }>
 							<Text style = { modalStyles.promptText }>
 								Reset Password
 							</Text>
@@ -185,12 +185,12 @@ const modalStyles = {
 		width: '100%',
 		backgroundColor: 'rgba(0, 0, 0, 0.4)'
 	},
-	ModalView: {
+	modalView: {
 		justifyContent: 'space-around',
 		alignItems: 'center',
 		backgroundColor: colors.offWhite,
 		width: '90%',
-		height: 250,
+		height: '40%',
 		borderRadius: 10
 	},
 	promptText: {

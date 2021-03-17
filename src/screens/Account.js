@@ -8,6 +8,9 @@ import { logoutUser, uploadImage } from '../services/userServices';
 import { useDispatch, useSelector } from 'react-redux';
 import { userStatus, loadUser } from '../ducks';
 import { stat } from 'react-native-fs';
+import { color } from 'react-native-reanimated';
+import { AccessibilityInfo } from 'react-native';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 export const Account = ({ navigation }) => {
 	const {
@@ -60,69 +63,60 @@ export const Account = ({ navigation }) => {
 		return (
 			<Modal animationType = 'slide' transparent = { true } visible = { modalVisible } >
 				<KeyboardAvoidingView behavior = 'height' enabled >
-					<View style = { modalStyles.centeredView }>
-						<View style = { modalStyles.ModalView }>
-							<View style = { modalStyles.buttonView }>
-								{ /*
-									TODO:
-									- Remove 'No Picture' button
-									- Remove label for modal
-									- Fix Button styling to reflect figma
-									- Fix modal style to reflect figma
-								*/ }
-								<Button
-									title = 'Choose from Gallery'
-									containerStyle = { modalStyles.buttonContainer }
-									buttonStyle = { modalStyles.buttonStyle }
-									onPress = { () => {
-										setModalVisible(!modalVisible);
-										ImagePicker.openPicker({
-											width: 300,
-											height: 400,
-											cropping: true,
-											freeStyleCropEnabled: true,
-											cropperCircleOverlay: true
-										}).then((image) =>
-											uploadImage({
-												uri: image.path,
-												type: 'image/jpeg',
-												name: 'profileImage'
-											})
-										)
-											.then(() => dispatch(loadUser()))
-											.catch((error) => Alert.alert('Error', error));
-									} }
-								/>
-								<Button
-									title = 'Take Picture'
-									containerStyle = { modalStyles.buttonContainer2 }
-									buttonStyle = { modalStyles.buttonStyle }
-									onPress = { () => {
-										setModalVisible(!modalVisible);
-										ImagePicker.openCamera({
-											width: 300,
-											height: 400,
-											cropping: true,
-											freeStyleCropEnabled: true,
-											cropperCircleOverlay: true
-										}).then((image) =>
-											uploadImage({
-												uri: image.path,
-												type: 'image/jpeg',
-												name: 'profileImage'
-											})
-										)
-											.then(() => dispatch(loadUser()))
-											.catch((error) => Alert.alert('Error', error));
-									} }
-								/>
-								<Button
-									title = 'Cancel'
-									containerStyle = { modalStyles.buttonContainer3 }
-									buttonStyle = { modalStyles.buttonStyle }
-									onPress = { () => setModalVisible(!modalVisible) }
-								/>
-							</View>
+					<View style = { modalStyles.bottomView }>
+						<View style = { modalStyles.modalView }>
+							<Button
+								title = 'Choose from Gallery'
+								containerStyle = { modalStyles.buttonContainer }
+								buttonStyle = { modalStyles.buttonStyle }
+								onPress = { () => {
+									setModalVisible(!modalVisible);
+									ImagePicker.openPicker({
+										width: 300,
+										height: 400,
+										cropping: true,
+										freeStyleCropEnabled: true,
+										cropperCircleOverlay: true
+									}).then((image) =>
+										uploadImage({
+											uri: image.path,
+											type: 'image/jpeg',
+											name: 'profileImage'
+										})
+									)
+										.then(() => dispatch(loadUser()))
+										.catch((error) => Alert.alert('Error', error));
+								} }
+							/>
+							<Button
+								title = 'Take Picture'
+								containerStyle = { modalStyles.buttonContainer2 }
+								buttonStyle = { modalStyles.buttonStyle }
+								onPress = { () => {
+									setModalVisible(!modalVisible);
+									ImagePicker.openCamera({
+										width: 300,
+										height: 400,
+										cropping: true,
+										freeStyleCropEnabled: true,
+										cropperCircleOverlay: true
+									}).then((image) =>
+										uploadImage({
+											uri: image.path,
+											type: 'image/jpeg',
+											name: 'profileImage'
+										})
+									)
+										.then(() => dispatch(loadUser()))
+										.catch((error) => Alert.alert('Error', error));
+								} }
+							/>
+							<Button
+								title = 'Cancel'
+								containerStyle = { modalStyles.buttonContainer3 }
+								buttonStyle = { modalStyles.buttonStyle }
+								onPress = { () => setModalVisible(!modalVisible) }
+							/>
 						</View>
 					</View>
 				</KeyboardAvoidingView>
@@ -142,11 +136,8 @@ export const Account = ({ navigation }) => {
 					source = { activeUser.picture ? { uri: activeUser.picture } : require('../assets/default_profile_icon.png') }
 				>
 					<Avatar.Accessory
-						// TODO:
-						// - Change to color pallete colors
-						// - Change size to fit in position
-						size = { 45 }
-						underlayColor = '#E5E5E5'
+						size = { 50 }
+						underlayColor = { colors.offWhite }
 						onPress = { () => setModalVisible(true) }
 					/>
 				</Avatar>
@@ -158,25 +149,25 @@ export const Account = ({ navigation }) => {
 
 			<View style = { [centerItems, statsLogoutArea] }>
 				<View style = { statsContainer }>
-					{ /*
-						TODO:
-						- Fix horizontal space between labeling and value (see collections list formatting)
-					*/ }
 					<View style = { seperateText }>
 						<Text style = { statsInfo }>Score:</Text>
 						<Text style = { statsInfo }>{ activeUser.score }</Text>
 					</View>
 					<View style = { seperateText }>
 						<Text style = { statsInfo }>Total Dogs Seen:</Text>
-						<Text style = { statsInfo }>{ activeUser.CollectedBreeds }</Text>
+						<Text style = { statsInfo }>
+							{ (activeUser.CollectedBreeds.total == undefined) ? 0 : activeUser.CollectedBreeds.total }
+						</Text>
 					</View>
 					<View style = { breedsSeen }>
 						<View style = { seperateText1 }>
 							<Text style = { statsInfo }>Total Breeds Seen:</Text>
-							<Text style = { statsInfo }>{ activeUser.CollectedBreeds } / 100</Text>
+							<Text style = { statsInfo }>
+								{ Object.keys(activeUser.CollectedBreeds).length - 1 } / 100
+							</Text>
 						</View>
 						<View style = { outerBarStyle }>
-							{ updateBarPercent(75) }
+							{ updateBarPercent(Object.keys(activeUser.CollectedBreeds).length - 1) }
 							<View style = { [innerBarStyle, { width: `${ barPercent }%` }] } />
 						</View>
 					</View>
@@ -204,7 +195,7 @@ const accountStyles = {
 	},
 	topContainer: {
 		width: '100%',
-		height: '35%'
+		height: '45%'
 	},
 	statsLogoutArea: {
 		height: '42%',
@@ -272,18 +263,19 @@ const accountStyles = {
 };
 
 const modalStyles = {
-	centeredView: {
+	bottomView: {
 		width: '100%',
 		height: '100%',
 		justifyContent: 'flex-end',
 		alignItems: 'center',
 		backgroundColor: 'rgba(0, 0, 0, 0.4)'
 	},
-	ModalView: {
+	modalView: {
 		width: '100%',
-		height: 320,
+		height: '45%',
 		justifyContent: 'space-around',
 		alignItems: 'center',
+		flexDirection: 'column',
 		backgroundColor: colors.offWhite,
 		borderTopLeftRadius: 32,
 		borderTopRightRadius: 32
@@ -296,13 +288,6 @@ const modalStyles = {
 		fontSize: 22,
 		borderBottomWidth: 1,
 		borderBottomColor: colors.dark
-	},
-	buttonView: {
-		width: '100%',
-		height: '100%',
-		flexDirection: 'column',
-		justifyContent: 'space-around',
-		alignItems: 'center'
 	},
 	buttonContainer: {
 		width: '65%',
