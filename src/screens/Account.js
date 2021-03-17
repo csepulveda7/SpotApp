@@ -33,7 +33,6 @@ export const Account = ({ navigation }) => {
 	} = accountStyles;
 
 	const {
-		buttonContainer,
 		fullWidthHeight
 	} = styles;
 
