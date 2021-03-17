@@ -19,8 +19,8 @@ export const Account = ({ navigation }) => {
 		statsLogoutArea,
 		centerItems,
 		statsInfo,
-		seperateText,
-		seperateText1,
+		topStats,
+		bottomStats,
 		breedsSeen,
 		perosnalInfoContainer,
 		personalInfoText,
@@ -149,18 +149,18 @@ export const Account = ({ navigation }) => {
 
 			<View style = { [centerItems, statsLogoutArea] }>
 				<View style = { statsContainer }>
-					<View style = { seperateText }>
+					<View style = { topStats }>
 						<Text style = { statsInfo }>Score:</Text>
 						<Text style = { statsInfo }>{ activeUser.score }</Text>
 					</View>
-					<View style = { seperateText }>
+					<View style = { topStats }>
 						<Text style = { statsInfo }>Total Dogs Seen:</Text>
 						<Text style = { statsInfo }>
 							{ (activeUser.CollectedBreeds.total == undefined) ? 0 : activeUser.CollectedBreeds.total }
 						</Text>
 					</View>
 					<View style = { breedsSeen }>
-						<View style = { seperateText1 }>
+						<View style = { bottomStats }>
 							<Text style = { statsInfo }>Total Breeds Seen:</Text>
 							<Text style = { statsInfo }>
 								{ Object.keys(activeUser.CollectedBreeds).length - 1 } / 100
@@ -215,11 +215,11 @@ const accountStyles = {
 		width: '84%',
 		height: '45%'
 	},
-	seperateText: {
+	topStats: {
 		flexDirection: 'row',
 		justifyContent: 'space-between'
 	},
-	seperateText1: {
+	bottomStats: {
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		marginTop: '5%'
