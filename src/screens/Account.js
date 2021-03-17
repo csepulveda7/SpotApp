@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Modal, KeyboardAvoidingView, Alert } from 'react-native';
+import { View, Text, Modal, KeyboardAvoidingView, Alert, Dimensions } from 'react-native';
 import { Button, Avatar } from 'react-native-elements';
 import NavBar from '../components/NavBar';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -11,6 +11,8 @@ import { stat } from 'react-native-fs';
 import { color } from 'react-native-reanimated';
 import { AccessibilityInfo } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+
+const { height, width } = Dimensions.get('screen');
 
 export const Account = ({ navigation }) => {
 	const {
@@ -65,55 +67,57 @@ export const Account = ({ navigation }) => {
 				<KeyboardAvoidingView behavior = 'height' enabled >
 					<View style = { modalStyles.bottomView }>
 						<View style = { modalStyles.modalView }>
-							<Button
-								title = 'Choose from Gallery'
-								containerStyle = { modalStyles.buttonContainer }
-								buttonStyle = { modalStyles.buttonStyle }
-								onPress = { () => {
-									setModalVisible(!modalVisible);
-									ImagePicker.openPicker({
-										width: 300,
-										height: 400,
-										cropping: true,
-										freeStyleCropEnabled: true,
-										cropperCircleOverlay: true
-									}).then((image) =>
-										uploadImage({
-											uri: image.path,
-											type: 'image/jpeg',
-											name: 'profileImage'
-										})
-									)
-										.then(() => dispatch(loadUser()))
-										.catch((error) => Alert.alert('Error', error));
-								} }
-							/>
-							<Button
-								title = 'Take Picture'
-								containerStyle = { modalStyles.buttonContainer2 }
-								buttonStyle = { modalStyles.buttonStyle }
-								onPress = { () => {
-									setModalVisible(!modalVisible);
-									ImagePicker.openCamera({
-										width: 300,
-										height: 400,
-										cropping: true,
-										freeStyleCropEnabled: true,
-										cropperCircleOverlay: true
-									}).then((image) =>
-										uploadImage({
-											uri: image.path,
-											type: 'image/jpeg',
-											name: 'profileImage'
-										})
-									)
-										.then(() => dispatch(loadUser()))
-										.catch((error) => Alert.alert('Error', error));
-								} }
-							/>
+							<View style = { modalStyles.topButtons }>
+								<Button
+									title = 'Choose from Gallery'
+									containerStyle = { modalStyles.buttonContainer }
+									buttonStyle = { modalStyles.buttonStyle }
+									onPress = { () => {
+										setModalVisible(!modalVisible);
+										ImagePicker.openPicker({
+											width: 300,
+											height: 400,
+											cropping: true,
+											freeStyleCropEnabled: true,
+											cropperCircleOverlay: true
+										}).then((image) =>
+											uploadImage({
+												uri: image.path,
+												type: 'image/jpeg',
+												name: 'profileImage'
+											})
+										)
+											.then(() => dispatch(loadUser()))
+											.catch((error) => Alert.alert('Error', error));
+									} }
+								/>
+								<Button
+									title = 'Take Picture'
+									containerStyle = { modalStyles.buttonContainer }
+									buttonStyle = { modalStyles.buttonStyle }
+									onPress = { () => {
+										setModalVisible(!modalVisible);
+										ImagePicker.openCamera({
+											width: 300,
+											height: 400,
+											cropping: true,
+											freeStyleCropEnabled: true,
+											cropperCircleOverlay: true
+										}).then((image) =>
+											uploadImage({
+												uri: image.path,
+												type: 'image/jpeg',
+												name: 'profileImage'
+											})
+										)
+											.then(() => dispatch(loadUser()))
+											.catch((error) => Alert.alert('Error', error));
+									} }
+								/>
+							</View>
 							<Button
 								title = 'Cancel'
-								containerStyle = { modalStyles.buttonContainer3 }
+								containerStyle = { modalStyles.buttonContainer }
 								buttonStyle = { modalStyles.buttonStyle }
 								onPress = { () => setModalVisible(!modalVisible) }
 							/>
@@ -175,7 +179,7 @@ export const Account = ({ navigation }) => {
 
 				<Button
 					title = 'Log out'
-					containerStyle = { [buttonContainer, bottomButtonStyle] }
+					containerStyle = { modalStyles.buttonContainer }
 					buttonStyle = { fullWidthHeight }
 					onPress = { logoutSubmit }
 				/>
@@ -289,22 +293,16 @@ const modalStyles = {
 		borderBottomWidth: 1,
 		borderBottomColor: colors.dark
 	},
+	topButtons: {
+		width: '100%',
+		height: '50%',
+		alignItems: 'center',
+		justifyContent: 'space-around',
+		marginTop: '2%'
+	},
 	buttonContainer: {
-		width: '65%',
-		height: '20%',
-		marginTop: 30,
-		justifyContent: 'center'
-	},
-	buttonContainer2: {
-		width: '65%',
-		height: '20%',
-		marginBottom: 50,
-		justifyContent: 'center'
-	},
-	buttonContainer3: {
-		width: '65%',
-		height: '20%',
-		marginBottom: 25,
+		width: width * 0.65,
+		height: height * 0.085,
 		justifyContent: 'center'
 	},
 	buttonStyle: {
