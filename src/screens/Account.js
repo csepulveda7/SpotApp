@@ -87,7 +87,7 @@ export const Account = ({ navigation }) => {
 											})
 										)
 											.then(() => dispatch(loadUser()))
-											.catch((error) => Alert.alert('Error', error));
+											.catch((error) => console.log(error));
 									} }
 								/>
 								<Button
@@ -110,7 +110,7 @@ export const Account = ({ navigation }) => {
 											})
 										)
 											.then(() => dispatch(loadUser()))
-											.catch((error) => Alert.alert('Error', error));
+											.catch((error) => console.log(error));
 									} }
 								/>
 							</View>
