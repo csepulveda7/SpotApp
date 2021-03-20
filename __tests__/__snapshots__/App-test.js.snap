@@ -1,0 +1,2940 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Frontend Testing Logging in with correct information navigates to main page 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#E5E5E5",
+      "flex": 1,
+      "height": "100%",
+      "top": 0,
+      "width": "100%",
+    }
+  }
+>
+  <Modal
+    animationType="slide"
+    hardwareAccelerated={false}
+    transparent={true}
+    visible={false}
+  >
+    <View
+      onLayout={[Function]}
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "rgba(0, 0, 0, 0.4)",
+            "height": "100%",
+            "justifyContent": "center",
+            "width": "100%",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#E5E5E5",
+              "borderRadius": 10,
+              "height": "40%",
+              "justifyContent": "space-around",
+              "width": "90%",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "borderBottomColor": "#404040",
+                "borderBottomWidth": 1,
+                "fontSize": 22,
+                "marginHorizontal": "16%",
+                "marginTop": "8%",
+                "paddingBottom": "3%",
+                "textAlign": "center",
+              }
+            }
+          >
+            Reset Password
+          </Text>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "marginTop": "9%",
+                "width": "120%",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "width": "75%",
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "paddingHorizontal": 10,
+                    "width": "100%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "color": "#BC6F27",
+                      "fontSize": 16,
+                      "fontWeight": "bold",
+                    }
+                  }
+                >
+                  Email
+                </Text>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "borderBottomWidth": 1,
+                      "borderColor": "#86939e",
+                      "flexDirection": "row",
+                      "transform": Array [
+                        Object {
+                          "translateX": 0,
+                        },
+                      ],
+                    }
+                  }
+                >
+                  <TextInput
+                    allowFontScaling={true}
+                    editable={true}
+                    fontSize={14}
+                    onChangeText={[Function]}
+                    placeholder="email@address.com"
+                    placeholderTextColor="#86939e"
+                    rejectResponderTermination={true}
+                    style={
+                      Object {
+                        "alignSelf": "center",
+                        "borderBottomColor": "#BC6F27",
+                        "borderBottomWidth": 2,
+                        "color": "#242424",
+                        "flex": 1,
+                        "fontSize": 18,
+                        "height": 40,
+                        "minHeight": 40,
+                      }
+                    }
+                    testID="RNE__Input__text-input"
+                    underlineColorAndroid="transparent"
+                    value=""
+                  />
+                </View>
+                <Text
+                  style={
+                    Object {
+                      "color": "#ff190c",
+                      "fontSize": 12,
+                      "margin": 5,
+                    }
+                  }
+                />
+              </View>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "height": "30%",
+                "justifyContent": "space-around",
+                "width": "100%",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderRadius": 3,
+                  "height": "50%",
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "width": "35%",
+                }
+              }
+            >
+              <View
+                accessibilityRole="button"
+                accessibilityState={
+                  Object {
+                    "busy": false,
+                    "disabled": false,
+                  }
+                }
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#E2B865",
+                      "borderColor": "#2089dc",
+                      "borderRadius": 3,
+                      "borderWidth": 0,
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "padding": 8,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "color": "white",
+                        "fontSize": 18,
+                        "paddingVertical": 1,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Cancel
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "borderRadius": 3,
+                  "height": "50%",
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "width": "35%",
+                }
+              }
+            >
+              <View
+                accessibilityRole="button"
+                accessibilityState={
+                  Object {
+                    "busy": false,
+                    "disabled": false,
+                  }
+                }
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#E2B865",
+                      "borderColor": "#2089dc",
+                      "borderRadius": 3,
+                      "borderWidth": 0,
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "padding": 8,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "color": "white",
+                        "fontSize": 18,
+                        "paddingVertical": 1,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Send Email
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </Modal>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "height": "20%",
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 1,
+        },
+        Object {
+          "height": "30%",
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#E2B865",
+          "height": "65%",
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    />
+    <RNSVGSvgView
+      align="xMidYMid"
+      bbHeight="60%"
+      bbWidth="60%"
+      enableBackground="new 0 0 433.1 510.3"
+      focusable={false}
+      id="svg"
+      meetOrSlice={0}
+      minX={0}
+      minY={-25}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+          },
+          Object {
+            "height": "60%",
+            "position": "absolute",
+            "resizeMode": "center",
+            "top": "35%",
+            "width": "60%",
+            "zIndex": 2,
+          },
+          Object {
+            "flex": 0,
+            "height": "60%",
+            "width": "60%",
+          },
+        ]
+      }
+      vbHeight={455}
+      vbWidth={425}
+      x="0px"
+      xmlSpace="preserve"
+      y="0px"
+    >
+      <RNSVGGroup>
+        <RNSVGCircle
+          cx={212}
+          cy={200}
+          fill={4294301857}
+          propList={
+            Array [
+              "fill",
+              "stroke",
+              "strokeWidth",
+              "strokeMiterlimit",
+            ]
+          }
+          r={220}
+          stroke={4293048421}
+          strokeMiterlimit={10}
+          strokeWidth={20}
+        />
+        <RNSVGPath
+          d="M161.7 39.9c-.2 0-.2 0-.3.1-4.9 4.7-4 22.9-3.4 36.1.8 16.8 1 25.7-3.9 27.9-7.5 3.5-14.7 7.6-21.3 12.4-2.9 2-6.2 3.8-9.5 5.6-4.8 2.5-9.7 5.1-12.8 8.5-2.8 2.9-4.2 6.9-5.8 11-1.2 3.2-2.4 6.5-4.3 9.5-12 19.4-18.3 42.1-18.3 65.7 0 69.4 58.3 125.8 130 125.8s130-56.4 130-125.8c0-28.8-10.3-60.6-26.2-81.1-4-5.1-5.3-16.3-5.4-17.6l-.1-.6.2-.6c8.6-25.2 6.2-44.2 5-53.4-.1-.8-.2-1.5-.3-2.2-.6-4.9-1.6-7.7-4.5-11.8-4.5.1-18.5 15.2-27.7 25.2-7.5 8.2-14.6 15.9-19.6 19.6-1.4 1.1-5.5 3.5-8.3 3.6-.7 0-1.4.1-2.1.1-7 0-13.9-1.8-20.6-3.5-6.7-1.7-13.5-3.5-20.5-3.5-2 0-3.7.1-5.1.2-1.1.1-2 .1-2.8.1-.9 0-1.5-.1-2.1-.3-4.2-1.2-9.5-7.6-10.4-11.4-.5-2.4-5.8-12.3-12.9-22.3-9.5-13.6-15.1-17.3-17-17.3z"
+          fill={4294301857}
+          name="Doge_3_"
+          propList={
+            Array [
+              "fill",
+              "stroke",
+              "strokeWidth",
+              "strokeMiterlimit",
+            ]
+          }
+          stroke={4290539303}
+          strokeMiterlimit={10}
+          strokeWidth={14}
+        />
+        <RNSVGPath
+          d="M120.4 295.9s26.1 36.4 88.6 39.6c72.1 3.8 127.7-52.7 127.7-122.1 0-28.8-12.4-55.9-28.3-76.4 13.5 128.3-51.5 179.2-188 158.9z"
+          fill={4293770008}
+          name="Shadow_1_"
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+        />
+        <RNSVGPath
+          d="M138.5 227.9c1.7-.6 7.8-.6-.7-9.5 11.5 12.8 35.4-15.4 3.9-24.3-8.5-2.4-32.1-1.5-28.7 13.7.7 1.6 7.9 8.3 8.2 7.6-9.4-1.4-3.1 12.4 6.5 13.6 1.8.3 9-.5 10.8-1.1zm.5 17.7c-18.5-9.1-33.9 3.8-16.4 10.3 12.4 4.6 13.9 2.4 25.2 4.2 7.5 1.2 50.9 3.5 51.6-10-1.8.1-.2 3.6 0 0-13.4 1.2-26.2 5.3-33 5.2-4.4 0-9.8-1.3-15.2-3.1 0 0-9.1-5.1-12.2-6.6zm76.2-87.3c11.8-.7 21.6 14.3 21.6 14.3s-9.9 15.8-20.6 15.4c-10.7-.3-10.3-4.1-17.8-5.9-7.5-1.7 5-23.1 16.8-23.8zm-3.3 7.5c1.6-2.1 6.2 3 6.8-2.6 0-.5.1-.5-7.2-.4s-12.5 15.3-7.9 18c3.5 2 3.9 2 3.8.7-1-3.8-1-12.7 4.5-15.7zm-72.3-20.5c9 0 11.9 5.8 12.1 9.1.3 5.6-5.6 16-11.4 16-2.7 0-10-3.8-10.7-9.7-.9-6.7 5.3-15.4 10-15.4zm1 3.4c2.3-1.9-8.6 2.2-8.1 9.6.6 7.4 8.1 10.7 6.5 8.5 0 0-8.5-9.8 1.6-18.1zm7.3 2.5c-.9 0-1.6.8-1.6 1.7 0 1 .7 1.7 1.6 1.7s1.6-.8 1.6-1.7-.7-1.7-1.6-1.7z"
+          fill={4290539303}
+          name="Face"
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+        />
+      </RNSVGGroup>
+    </RNSVGSvgView>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#F5D8A1",
+          "height": "50%",
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "column",
+        "justifyContent": "flex-end",
+        "marginTop": "18%",
+        "width": "100%",
+        "zIndex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "width": "75%",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 10,
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#BC6F27",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Email
+        </Text>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomWidth": 1,
+              "borderColor": "#86939e",
+              "flexDirection": "row",
+              "transform": Array [
+                Object {
+                  "translateX": 0,
+                },
+              ],
+            }
+          }
+        >
+          <TextInput
+            allowFontScaling={true}
+            editable={true}
+            fontSize={14}
+            onChangeText={[Function]}
+            placeholder="email@address.com"
+            placeholderTextColor="#86939e"
+            rejectResponderTermination={true}
+            style={
+              Object {
+                "alignSelf": "center",
+                "borderBottomColor": "#BC6F27",
+                "borderBottomWidth": 2,
+                "color": "#242424",
+                "flex": 1,
+                "fontSize": 18,
+                "height": 40,
+                "minHeight": 40,
+              }
+            }
+            testID="RNE__Input__text-input"
+            underlineColorAndroid="transparent"
+            value=""
+          />
+        </View>
+        <Text
+          style={
+            Object {
+              "color": "#ff190c",
+              "fontSize": 12,
+              "margin": 5,
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "width": "75%",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 10,
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#BC6F27",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Password
+        </Text>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomWidth": 1,
+              "borderColor": "#86939e",
+              "flexDirection": "row",
+              "transform": Array [
+                Object {
+                  "translateX": 0,
+                },
+              ],
+            }
+          }
+        >
+          <TextInput
+            allowFontScaling={true}
+            editable={true}
+            fontSize={14}
+            onChangeText={[Function]}
+            placeholder="Password"
+            placeholderTextColor="#86939e"
+            rejectResponderTermination={true}
+            secureTextEntry={true}
+            style={
+              Object {
+                "alignSelf": "center",
+                "borderBottomColor": "#BC6F27",
+                "borderBottomWidth": 2,
+                "color": "#242424",
+                "flex": 1,
+                "fontSize": 18,
+                "height": 40,
+                "minHeight": 40,
+              }
+            }
+            testID="RNE__Input__text-input"
+            underlineColorAndroid="transparent"
+            value=""
+          />
+        </View>
+        <Text
+          style={
+            Object {
+              "color": "#ff190c",
+              "fontSize": 12,
+              "margin": 5,
+            }
+          }
+        />
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+        "justifyContent": "flex-end",
+        "marginRight": "30%",
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "width": "40%",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#BC6F27",
+            "marginBottom": "15%",
+            "marginRight": "30%",
+            "textAlign": "center",
+            "width": "100%",
+          }
+        }
+      >
+        Forgot password?
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "borderRadius": 3,
+        "height": "7%",
+        "justifyContent": "flex-end",
+        "marginTop": "6%",
+        "overflow": "hidden",
+        "position": "relative",
+        "width": "65%",
+      }
+    }
+  >
+    <View
+      accessibilityRole="button"
+      accessibilityState={
+        Object {
+          "busy": false,
+          "disabled": false,
+        }
+      }
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#2089dc",
+            "borderColor": "#2089dc",
+            "borderRadius": 3,
+            "borderWidth": 0,
+            "flexDirection": "row",
+            "height": "100%",
+            "justifyContent": "center",
+            "padding": 8,
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 18,
+              "paddingVertical": 1,
+              "textAlign": "center",
+            }
+          }
+        >
+          Login
+        </Text>
+      </View>
+    </View>
+  </View>
+  <Text
+    style={
+      Object {
+        "alignItems": "center",
+        "color": "#404040",
+        "marginTop": "6%",
+      }
+    }
+  >
+    Don't have an account? 
+    <Text
+      onPress={[Function]}
+      style={
+        Object {
+          "color": "#BC6F27",
+        }
+      }
+    >
+      Register here
+    </Text>
+  </Text>
+</View>
+`;
+
+exports[`Frontend Testing Login page hyperlinks to registration page 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#E5E5E5",
+      "flex": 1,
+      "height": "100%",
+      "top": 0,
+      "width": "100%",
+    }
+  }
+>
+  <Modal
+    animationType="slide"
+    hardwareAccelerated={false}
+    transparent={true}
+    visible={false}
+  >
+    <View
+      onLayout={[Function]}
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "rgba(0, 0, 0, 0.4)",
+            "height": "100%",
+            "justifyContent": "center",
+            "width": "100%",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#E5E5E5",
+              "borderRadius": 10,
+              "height": "40%",
+              "justifyContent": "space-around",
+              "width": "90%",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "borderBottomColor": "#404040",
+                "borderBottomWidth": 1,
+                "fontSize": 22,
+                "marginHorizontal": "16%",
+                "marginTop": "8%",
+                "paddingBottom": "3%",
+                "textAlign": "center",
+              }
+            }
+          >
+            Reset Password
+          </Text>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "marginTop": "9%",
+                "width": "120%",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "width": "75%",
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "paddingHorizontal": 10,
+                    "width": "100%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "color": "#BC6F27",
+                      "fontSize": 16,
+                      "fontWeight": "bold",
+                    }
+                  }
+                >
+                  Email
+                </Text>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "borderBottomWidth": 1,
+                      "borderColor": "#86939e",
+                      "flexDirection": "row",
+                      "transform": Array [
+                        Object {
+                          "translateX": 0,
+                        },
+                      ],
+                    }
+                  }
+                >
+                  <TextInput
+                    allowFontScaling={true}
+                    editable={true}
+                    fontSize={14}
+                    onChangeText={[Function]}
+                    placeholder="email@address.com"
+                    placeholderTextColor="#86939e"
+                    rejectResponderTermination={true}
+                    style={
+                      Object {
+                        "alignSelf": "center",
+                        "borderBottomColor": "#BC6F27",
+                        "borderBottomWidth": 2,
+                        "color": "#242424",
+                        "flex": 1,
+                        "fontSize": 18,
+                        "height": 40,
+                        "minHeight": 40,
+                      }
+                    }
+                    testID="RNE__Input__text-input"
+                    underlineColorAndroid="transparent"
+                    value=""
+                  />
+                </View>
+                <Text
+                  style={
+                    Object {
+                      "color": "#ff190c",
+                      "fontSize": 12,
+                      "margin": 5,
+                    }
+                  }
+                />
+              </View>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "height": "30%",
+                "justifyContent": "space-around",
+                "width": "100%",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderRadius": 3,
+                  "height": "50%",
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "width": "35%",
+                }
+              }
+            >
+              <View
+                accessibilityRole="button"
+                accessibilityState={
+                  Object {
+                    "busy": false,
+                    "disabled": false,
+                  }
+                }
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#E2B865",
+                      "borderColor": "#2089dc",
+                      "borderRadius": 3,
+                      "borderWidth": 0,
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "padding": 8,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "color": "white",
+                        "fontSize": 18,
+                        "paddingVertical": 1,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Cancel
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "borderRadius": 3,
+                  "height": "50%",
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "width": "35%",
+                }
+              }
+            >
+              <View
+                accessibilityRole="button"
+                accessibilityState={
+                  Object {
+                    "busy": false,
+                    "disabled": false,
+                  }
+                }
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#E2B865",
+                      "borderColor": "#2089dc",
+                      "borderRadius": 3,
+                      "borderWidth": 0,
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "padding": 8,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "color": "white",
+                        "fontSize": 18,
+                        "paddingVertical": 1,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Send Email
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </Modal>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "height": "20%",
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 1,
+        },
+        Object {
+          "height": "30%",
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#E2B865",
+          "height": "65%",
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    />
+    <RNSVGSvgView
+      align="xMidYMid"
+      bbHeight="60%"
+      bbWidth="60%"
+      enableBackground="new 0 0 433.1 510.3"
+      focusable={false}
+      id="svg"
+      meetOrSlice={0}
+      minX={0}
+      minY={-25}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+          },
+          Object {
+            "height": "60%",
+            "position": "absolute",
+            "resizeMode": "center",
+            "top": "35%",
+            "width": "60%",
+            "zIndex": 2,
+          },
+          Object {
+            "flex": 0,
+            "height": "60%",
+            "width": "60%",
+          },
+        ]
+      }
+      vbHeight={455}
+      vbWidth={425}
+      x="0px"
+      xmlSpace="preserve"
+      y="0px"
+    >
+      <RNSVGGroup>
+        <RNSVGCircle
+          cx={212}
+          cy={200}
+          fill={4294301857}
+          propList={
+            Array [
+              "fill",
+              "stroke",
+              "strokeWidth",
+              "strokeMiterlimit",
+            ]
+          }
+          r={220}
+          stroke={4293048421}
+          strokeMiterlimit={10}
+          strokeWidth={20}
+        />
+        <RNSVGPath
+          d="M161.7 39.9c-.2 0-.2 0-.3.1-4.9 4.7-4 22.9-3.4 36.1.8 16.8 1 25.7-3.9 27.9-7.5 3.5-14.7 7.6-21.3 12.4-2.9 2-6.2 3.8-9.5 5.6-4.8 2.5-9.7 5.1-12.8 8.5-2.8 2.9-4.2 6.9-5.8 11-1.2 3.2-2.4 6.5-4.3 9.5-12 19.4-18.3 42.1-18.3 65.7 0 69.4 58.3 125.8 130 125.8s130-56.4 130-125.8c0-28.8-10.3-60.6-26.2-81.1-4-5.1-5.3-16.3-5.4-17.6l-.1-.6.2-.6c8.6-25.2 6.2-44.2 5-53.4-.1-.8-.2-1.5-.3-2.2-.6-4.9-1.6-7.7-4.5-11.8-4.5.1-18.5 15.2-27.7 25.2-7.5 8.2-14.6 15.9-19.6 19.6-1.4 1.1-5.5 3.5-8.3 3.6-.7 0-1.4.1-2.1.1-7 0-13.9-1.8-20.6-3.5-6.7-1.7-13.5-3.5-20.5-3.5-2 0-3.7.1-5.1.2-1.1.1-2 .1-2.8.1-.9 0-1.5-.1-2.1-.3-4.2-1.2-9.5-7.6-10.4-11.4-.5-2.4-5.8-12.3-12.9-22.3-9.5-13.6-15.1-17.3-17-17.3z"
+          fill={4294301857}
+          name="Doge_3_"
+          propList={
+            Array [
+              "fill",
+              "stroke",
+              "strokeWidth",
+              "strokeMiterlimit",
+            ]
+          }
+          stroke={4290539303}
+          strokeMiterlimit={10}
+          strokeWidth={14}
+        />
+        <RNSVGPath
+          d="M120.4 295.9s26.1 36.4 88.6 39.6c72.1 3.8 127.7-52.7 127.7-122.1 0-28.8-12.4-55.9-28.3-76.4 13.5 128.3-51.5 179.2-188 158.9z"
+          fill={4293770008}
+          name="Shadow_1_"
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+        />
+        <RNSVGPath
+          d="M138.5 227.9c1.7-.6 7.8-.6-.7-9.5 11.5 12.8 35.4-15.4 3.9-24.3-8.5-2.4-32.1-1.5-28.7 13.7.7 1.6 7.9 8.3 8.2 7.6-9.4-1.4-3.1 12.4 6.5 13.6 1.8.3 9-.5 10.8-1.1zm.5 17.7c-18.5-9.1-33.9 3.8-16.4 10.3 12.4 4.6 13.9 2.4 25.2 4.2 7.5 1.2 50.9 3.5 51.6-10-1.8.1-.2 3.6 0 0-13.4 1.2-26.2 5.3-33 5.2-4.4 0-9.8-1.3-15.2-3.1 0 0-9.1-5.1-12.2-6.6zm76.2-87.3c11.8-.7 21.6 14.3 21.6 14.3s-9.9 15.8-20.6 15.4c-10.7-.3-10.3-4.1-17.8-5.9-7.5-1.7 5-23.1 16.8-23.8zm-3.3 7.5c1.6-2.1 6.2 3 6.8-2.6 0-.5.1-.5-7.2-.4s-12.5 15.3-7.9 18c3.5 2 3.9 2 3.8.7-1-3.8-1-12.7 4.5-15.7zm-72.3-20.5c9 0 11.9 5.8 12.1 9.1.3 5.6-5.6 16-11.4 16-2.7 0-10-3.8-10.7-9.7-.9-6.7 5.3-15.4 10-15.4zm1 3.4c2.3-1.9-8.6 2.2-8.1 9.6.6 7.4 8.1 10.7 6.5 8.5 0 0-8.5-9.8 1.6-18.1zm7.3 2.5c-.9 0-1.6.8-1.6 1.7 0 1 .7 1.7 1.6 1.7s1.6-.8 1.6-1.7-.7-1.7-1.6-1.7z"
+          fill={4290539303}
+          name="Face"
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+        />
+      </RNSVGGroup>
+    </RNSVGSvgView>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#F5D8A1",
+          "height": "50%",
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "column",
+        "justifyContent": "flex-end",
+        "marginTop": "18%",
+        "width": "100%",
+        "zIndex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "width": "75%",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 10,
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#BC6F27",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Email
+        </Text>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomWidth": 1,
+              "borderColor": "#86939e",
+              "flexDirection": "row",
+              "transform": Array [
+                Object {
+                  "translateX": 0,
+                },
+              ],
+            }
+          }
+        >
+          <TextInput
+            allowFontScaling={true}
+            editable={true}
+            fontSize={14}
+            onChangeText={[Function]}
+            placeholder="email@address.com"
+            placeholderTextColor="#86939e"
+            rejectResponderTermination={true}
+            style={
+              Object {
+                "alignSelf": "center",
+                "borderBottomColor": "#BC6F27",
+                "borderBottomWidth": 2,
+                "color": "#242424",
+                "flex": 1,
+                "fontSize": 18,
+                "height": 40,
+                "minHeight": 40,
+              }
+            }
+            testID="RNE__Input__text-input"
+            underlineColorAndroid="transparent"
+            value=""
+          />
+        </View>
+        <Text
+          style={
+            Object {
+              "color": "#ff190c",
+              "fontSize": 12,
+              "margin": 5,
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "width": "75%",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 10,
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#BC6F27",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Password
+        </Text>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomWidth": 1,
+              "borderColor": "#86939e",
+              "flexDirection": "row",
+              "transform": Array [
+                Object {
+                  "translateX": 0,
+                },
+              ],
+            }
+          }
+        >
+          <TextInput
+            allowFontScaling={true}
+            editable={true}
+            fontSize={14}
+            onChangeText={[Function]}
+            placeholder="Password"
+            placeholderTextColor="#86939e"
+            rejectResponderTermination={true}
+            secureTextEntry={true}
+            style={
+              Object {
+                "alignSelf": "center",
+                "borderBottomColor": "#BC6F27",
+                "borderBottomWidth": 2,
+                "color": "#242424",
+                "flex": 1,
+                "fontSize": 18,
+                "height": 40,
+                "minHeight": 40,
+              }
+            }
+            testID="RNE__Input__text-input"
+            underlineColorAndroid="transparent"
+            value=""
+          />
+        </View>
+        <Text
+          style={
+            Object {
+              "color": "#ff190c",
+              "fontSize": 12,
+              "margin": 5,
+            }
+          }
+        />
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+        "justifyContent": "flex-end",
+        "marginRight": "30%",
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "width": "40%",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#BC6F27",
+            "marginBottom": "15%",
+            "marginRight": "30%",
+            "textAlign": "center",
+            "width": "100%",
+          }
+        }
+      >
+        Forgot password?
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "borderRadius": 3,
+        "height": "7%",
+        "justifyContent": "flex-end",
+        "marginTop": "6%",
+        "overflow": "hidden",
+        "position": "relative",
+        "width": "65%",
+      }
+    }
+  >
+    <View
+      accessibilityRole="button"
+      accessibilityState={
+        Object {
+          "busy": false,
+          "disabled": false,
+        }
+      }
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#2089dc",
+            "borderColor": "#2089dc",
+            "borderRadius": 3,
+            "borderWidth": 0,
+            "flexDirection": "row",
+            "height": "100%",
+            "justifyContent": "center",
+            "padding": 8,
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 18,
+              "paddingVertical": 1,
+              "textAlign": "center",
+            }
+          }
+        >
+          Login
+        </Text>
+      </View>
+    </View>
+  </View>
+  <Text
+    style={
+      Object {
+        "alignItems": "center",
+        "color": "#404040",
+        "marginTop": "6%",
+      }
+    }
+  >
+    Don't have an account? 
+    <Text
+      onPress={[Function]}
+      style={
+        Object {
+          "color": "#BC6F27",
+        }
+      }
+    >
+      Register here
+    </Text>
+  </Text>
+</View>
+`;
+
+exports[`Frontend Testing Login page hyperlinks to registration page 2`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#E5E5E5",
+      "flex": 1,
+      "height": "100%",
+      "top": 0,
+      "width": "100%",
+    }
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "height": "20%",
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 1,
+        },
+        Object {
+          "height": "20%",
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#E2B865",
+          "height": "65%",
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    />
+    <RNSVGSvgView
+      align="xMidYMid"
+      bbHeight="60%"
+      bbWidth="60%"
+      enableBackground="new 0 0 433.1 510.3"
+      focusable={false}
+      id="svg"
+      meetOrSlice={0}
+      minX={0}
+      minY={-25}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+          },
+          Object {
+            "height": "60%",
+            "position": "absolute",
+            "resizeMode": "center",
+            "top": "35%",
+            "width": "60%",
+            "zIndex": 2,
+          },
+          Object {
+            "flex": 0,
+            "height": "60%",
+            "width": "60%",
+          },
+        ]
+      }
+      vbHeight={455}
+      vbWidth={425}
+      x="0px"
+      xmlSpace="preserve"
+      y="0px"
+    >
+      <RNSVGGroup>
+        <RNSVGCircle
+          cx={212}
+          cy={200}
+          fill={4294301857}
+          propList={
+            Array [
+              "fill",
+              "stroke",
+              "strokeWidth",
+              "strokeMiterlimit",
+            ]
+          }
+          r={220}
+          stroke={4293048421}
+          strokeMiterlimit={10}
+          strokeWidth={20}
+        />
+        <RNSVGPath
+          d="M161.7 39.9c-.2 0-.2 0-.3.1-4.9 4.7-4 22.9-3.4 36.1.8 16.8 1 25.7-3.9 27.9-7.5 3.5-14.7 7.6-21.3 12.4-2.9 2-6.2 3.8-9.5 5.6-4.8 2.5-9.7 5.1-12.8 8.5-2.8 2.9-4.2 6.9-5.8 11-1.2 3.2-2.4 6.5-4.3 9.5-12 19.4-18.3 42.1-18.3 65.7 0 69.4 58.3 125.8 130 125.8s130-56.4 130-125.8c0-28.8-10.3-60.6-26.2-81.1-4-5.1-5.3-16.3-5.4-17.6l-.1-.6.2-.6c8.6-25.2 6.2-44.2 5-53.4-.1-.8-.2-1.5-.3-2.2-.6-4.9-1.6-7.7-4.5-11.8-4.5.1-18.5 15.2-27.7 25.2-7.5 8.2-14.6 15.9-19.6 19.6-1.4 1.1-5.5 3.5-8.3 3.6-.7 0-1.4.1-2.1.1-7 0-13.9-1.8-20.6-3.5-6.7-1.7-13.5-3.5-20.5-3.5-2 0-3.7.1-5.1.2-1.1.1-2 .1-2.8.1-.9 0-1.5-.1-2.1-.3-4.2-1.2-9.5-7.6-10.4-11.4-.5-2.4-5.8-12.3-12.9-22.3-9.5-13.6-15.1-17.3-17-17.3z"
+          fill={4294301857}
+          name="Doge_3_"
+          propList={
+            Array [
+              "fill",
+              "stroke",
+              "strokeWidth",
+              "strokeMiterlimit",
+            ]
+          }
+          stroke={4290539303}
+          strokeMiterlimit={10}
+          strokeWidth={14}
+        />
+        <RNSVGPath
+          d="M120.4 295.9s26.1 36.4 88.6 39.6c72.1 3.8 127.7-52.7 127.7-122.1 0-28.8-12.4-55.9-28.3-76.4 13.5 128.3-51.5 179.2-188 158.9z"
+          fill={4293770008}
+          name="Shadow_1_"
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+        />
+        <RNSVGPath
+          d="M138.5 227.9c1.7-.6 7.8-.6-.7-9.5 11.5 12.8 35.4-15.4 3.9-24.3-8.5-2.4-32.1-1.5-28.7 13.7.7 1.6 7.9 8.3 8.2 7.6-9.4-1.4-3.1 12.4 6.5 13.6 1.8.3 9-.5 10.8-1.1zm.5 17.7c-18.5-9.1-33.9 3.8-16.4 10.3 12.4 4.6 13.9 2.4 25.2 4.2 7.5 1.2 50.9 3.5 51.6-10-1.8.1-.2 3.6 0 0-13.4 1.2-26.2 5.3-33 5.2-4.4 0-9.8-1.3-15.2-3.1 0 0-9.1-5.1-12.2-6.6zm76.2-87.3c11.8-.7 21.6 14.3 21.6 14.3s-9.9 15.8-20.6 15.4c-10.7-.3-10.3-4.1-17.8-5.9-7.5-1.7 5-23.1 16.8-23.8zm-3.3 7.5c1.6-2.1 6.2 3 6.8-2.6 0-.5.1-.5-7.2-.4s-12.5 15.3-7.9 18c3.5 2 3.9 2 3.8.7-1-3.8-1-12.7 4.5-15.7zm-72.3-20.5c9 0 11.9 5.8 12.1 9.1.3 5.6-5.6 16-11.4 16-2.7 0-10-3.8-10.7-9.7-.9-6.7 5.3-15.4 10-15.4zm1 3.4c2.3-1.9-8.6 2.2-8.1 9.6.6 7.4 8.1 10.7 6.5 8.5 0 0-8.5-9.8 1.6-18.1zm7.3 2.5c-.9 0-1.6.8-1.6 1.7 0 1 .7 1.7 1.6 1.7s1.6-.8 1.6-1.7-.7-1.7-1.6-1.7z"
+          fill={4290539303}
+          name="Face"
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+        />
+      </RNSVGGroup>
+    </RNSVGSvgView>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#F5D8A1",
+          "height": "50%",
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "column",
+        "justifyContent": "flex-end",
+        "marginTop": "18%",
+        "width": "100%",
+        "zIndex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "width": "75%",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 10,
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#BC6F27",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Username
+        </Text>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomWidth": 1,
+              "borderColor": "#86939e",
+              "flexDirection": "row",
+              "transform": Array [
+                Object {
+                  "translateX": 0,
+                },
+              ],
+            }
+          }
+        >
+          <TextInput
+            allowFontScaling={true}
+            editable={true}
+            fontSize={14}
+            onChangeText={[Function]}
+            placeholder="John Doe"
+            placeholderTextColor="#86939e"
+            rejectResponderTermination={true}
+            style={
+              Object {
+                "alignSelf": "center",
+                "borderBottomColor": "#BC6F27",
+                "borderBottomWidth": 2,
+                "color": "#242424",
+                "flex": 1,
+                "fontSize": 18,
+                "height": 40,
+                "minHeight": 40,
+              }
+            }
+            testID="RNE__Input__text-input"
+            underlineColorAndroid="transparent"
+            value=""
+          />
+        </View>
+        <Text
+          style={
+            Object {
+              "color": "#ff190c",
+              "fontSize": 12,
+              "margin": 5,
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "width": "75%",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 10,
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#BC6F27",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Email
+        </Text>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomWidth": 1,
+              "borderColor": "#86939e",
+              "flexDirection": "row",
+              "transform": Array [
+                Object {
+                  "translateX": 0,
+                },
+              ],
+            }
+          }
+        >
+          <TextInput
+            allowFontScaling={true}
+            editable={true}
+            fontSize={14}
+            onChangeText={[Function]}
+            placeholder="email@address.com"
+            placeholderTextColor="#86939e"
+            rejectResponderTermination={true}
+            style={
+              Object {
+                "alignSelf": "center",
+                "borderBottomColor": "#BC6F27",
+                "borderBottomWidth": 2,
+                "color": "#242424",
+                "flex": 1,
+                "fontSize": 18,
+                "height": 40,
+                "minHeight": 40,
+              }
+            }
+            testID="RNE__Input__text-input"
+            underlineColorAndroid="transparent"
+            value=""
+          />
+        </View>
+        <Text
+          style={
+            Object {
+              "color": "#ff190c",
+              "fontSize": 12,
+              "margin": 5,
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "width": "75%",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 10,
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#BC6F27",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Password
+        </Text>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomWidth": 1,
+              "borderColor": "#86939e",
+              "flexDirection": "row",
+              "transform": Array [
+                Object {
+                  "translateX": 0,
+                },
+              ],
+            }
+          }
+        >
+          <TextInput
+            allowFontScaling={true}
+            editable={true}
+            fontSize={14}
+            onChangeText={[Function]}
+            placeholder="Password"
+            placeholderTextColor="#86939e"
+            rejectResponderTermination={true}
+            secureTextEntry={true}
+            style={
+              Object {
+                "alignSelf": "center",
+                "borderBottomColor": "#BC6F27",
+                "borderBottomWidth": 2,
+                "color": "#242424",
+                "flex": 1,
+                "fontSize": 18,
+                "height": 40,
+                "minHeight": 40,
+              }
+            }
+            testID="RNE__Input__text-input"
+            underlineColorAndroid="transparent"
+            value=""
+          />
+        </View>
+        <Text
+          style={
+            Object {
+              "color": "#ff190c",
+              "fontSize": 12,
+              "margin": 5,
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "width": "75%",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 10,
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#BC6F27",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Confirm Password
+        </Text>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomWidth": 1,
+              "borderColor": "#86939e",
+              "flexDirection": "row",
+              "transform": Array [
+                Object {
+                  "translateX": 0,
+                },
+              ],
+            }
+          }
+        >
+          <TextInput
+            allowFontScaling={true}
+            editable={true}
+            fontSize={14}
+            onChangeText={[Function]}
+            placeholder="Confirm Password"
+            placeholderTextColor="#86939e"
+            rejectResponderTermination={true}
+            secureTextEntry={true}
+            style={
+              Object {
+                "alignSelf": "center",
+                "borderBottomColor": "#BC6F27",
+                "borderBottomWidth": 2,
+                "color": "#242424",
+                "flex": 1,
+                "fontSize": 18,
+                "height": 40,
+                "minHeight": 40,
+              }
+            }
+            testID="RNE__Input__text-input"
+            underlineColorAndroid="transparent"
+            value=""
+          />
+        </View>
+        <Text
+          style={
+            Object {
+              "color": "#ff190c",
+              "fontSize": 12,
+              "margin": 5,
+            }
+          }
+        />
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "borderRadius": 3,
+        "height": "7%",
+        "justifyContent": "flex-end",
+        "marginTop": "6%",
+        "overflow": "hidden",
+        "position": "relative",
+        "width": "65%",
+      }
+    }
+  >
+    <View
+      accessibilityRole="button"
+      accessibilityState={
+        Object {
+          "busy": false,
+          "disabled": false,
+        }
+      }
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#2089dc",
+            "borderColor": "#2089dc",
+            "borderRadius": 3,
+            "borderWidth": 0,
+            "flexDirection": "row",
+            "height": "100%",
+            "justifyContent": "center",
+            "padding": 8,
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 18,
+              "paddingVertical": 1,
+              "textAlign": "center",
+            }
+          }
+        >
+          Sign Up
+        </Text>
+      </View>
+    </View>
+  </View>
+  <Text
+    style={
+      Object {
+        "alignItems": "center",
+        "color": "#404040",
+        "marginTop": "6%",
+      }
+    }
+  >
+    Already have an account? 
+    <Text
+      onPress={[Function]}
+      style={
+        Object {
+          "color": "#BC6F27",
+        }
+      }
+    >
+      Log in
+    </Text>
+  </Text>
+</View>
+`;
+
+exports[`Frontend Testing Login page loads after splash page 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#F5D8A1",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <View>
+    <View
+      style={
+        Object {
+          "translateY": 100,
+        }
+      }
+    >
+      <RNSVGSvgView
+        align="xMidYMid"
+        bbHeight={466.9}
+        bbWidth={412.50000000000006}
+        enableBackground="new 0 0 433.1 510.3"
+        focusable={false}
+        id="svg"
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            Object {
+              "height": 466.9,
+              "width": 412.50000000000006,
+            },
+            Object {
+              "flex": 0,
+              "height": 466,
+              "width": 412,
+            },
+          ]
+        }
+        vbHeight={510.3}
+        vbWidth={433.1}
+        x="0px"
+        xmlSpace="preserve"
+        y="0px"
+      >
+        <RNSVGGroup>
+          <RNSVGPath
+            d="M14 368.3L89 368.3 89 382.3 0 382.3 0 368.3 0 293.3 14 293.3z"
+            fill={4290539303}
+            name="BL"
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          />
+          <RNSVGPath
+            d="M419 368.3L344 368.3 344 382.3 433 382.3 433 368.3 433 293.3 419 293.3z"
+            fill={4290539303}
+            name="BR"
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          />
+          <RNSVGPath
+            d="M419 14.3L344 14.3 344 0.3 433 0.3 433 14.3 433 89.3 419 89.3z"
+            fill={4290539303}
+            name="TR"
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          />
+          <RNSVGPath
+            d="M14 14.3L89 14.3 89 0.3 0 0.3 0 14.3 0 89.3 14 89.3z"
+            fill={4290539303}
+            name="TL_1_"
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          />
+          <RNSVGPath
+            d="M47 504.6c-1-.4-1.8-1.1-2.4-2-.6-.9-1-1.9-1-2.9 0-1.4.5-2.5 1.4-3.5s2.1-1.5 3.5-1.5c.8 0 1.6.2 2.3.5 7.4 3.3 15.2 4.9 23.6 4.9 14 0 21-4.6 21-13.8 0-2.4-.9-4.4-2.7-6-1.8-1.6-4-2.9-6.7-3.8-2.6-.9-6.4-2-11.3-3.3-6.5-1.7-11.7-3.3-15.7-4.9s-7.4-3.9-10.3-7c-2.9-3.1-4.3-7.3-4.3-12.5 0-4.6 1.2-8.7 3.6-12.4 2.4-3.7 5.9-6.7 10.6-8.9 4.7-2.2 10.3-3.3 16.9-3.3 8.8 0 16.8 1.3 23.9 4 2.2.8 3.4 2.4 3.4 4.8 0 1.3-.4 2.4-1.3 3.5-.9 1-2 1.6-3.5 1.6-.5 0-1.1-.2-1.9-.5-6.2-2.2-12.7-3.2-19.3-3.2-6.3 0-11.5 1.2-15.4 3.6-4 2.4-5.9 5.8-5.9 10.1 0 2.9.9 5.2 2.8 7 1.9 1.8 4.2 3.2 7.1 4.2 2.8 1 6.7 2.1 11.6 3.2 6.3 1.5 11.4 3 15.3 4.6 3.9 1.5 7.2 3.9 10 7.1s4.1 7.5 4.1 13c0 4.5-1.3 8.5-3.8 12.1-2.6 3.6-6.2 6.3-10.8 8.3-4.6 2-10 3-16.1 3-10.3-.3-19.8-2.2-28.7-6z"
+            fill={4290539303}
+            name="S"
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          />
+          <RNSVGPath
+            d="M148 468.3v-33h21.3c8.2.4 13.9 2 17.2 5.1s5 7 5 11.6-1.7 8.5-5 11.6-17.2 4.7-17.2 4.7H159v10h11.1c7.7 0 13.9-1.3 18.8-3.8 4.8-2.6 8.3-5.8 10.4-9.8 2.1-4 3.1-8.3 3.1-13 0-4.6-1-9-3.1-13s-5.6-7.3-10.4-9.8c-4.8-2.6-11.1-3.8-18.8-3.8h-27.7c-1.5 0-2.8.5-3.8 1.6s-1.6 2.4-1.6 3.9v73.1c0 1.5.5 2.8 1.6 3.8 1 1 2.3 1.6 3.8 1.6s2.8-.5 3.9-1.6 1.6-2.3 1.6-3.8v-35.4h.1z"
+            fill={4290539303}
+            name="P"
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          />
+          <RNSVGPath
+            d="M248.7 504.8c-6.3-3.7-11.2-8.8-14.6-15.2-3.4-6.5-5.2-13.9-5.4-22.3.2-8.4 2-15.8 5.4-22.3s8.3-11.6 14.6-15.2c6.3-3.7 13.7-5.5 22.1-5.5s15.7 1.8 22 5.5 11.2 8.8 14.6 15.3c3.5 6.5 5.3 13.9 5.5 22.3-.2 8.3-2 15.7-5.5 22.3-3.5 6.5-8.4 11.6-14.6 15.3-6.3 3.7-13.6 5.5-22 5.5-8.4-.2-15.8-2-22.1-5.7zm38.8-9c4.7-2.9 8.3-6.8 10.8-11.8s3.7-10.6 3.7-16.8-1.2-11.8-3.7-16.8-6.1-8.9-10.8-11.8c-4.7-2.9-10.3-4.3-16.7-4.3-6.5 0-12.1 1.4-16.7 4.3-4.7 2.9-8.3 6.8-10.7 11.8-2.5 5-3.7 10.6-3.7 16.8s1.2 11.8 3.7 16.8 6.1 8.9 10.7 11.8 10.3 4.3 16.7 4.3c6.4 0 12-1.4 16.7-4.3z"
+            fill={4290539303}
+            name="O"
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          />
+          <RNSVGPath
+            d="M361 445.3v58.6c0 1.5.5 2.8 1.6 3.8 1 1 2.3 1.6 3.8 1.6s2.8-.5 3.9-1.6 1.6-2.3 1.6-3.8v-58.6H361z"
+            fill={4290539303}
+            name="T1"
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          />
+          <RNSVGPath
+            d="M371.9 435.3h23.9c1.4 0 2.6-.5 3.6-1.4 1-1 1.5-2.2 1.5-3.5 0-1.4-.5-2.6-1.5-3.6s-2.2-1.5-3.6-1.5h-58.6c-1.4 0-2.5.5-3.5 1.5s-1.4 2.2-1.4 3.6.5 2.5 1.4 3.5c.9 1 2.2 1.4 3.5 1.4h34.7z"
+            fill={4290539303}
+            name="T2"
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          />
+          <RNSVGPath
+            d="M161.7 39.9c-.2 0-.2 0-.3.1-4.9 4.7-4 22.9-3.4 36.1.8 16.8 1 25.7-3.9 27.9-7.5 3.5-14.7 7.6-21.3 12.4-2.9 2-6.2 3.8-9.5 5.6-4.8 2.5-9.7 5.1-12.8 8.5-2.8 2.9-4.2 6.9-5.8 11-1.2 3.2-2.4 6.5-4.3 9.5-12 19.4-18.3 42.1-18.3 65.7 0 69.4 58.3 125.8 130 125.8s130-56.4 130-125.8c0-28.8-10.3-60.6-26.2-81.1-4-5.1-5.3-16.3-5.4-17.6l-.1-.6.2-.6c8.6-25.2 6.2-44.2 5-53.4-.1-.8-.2-1.5-.3-2.2-.6-4.9-1.6-7.7-4.5-11.8-4.5.1-18.5 15.2-27.7 25.2-7.5 8.2-14.6 15.9-19.6 19.6-1.4 1.1-5.5 3.5-8.3 3.6-.7 0-1.4.1-2.1.1-7 0-13.9-1.8-20.6-3.5-6.7-1.7-13.5-3.5-20.5-3.5-2 0-3.7.1-5.1.2-1.1.1-2 .1-2.8.1-.9 0-1.5-.1-2.1-.3-4.2-1.2-9.5-7.6-10.4-11.4-.5-2.4-5.8-12.3-12.9-22.3-9.5-13.6-15.1-17.3-17-17.3z"
+            fill={4294301857}
+            name="Doge_3_"
+            propList={
+              Array [
+                "fill",
+                "stroke",
+                "strokeWidth",
+                "strokeMiterlimit",
+              ]
+            }
+            stroke={4290539303}
+            strokeMiterlimit={10}
+            strokeWidth={14}
+          />
+          <RNSVGCircle
+            cx={49.6}
+            cy={48.5}
+            fill={4290539303}
+            name="Record"
+            propList={
+              Array [
+                "fill",
+                "stroke",
+                "strokeWidth",
+                "strokeMiterlimit",
+              ]
+            }
+            r={12}
+            stroke={4290539303}
+            strokeMiterlimit={10}
+            strokeWidth={2}
+          />
+          <RNSVGPath
+            d="M120.4 295.9s26.1 36.4 88.6 39.6c72.1 3.8 127.7-52.7 127.7-122.1 0-28.8-12.4-55.9-28.3-76.4 13.5 128.3-51.5 179.2-188 158.9z"
+            fill={4293770008}
+            name="Shadow_1_"
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          />
+          <RNSVGPath
+            d="M138.5 227.9c1.7-.6 7.8-.6-.7-9.5 11.5 12.8 35.4-15.4 3.9-24.3-8.5-2.4-32.1-1.5-28.7 13.7.7 1.6 7.9 8.3 8.2 7.6-9.4-1.4-3.1 12.4 6.5 13.6 1.8.3 9-.5 10.8-1.1zm.5 17.7c-18.5-9.1-33.9 3.8-16.4 10.3 12.4 4.6 13.9 2.4 25.2 4.2 7.5 1.2 50.9 3.5 51.6-10-1.8.1-.2 3.6 0 0-13.4 1.2-26.2 5.3-33 5.2-4.4 0-9.8-1.3-15.2-3.1 0 0-9.1-5.1-12.2-6.6zm76.2-87.3c11.8-.7 21.6 14.3 21.6 14.3s-9.9 15.8-20.6 15.4c-10.7-.3-10.3-4.1-17.8-5.9-7.5-1.7 5-23.1 16.8-23.8zm-3.3 7.5c1.6-2.1 6.2 3 6.8-2.6 0-.5.1-.5-7.2-.4s-12.5 15.3-7.9 18c3.5 2 3.9 2 3.8.7-1-3.8-1-12.7 4.5-15.7zm-72.3-20.5c9 0 11.9 5.8 12.1 9.1.3 5.6-5.6 16-11.4 16-2.7 0-10-3.8-10.7-9.7-.9-6.7 5.3-15.4 10-15.4zm1 3.4c2.3-1.9-8.6 2.2-8.1 9.6.6 7.4 8.1 10.7 6.5 8.5 0 0-8.5-9.8 1.6-18.1zm7.3 2.5c-.9 0-1.6.8-1.6 1.7 0 1 .7 1.7 1.6 1.7s1.6-.8 1.6-1.7-.7-1.7-1.6-1.7z"
+            fill={4290539303}
+            name="Face"
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          />
+        </RNSVGGroup>
+      </RNSVGSvgView>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Frontend Testing Login page loads after splash page 2`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#E5E5E5",
+      "flex": 1,
+      "height": "100%",
+      "top": 0,
+      "width": "100%",
+    }
+  }
+>
+  <Modal
+    animationType="slide"
+    hardwareAccelerated={false}
+    transparent={true}
+    visible={false}
+  >
+    <View
+      onLayout={[Function]}
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "rgba(0, 0, 0, 0.4)",
+            "height": "100%",
+            "justifyContent": "center",
+            "width": "100%",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#E5E5E5",
+              "borderRadius": 10,
+              "height": "40%",
+              "justifyContent": "space-around",
+              "width": "90%",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "borderBottomColor": "#404040",
+                "borderBottomWidth": 1,
+                "fontSize": 22,
+                "marginHorizontal": "16%",
+                "marginTop": "8%",
+                "paddingBottom": "3%",
+                "textAlign": "center",
+              }
+            }
+          >
+            Reset Password
+          </Text>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "marginTop": "9%",
+                "width": "120%",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "width": "75%",
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "paddingHorizontal": 10,
+                    "width": "100%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "color": "#BC6F27",
+                      "fontSize": 16,
+                      "fontWeight": "bold",
+                    }
+                  }
+                >
+                  Email
+                </Text>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "borderBottomWidth": 1,
+                      "borderColor": "#86939e",
+                      "flexDirection": "row",
+                      "transform": Array [
+                        Object {
+                          "translateX": 0,
+                        },
+                      ],
+                    }
+                  }
+                >
+                  <TextInput
+                    allowFontScaling={true}
+                    editable={true}
+                    fontSize={14}
+                    onChangeText={[Function]}
+                    placeholder="email@address.com"
+                    placeholderTextColor="#86939e"
+                    rejectResponderTermination={true}
+                    style={
+                      Object {
+                        "alignSelf": "center",
+                        "borderBottomColor": "#BC6F27",
+                        "borderBottomWidth": 2,
+                        "color": "#242424",
+                        "flex": 1,
+                        "fontSize": 18,
+                        "height": 40,
+                        "minHeight": 40,
+                      }
+                    }
+                    testID="RNE__Input__text-input"
+                    underlineColorAndroid="transparent"
+                    value=""
+                  />
+                </View>
+                <Text
+                  style={
+                    Object {
+                      "color": "#ff190c",
+                      "fontSize": 12,
+                      "margin": 5,
+                    }
+                  }
+                />
+              </View>
+            </View>
+          </View>
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "height": "30%",
+                "justifyContent": "space-around",
+                "width": "100%",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "borderRadius": 3,
+                  "height": "50%",
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "width": "35%",
+                }
+              }
+            >
+              <View
+                accessibilityRole="button"
+                accessibilityState={
+                  Object {
+                    "busy": false,
+                    "disabled": false,
+                  }
+                }
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#E2B865",
+                      "borderColor": "#2089dc",
+                      "borderRadius": 3,
+                      "borderWidth": 0,
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "padding": 8,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "color": "white",
+                        "fontSize": 18,
+                        "paddingVertical": 1,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Cancel
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "borderRadius": 3,
+                  "height": "50%",
+                  "justifyContent": "center",
+                  "overflow": "hidden",
+                  "width": "35%",
+                }
+              }
+            >
+              <View
+                accessibilityRole="button"
+                accessibilityState={
+                  Object {
+                    "busy": false,
+                    "disabled": false,
+                  }
+                }
+                accessible={true}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "opacity": 1,
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "#E2B865",
+                      "borderColor": "#2089dc",
+                      "borderRadius": 3,
+                      "borderWidth": 0,
+                      "flexDirection": "row",
+                      "justifyContent": "center",
+                      "padding": 8,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Object {
+                        "color": "white",
+                        "fontSize": 18,
+                        "paddingVertical": 1,
+                        "textAlign": "center",
+                      }
+                    }
+                  >
+                    Send Email
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </Modal>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "height": "20%",
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 1,
+        },
+        Object {
+          "height": "30%",
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#E2B865",
+          "height": "65%",
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    />
+    <RNSVGSvgView
+      align="xMidYMid"
+      bbHeight="60%"
+      bbWidth="60%"
+      enableBackground="new 0 0 433.1 510.3"
+      focusable={false}
+      id="svg"
+      meetOrSlice={0}
+      minX={0}
+      minY={-25}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+          },
+          Object {
+            "height": "60%",
+            "position": "absolute",
+            "resizeMode": "center",
+            "top": "35%",
+            "width": "60%",
+            "zIndex": 2,
+          },
+          Object {
+            "flex": 0,
+            "height": "60%",
+            "width": "60%",
+          },
+        ]
+      }
+      vbHeight={455}
+      vbWidth={425}
+      x="0px"
+      xmlSpace="preserve"
+      y="0px"
+    >
+      <RNSVGGroup>
+        <RNSVGCircle
+          cx={212}
+          cy={200}
+          fill={4294301857}
+          propList={
+            Array [
+              "fill",
+              "stroke",
+              "strokeWidth",
+              "strokeMiterlimit",
+            ]
+          }
+          r={220}
+          stroke={4293048421}
+          strokeMiterlimit={10}
+          strokeWidth={20}
+        />
+        <RNSVGPath
+          d="M161.7 39.9c-.2 0-.2 0-.3.1-4.9 4.7-4 22.9-3.4 36.1.8 16.8 1 25.7-3.9 27.9-7.5 3.5-14.7 7.6-21.3 12.4-2.9 2-6.2 3.8-9.5 5.6-4.8 2.5-9.7 5.1-12.8 8.5-2.8 2.9-4.2 6.9-5.8 11-1.2 3.2-2.4 6.5-4.3 9.5-12 19.4-18.3 42.1-18.3 65.7 0 69.4 58.3 125.8 130 125.8s130-56.4 130-125.8c0-28.8-10.3-60.6-26.2-81.1-4-5.1-5.3-16.3-5.4-17.6l-.1-.6.2-.6c8.6-25.2 6.2-44.2 5-53.4-.1-.8-.2-1.5-.3-2.2-.6-4.9-1.6-7.7-4.5-11.8-4.5.1-18.5 15.2-27.7 25.2-7.5 8.2-14.6 15.9-19.6 19.6-1.4 1.1-5.5 3.5-8.3 3.6-.7 0-1.4.1-2.1.1-7 0-13.9-1.8-20.6-3.5-6.7-1.7-13.5-3.5-20.5-3.5-2 0-3.7.1-5.1.2-1.1.1-2 .1-2.8.1-.9 0-1.5-.1-2.1-.3-4.2-1.2-9.5-7.6-10.4-11.4-.5-2.4-5.8-12.3-12.9-22.3-9.5-13.6-15.1-17.3-17-17.3z"
+          fill={4294301857}
+          name="Doge_3_"
+          propList={
+            Array [
+              "fill",
+              "stroke",
+              "strokeWidth",
+              "strokeMiterlimit",
+            ]
+          }
+          stroke={4290539303}
+          strokeMiterlimit={10}
+          strokeWidth={14}
+        />
+        <RNSVGPath
+          d="M120.4 295.9s26.1 36.4 88.6 39.6c72.1 3.8 127.7-52.7 127.7-122.1 0-28.8-12.4-55.9-28.3-76.4 13.5 128.3-51.5 179.2-188 158.9z"
+          fill={4293770008}
+          name="Shadow_1_"
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+        />
+        <RNSVGPath
+          d="M138.5 227.9c1.7-.6 7.8-.6-.7-9.5 11.5 12.8 35.4-15.4 3.9-24.3-8.5-2.4-32.1-1.5-28.7 13.7.7 1.6 7.9 8.3 8.2 7.6-9.4-1.4-3.1 12.4 6.5 13.6 1.8.3 9-.5 10.8-1.1zm.5 17.7c-18.5-9.1-33.9 3.8-16.4 10.3 12.4 4.6 13.9 2.4 25.2 4.2 7.5 1.2 50.9 3.5 51.6-10-1.8.1-.2 3.6 0 0-13.4 1.2-26.2 5.3-33 5.2-4.4 0-9.8-1.3-15.2-3.1 0 0-9.1-5.1-12.2-6.6zm76.2-87.3c11.8-.7 21.6 14.3 21.6 14.3s-9.9 15.8-20.6 15.4c-10.7-.3-10.3-4.1-17.8-5.9-7.5-1.7 5-23.1 16.8-23.8zm-3.3 7.5c1.6-2.1 6.2 3 6.8-2.6 0-.5.1-.5-7.2-.4s-12.5 15.3-7.9 18c3.5 2 3.9 2 3.8.7-1-3.8-1-12.7 4.5-15.7zm-72.3-20.5c9 0 11.9 5.8 12.1 9.1.3 5.6-5.6 16-11.4 16-2.7 0-10-3.8-10.7-9.7-.9-6.7 5.3-15.4 10-15.4zm1 3.4c2.3-1.9-8.6 2.2-8.1 9.6.6 7.4 8.1 10.7 6.5 8.5 0 0-8.5-9.8 1.6-18.1zm7.3 2.5c-.9 0-1.6.8-1.6 1.7 0 1 .7 1.7 1.6 1.7s1.6-.8 1.6-1.7-.7-1.7-1.6-1.7z"
+          fill={4290539303}
+          name="Face"
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+        />
+      </RNSVGGroup>
+    </RNSVGSvgView>
+    <View
+      style={
+        Object {
+          "backgroundColor": "#F5D8A1",
+          "height": "50%",
+          "position": "relative",
+          "width": "100%",
+          "zIndex": 0,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "column",
+        "justifyContent": "flex-end",
+        "marginTop": "18%",
+        "width": "100%",
+        "zIndex": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "width": "75%",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 10,
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#BC6F27",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Email
+        </Text>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomWidth": 1,
+              "borderColor": "#86939e",
+              "flexDirection": "row",
+              "transform": Array [
+                Object {
+                  "translateX": 0,
+                },
+              ],
+            }
+          }
+        >
+          <TextInput
+            allowFontScaling={true}
+            editable={true}
+            fontSize={14}
+            onChangeText={[Function]}
+            placeholder="email@address.com"
+            placeholderTextColor="#86939e"
+            rejectResponderTermination={true}
+            style={
+              Object {
+                "alignSelf": "center",
+                "borderBottomColor": "#BC6F27",
+                "borderBottomWidth": 2,
+                "color": "#242424",
+                "flex": 1,
+                "fontSize": 18,
+                "height": 40,
+                "minHeight": 40,
+              }
+            }
+            testID="RNE__Input__text-input"
+            underlineColorAndroid="transparent"
+            value=""
+          />
+        </View>
+        <Text
+          style={
+            Object {
+              "color": "#ff190c",
+              "fontSize": 12,
+              "margin": 5,
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "width": "75%",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 10,
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#BC6F27",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Password
+        </Text>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomWidth": 1,
+              "borderColor": "#86939e",
+              "flexDirection": "row",
+              "transform": Array [
+                Object {
+                  "translateX": 0,
+                },
+              ],
+            }
+          }
+        >
+          <TextInput
+            allowFontScaling={true}
+            editable={true}
+            fontSize={14}
+            onChangeText={[Function]}
+            placeholder="Password"
+            placeholderTextColor="#86939e"
+            rejectResponderTermination={true}
+            secureTextEntry={true}
+            style={
+              Object {
+                "alignSelf": "center",
+                "borderBottomColor": "#BC6F27",
+                "borderBottomWidth": 2,
+                "color": "#242424",
+                "flex": 1,
+                "fontSize": 18,
+                "height": 40,
+                "minHeight": 40,
+              }
+            }
+            testID="RNE__Input__text-input"
+            underlineColorAndroid="transparent"
+            value=""
+          />
+        </View>
+        <Text
+          style={
+            Object {
+              "color": "#ff190c",
+              "fontSize": 12,
+              "margin": 5,
+            }
+          }
+        />
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+        "justifyContent": "flex-end",
+        "marginRight": "30%",
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "width": "40%",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#BC6F27",
+            "marginBottom": "15%",
+            "marginRight": "30%",
+            "textAlign": "center",
+            "width": "100%",
+          }
+        }
+      >
+        Forgot password?
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "borderRadius": 3,
+        "height": "7%",
+        "justifyContent": "flex-end",
+        "marginTop": "6%",
+        "overflow": "hidden",
+        "position": "relative",
+        "width": "65%",
+      }
+    }
+  >
+    <View
+      accessibilityRole="button"
+      accessibilityState={
+        Object {
+          "busy": false,
+          "disabled": false,
+        }
+      }
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#2089dc",
+            "borderColor": "#2089dc",
+            "borderRadius": 3,
+            "borderWidth": 0,
+            "flexDirection": "row",
+            "height": "100%",
+            "justifyContent": "center",
+            "padding": 8,
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 18,
+              "paddingVertical": 1,
+              "textAlign": "center",
+            }
+          }
+        >
+          Login
+        </Text>
+      </View>
+    </View>
+  </View>
+  <Text
+    style={
+      Object {
+        "alignItems": "center",
+        "color": "#404040",
+        "marginTop": "6%",
+      }
+    }
+  >
+    Don't have an account? 
+    <Text
+      onPress={[Function]}
+      style={
+        Object {
+          "color": "#BC6F27",
+        }
+      }
+    >
+      Register here
+    </Text>
+  </Text>
+</View>
+`;
