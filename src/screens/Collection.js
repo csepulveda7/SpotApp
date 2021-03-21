@@ -5,6 +5,8 @@ import { colors } from '../styles';
 import NavBar from '../components/NavBar';
 import { getBreeds, getBreedInfo, getBreedPhoto } from '../services/breedServices';
 import { CapturedIcon } from '../assets/images/';
+import { useDispatch, useSelector } from 'react-redux';
+import { userStatus, loadUser } from '../ducks';
 
 // @cris: look at line 101 for where to put if dog is captured
 export const Collection = ({ navigation }) => {
@@ -25,10 +27,13 @@ export const Collection = ({ navigation }) => {
 	let [showTopModal, setShowTopModal] = useState(false);
 	let [info, setInfo] = useState({});
 	let [breedImage, setBreedImage] = useState('');
+	const { activeUser } = useSelector(state => state.user);
+	const dispatch = useDispatch();
 
 	const [entries, setEntries] = useState([]);
 
 	useEffect(async () => {
+		dispatch(loadUser());
 		setEntries(await getBreeds());
 		setInfo(await loadInfo(1));
 		setBreedImage(await loadPhoto(1));
@@ -38,6 +43,8 @@ export const Collection = ({ navigation }) => {
 
 	const loadInfo = async (id) => await getBreedInfo(id);
 	const loadPhoto = async (id) => await getBreedPhoto(id);
+
+	const userHasBreed = breed => (activeUser.CollectedBreeds[breed] !== undefined);
 
 	const renderTopModal = () => {
 		return (
@@ -100,7 +107,7 @@ export const Collection = ({ navigation }) => {
 							>
 								{/* this is where we would mark the dog as captured or not */}
 								<View style = { capturedBox }>
-									{ (true) ? <CapturedIcon style = { captureIconStyle } /> : <></> }
+									{ userHasBreed(dog.breed) ? <CapturedIcon style = { captureIconStyle } /> : <></> }
 								</View>
 								<ListItem.Content style = { contentStyle }>
 									<ListItem.Title style = { breedItemText }>{ dog.breed }</ListItem.Title>
