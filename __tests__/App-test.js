@@ -1,18 +1,14 @@
-
 import React from 'react';
-import configureStore from 'redux-mock-store';
 import renderer from 'react-test-renderer';
 import { render, fireEvent } from '@testing-library/react-native';
 import { Provider } from 'react-redux';
-
+import configureStore from 'redux-mock-store';
 
 import { TextBox, NavBar } from '../src/components';
 import { Splash } from '../src/screens/Splash';
 import { Login } from '../src/screens/Login';
-import { Account } from '../src/screens/Account';
-import { Collection } from '../src/screens/Collection';
 import { SignUp } from '../src/screens/SignUp';
-import { Main } from '../src/screens//Main';
+
 
 jest.mock('../src/screens/Collection.js', () => {
 	const mockComponent = require('react-native/jest/mockComponent');
@@ -35,7 +31,31 @@ const testableComponent = (component, state) => (
 	);
 
 let user = require('../spot-backend/Services/user');
-
+let breed = {
+	bred_for: "Small rodent hunting, lapdog",
+		breed_group: "Toy",
+		height: {
+			imperial: "9 - 11.5",
+			metric: "23 - 29"
+		},
+		id: 1,
+		image: {
+			height: 1199,
+			id: "BJa4kxc4X",
+			url: "https://cdn2.thedogapi.com/images/BJa4kxc4X.jpg",
+			width: 1600
+		},
+		life_span: "10 - 12 years",
+		name: "Affenpinscher",
+		origin: "Germany, France",
+		points: 10,
+		reference_image_id: "BJa4kxc4X",
+		temperament: "Stubborn, Curious, Playful, Adventurous, Active, Fun-loving",
+		weight: {
+			imperial: "6 - 13",
+			metric: "3 - 6"
+		}
+};
 
 // ================ //
 // BACKEND TESTING //
@@ -103,6 +123,15 @@ describe('Backend Testing', () => {
 
 	test('Logout for no signed in user is undefined', () => {
 		return expect(user.logoutUser()).toBeUndefined();
+	});
+
+	test('New dog added, increasing user score', () => {
+		return expect(user.updateCollectedBreeds(breed)).toBeTruthy();
+	});
+
+	test('Repeated breed added, increasing user score by 1', () => {
+		let RepeatedBreed = breed;
+		return expect(user.updateCollectedBreeds(RepeatedBreed)).toBeTruthy();
 	});
 });
 
@@ -235,7 +264,9 @@ describe('Frontend Testing', () => {
 
 		expect(MainTestable).toBeTruthy();
 		jest.advanceTimersByTime(200);
-		expect(testableComponent(<Account/>, {INITIAL_STATE})).toBeTruthy();
+
+		const getCurrentUserAccount = '<Account />';
+		expect(testableComponent(getCurrentUserAccount, {INITIAL_STATE})).toBeTruthy();
 
 	});
 	
@@ -405,7 +436,8 @@ describe('Frontend Testing', () => {
 		};
 
 		
-		expect(testableComponent(<Account/>, {INITIAL_STATE})).toBeTruthy();
+		const getCurrentUserAccount = '<Account />';
+		expect(testableComponent(getCurrentUserAccount, {INITIAL_STATE})).toBeTruthy();
 	});
 	
 });
