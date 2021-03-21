@@ -1,35 +1,48 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Modal, KeyboardAvoidingView, Alert } from 'react-native';
+import { View, Text, Modal, KeyboardAvoidingView, Alert, Dimensions } from 'react-native';
 import { Button, Avatar } from 'react-native-elements';
 import NavBar from '../components/NavBar';
-import { loadUserData } from '../services/userServices';
-import config from '../config';
 import ImagePicker from 'react-native-image-crop-picker';
 import { styles, colors } from '../styles';
-import { logoutUser } from '../services/userServices';
+import { logoutUser, uploadImage } from '../services/userServices';
 import { useDispatch, useSelector } from 'react-redux';
 import { userStatus, loadUser } from '../ducks';
+import { stat } from 'react-native-fs';
+import { color } from 'react-native-reanimated';
+import { AccessibilityInfo } from 'react-native';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
+
+const { height, width } = Dimensions.get('screen');
 
 export const Account = ({ navigation }) => {
-	const { container, infoBar, centerItems, infoText } = accountStyles;
+	const {
+		container,
+		topContainer,
+		statsLogoutArea,
+		centerItems,
+		statsInfo,
+		topStats,
+		bottomStats,
+		breedsSeen,
+		perosnalInfoContainer,
+		personalInfoText,
+		statsContainer,
+		outerBarStyle,
+		innerBarStyle,
+		bottomButtonStyle
+	} = accountStyles;
 
 	const {
-		buttonContainer,
-		fullWidthHeight,
-		errorText,
-		modalErrorText
+		fullWidthHeight
 	} = styles;
 
-	const [error, setError] = useState('');
-	const [modalError, setModalError] = useState('');
 	const [modalVisible, setModalVisible] = useState(false);
-	const [loading, setLoading] = useState(false);
+	const [barPercent, setBarPercent] = useState(100);
 	const { activeUser } = useSelector(state => state.user);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		dispatch(loadUser());
-		setLoading(true);
 	}, []);
 
 	const logoutSubmit = () => {
@@ -38,96 +51,75 @@ export const Account = ({ navigation }) => {
 		Alert.alert('Logging off...', 'Have a nice day!');
 	};
 
-	const renderError = () => {
-		if (error)
-			return (<Text style = { errorText }>{ error }</Text>);
-	};
+	const updateBarPercent = (numBreeds) => {
+		// maxPercent comes from remainder of width from the progress bar
+		const maxPercent = 96;
+		const totalBreeds = 100;
+		let newPercent = numBreeds * (maxPercent / totalBreeds);
 
-	const renderModalError = () => {
-		if (modalError)
-			return (<Text style = { modalErrorText }>{ modalError }</Text>);
+		if (newPercent != barPercent) setBarPercent(newPercent);
 	};
 
 	const renderSetProfilePictureModal = () => {
 		return (
-			<Modal
-				animationType = 'slide'
-				transparent = { true }
-				visible = { modalVisible }
-			>
-				<KeyboardAvoidingView
-					behavior = 'height'
-					enabled
-				>
-					<View style = { modalStyles.centeredView }>
-						<View style = { modalStyles.ModalView }>
-							<Text style = { modalStyles.promptText }>
-								Set Profile Picture
-							</Text>
-							<View style = { modalStyles.buttonView }>
-								<Button
-									title = 'No Picture'
-									containerStyle = { modalStyles.buttonContainer }
-									buttonStyle = { modalStyles.buttonStyle }
-									onPress = { () => {
-										// TODO - Make profile picture defaultProfilePicture.png
-										setModalError('');
-										setModalVisible(!modalVisible);
-									} }
-								/>
+			<Modal animationType = 'slide' transparent = { true } visible = { modalVisible } >
+				<KeyboardAvoidingView behavior = 'height' enabled >
+					<View style = { modalStyles.bottomView }>
+						<View style = { modalStyles.modalView }>
+							<View style = { modalStyles.topButtons }>
 								<Button
 									title = 'Choose from Gallery'
 									containerStyle = { modalStyles.buttonContainer }
 									buttonStyle = { modalStyles.buttonStyle }
-									onPress = { () => { 
-										setModalError('');
+									onPress = { () => {
 										setModalVisible(!modalVisible);
 										ImagePicker.openPicker({
 											width: 300,
 											height: 400,
 											cropping: true,
 											freeStyleCropEnabled: true,
-										}).then ((image) => {
-											// TODO - Update user's profile picture with image
-											console.log('image', image);
-										}).catch((error) => {
-											console.log('error', error);
-										});
+											cropperCircleOverlay: true
+										}).then((image) =>
+											uploadImage({
+												uri: image.path,
+												type: 'image/jpeg',
+												name: 'profileImage'
+											})
+										)
+											.then(() => dispatch(loadUser()))
+											.catch((error) => console.log(error));
 									} }
 								/>
 								<Button
-									title = 'Use Camera'
+									title = 'Take Picture'
 									containerStyle = { modalStyles.buttonContainer }
 									buttonStyle = { modalStyles.buttonStyle }
-									onPress = { () => { 
-										setModalError('');
+									onPress = { () => {
 										setModalVisible(!modalVisible);
 										ImagePicker.openCamera({
 											width: 300,
 											height: 400,
 											cropping: true,
 											freeStyleCropEnabled: true,
-										}).then ((image) => {
-											// TODO - Update user's profile picture with image
-											console.log('image', image);
-										}).catch((error) => {
-											console.log('error', error);
-										});
+											cropperCircleOverlay: true
+										}).then((image) =>
+											uploadImage({
+												uri: image.path,
+												type: 'image/jpeg',
+												name: 'profileImage'
+											})
+										)
+											.then(() => dispatch(loadUser()))
+											.catch((error) => console.log(error));
 									} }
 								/>
 							</View>
-							<View style = { modalStyles.buttonView }>
-								<Button
-									title = 'Cancel'
-									containerStyle = { modalStyles.buttonContainer }
-									buttonStyle = { modalStyles.buttonStyle }
-									onPress = { () => {
-										setModalError('');
-										setModalVisible(!modalVisible);
-									} }
-								/>
-							</View>
-							{ renderModalError() }
+							<Button
+								title = 'Cancel'
+								containerStyle = { modalStyles.buttonContainer }
+								buttonStyle = { modalStyles.buttonStyle }
+								onPress = { () => setModalVisible(!modalVisible) }
+							/>
 						</View>
 					</View>
 				</KeyboardAvoidingView>
@@ -135,70 +127,84 @@ export const Account = ({ navigation }) => {
 		);
 	};
 
-	if (!loading) {
-		return (
-			<View />
-		);
-	}
-	else {
-		return (
-			<View style = { [fullWidthHeight, container] }>
-				{ renderSetProfilePictureModal() }
-				<NavBar navigation = { navigation } screenName = 'Account' />
+	return (
+		<View style = { [fullWidthHeight, container] }>
+			{ renderSetProfilePictureModal() }
+			<NavBar navigation = { navigation } screenName = 'Account' />
 
-				<View style = { [centerItems] }
-					width = '100%'
-					height = '35%'
+			<View style = { [centerItems, topContainer] }>
+				<Avatar
+					size = { 200 }
+					rounded = { true }
+					source = { activeUser.picture ? { uri: activeUser.picture } : require('../assets/default_profile_icon.png') }
 				>
-					<Avatar
-						size = { 200 }
-						rounded
-						// TODO - Make source equal to user's profile picture variable so it can vary
-						source = { require('../assets/default_profile_icon.png') }
-					>
-						<Avatar.Accessory
-							size = { 20 }
-							underlayColor = '#8C9095'
-							onPress = { () => {
-								setModalVisible(true);
-								setError('');
-							} }
-						/>
-					</Avatar>
-				</View>
-				{ renderError() }
-
-				<View style = { [centerItems, infoBar] }>
-					<Text style = { infoText }>Username: { activeUser.name } </Text>
-					<Text style = { infoText }>Email: { activeUser.email }</Text>
-					<Text style = { infoText }>Total Breeds Seen: { activeUser.CollectedBreeds }</Text>
-					<Text style = { infoText }>Points: { activeUser.score }</Text>
-					<Button
-						title = 'Log out'
-						containerStyle = { [buttonContainer, { height: 60 }] }
-						buttonStyle = { fullWidthHeight }
-						onPress = { logoutSubmit }
+					<Avatar.Accessory
+						size = { 50 }
+						underlayColor = { colors.offWhite }
+						onPress = { () => setModalVisible(true) }
 					/>
+				</Avatar>
+				<View style = { perosnalInfoContainer }>
+					<Text style = { personalInfoText }>{ activeUser.name }</Text>
+					<Text style = { personalInfoText }>{ activeUser.email }</Text>
 				</View>
 			</View>
 
-		);
-	}
+			<View style = { [centerItems, statsLogoutArea] }>
+				<View style = { statsContainer }>
+					<View style = { topStats }>
+						<Text style = { statsInfo }>Score:</Text>
+						<Text style = { statsInfo }>{ activeUser.score }</Text>
+					</View>
+					<View style = { topStats }>
+						<Text style = { statsInfo }>Total Dogs Seen:</Text>
+						<Text style = { statsInfo }>
+							{ (activeUser.CollectedBreeds.total == undefined) ? 0 : activeUser.CollectedBreeds.total }
+						</Text>
+					</View>
+					<View style = { breedsSeen }>
+						<View style = { bottomStats }>
+							<Text style = { statsInfo }>Total Breeds Seen:</Text>
+							<Text style = { statsInfo }>
+								{ Object.keys(activeUser.CollectedBreeds).length - 1 } / 100
+							</Text>
+						</View>
+						<View style = { outerBarStyle }>
+							{ updateBarPercent(Object.keys(activeUser.CollectedBreeds).length - 1) }
+							<View style = { [innerBarStyle, { width: `${ barPercent }%` }] } />
+						</View>
+					</View>
+				</View>
+
+				<Button
+					title = 'Log out'
+					containerStyle = { modalStyles.buttonContainer }
+					buttonStyle = { fullWidthHeight }
+					onPress = { logoutSubmit }
+				/>
+			</View>
+		</View>
+
+	);
 };
 
 const accountStyles = {
 	container: {
 		backgroundColor: colors.primaryDark,
 		flexDirection: 'column',
+		justifyContent: 'space-between',
 		flex: 1,
 		zIndex: 1
 	},
-	infoBar: {
-		backgroundColor: colors.offWhite,
-		height: '55%',
+	topContainer: {
 		width: '100%',
-		zIndex: 5,
-		justifyContent: 'space-around',
+		height: '45%'
+	},
+	statsLogoutArea: {
+		height: '42%',
+		width: '100%',
+		backgroundColor: colors.offWhite,
+		justifyContent: 'space-evenly',
 		alignItems: 'center',
 		borderTopLeftRadius: 12,
 		borderTopRightRadius: 12
@@ -208,28 +214,74 @@ const accountStyles = {
 		alignItems: 'center',
 		justifyContent: 'center'
 	},
-	infoText: {
-		fontSize: 16,
-		alignSelf: 'flex-start',
-		marginLeft: '10%'
+	statsContainer: {
+		width: '84%',
+		height: '45%'
+	},
+	topStats: {
+		flexDirection: 'row',
+		justifyContent: 'space-between'
+	},
+	bottomStats: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		marginTop: '5%'
+	},
+	breedsSeen: {
+		width: '100%',
+		height: '100%'
+	},
+	statsInfo: {
+		fontSize: 18
+	},
+	bottomButtonStyle: {
+		height: '20%',
+		marginTop: '2%'
+	},
+	perosnalInfoContainer: {
+		width: '100%',
+		height: '30%',
+		justifyContent: 'space-around',
+		marginTop: '3%'
+	},
+	personalInfoText: {
+		fontSize: 22,
+		alignSelf: 'center',
+		color: 'rgb(64, 64, 64)'
+	},
+	outerBarStyle: {
+		width: '100%',
+		height: '25%',
+		justifyContent: 'center',
+		borderRadius: 11,
+		marginTop: '2%',
+		backgroundColor: colors.dark
+	},
+	innerBarStyle: {
+		height: '55%',
+		borderRadius: 6,
+		marginLeft: '2%',
+		backgroundColor: colors.primaryLight
 	}
 };
 
 const modalStyles = {
-	centeredView: {
-		justifyContent: 'center',
-		alignItems: 'center',
-		height: '100%',
+	bottomView: {
 		width: '100%',
+		height: '100%',
+		justifyContent: 'flex-end',
+		alignItems: 'center',
 		backgroundColor: 'rgba(0, 0, 0, 0.4)'
 	},
-	ModalView: {
+	modalView: {
+		width: '100%',
+		height: '45%',
 		justifyContent: 'space-around',
 		alignItems: 'center',
+		flexDirection: 'column',
 		backgroundColor: colors.offWhite,
-		width: '90%',
-		height: 250,
-		borderRadius: 10
+		borderTopLeftRadius: 32,
+		borderTopRightRadius: 32
 	},
 	promptText: {
 		paddingBottom: '3%',
@@ -240,19 +292,21 @@ const modalStyles = {
 		borderBottomWidth: 1,
 		borderBottomColor: colors.dark
 	},
-	buttonView: {
-		flexDirection: 'row',
-		justifyContent: 'space-around',
+	topButtons: {
+		width: '100%',
+		height: '50%',
 		alignItems: 'center',
-		height: '25%',
-		width: '100%'
+		justifyContent: 'space-around',
+		marginTop: '2%'
 	},
 	buttonContainer: {
-		width: '30%',
-		height: '65%',
+		width: width * 0.65,
+		height: height * 0.085,
 		justifyContent: 'center'
 	},
 	buttonStyle: {
-		backgroundColor: colors.primaryDark
+		backgroundColor: colors.primaryDark,
+		height: '100%',
+		borderRadius: 0
 	}
 };

@@ -168,9 +168,59 @@ export const loadUserData = () => new Promise((resolve) => {
 				let JSONData = JSON.parse(userData);
 
 				formattedUserData.push({ name: JSONData.name, email: JSONData.email, score: JSONData.score,
-					picture: JSONData.picture, CollectedBreeds: JSONData.collectedBreeds.total });
+					picture: JSONData.picture, CollectedBreeds: JSONData.collectedBreeds });
 				resolve(formattedUserData[0]);
 			});
 	}
 	catch (e) { console.error(e) }
+});
+
+export const uploadImage = (image) => new Promise((resolve, reject) => {
+	try {
+		const payload = new FormData();
+
+		payload.append('image', image);
+
+		fetch(`${config.API_ADDR}/user/uploadImage`, {
+			method: 'POST',
+			mode: 'no-cors',
+			headers: {
+				'Accept': 'application/json',
+				'Content-type': 'multipart/form-data'
+			},
+			body: payload
+		})
+			.then(res => res.json())
+			.then(result => {
+				result.success ? resolve(result.success)
+					: reject(result.success);
+			});
+	}
+	catch (e) {
+		console.error(e);
+	}
+});
+
+export const updateCollectedBreeds = (breedName) => new Promise((resolve, reject) => {
+	try {
+		const breed = { name: breedName };
+
+		fetch(`${config.API_ADDR}/user/updateCollectedBreeds`, {
+			method: 'POST',
+			mode: 'no-cors',
+			headers: {
+				'Accept': 'application/json',
+				'Content-type': 'application/json'
+			},
+			body: JSON.stringify(breed)
+		})
+			.then(res => res.json())
+			.then(status => {
+				(status.success) ? resolve(status.success)
+					: reject(status.success);
+			});
+	}
+	catch (e) {
+		console.error(e);
+	}
 });

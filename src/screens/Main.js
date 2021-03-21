@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Pressable, Modal, KeyboardAvoidingView, Text, Image, Dimensions, Alert } from 'react-native';
 import { Button } from 'react-native-elements';
 import Svg, { Circle } from 'react-native-svg';
@@ -6,9 +6,10 @@ import { Book, Flash, FlipCamera } from '../assets/images';
 import { styles, colors } from '../styles';
 import { RNCamera } from 'react-native-camera';
 import { useCamera } from 'react-native-camera-hooks';
-import * as jpeg from 'jpeg-js';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { loadUser } from '../ducks';
 import { classifyBreed } from '../services/breedServices';
+import { updateCollectedBreeds } from '../services/userServices';
 
 const { height, width } = Dimensions.get('screen');
 
@@ -16,7 +17,9 @@ export const Main = ({ navigation, initialProps }) => {
 	const [modalVisible, setModalVisible ] = useState(false);
 	const [capturedImage, setCapturedImage] = useState('');
 	const [breedFound, setBreedFound] = useState(true);
-	const [breedName, setBreedName] = useState('Golden Retriever');
+	const [breedName, setBreedName] = useState('');
+	const { activeUser } = useSelector(state => state.user);
+	const dispatch = useDispatch();
 
 	const capturedImageScale = 0.5;
 
@@ -30,13 +33,18 @@ export const Main = ({ navigation, initialProps }) => {
 		centerItems,
 		cameraContainer,
 		iconContainer,
-		verticalIconContainer
+		verticalIconContainer,
+		pfpIcon
 	} = mainStyles;
 
 	const [
 		{ cameraRef, type, ratio, autoFocus, autoFocusPoint, flash },
 		{ toggleFacing, setFlash, takePicture }
 	] = useCamera(initialProps);
+
+	useEffect(() => {
+		dispatch(loadUser());
+	}, []);
 
 	const showCapturedPicture = () => {
 		return (
@@ -45,14 +53,7 @@ export const Main = ({ navigation, initialProps }) => {
 			/>
 		);
 	};
-	/*
-	const imageToBuffer = async (base64) => {
-		const jpegData = Buffer.from(base64, 'base64');
-		const rawImageData = jpeg.decode(jpegData);
 
-		classifyBreed(rawImageData.data);
-	};
-	*/
 	const classificationModal = () => {
 		return (
 			<View style = { modalStyles.contentContainer }>
@@ -67,6 +68,9 @@ export const Main = ({ navigation, initialProps }) => {
 						containerStyle = { [styles.buttonContainer, modalStyles.buttonHeight] }
 						buttonStyle = { styles.fullWidthHeight }
 						onPress = { () => {
+							updateCollectedBreeds(breedName)
+								.then(() => Alert.alert(`${breedName} added to collection!`))
+								.catch(() => Alert.alert('Error', `Unable to add ${breedName} to collection. Try again`));
 							setModalVisible(false);
 							setBreedName('');
 						} }
@@ -144,11 +148,7 @@ export const Main = ({ navigation, initialProps }) => {
 							const data = await takePicture(options);
 
 							setCapturedImage(data.uri);
-							classifyBreed({
-								uri: data.uri,
-								type: 'image/jpeg',
-								name: 'breedImage'
-							})
+							classifyBreed({ uri: data.uri, type: 'image/jpeg', name: 'breedImage' })
 								.then(breed => {
 									if (!breed) {
 										setBreedFound(false);
@@ -173,6 +173,7 @@ export const Main = ({ navigation, initialProps }) => {
 					</Pressable>
 					<Pressable style = { smallButtonContainer } onPress = { () => navigation.navigate('Account') }>
 						{ iconBackground() }
+						<Image source = { activeUser.picture ? { uri: activeUser.picture } : require('../assets/default_profile_icon.png') } style = { pfpIcon } />
 					</Pressable>
 				</View>
 			</RNCamera>
@@ -273,6 +274,11 @@ const mainStyles = {
 	icon: {
 		width: '65%',
 		aspectRatio: 1
+	},
+	pfpIcon: {
+		height: '90%',
+		aspectRatio: 1,
+		borderRadius: 100
 	},
 	centerItems: {
 		alignItems: 'center',

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Input } from 'react-native-elements';
+import { colors } from '../styles';
 
 export const TextBox = ({ onChange, defaultValue, labelText, secureInput, value }) => {
 	const { container, textField, bottomBorderLine } = styles;
@@ -31,6 +32,6 @@ const styles = {
 	},
 	bottomBorderLine: {
 		borderBottomWidth: 2,
-		borderBottomColor: '#BC6F27'
+		borderBottomColor: colors.secondaryDark
 	}
 };
