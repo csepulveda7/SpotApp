@@ -1,3 +1,4 @@
+// SVGs //
 export { DogeFace } from './DogeFace';
 export { DogeFaceWithinCircle } from './DogeFaceWithinCircle';
 export { SpotAppLogo } from './SpotAppLogo';

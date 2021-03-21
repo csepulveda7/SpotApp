@@ -58,6 +58,33 @@ export const getBreedInfo = (id) => new Promise((resolve) => {
 	}
 });
 
+export const getBreedName = (id) => new Promise((resolve) => {
+	try {
+		fetch(`${config.API_ADDR}/breeds/getBreeds`, {
+			method: 'GET',
+			mode: 'no-cors',
+			headers: {
+				'Accept': 'application/json',
+				'Content-type': 'application/json'
+			}
+		})
+			.then(res => res.json())
+			.then(data => {
+				let _id = id - 1;
+
+				const info = {
+					breed: data[_id].name,
+					id: data[_id].id
+				};
+
+				resolve(info);
+			});
+	}
+	catch (e) {
+		console.error(e);
+	}
+});
+
 export const getBreedPhoto = (id) => new Promise((resolve) => {
 	try {
 		fetch(`${config.API_ADDR}/breeds/getBreeds`, {

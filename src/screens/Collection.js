@@ -3,7 +3,7 @@ import { View, Text, ScrollView, Pressable, Modal, Image } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { colors } from '../styles';
 import NavBar from '../components/NavBar';
-import { getBreeds, getBreedInfo, getBreedPhoto } from '../services/breedServices';
+import { getBreeds, getBreedInfo, getBreedName, getBreedPhoto } from '../services/breedServices';
 import { CapturedIcon } from '../assets/images/';
 import { useDispatch, useSelector } from 'react-redux';
 import { userStatus, loadUser } from '../ducks';
@@ -35,13 +35,12 @@ export const Collection = ({ navigation }) => {
 	useEffect(async () => {
 		dispatch(loadUser());
 		setEntries(await getBreeds());
-		setInfo(await loadInfo(1));
-		setBreedImage(await loadPhoto(1));
 
 		setBreedsLoaded(true);
 	}, []);
 
 	const loadInfo = async (id) => await getBreedInfo(id);
+	const loadName = async (name) => await getBreedName(name);
 	const loadPhoto = async (id) => await getBreedPhoto(id);
 
 	const userHasBreed = breed => (activeUser.CollectedBreeds[breed] !== undefined);
@@ -78,7 +77,14 @@ export const Collection = ({ navigation }) => {
 		return (
 			<View style = { container }>
 				<NavBar navigation = { navigation } screenName = 'Collections' />
-				<Pressable style = { topContainer } onPress = { () => setShowTopModal(true) } >
+				<Pressable
+					style = { topContainer }
+					onPress = { () => {
+						// If the field bredFor exists, the user has the dog scanned
+						if (info.bredFor !== undefined)
+							setShowTopModal(true);
+					} }
+				>
 					{ renderTopModal() }
 					<Image
 						style = { modalStyles.breedImage }
@@ -97,15 +103,20 @@ export const Collection = ({ navigation }) => {
 								containerStyle = { breedItemContainer }
 								onPress = { async () => {
 									try {
-										setBreedImage(await loadPhoto(dog.id));
-										setInfo(await loadInfo(dog.id));
+										if (userHasBreed(dog.breed)) {
+											setBreedImage(await loadPhoto(dog.id));
+											setInfo(await loadInfo(dog.id));
+										}
+										else {
+											setInfo(await loadName(dog.id));
+											setBreedImage({ url: 'https://i.ibb.co/F3r2QZF/unknown-Dog.png' });
+										}
 									}
 									catch (e) {
 										console.log(e);
 									}
 								} }
 							>
-								{/* this is where we would mark the dog as captured or not */}
 								<View style = { capturedBox }>
 									{ userHasBreed(dog.breed) ? <CapturedIcon style = { captureIconStyle } /> : <></> }
 								</View>
