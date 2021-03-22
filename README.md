@@ -168,16 +168,17 @@ Configured TensorflowJS in Node backend and successfully fetch Mobilenet image c
 *[Demonstration]()*
 
 **Diego Cruces**  
-
+Wrote automated unit test in jest for front end components, navigation, and screens in order to ensure proper functionality. Working on importing stats more efficiently and loading data from collection and account page.
 
 **Pablo Cuervo**  
-
+Formatted and styled the account page and change profile picture modal to reflect the updated UI mockup.
 
 **Lucas Saber**  
-
+Made progress bar for the account page to indicate the number of unique breeds the user has spotted. Cleaned up code and updated button definition. Fixed error with app crashing when selecting a picture to update the profile picture among other various bugs. Also connected user stats from the backend to the user interface. Further cleaned up account page styling.
 
 **Jordan Schneider**  
-
+Rewrote algorithm for fetching breed data and photos from ~2 seconds to ~0.5 seconds. Revamped entire JSON file formatting to only include breeds that were cross-referenced from the local JSON file and the breeds that the Machine Learning model recognizes; also including dogs with slightly varying names. Allowed the ML model to return and check whether the breed exists. Stylized Dogopedia page and list only referenced breeds. "Captured" icon now shows next to dogs that the user has captured. Wrote backend functions for fetching breed information, breed name, and breed photo. Brought functions in to frontend to pull specific info based on what calls the user makes.
 
 **Cristobal Sepulveda**  
-
+Allow users to update their profile pic and store the updated image on the database. Allow users to see their profile picture in the main screen as well. 
+Added point system functionality to app. User's who scan new dog breeds get points for that dog breed's rarity. User's who scan a dog that they already collected get 1 point. Points are added to the user's score and can be seen in the Account page.  User's stats are now updated and shown on the Account page when they spot a breed. New breeds are added to the collected breeds list and increment the Total Breeds Seen stat. Every dog that is spotted increments the Total Dogs spotted stat.
