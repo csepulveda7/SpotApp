@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, ScrollView, Pressable, Modal, Image } from 'react-native';
-import { ListItem } from 'react-native-elements';
+import { ListItem, Button } from 'react-native-elements';
 import { colors } from '../styles';
 import NavBar from '../components/NavBar';
-import { getBreeds, getBreedInfo, getBreedName, getBreedPhoto } from '../services/breedServices';
+import { getBreeds, getBreedInfo, getBreedName, getBreedPhoto, findBreed } from '../services/breedServices';
 import { CapturedIcon } from '../assets/images/';
 import { useDispatch, useSelector } from 'react-redux';
-import { userStatus, loadUser } from '../ducks';
+import { loadUser } from '../ducks';
 
 // @cris: look at line 101 for where to put if dog is captured
 export const Collection = ({ navigation }) => {
@@ -64,6 +64,14 @@ export const Collection = ({ navigation }) => {
 					<Text style = { modalStyles.paragraph } > Life Span: { info.lifeSpan } </Text>
 					<Text style = { modalStyles.paragraph } > Temperament: { info.temperament } </Text>
 					<Text style = { modalStyles.paragraph } > Weight: { info.weight } lbs </Text>
+					<Button
+						title = 'Find Near Me'
+						containerStyle = { modalStyles.buttonContainer }
+						buttonStyle = {{ width: '100%', height: '100%' }}
+						onPress = { () => findBreed(info.breed, '32826')
+							.then(result => console.log(result))
+							.catch(e => console.error(e)) }
+					/>
 				</View>
 			</Modal>
 		);
@@ -156,6 +164,12 @@ const modalStyles = {
 	paragraph: {
 		fontSize: 20,
 		textAlign: 'left'
+	},
+	buttonContainer: {
+		width: '65%',
+		height: '15%',
+		alignSelf: 'center',
+		marginTop: 10
 	}
 };
 

@@ -129,3 +129,25 @@ export const classifyBreed = (image) => new Promise((resolve, reject) => {
 		console.error(e);
 	}
 });
+
+export const findBreed = (breed, location) => new Promise((resolve, reject) => {
+	try {
+		const data = { searchBreed: breed, searchLocation: location };
+
+		fetch(`${config.API_ADDR}/breeds/findBreed`, {
+			method: 'POST',
+			mode: 'no-cors',
+			headers: {
+				'Accept': 'application/json',
+				'Content-type': 'application/json'
+			},
+			body: JSON.stringify(data)
+		})
+			.then(res => res.json())
+			.then(results => { resolve(results) })
+			.catch(err => reject(err));
+	}
+	catch (e) {
+		console.error(e);
+	}
+});
