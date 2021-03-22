@@ -86,9 +86,9 @@ exports.handleUpload = (image) => new Promise((resolve, reject) => {
 	let imageRef = null;
 	let uploadBlob = null;
 
-	console.log('here');
+	//console.log('here');
 	imageRef = storage.ref(`users/${ uid }`).child('profilePic');
-	console.log('here again');
+	//console.log('here again');
 
 	const imageBuffer = fs.readFileSync(__dirname + '/tempImage.jpg');
 
@@ -113,7 +113,7 @@ exports.updateCollectedBreeds = (breed) => new Promise((resolve, reject) => {
 
 	userRef.get()
 		.then((doc) => {
-			console.log(doc.data());
+			//console.log(doc.data());
 
 			return doc.data();
 		})

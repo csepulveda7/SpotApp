@@ -1,3 +1,9 @@
+<p align="center">
+  <img width="400" src = "src/assets/images/SVG/SpotLogo.svg">
+</p>
+
+## Product Vision
+
 SPOT will be an app that will classify a dog's breed from an image of them and store the photo into a personal database. Each photo will be associated with its breed and will display general information about the breed along with if that breed is available at local shelters. The user's account will store the pictures they have taken and the associated breeds.
 
 We are creating this product for both education and entertainment. It can aid in animal shelters and dog rescues by raising awareness of dogs in the local community. It is a project that would be educational while still making it exciting for people to use due to the given incentive of 'collecting' as many breeds as possible. For us, it would be a great project to work on as we would get experience in front-end and back-end development, and working with machine learning models.
@@ -8,15 +14,17 @@ Most apps on the market strictly identify a dog breed; however, ours would not o
 
 ## Team Members
 
-- Diego Cruces
-- Pablo Cuervo
-- Lucas Saber
-- Jordan Schneider
-- Cristobal Sepulveda
+- Diego Cruces (Diegoslovaco)
+- Pablo Cuervo (pablocuervo-commits)
+- Lucas Saber (LSaber36)
+- Jordan Schneider (schneidercorn)
+- Cristobal Sepulveda (csepulveda7)
 
 ## Wiki
 
 Check out our [wiki](https://github.com/csepulveda7/SpotApp/wiki) for more info, guides, and documentation 😃
+
+> Want to see if a dog breed is compatible? Check [here](https://github.com/csepulveda7/SpotApp/wiki/Compatible-Breeds).
 
 ## Resources
 
@@ -100,7 +108,7 @@ Added user authentication functions such as account creation, user login, email 
 
 ## Sprint 4
 
-*[Demonstration](https://www.youtube.com/watch?v=Jjmw2eP9g1g)*
+*[Demonstration](https://youtu.be/LD3TZUdSkFw)*
 
 **Diego Cruces**  
 Implemented sign out functionality on the front end, created functions that retrieve user data from the database and populate the user model.
@@ -116,3 +124,60 @@ Making of camera functionality button SVGs and struggled with Lucas on camera se
 
 **Cristobal Sepulveda**  
 Worked on refactoring router, added different routing stacks for authorized and unauthorized users, added redux state management functionality, refactored user services.
+
+## Sprint 5
+
+*[Demonstration](https://youtu.be/oOoqHmydFrI)*
+
+**Diego Cruces**  
+Created loadUser Service, Controller, and Router to communicate with firebase in order to obtain current logged user information, made such information into a JSON file such that it can be store and rendered in the front end when needed. Wrote automated tests for backend.
+
+**Pablo Cuervo**  
+Set up an avatar for the profile picture on account page and set up a modal to allow the user to edit their profile picture on the app.
+
+**Lucas Saber**  
+Setup the camera to display the captured image from the main page in a modal.  Also updated the camera modal to use uniform picture sizes and the flash button to toggle between on/off only. I also helped setup the collections page, which gets data of a specific format and displays it properly.
+
+**Jordan Schneider**  
+Reformatting of main page and fixing of icons on camera page. Implemeted Carousel and FlatList on Collection page to sync to whatever the user clicks. Worked on importing a js file as an object to use in FlatList for easy implementation from Cloud Firestore.
+
+**Cristobal Sepulveda**  
+Successfully got user authentication info from Firebase to enforce email verification before login. Refactored routing, added secure routing so only verified accounts can login, and only logged in accounts can access the rest of the app. Set up and connected userStatus reducer in redux to create a global state for userStatus. Added checks to handle user creation success/failures and show appropriate alerts/send users to the appropriate screens based on user creation status. Added email verification alert after successful account creation and send the verification email to the appropriate address. Render appropriate error messages if user info is wrong or unable to be processed by Firebase, when creating an account, logging in, or resetting their password. Handle clearing rendered error messages when user fixes their issue or navigates away from page/modal. Added full MVC architecture by completely decoupling Model from View/Controller/Services
+
+## Sprint 6
+
+*[Demonstration](https://youtu.be/g252lG3rnSE)*
+
+**Diego Cruces**  
+Fully connected backend loadUser function that retrieves current logged user information and returns a Json to the front end in order to render the user information in the account page.
+
+**Pablo Cuervo**  
+Imported Image Crop Picker and used it to allow users to choose a picture from camera or gallery to be used as their profile picture.
+
+**Lucas Saber**  
+Fixed collections indexing and page styling. Worked on frontend UI unit testing, helped with the development of the JSON parsing and sending to frontend.
+
+**Jordan Schneider**  
+Brought in local JSON file to parse, package, then send to frontend; reconfigured JSON file's id's to reflect actual dog ids and cleaned up JSON's format. Enable the ML model to only return breeds of dogs that are currently in the database and ignore other possible objects; return whether the picture is a dog or not. Show information of dog on collection page when dog image is clicked.
+
+**Cristobal Sepulveda**  
+Configured TensorflowJS in Node backend and successfully fetch Mobilenet image classification model. Packaged captured image uri and file data in a Form and send it to backend server through post request. Process image in backend and send it through the image classification model, capture the returned object, extract and reformat breed name and send back to frontend. Handle both classification success and fail states and render appropriate modals for each.
+
+## Sprint 7
+
+*[Demonstration]()*
+
+**Diego Cruces**  
+
+
+**Pablo Cuervo**  
+
+
+**Lucas Saber**  
+
+
+**Jordan Schneider**  
+
+
+**Cristobal Sepulveda**  
+
