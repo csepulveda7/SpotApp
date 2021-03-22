@@ -165,7 +165,7 @@ Configured TensorflowJS in Node backend and successfully fetch Mobilenet image c
 
 ## Sprint 7
 
-*[Demonstration]()*
+*[Demonstration](https://youtu.be/syTzcIEoOpE)*
 
 **Diego Cruces**  
 Wrote automated unit test in jest for front end components, navigation, and screens in order to ensure proper functionality. Working on importing stats more efficiently and loading data from collection and account page.
