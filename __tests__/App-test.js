@@ -57,6 +57,8 @@ let breed = {
 		}
 };
 
+jest.mock('../src/services/userServices');
+let userFrontEnd = require('../src/services/userServices');
 // ================ //
 // BACKEND TESTING //
 // ============== //
@@ -440,4 +442,108 @@ describe('Frontend Testing', () => {
 		expect(testableComponent(getCurrentUserAccount, {INITIAL_STATE})).toBeTruthy();
 	});
 	
+
+	test('User is able to take a picture and scan it', () => {
+
+		const mockUpload = {
+			image: 'payload',
+			uploaded: true
+		}
+		userFrontEnd.uploadImage.mockResolvedValue(mockUpload.uploaded);
+
+		return expect(userFrontEnd.uploadImage(mockUpload)).resolves.toBe(true);
+	});
+
+	test('User is able to create an account in registration page', () => {
+
+		const mockNewUserRegistration = {
+			name: 'username',
+			email: 'email@email.email',
+			password: 'password',
+			picture: '',
+			score: 0,
+			collectedBreeds: {
+				total: 0
+			},
+			success: true
+		};
+
+
+
+		userFrontEnd.createUser.mockResolvedValue(mockNewUserRegistration.success);
+
+		return expect(userFrontEnd.createUser(mockNewUserRegistration)).resolves.toBeTruthy();
+	});
+
+
+	test('User is able to log in to the app', () => {
+
+		const userIsLogged = true;
+		const mockUserCredentials = {
+			email: 'email@email.email',
+			password: 'password'
+		};
+
+		let userStatus = false;
+		function setUserstatus(){
+			return !userStatus;
+		}
+		userFrontEnd.loginUser.mockResolvedValue(setUserstatus());
+
+		return expect(userFrontEnd.loginUser(mockUserCredentials)).resolves.toBe(userIsLogged);
+	});
+
+	test('After log in user can view their stats', () => {
+
+		const userIsLogged = true;
+		const mockUserCredentials = {
+			email: 'email@email.email',
+			password: 'password'
+		};
+
+		let userStatus = false;
+		function setUserstatus(){
+			return !userStatus;
+		}
+		userFrontEnd.loginUser.mockResolvedValue(setUserstatus());
+
+		expect(userFrontEnd.loginUser(mockUserCredentials)).resolves.toBe(userIsLogged);
+
+		if(userStatus){
+
+			const mockUserStats = {
+				name: 'name', 
+				email: 'email@email.email', 
+				score: 10,
+				picture: 'payload', 
+				CollectedBreeds: {
+					score: 10,
+				}
+			};
+			userFrontEnd.loadUserData.mockResolvedValue(mockUserStats);
+
+			expect(userFrontEnd.loadUserData()).resolves.toEqual(mockUserStats);
+
+
+		}
+	});
+
+	test('User is able request a password reset', () => {
+
+		const hasBeenApproved = true;
+		const mockUserCredentials = {
+			email: 'email@email.email',
+		};
+
+		let requestApproved = false;
+
+		function resetPassword(){
+			return !requestApproved;
+		}
+
+			
+		userFrontEnd.resetPassword.mockResolvedValue(resetPassword());
+
+		return expect(userFrontEnd.resetPassword(mockUserCredentials)).resolves.toEqual(hasBeenApproved);
+	});
 });
