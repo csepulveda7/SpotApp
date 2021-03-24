@@ -38,6 +38,9 @@ local.properties
 #Firebase Admin JSON
 serviceAccountKey.json
 
+#Server IP
+/src/config.js
+
 # node.js
 #
 node_modules/
