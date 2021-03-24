@@ -4,11 +4,14 @@ import { ListItem, Button } from 'react-native-elements';
 import { colors } from '../styles';
 import { NavBar, DogCard } from '../components';
 import { findBreed } from '../services/breedServices';
+import { DogeFace } from '../assets/images';
+
+const { width, height } = Dimensions.get('screen');
 
 export const DogShelterList = ({ navigation, route }) => {
 	const [dataLoaded, setDataLoaded] = useState(false);
 	const [dogs, setDogs] = useState([]);
-	const { container, cardsContainer } = styles;
+	const { container, cardsContainer, logo, textContainer, text } = styles;
 
 	useEffect(() => {
 		findBreed(route.params.breed, '32826')
@@ -19,6 +22,17 @@ export const DogShelterList = ({ navigation, route }) => {
 			.catch(e => console.error(e));
 	}, []);
 
+	const noDogsFound = () => {
+		return (
+			<View style = { textContainer }>
+				<DogeFace style = { logo } />
+				<Text style = { text }>
+					Couldn't find any { route.params.breed }s in your area :(
+				</Text>
+			</View>
+		);
+	}
+
 	if (!dataLoaded) {
 		return <></>;
 	}
@@ -27,7 +41,10 @@ export const DogShelterList = ({ navigation, route }) => {
 			<SafeAreaView style = { container }>
 				<NavBar navigation = { navigation } screenName = 'Dogs Near Me' />
 				<ScrollView contentContainerStyle = { cardsContainer }>
-					{ dogs.map(props => <DogCard { ...props } />) }
+
+					{ (!dogs.error)
+						? dogs.map(props => <DogCard { ...props } />)
+						: noDogsFound() }
 				</ScrollView>
 			</SafeAreaView>
 		);
@@ -46,7 +63,22 @@ const styles = {
 		padding: '2%',
 		flexWrap: 'wrap'
 	},
+	logo: {
+		width: '100%',
+		height: height / 3
+	},
+	textContainer: {
+		width: width * 0.8,
+		height: height / 2,
+		alignItems: 'center',
+		justifyContent: 'center'
+	},
 	text: {
-		fontSize: 45
+		fontSize: 22,
+		textAlign: 'center',
+		color: 'black',
+
+		// svg error maybe? contains blankspace below Doge
+		marginTop: '-15%'
 	}
 };
