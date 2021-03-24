@@ -2,13 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, ScrollView, Pressable, Modal, Image } from 'react-native';
 import { ListItem, Button } from 'react-native-elements';
 import { colors } from '../styles';
-import NavBar from '../components/NavBar';
+import { NavBar } from '../components';
 import { getBreeds, getBreedInfo, getBreedName, getBreedPhoto, findBreed } from '../services/breedServices';
 import { CapturedIcon } from '../assets/images/';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadUser } from '../ducks';
 
-// @cris: look at line 101 for where to put if dog is captured
 export const Collection = ({ navigation }) => {
 	const {
 		container,
@@ -68,9 +67,10 @@ export const Collection = ({ navigation }) => {
 						title = 'Find Near Me'
 						containerStyle = { modalStyles.buttonContainer }
 						buttonStyle = {{ width: '100%', height: '100%' }}
-						onPress = { () => findBreed(info.breed, '32826')
-							.then(result => console.log(result))
-							.catch(e => console.error(e)) }
+						onPress = { () => {
+							setShowTopModal(false);
+							navigation.navigate('DogShelterList', { breed: info.breed });
+						} }
 					/>
 				</View>
 			</Modal>

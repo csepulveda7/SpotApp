@@ -6,7 +6,7 @@ import { colors } from './styles';
 import {
 	/* Splash Screen */ Splash,
 	/* Auth Screens  */ Login, SignUp,
-	/* Main Screens  */ Main, Collection, Account
+	/* Main Screens  */ Main, Collection, Account, DogShelterList
 } from './screens';
 
 const OnboardingStack = createStackNavigator();
@@ -31,6 +31,7 @@ const MainStackNavigator = () => (
 		<MainStack.Screen name = 'Main' component = { Main } />
 		<MainStack.Screen name = 'Account' component = { Account } />
 		<MainStack.Screen name = 'Collection' component = { Collection } />
+		<MainStack.Screen name = 'DogShelterList' component = { DogShelterList } />
 	</MainStack.Navigator>
 );
 

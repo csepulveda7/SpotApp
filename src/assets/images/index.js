@@ -7,3 +7,5 @@ export { Book } from './Book';
 export { Flash } from './Flash';
 export { FlipCamera } from './FlipCamera';
 export { CapturedIcon } from './CapturedIcon';
+export { Female } from './Female';
+export { Male } from './Male';

@@ -26,9 +26,9 @@ exports.findBreed = function(request, response) {
 		});
 
 		result = apiResult.data.animals.map(animal =>
-			({ id: animal.id, name: animal.name, breed: animal.breed, age: animal.age,
+			({ id: animal.id, name: animal.name, breed: animal.breeds.primary, age: animal.age,
 				gender: animal.gender, size: animal.size, distance: animal.distance,
-				photo: animal.photo, description: animal.description, url: animal.url }));
+				photo: animal.photos[0].medium, url: animal.url }));
 
 		return result;
 	};
