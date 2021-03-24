@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, ScrollView, Pressable, Modal, Image } from 'react-native';
 import { ListItem, Button } from 'react-native-elements';
-import { colors } from '../styles';
+import { styles, colors } from '../styles';
 import { NavBar } from '../components';
 import { getBreeds, getBreedInfo, getBreedName, getBreedPhoto, findBreed } from '../services/breedServices';
 import { CapturedIcon } from '../assets/images/';
@@ -66,7 +66,7 @@ export const Collection = ({ navigation }) => {
 					<Button
 						title = 'Find Near Me'
 						containerStyle = { modalStyles.buttonContainer }
-						buttonStyle = {{ width: '100%', height: '100%' }}
+						buttonStyle = { styles.fullWidthHeight }
 						onPress = { () => {
 							setShowTopModal(false);
 							navigation.navigate('DogShelterList', { breed: info.breed });
@@ -169,7 +169,17 @@ const modalStyles = {
 		width: '65%',
 		height: '15%',
 		alignSelf: 'center',
-		marginTop: 10
+		marginTop: 10,
+
+		shadowColor: 'black',
+		shadowOffset: {
+			width: 0,
+			height: 50
+		},
+		shadowOpacity: 1,
+		shadowRadius: 5,
+
+		elevation: 10
 	}
 };
 

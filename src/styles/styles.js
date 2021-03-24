@@ -23,7 +23,16 @@ export const styles = {
 		justifyContent: 'flex-end',
 		alignItems: 'center',
 		marginTop: '6%',
-		position: 'relative'
+		position: 'relative',
+
+		shadowColor: 'black',
+		shadowOffset: {
+			width: 0,
+			height: 50
+		},
+		shadowOpacity: 1,
+
+		elevation: 5
 	},
 	errorText: {
 		fontSize: 14,

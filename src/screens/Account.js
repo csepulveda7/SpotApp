@@ -171,7 +171,7 @@ export const Account = ({ navigation }) => {
 						</View>
 						<View style = { outerBarStyle }>
 							{ updateBarPercent(Object.keys(activeUser.CollectedBreeds).length - 1) }
-							<View style = { [innerBarStyle, { width: `${ barPercent }%` }] } />
+							<View style = { [innerBarStyle, { width: barPercent + '%' }] } />
 						</View>
 					</View>
 				</View>
