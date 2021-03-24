@@ -16,6 +16,7 @@ const { height, width } = Dimensions.get('screen');
 export const Main = ({ navigation, initialProps }) => {
 	const [modalVisible, setModalVisible ] = useState(false);
 	const [capturedImage, setCapturedImage] = useState('');
+	const [flash, setFlash] = useState(RNCamera.Constants.FlashMode.off);
 	const [breedFound, setBreedFound] = useState(true);
 	const [breedName, setBreedName] = useState('');
 	const { activeUser } = useSelector(state => state.user);
@@ -38,8 +39,8 @@ export const Main = ({ navigation, initialProps }) => {
 	} = mainStyles;
 
 	const [
-		{ cameraRef, type, ratio, autoFocus, autoFocusPoint, flash },
-		{ toggleFacing, setFlash, takePicture }
+		{ cameraRef, type, ratio, autoFocus, autoFocusPoint },
+		{ toggleFacing, takePicture }
 	] = useCamera(initialProps);
 
 	useEffect(() => {
@@ -115,6 +116,8 @@ export const Main = ({ navigation, initialProps }) => {
 				ratio = { ratio }
 				autoFocus = { autoFocus }
 				style = { cameraContainer }
+				playSoundOnCapture = { true }
+				flashMode = { flash }
 			>
 				<View style = { iconContainer }>
 					<Pressable style = { verticalIconContainer } onPress = { () => toggleFacing() }>
@@ -122,18 +125,18 @@ export const Main = ({ navigation, initialProps }) => {
 					</Pressable>
 					<Pressable style = { verticalIconContainer } onPress = { () => {
 						switch (flash) {
-							case 'on':
-								setFlash('off');
+							case RNCamera.Constants.FlashMode.on:
+								setFlash(RNCamera.Constants.FlashMode.off);
 								break;
-							case 'off':
-								setFlash('on');
+							case RNCamera.Constants.FlashMode.off:
+								setFlash(RNCamera.Constants.FlashMode.on);
 								break;
 							default:
-								setFlash('off');
+								setFlash(RNCamera.Constants.FlashMode.on);
 								break;
 						}
 					} }>
-						<Flash style = { icon } isOff = { (flash === 'off') ? '100' : '0' } />
+						<Flash style = { icon } isOff = { (flash === RNCamera.Constants.FlashMode.off) ? '100' : '0' } />
 					</Pressable>
 				</View>
 				<View style = { buttons }>
