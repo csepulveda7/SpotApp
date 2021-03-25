@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, ScrollView, Pressable, Modal, Image, Dimensions } from 'react-native';
+import { View, Text, ScrollView, Pressable, Modal, Image, Dimensions, ActivityIndicator } from 'react-native';
 import { ListItem, Button } from 'react-native-elements';
 import { styles, colors } from '../styles';
 import { NavBar } from '../components';
@@ -23,7 +23,8 @@ export const Collection = ({ navigation }) => {
 		breedItemText,
 		capturedBox,
 		captureIconStyle,
-		breedName
+		breedName,
+		center
 	} = collectionStyles;
 
 	let [breedsLoaded, setBreedsLoaded] = useState(false);
@@ -109,7 +110,14 @@ export const Collection = ({ navigation }) => {
 
 	// this is going to be where loading animation goes
 	if (!breedsLoaded) {
-		return <View />;
+		return (
+			<View style = { container }>
+				<ActivityIndicator
+					color = { colors.primaryDark }
+					size = { 60 }
+				/>
+			</View>
+		);
 	}
 	else {
 		return (
@@ -278,7 +286,7 @@ const collectionStyles = {
 		backgroundColor: colors.dark,
 		height: '100%',
 		width: '100%',
-		justifyContent: 'flex-start',
+		justifyContent: 'center',
 		alignItems: 'center',
 		position: 'relative'
 	},
