@@ -34,10 +34,10 @@ export const DogShelterList = ({ navigation, route }) => {
 
 	if (!dataLoaded) {
 		return (
-			<View style = { center }>
+			<View style = { [ container, center ] }>
 				<ActivityIndicator
-					color = { colors.dark }
-					size = { 60 }
+					color = { colors.primaryDark }
+					size = { 80 }
 				/>
 			</View>
 		);
@@ -60,10 +60,9 @@ export const DogShelterList = ({ navigation, route }) => {
 const styles = {
 	container: {
 		flex: 1,
-		backgroundColor: colors.primaryLight
+		backgroundColor: colors.offWhite
 	},
 	cardsContainer: {
-		backgroundColor: colors.primaryLight,
 		flexDirection: 'row',
 		justifyContent: 'center',
 		padding: '2%',
@@ -88,9 +87,6 @@ const styles = {
 		marginTop: '-15%'
 	},
 	center: {
-		height: '100%',
-		width: '100%',
-		backgroundColor: colors.primaryLight,
 		alignItems: 'center',
 		justifyContent: 'center'
 	}
