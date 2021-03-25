@@ -136,7 +136,7 @@ export const Collection = ({ navigation }) => {
 					style = { topContainer }
 					onPress = { () => {
 						// If the field bredFor exists, the user has the dog scanned
-						if (info.bredFor !== undefined)
+						if (info.breedGroup !== undefined)
 							setShowTopModal(true);
 					} }
 				>
