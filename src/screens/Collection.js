@@ -23,7 +23,9 @@ export const Collection = ({ navigation }) => {
 		breedItemText,
 		capturedBox,
 		captureIconStyle,
-		breedName
+		breedName,
+		center,
+		numberText
 	} = collectionStyles;
 
 	let [breedsLoaded, setBreedsLoaded] = useState(false);
@@ -173,7 +175,16 @@ export const Collection = ({ navigation }) => {
 								} }
 							>
 								<View style = { capturedBox }>
-									{ userHasBreed(dog.breed) ? <CapturedIcon style = { captureIconStyle } /> : <></> }
+									{ userHasBreed(dog.breed)
+										?
+										<View style = { center }>
+											<CapturedIcon style = { captureIconStyle } />
+											<Text style = { numberText }>
+												{ (activeUser.CollectedBreeds[dog.breed] > 9) ? '9+' : activeUser.CollectedBreeds[dog.breed] }
+											</Text>
+										</View>
+										: <></>
+									}
 								</View>
 								<ListItem.Content style = { contentStyle }>
 									<ListItem.Title style = { breedItemText }>{ dog.breed }</ListItem.Title>
@@ -398,7 +409,17 @@ const collectionStyles = {
 		justifyContent: 'center'
 	},
 	captureIconStyle: {
-		height: '60%',
+		height: '87%',
 		aspectRatio: 1
+	},
+	center: {
+		alignItems: 'center',
+		justifyContent: 'center'
+	},
+	numberText: {
+		fontSize: 18,
+		fontWeight: 'bold',
+		color: colors.dark,
+		position: 'absolute'
 	}
 };
