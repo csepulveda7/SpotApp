@@ -7,7 +7,7 @@ import { appLoading } from '../ducks';
 
 const { height, width } = Dimensions.get('screen');
 
-export const Splash = ({ navigation }) => {
+export const Splash = () => {
 	const [logo] = useState(new Animated.Value(0));
 	const animationStyle = { translateY: logo.interpolate({ inputRange: [0, 1], outputRange: [100, 0] }) };
 	const { container, logoStyle } = styles;
