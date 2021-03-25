@@ -23,8 +23,7 @@ export const Collection = ({ navigation }) => {
 		breedItemText,
 		capturedBox,
 		captureIconStyle,
-		breedName,
-		center
+		breedName
 	} = collectionStyles;
 
 	let [breedsLoaded, setBreedsLoaded] = useState(false);
@@ -48,6 +47,16 @@ export const Collection = ({ navigation }) => {
 	useEffect(async () => {
 		dispatch(loadUser());
 		setEntries(await getBreeds());
+
+		// load first dog if user has scanned it
+		if (userHasBreed('Affenpinscher')) {
+			setBreedImage(await loadPhoto(1));
+			setInfo(await loadInfo(1));
+		}
+		else {
+			setInfo(await loadName(1));
+			setBreedImage({ url: 'https://i.ibb.co/F3r2QZF/unknown-Dog.png' });
+		}
 
 		setBreedsLoaded(true);
 	}, []);
