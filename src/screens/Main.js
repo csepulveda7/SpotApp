@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Pressable, Modal, KeyboardAvoidingView, Text, Image, Dimensions, Alert } from 'react-native';
+import { View, Pressable, Modal, ActivityIndicator, KeyboardAvoidingView, Text, Image, Dimensions, Alert } from 'react-native';
 import { Button } from 'react-native-elements';
 import Svg, { Circle } from 'react-native-svg';
 import { Book, Flash, FlipCamera } from '../assets/images';
@@ -111,7 +111,8 @@ export const Main = ({ navigation, initialProps }) => {
 					<View style = { modalStyles.centeredBottom }>
 						<Image source = {{ uri: capturedImage }} style = { modalStyles.imageStyle } />
 						<View style = { [modalStyles.modalView, { height: (isReady ? 80 : 30) + '%' }] }>
-							{ isReady ? classificationModal() : <View /> }
+							{ isReady ? classificationModal()
+								: <ActivityIndicator color = { colors.primaryDark } size = { 60 } /> }
 						</View>
 					</View>
 				</KeyboardAvoidingView>
