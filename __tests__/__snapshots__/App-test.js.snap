@@ -638,11 +638,18 @@ exports[`Frontend Testing Logging in with correct information navigates to main 
       Object {
         "alignItems": "center",
         "borderRadius": 3,
+        "elevation": 5,
         "height": "7%",
         "justifyContent": "flex-end",
         "marginTop": "6%",
         "overflow": "hidden",
         "position": "relative",
+        "shadowColor": "black",
+        "shadowOffset": Object {
+          "height": 50,
+          "width": 0,
+        },
+        "shadowOpacity": 1,
         "width": "65%",
       }
     }
@@ -705,7 +712,7 @@ exports[`Frontend Testing Logging in with correct information navigates to main 
     style={
       Object {
         "alignItems": "center",
-        "color": "#404040",
+        "color": "black",
         "marginTop": "6%",
       }
     }
@@ -1363,11 +1370,18 @@ exports[`Frontend Testing Login page hyperlinks to registration page 1`] = `
       Object {
         "alignItems": "center",
         "borderRadius": 3,
+        "elevation": 5,
         "height": "7%",
         "justifyContent": "flex-end",
         "marginTop": "6%",
         "overflow": "hidden",
         "position": "relative",
+        "shadowColor": "black",
+        "shadowOffset": Object {
+          "height": 50,
+          "width": 0,
+        },
+        "shadowOpacity": 1,
         "width": "65%",
       }
     }
@@ -1430,7 +1444,7 @@ exports[`Frontend Testing Login page hyperlinks to registration page 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "color": "#404040",
+        "color": "black",
         "marginTop": "6%",
       }
     }
@@ -1923,11 +1937,18 @@ exports[`Frontend Testing Login page hyperlinks to registration page 2`] = `
       Object {
         "alignItems": "center",
         "borderRadius": 3,
+        "elevation": 5,
         "height": "7%",
         "justifyContent": "flex-end",
         "marginTop": "6%",
         "overflow": "hidden",
         "position": "relative",
+        "shadowColor": "black",
+        "shadowOffset": Object {
+          "height": 50,
+          "width": 0,
+        },
+        "shadowOpacity": 1,
         "width": "65%",
       }
     }
@@ -1990,7 +2011,7 @@ exports[`Frontend Testing Login page hyperlinks to registration page 2`] = `
     style={
       Object {
         "alignItems": "center",
-        "color": "#404040",
+        "color": "black",
         "marginTop": "6%",
       }
     }
@@ -2852,11 +2873,18 @@ exports[`Frontend Testing Login page loads after splash page 2`] = `
       Object {
         "alignItems": "center",
         "borderRadius": 3,
+        "elevation": 5,
         "height": "7%",
         "justifyContent": "flex-end",
         "marginTop": "6%",
         "overflow": "hidden",
         "position": "relative",
+        "shadowColor": "black",
+        "shadowOffset": Object {
+          "height": 50,
+          "width": 0,
+        },
+        "shadowOpacity": 1,
         "width": "65%",
       }
     }
@@ -2919,7 +2947,7 @@ exports[`Frontend Testing Login page loads after splash page 2`] = `
     style={
       Object {
         "alignItems": "center",
-        "color": "#404040",
+        "color": "black",
         "marginTop": "6%",
       }
     }
