@@ -182,3 +182,17 @@ Rewrote algorithm for fetching breed data and photos from ~2 seconds to ~0.5 sec
 **Cristobal Sepulveda**  
 Allow users to update their profile pic and store the updated image on the database. Allow users to see their profile picture in the main screen as well. 
 Added point system functionality to app. User's who scan new dog breeds get points for that dog breed's rarity. User's who scan a dog that they already collected get 1 point. Points are added to the user's score and can be seen in the Account page.  User's stats are now updated and shown on the Account page when they spot a breed. New breeds are added to the collected breeds list and increment the Total Breeds Seen stat. Every dog that is spotted increments the Total Dogs spotted stat.
+
+## Sprint 7
+
+*[Demonstration](https://youtu.be/sqI6_mb06kU)*
+
+**Diego Cruces**  
+
+**Pablo Cuervo**  
+
+**Lucas Saber**  
+
+**Jordan Schneider**  
+
+**Cristobal Sepulveda**  
