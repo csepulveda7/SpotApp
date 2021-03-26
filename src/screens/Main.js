@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Pressable, Modal, ActivityIndicator, KeyboardAvoidingView, Text, Image, Dimensions, Alert } from 'react-native';
+import { View, Pressable, Animated, Modal, ActivityIndicator, KeyboardAvoidingView, Text, Image, Dimensions, Alert } from 'react-native';
 import { Button } from 'react-native-elements';
 import Svg, { Circle } from 'react-native-svg';
 import { Book, Flash, FlipCamera } from '../assets/images';
@@ -18,11 +18,17 @@ export const Main = ({ navigation, initialProps }) => {
 	const [capturedImage, setCapturedImage] = useState('');
 	const [flash, setFlash] = useState(RNCamera.Constants.FlashMode.off);
 	const [isReady, setIsReady] = useState(false);
+	const [animatedHeight] = useState(new Animated.Value(30));
 	const [buttonSize, setButtonSize] = useState(35);
 	const [breedFound, setBreedFound] = useState(true);
 	const [breedName, setBreedName] = useState('');
 	const { activeUser } = useSelector(state => state.user);
 	const dispatch = useDispatch();
+
+	const interpolatedHeight = animatedHeight.interpolate({
+		inputRange: [0, 100],
+		outputRange: ['0%', '100%']
+	});
 
 	const capturedImageScale = 0.45;
 
@@ -57,6 +63,21 @@ export const Main = ({ navigation, initialProps }) => {
 		);
 	};
 
+	const animateModal = () => {
+		Animated.spring(animatedHeight, {
+			toValue: 80,
+			duration: 1000,
+			useNativeDriver: false
+		}).start();
+	};
+
+	const resetModalStates = () => {
+		setModalVisible(false);
+		setBreedName('');
+		setIsReady(false);
+		animatedHeight.resetAnimation();
+	};
+
 	const classificationModal = () => {
 		return (
 			<View style = { modalStyles.contentContainer }>
@@ -77,20 +98,14 @@ export const Main = ({ navigation, initialProps }) => {
 							updateCollectedBreeds(breedName)
 								.then(() => Alert.alert(`${breedName} added to collection!`))
 								.catch(() => Alert.alert('Error', `Unable to add ${breedName} to collection. Try again`));
-							setModalVisible(false);
-							setBreedName('');
-							setIsReady(false);
+							resetModalStates();
 						} }
 					/> : false }
 					<Button
 						title = 'Retake Photo'
 						containerStyle = { [styles.buttonContainer, modalStyles.buttonHeight] }
 						buttonStyle = { styles.fullWidthHeight }
-						onPress = { () => {
-							setModalVisible(false);
-							setBreedName('');
-							setIsReady(false);
-						} }
+						onPress = { () => resetModalStates() }
 					/>
 				</View>
 			</View>
@@ -110,10 +125,10 @@ export const Main = ({ navigation, initialProps }) => {
 				<KeyboardAvoidingView behavior = 'height' enabled>
 					<View style = { modalStyles.centeredBottom }>
 						<Image source = {{ uri: capturedImage }} style = { modalStyles.imageStyle } />
-						<View style = { [modalStyles.modalView, { height: (isReady ? 80 : 30) + '%' }] }>
+						<Animated.View style = { [modalStyles.modalView, { height: interpolatedHeight }] }>
 							{ isReady ? classificationModal()
 								: <ActivityIndicator color = { colors.primaryDark } size = { 60 } /> }
-						</View>
+						</Animated.View>
 					</View>
 				</KeyboardAvoidingView>
 			</Modal>
@@ -166,11 +181,13 @@ export const Main = ({ navigation, initialProps }) => {
 										if (!breed) {
 											setBreedFound(false);
 											setIsReady(true);
+											animateModal();
 										}
 										else {
 											setBreedFound(true);
 											setBreedName(breed);
 											setIsReady(true);
+											animateModal();
 										}
 									})
 									.catch(() => {
