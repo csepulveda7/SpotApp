@@ -32,6 +32,7 @@ export const Collection = ({ navigation }) => {
 	let [showTopModal, setShowTopModal] = useState(false);
 	let [info, setInfo] = useState({});
 	let [breedImage, setBreedImage] = useState('');
+	const [entries, setEntries] = useState([]);
 	const { activeUser } = useSelector(state => state.user);
 	const dispatch = useDispatch();
 
@@ -44,7 +45,15 @@ export const Collection = ({ navigation }) => {
 		{ prefix: 'Weight: ', 		key: info.weight + ' lbs',	icon: weight }
 	];
 
-	const [entries, setEntries] = useState([]);
+	const unknownDogs = [
+		{ url: 'https://i.ibb.co/M16vd5X/unknown1.png' },
+		{ url: 'https://i.ibb.co/hY2PGMj/unknown2.png' },
+		{ url: 'https://i.ibb.co/FBbXWw4/unknown3.png' },
+		{ url: 'https://i.ibb.co/NscdN4n/unknown4.png' },
+		{ url: 'https://i.ibb.co/K5HqGPC/unknown5.png' }
+	];
+
+	const randomUnknown = () => unknownDogs[Math.floor(unknownDogs.length * Math.random())];
 
 	useEffect(async () => {
 		dispatch(loadUser());
@@ -57,7 +66,7 @@ export const Collection = ({ navigation }) => {
 		}
 		else {
 			setInfo(await loadName(1));
-			setBreedImage({ url: 'https://i.ibb.co/F3r2QZF/unknown-Dog.png' });
+			setBreedImage(randomUnknown());
 		}
 
 		setBreedsLoaded(true);
@@ -166,7 +175,7 @@ export const Collection = ({ navigation }) => {
 										}
 										else {
 											setInfo(await loadName(dog.id));
-											setBreedImage({ url: 'https://i.ibb.co/F3r2QZF/unknown-Dog.png' });
+											setBreedImage(randomUnknown());
 										}
 									}
 									catch (e) {
