@@ -10,10 +10,11 @@ const { width, height } = Dimensions.get('screen');
 export const DogShelterList = ({ navigation, route }) => {
 	const [dataLoaded, setDataLoaded] = useState(false);
 	const [dogs, setDogs] = useState([]);
+
 	const { container, cardsContainer, logo, textContainer, text, center } = styles;
 
 	useEffect(() => {
-		findBreed(route.params.breed, '32826')
+		findBreed(route.params.breed, route.params.location)
 			.then(result => {
 				setDogs(result);
 				setDataLoaded(true);
@@ -30,7 +31,7 @@ export const DogShelterList = ({ navigation, route }) => {
 				</Text>
 			</View>
 		);
-	}
+	};
 
 	if (!dataLoaded) {
 		return (
@@ -70,7 +71,7 @@ const styles = {
 	},
 	logo: {
 		width: '100%',
-		height: height / 3
+		height: height / 3.2
 	},
 	textContainer: {
 		width: width * 0.8,

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, ScrollView, Pressable, Modal, Image, Dimensions, ActivityIndicator } from 'react-native';
+import { View, Text, ScrollView, Pressable, Modal, Image, Dimensions, ActivityIndicator, Alert } from 'react-native';
 import { ListItem, Button } from 'react-native-elements';
 import { styles, colors } from '../styles';
 import { NavBar } from '../components';
 import { getBreeds, getBreedInfo, getBreedName, getBreedPhoto } from '../services/breedServices';
-import { CapturedIcon } from '../assets/images/';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadUser } from '../ducks';
-import { bredFor, breedGroup, height, lifeSpan, temperament, weight } from '../assets/images/';
+import { CapturedIcon, bredFor, breedGroup, height, lifeSpan, temperament, weight } from '../assets/images/';
+import GetLocation from 'react-native-get-location';
 
 const { width } = Dimensions.get('screen');
 
@@ -118,7 +118,21 @@ export const Collection = ({ navigation }) => {
 								buttonStyle = { styles.fullWidthHeight }
 								onPress = { () => {
 									setShowTopModal(false);
-									navigation.navigate('DogShelterList', { breed: info.breed });
+									GetLocation.getCurrentPosition({
+										enableHighAccuracy: true,
+										timeout: 15000
+									})
+										.then(location => {
+											const coordinates = `${location.latitude},${location.longitude}`;
+
+											navigation.navigate('DogShelterList', { breed: info.breed, location: coordinates });
+										})
+										.catch(error => {
+											const { code, message } = error;
+
+											Alert.alert(`Error ${code}`, message);
+											console.warn(code, message);
+										});
 								} }
 							/>
 						</View>
