@@ -344,6 +344,7 @@ const mainStyles = {
 		width: '13%',
 		height: '20%',
 		marginLeft: '80%',
+		marginTop: '3%',
 		marginBottom: '100%',
 		alignItems: 'center'
 	},
