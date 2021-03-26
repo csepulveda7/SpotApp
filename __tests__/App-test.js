@@ -475,8 +475,6 @@ describe('Frontend Testing', () => {
 			success: true
 		};
 
-
-
 		userFrontEnd.createUser.mockResolvedValue(mockNewUserRegistration.success);
 
 		return expect(userFrontEnd.createUser(mockNewUserRegistration)).resolves.toBeTruthy();
@@ -640,8 +638,21 @@ describe('Frontend Testing', () => {
 			]
 		};
 
-		breedFrontEnd.findBreed.mockResolvedValue(mockShelterResult);
-		return expect(ShelterComponent).toBeTruthy() && expect(breedFrontEnd.findBreed(mockBreed, mockGeolocation)).resolves.toEqual(mockShelterResult);	
+		breedFrontEnd.getBreedInfo.mockResolvedValue(mockShelterResult);
+		return expect(ShelterComponent).toBeTruthy() && expect(breedFrontEnd.getBreedInfo()).resolves.toEqual(mockShelterResult);	
+	});
+
+
+	test('User is able to scan and classify breeds', () => {
+		const mockUpload = {
+			image: 'payload',
+			uploaded: true
+		}
+
+		const mockBreed = breed;
+
+		breedFrontEnd.classifyBreed.mockResolvedValue(mockBreed.name);
+		return expect(breedFrontEnd.classifyBreed(mockUpload)).resolves.toEqual(breed.name);	
 	});
 
 
