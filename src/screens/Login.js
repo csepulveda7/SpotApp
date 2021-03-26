@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, Pressable, Modal, KeyboardAvoidingView, Alert } from 'react-native';
+import { View, Text, Pressable, Modal, KeyboardAvoidingView, Alert, Dimensions} from 'react-native';
 import { TextBox, Header } from '../components';
 import { Button } from 'react-native-elements';
 import { loginUser, resetPassword } from '../services/userServices';
 import { styles, colors } from '../styles';
 import { useDispatch } from 'react-redux';
 import { userStatus } from '../ducks';
+
+const { height, width } = Dimensions.get('screen');
 
 export const Login = ({ navigation }) => {
 	const [email, setEmail] = useState('');
@@ -98,8 +100,8 @@ export const Login = ({ navigation }) => {
 							<View style = { modalStyles.buttonView }>
 								<Button
 									title = 'Cancel'
-									containerStyle = { modalStyles.buttonContainer }
-									buttonStyle = { modalStyles.buttonStyle }
+									containerStyle = { [styles.buttonContainer, modalStyles.buttonContainer] }
+									buttonStyle = { fullWidthHeight }
 									onPress = { () => {
 										setResetEmail('');
 										setModalError('');
@@ -108,8 +110,8 @@ export const Login = ({ navigation }) => {
 								/>
 								<Button
 									title = 'Send Email'
-									containerStyle = { modalStyles.buttonContainer }
-									buttonStyle = { modalStyles.buttonStyle }
+									containerStyle = { [styles.buttonContainer, modalStyles.buttonContainer] }
+									buttonStyle = { fullWidthHeight }
 									onPress = { () => resetPassSubmit() }
 								/>
 							</View>
@@ -179,18 +181,19 @@ const modalStyles = {
 		alignItems: 'center'
 	},
 	centeredView: {
+		height: height,
+		width: width,
 		justifyContent: 'center',
 		alignItems: 'center',
-		height: '100%',
-		width: '100%',
 		backgroundColor: 'rgba(0, 0, 0, 0.4)'
 	},
 	modalView: {
-		justifyContent: 'space-around',
+		height: '40%',
+		width: '90%',
+		marginTop: '-40%',
+		justifyContent: 'space-evenly',
 		alignItems: 'center',
 		backgroundColor: colors.offWhite,
-		width: '90%',
-		height: '40%',
 		borderRadius: 10
 	},
 	promptText: {
@@ -203,18 +206,17 @@ const modalStyles = {
 		borderBottomColor: colors.dark
 	},
 	buttonView: {
+		height: '20%',
+		width: '100%',
 		flexDirection: 'row',
 		justifyContent: 'space-around',
-		alignItems: 'center',
-		height: '30%',
-		width: '100%'
+		alignItems: 'center'
 	},
 	buttonContainer: {
+		height: '80%',
 		width: '35%',
-		height: '50%',
-		justifyContent: 'center'
-	},
-	buttonStyle: {
+		justifyContent: 'center',
+		marginTop: '0%',
 		backgroundColor: colors.primaryDark
 	},
 	textbox: {

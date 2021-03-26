@@ -5,6 +5,9 @@ import Router from './router';
 import { userStatus } from './ducks';
 import { Buffer } from 'buffer';
 global.Buffer = Buffer;
+import { LogBox } from 'react-native';
+
+LogBox.ignoreAllLogs(); //Ignore all log notifications
 
 const App = () => {
 	const dispatch = useDispatch();

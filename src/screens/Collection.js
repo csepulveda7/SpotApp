@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, ScrollView, Pressable, Modal, Image, Dimensions, ActivityIndicator } from 'react-native';
+import { View, Text, ScrollView, Pressable, Modal, Image, Dimensions, ActivityIndicator, Alert } from 'react-native';
 import { ListItem, Button } from 'react-native-elements';
 import { styles, colors } from '../styles';
 import { NavBar } from '../components';
 import { getBreeds, getBreedInfo, getBreedName, getBreedPhoto } from '../services/breedServices';
-import { CapturedIcon } from '../assets/images/';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadUser } from '../ducks';
-import { bredFor, breedGroup, height, lifeSpan, temperament, weight } from '../assets/images/';
+import { CapturedIcon, bredFor, breedGroup, height, lifeSpan, temperament, weight } from '../assets/images/';
+import GetLocation from 'react-native-get-location';
 
 const { width } = Dimensions.get('screen');
 
@@ -32,6 +32,7 @@ export const Collection = ({ navigation }) => {
 	let [showTopModal, setShowTopModal] = useState(false);
 	let [info, setInfo] = useState({});
 	let [breedImage, setBreedImage] = useState('');
+	const [entries, setEntries] = useState([]);
 	const { activeUser } = useSelector(state => state.user);
 	const dispatch = useDispatch();
 
@@ -44,7 +45,15 @@ export const Collection = ({ navigation }) => {
 		{ prefix: 'Weight: ', 		key: info.weight + ' lbs',	icon: weight }
 	];
 
-	const [entries, setEntries] = useState([]);
+	const unknownDogs = [
+		{ url: 'https://i.ibb.co/M16vd5X/unknown1.png' },
+		{ url: 'https://i.ibb.co/hY2PGMj/unknown2.png' },
+		{ url: 'https://i.ibb.co/FBbXWw4/unknown3.png' },
+		{ url: 'https://i.ibb.co/NscdN4n/unknown4.png' },
+		{ url: 'https://i.ibb.co/K5HqGPC/unknown5.png' }
+	];
+
+	const randomUnknown = () => unknownDogs[Math.floor(unknownDogs.length * Math.random())];
 
 	useEffect(async () => {
 		dispatch(loadUser());
@@ -57,7 +66,7 @@ export const Collection = ({ navigation }) => {
 		}
 		else {
 			setInfo(await loadName(1));
-			setBreedImage({ url: 'https://i.ibb.co/F3r2QZF/unknown-Dog.png' });
+			setBreedImage(randomUnknown());
 		}
 
 		setBreedsLoaded(true);
@@ -109,7 +118,21 @@ export const Collection = ({ navigation }) => {
 								buttonStyle = { styles.fullWidthHeight }
 								onPress = { () => {
 									setShowTopModal(false);
-									navigation.navigate('DogShelterList', { breed: info.breed });
+									GetLocation.getCurrentPosition({
+										enableHighAccuracy: true,
+										timeout: 15000
+									})
+										.then(location => {
+											const coordinates = `${location.latitude},${location.longitude}`;
+
+											navigation.navigate('DogShelterList', { breed: info.breed, location: coordinates });
+										})
+										.catch(error => {
+											const { code, message } = error;
+
+											Alert.alert(`Error ${code}`, message);
+											console.warn(code, message);
+										});
 								} }
 							/>
 						</View>
@@ -166,7 +189,7 @@ export const Collection = ({ navigation }) => {
 										}
 										else {
 											setInfo(await loadName(dog.id));
-											setBreedImage({ url: 'https://i.ibb.co/F3r2QZF/unknown-Dog.png' });
+											setBreedImage(randomUnknown());
 										}
 									}
 									catch (e) {
