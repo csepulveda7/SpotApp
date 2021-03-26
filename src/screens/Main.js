@@ -89,7 +89,7 @@ export const Main = ({ navigation, initialProps }) => {
 				<View style = { modalStyles.infoContainer } >
 					{ showCapturedPicture() }
 				</View>
-				<View style = { modalStyles.modalButtons }>
+				<View style = { modalStyles.modalButtonContainer }>
 					{ breedFound ? <Button
 						title = 'Add to Collection'
 						containerStyle = { [styles.buttonContainer, modalStyles.buttonHeight] }
@@ -238,8 +238,8 @@ const modalStyles = {
 		alignItems: 'center'
 	},
 	photoTextContainer: {
-		width: '100%',
 		height: '17%',
+		width: '100%',
 		justifyContent: 'center',
 		alignItems: 'center'
 	},
@@ -249,8 +249,8 @@ const modalStyles = {
 		textAlign: 'center'
 	},
 	dividerLine: {
-		width: '80%',
 		height: '.5%',
+		width: '80%',
 		marginTop: '-10%',
 		borderBottomColor: colors.dark,
 		borderBottomWidth: 1
@@ -271,23 +271,26 @@ const modalStyles = {
 		zIndex: 0
 	},
 	buttonHeight: {
-		height: '55%',
-		width: '40%'
+		height: '80%',
+		width: '40%',
+		marginTop: '0%'
 	},
-	modalButtons: {
-		height: '15%',
+	modalButtonContainer: {
+		height: '12%',
 		width: '100%',
 		flexDirection: 'row',
 		justifyContent: 'space-around',
-		marginBottom: '5%'
+		alignItems: 'center',
+		marginBottom: '5%',
+		marginTop: '2%'
 	}
 };
 
 const mainStyles = {
 	container: {
-		backgroundColor: 'grey',
 		height: '100%',
 		width: '100%',
+		backgroundColor: 'grey',
 		alignItems: 'center',
 		justifyContent: 'flex-end',
 		flexDirection: 'column',
@@ -328,7 +331,8 @@ const mainStyles = {
 		flex: 1
 	},
 	cameraContainer: {
-		height: '100%', width: '100%',
+		height: '100%',
+		width: '100%',
 		alignItems: 'center',
 		justifyContent: 'flex-end',
 		flexDirection: 'column',
