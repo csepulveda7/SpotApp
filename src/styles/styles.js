@@ -50,7 +50,7 @@ export const styles = {
 	subtextButton: {
 		marginTop: '6%',
 		alignItems: 'center',
-		color: colors.dark
+		color: 'black'
 	},
 	fullWidthHeight: {
 		width: '100%',

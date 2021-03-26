@@ -40,7 +40,7 @@ const styles = {
 		shadowColor: 'black',
 		shadowOffset: {
 			width: 0,
-			height: 50
+			height: 5
 		},
 		shadowOpacity: 1,
 		shadowRadius: 5,
@@ -50,16 +50,14 @@ const styles = {
 	picture: {
 		width: '100%',
 		height: '70%',
-		borderRadius: 10
+		borderRadius: 15
 	},
 	infoContainer: {
 		width: '100%',
 		height: '30%',
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: colors.offWhite,
-		borderRadius: 20,
-		zIndex: 5
+		backgroundColor: colors.offWhite
 	},
 	genderContainer: {
 		width: '25%',

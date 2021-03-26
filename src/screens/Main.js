@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Pressable, Modal, KeyboardAvoidingView, Text, Image, Dimensions, Alert } from 'react-native';
+import { View, Pressable, Modal, ActivityIndicator, KeyboardAvoidingView, Text, Image, Dimensions, Alert } from 'react-native';
 import { Button } from 'react-native-elements';
 import Svg, { Circle } from 'react-native-svg';
 import { Book, Flash, FlipCamera } from '../assets/images';
@@ -17,12 +17,14 @@ export const Main = ({ navigation, initialProps }) => {
 	const [modalVisible, setModalVisible ] = useState(false);
 	const [capturedImage, setCapturedImage] = useState('');
 	const [flash, setFlash] = useState(RNCamera.Constants.FlashMode.off);
+	const [isReady, setIsReady] = useState(false);
+	const [buttonSize, setButtonSize] = useState(35);
 	const [breedFound, setBreedFound] = useState(true);
 	const [breedName, setBreedName] = useState('');
 	const { activeUser } = useSelector(state => state.user);
 	const dispatch = useDispatch();
 
-	const capturedImageScale = 0.5;
+	const capturedImageScale = 0.45;
 
 	const {
 		container,
@@ -58,9 +60,12 @@ export const Main = ({ navigation, initialProps }) => {
 	const classificationModal = () => {
 		return (
 			<View style = { modalStyles.contentContainer }>
-				{ breedFound ? <Text style = { modalStyles.headerText }> { breedName } Spotted!</Text>
-					: <Text style = { modalStyles.headerText }> Couldn't Recognize the Breed...</Text> }
-				<View style = { modalStyles.infoContainer }>
+				<View style = { modalStyles.photoTextContainer }>
+					{ breedFound ? <Text style = { modalStyles.headerText }> { breedName } Spotted!</Text>
+						: <Text style = { modalStyles.headerText }> Couldn't Recognize the Breed...</Text> }
+				</View>
+				<View style = { modalStyles.dividerLine } />
+				<View style = { modalStyles.infoContainer } >
 					{ showCapturedPicture() }
 				</View>
 				<View style = { modalStyles.modalButtons }>
@@ -74,6 +79,7 @@ export const Main = ({ navigation, initialProps }) => {
 								.catch(() => Alert.alert('Error', `Unable to add ${breedName} to collection. Try again`));
 							setModalVisible(false);
 							setBreedName('');
+							setIsReady(false);
 						} }
 					/> : false }
 					<Button
@@ -83,6 +89,7 @@ export const Main = ({ navigation, initialProps }) => {
 						onPress = { () => {
 							setModalVisible(false);
 							setBreedName('');
+							setIsReady(false);
 						} }
 					/>
 				</View>
@@ -103,8 +110,9 @@ export const Main = ({ navigation, initialProps }) => {
 				<KeyboardAvoidingView behavior = 'height' enabled>
 					<View style = { modalStyles.centeredBottom }>
 						<Image source = {{ uri: capturedImage }} style = { modalStyles.imageStyle } />
-						<View style = { modalStyles.modalView }>
-							{ classificationModal() }
+						<View style = { [modalStyles.modalView, { height: (isReady ? 80 : 30) + '%' }] }>
+							{ isReady ? classificationModal()
+								: <ActivityIndicator color = { colors.primaryDark } size = { 60 } /> }
 						</View>
 					</View>
 				</KeyboardAvoidingView>
@@ -145,33 +153,37 @@ export const Main = ({ navigation, initialProps }) => {
 						<Book style = { icon } />
 					</Pressable>
 
-					<Pressable style = { largeButtonContainer } onPress = { async () => {
-						try {
-							const options = { base64: true };
-							const data = await takePicture(options);
+					<Pressable style = { largeButtonContainer }
+						onPress = { async () => {
+							try {
+								const options = { base64: true };
+								const data = await takePicture(options);
 
-							setCapturedImage(data.uri);
-							classifyBreed({ uri: data.uri, type: 'image/jpeg', name: 'breedImage' })
-								.then(breed => {
-									if (!breed) {
-										setBreedFound(false);
-										setModalVisible(true);
-									}
-									else {
-										setBreedFound(true);
-										setBreedName(breed);
-										setModalVisible(true);
-									}
-								})
-								.catch(() => {
-									setBreedName('');
-									setModalVisible(true);
-								});
-						}
-						catch (error) { console.warn(error) }
-					} }>
+								setCapturedImage(data.uri);
+								setModalVisible(true);
+								classifyBreed({ uri: data.uri, type: 'image/jpeg', name: 'breedImage' })
+									.then(breed => {
+										if (!breed) {
+											setBreedFound(false);
+											setIsReady(true);
+										}
+										else {
+											setBreedFound(true);
+											setBreedName(breed);
+											setIsReady(true);
+										}
+									})
+									.catch(() => {
+										setBreedName('');
+									});
+							}
+							catch (error) { console.warn(error) }
+						} }
+						onPressIn = { () => setButtonSize(40) }
+						onPressOut = { () => setButtonSize(35) }
+					>
 						<Svg style = { centerItems } width = '100%' height = '100%'>
-							<Circle cx = '50%' cy = '50%' r = '40%' stroke = 'rgb(255, 255, 255)' strokeWidth = '4%' />
+							<Circle cx = '50%' cy = '50%' r = { buttonSize + '%' } stroke = 'rgb(255, 255, 255)' strokeWidth = '4%' />
 						</Svg>
 					</Pressable>
 					<Pressable style = { smallButtonContainer } onPress = { () => navigation.navigate('Account') }>
@@ -204,17 +216,27 @@ const modalStyles = {
 		width: '100%',
 		borderTopRightRadius: 20,
 		borderTopLeftRadius: 20,
-		zIndex: 1
+		zIndex: 1,
+		justifyContent: 'center',
+		alignItems: 'center'
+	},
+	photoTextContainer: {
+		width: '100%',
+		height: '17%',
+		justifyContent: 'center',
+		alignItems: 'center'
 	},
 	headerText: {
 		fontSize: 24,
 		padding: '4%',
+		textAlign: 'center'
+	},
+	dividerLine: {
+		width: '80%',
+		height: '.5%',
+		marginTop: '-10%',
 		borderBottomColor: colors.dark,
 		borderBottomWidth: 1
-	},
-	photoText: {
-		marginTop: '6%',
-		fontSize: 18
 	},
 	infoContainer: {
 		height: '50%',

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, ScrollView, SafeAreaView, Dimensions, Pressable, Modal, Image } from 'react-native';
-import { ListItem, Button } from 'react-native-elements';
+import { View, Text, ScrollView, SafeAreaView, Dimensions, ActivityIndicator } from 'react-native';
 import { colors } from '../styles';
 import { NavBar, DogCard } from '../components';
 import { findBreed } from '../services/breedServices';
@@ -11,7 +10,7 @@ const { width, height } = Dimensions.get('screen');
 export const DogShelterList = ({ navigation, route }) => {
 	const [dataLoaded, setDataLoaded] = useState(false);
 	const [dogs, setDogs] = useState([]);
-	const { container, cardsContainer, logo, textContainer, text } = styles;
+	const { container, cardsContainer, logo, textContainer, text, center } = styles;
 
 	useEffect(() => {
 		findBreed(route.params.breed, '32826')
@@ -34,7 +33,14 @@ export const DogShelterList = ({ navigation, route }) => {
 	}
 
 	if (!dataLoaded) {
-		return <></>;
+		return (
+			<View style = { [ container, center ] }>
+				<ActivityIndicator
+					color = { colors.primaryDark }
+					size = { 80 }
+				/>
+			</View>
+		);
 	}
 	else {
 		return (
@@ -54,10 +60,9 @@ export const DogShelterList = ({ navigation, route }) => {
 const styles = {
 	container: {
 		flex: 1,
-		backgroundColor: colors.primaryLight
+		backgroundColor: colors.offWhite
 	},
 	cardsContainer: {
-		backgroundColor: colors.primaryLight,
 		flexDirection: 'row',
 		justifyContent: 'center',
 		padding: '2%',
@@ -80,5 +85,9 @@ const styles = {
 
 		// svg error maybe? contains blankspace below Doge
 		marginTop: '-15%'
+	},
+	center: {
+		alignItems: 'center',
+		justifyContent: 'center'
 	}
 };
