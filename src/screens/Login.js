@@ -98,8 +98,8 @@ export const Login = ({ navigation }) => {
 							<View style = { modalStyles.buttonView }>
 								<Button
 									title = 'Cancel'
-									containerStyle = { modalStyles.buttonContainer }
-									buttonStyle = { modalStyles.buttonStyle }
+									containerStyle = { [styles.buttonContainer, modalStyles.buttonContainer] }
+									buttonStyle = { fullWidthHeight }
 									onPress = { () => {
 										setResetEmail('');
 										setModalError('');
@@ -108,8 +108,8 @@ export const Login = ({ navigation }) => {
 								/>
 								<Button
 									title = 'Send Email'
-									containerStyle = { modalStyles.buttonContainer }
-									buttonStyle = { modalStyles.buttonStyle }
+									containerStyle = { [styles.buttonContainer, modalStyles.buttonContainer] }
+									buttonStyle = { fullWidthHeight }
 									onPress = { () => resetPassSubmit() }
 								/>
 							</View>
@@ -186,7 +186,7 @@ const modalStyles = {
 		backgroundColor: 'rgba(0, 0, 0, 0.4)'
 	},
 	modalView: {
-		justifyContent: 'space-around',
+		justifyContent: 'space-evenly',
 		alignItems: 'center',
 		backgroundColor: colors.offWhite,
 		width: '90%',
@@ -206,15 +206,14 @@ const modalStyles = {
 		flexDirection: 'row',
 		justifyContent: 'space-around',
 		alignItems: 'center',
-		height: '30%',
+		height: '20%',
 		width: '100%'
 	},
 	buttonContainer: {
 		width: '35%',
-		height: '50%',
-		justifyContent: 'center'
-	},
-	buttonStyle: {
+		height: '80%',
+		justifyContent: 'center',
+		marginTop: '0%',
 		backgroundColor: colors.primaryDark
 	},
 	textbox: {
