@@ -133,7 +133,7 @@ export const Collection = ({ navigation }) => {
 	else {
 		return (
 			<View style = { container }>
-				<NavBar navigation = { navigation } screenName = 'Collections' />
+				<NavBar navigation = { navigation } screenName = 'Dogopedia' />
 				<Pressable
 					style = { topContainer }
 					onPress = { () => {
@@ -303,7 +303,7 @@ const modalStyles = {
 
 const collectionStyles = {
 	container: {
-		backgroundColor: colors.dark,
+		backgroundColor: colors.offWhite,
 		height: '100%',
 		width: '100%',
 		justifyContent: 'center',
@@ -334,7 +334,7 @@ const collectionStyles = {
 		alignItems: 'center'
 	},
 	divider: {
-		backgroundColor: colors.offWhite,
+		backgroundColor: colors.primaryLight,
 		height: '4%',
 		width: '100%',
 		alignItems: 'center',
@@ -368,13 +368,13 @@ const collectionStyles = {
 
 		shadowColor: 'black',
 		shadowOffset: {
-			width: 15,
-			height: 8
+			width: 0,
+			height: 4
 		},
 		shadowOpacity: 1,
-		shadowRadius: 10,
+		shadowRadius: 5,
 
-		elevation: 16
+		elevation: 6
 	},
 	breedItemContainer: {
 		width: '100%',
@@ -392,9 +392,9 @@ const collectionStyles = {
 			height: 8
 		},
 		shadowOpacity: 1,
-		shadowRadius: 10,
+		shadowRadius: 2,
 
-		elevation: 16
+		elevation: 3
 	},
 	breedItemText: {
 		fontSize: 18
