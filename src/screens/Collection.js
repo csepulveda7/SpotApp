@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, ScrollView, Pressable, Modal, Image, Dimensions, ActivityIndicator, Alert } from 'react-native';
+import { View, Text, ScrollView, Pressable, Modal, Image, Dimensions, ActivityIndicator, Alert, PanResponder } from 'react-native';
 import { ListItem, Button } from 'react-native-elements';
 import { styles, colors } from '../styles';
 import { NavBar } from '../components';
@@ -142,10 +142,24 @@ export const Collection = ({ navigation }) => {
 		);
 	};
 
+	const swipedLeft = ({ dx }) => (dx < -50 ? true : false);
+	const panResponder = PanResponder.create({
+		onStartShouldSetPanResponder: () => true,
+		onPanResponderEnd: (e, gestureState) => {
+			if (swipedLeft(gestureState)) {
+			// navigate
+				console.log('pan responder end', gestureState);
+				navigation.goBack();
+			}
+
+			return true;
+		}
+	});
+
 	// this is going to be where loading animation goes
 	if (!breedsLoaded) {
 		return (
-			<View style = { container }>
+			<View style = { container } { ...panResponder.panHandlers }>
 				<ActivityIndicator
 					color = { colors.primaryDark }
 					size = { 60 }
@@ -155,10 +169,11 @@ export const Collection = ({ navigation }) => {
 	}
 	else {
 		return (
-			<View style = { container }>
+			<View style = { container } { ...panResponder.panHandlers }>
 				<NavBar navigation = { navigation } screenName = 'Dogopedia' />
 				<Pressable
 					style = { topContainer }
+					{ ...panResponder.panHandlers }
 					onPress = { () => {
 						// If the field bredFor exists, the user has the dog scanned
 						if (info.breedGroup !== undefined)
@@ -177,42 +192,43 @@ export const Collection = ({ navigation }) => {
 				<ScrollView style = { bottomContainer }>
 					{
 						entries.map((dog, i) => (
-							<ListItem
-								key = { i }
-								style = { breedItem }
-								containerStyle = { breedItemContainer }
-								onPress = { async () => {
-									try {
-										if (userHasBreed(dog.breed)) {
-											setBreedImage(await loadPhoto(dog.id));
-											setInfo(await loadInfo(dog.id));
+							<Pressable { ...panResponder.panHandlers } key = { i }>
+								<ListItem
+									style = { breedItem }
+									containerStyle = { breedItemContainer }
+									onPress = { async () => {
+										try {
+											if (userHasBreed(dog.breed)) {
+												setBreedImage(await loadPhoto(dog.id));
+												setInfo(await loadInfo(dog.id));
+											}
+											else {
+												setInfo(await loadName(dog.id));
+												setBreedImage(randomUnknown());
+											}
 										}
-										else {
-											setInfo(await loadName(dog.id));
-											setBreedImage(randomUnknown());
+										catch (e) {
+											console.log(e);
 										}
-									}
-									catch (e) {
-										console.log(e);
-									}
-								} }
-							>
-								<View style = { capturedBox }>
-									{ userHasBreed(dog.breed)
-										?
-										<View style = { center }>
-											<CapturedIcon style = { captureIconStyle } />
-											<Text style = { numberText }>
-												{ (activeUser.CollectedBreeds[dog.breed] > 9) ? '9+' : activeUser.CollectedBreeds[dog.breed] }
-											</Text>
-										</View>
-										: <></>
-									}
-								</View>
-								<ListItem.Content style = { contentStyle }>
-									<ListItem.Title style = { breedItemText }>{ dog.breed }</ListItem.Title>
-								</ListItem.Content>
-							</ListItem>
+									} }
+								>
+									<View style = { capturedBox }>
+										{ userHasBreed(dog.breed)
+											?
+											<View style = { center }>
+												<CapturedIcon style = { captureIconStyle } />
+												<Text style = { numberText }>
+													{ (activeUser.CollectedBreeds[dog.breed] > 9) ? '9+' : activeUser.CollectedBreeds[dog.breed] }
+												</Text>
+											</View>
+											: <></>
+										}
+									</View>
+									<ListItem.Content style = { contentStyle }>
+										<ListItem.Title style = { breedItemText }>{ dog.breed }</ListItem.Title>
+									</ListItem.Content>
+								</ListItem>
+							</Pressable>
 						))
 					}
 				</ScrollView>

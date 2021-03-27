@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Modal, KeyboardAvoidingView, Alert, Dimensions } from 'react-native';
+import { View, Text, Modal, KeyboardAvoidingView, Alert, Dimensions, PanResponder } from 'react-native';
 import { Button, Avatar } from 'react-native-elements';
 import NavBar from '../components/NavBar';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -127,8 +127,22 @@ export const Account = ({ navigation }) => {
 		);
 	};
 
+	const swipedRight = ({ dx }) => (dx > 50 ? true : false);
+	const panResponder = PanResponder.create({
+		onStartShouldSetPanResponder: () => true,
+		onPanResponderEnd: (e, gestureState) => {
+			if (swipedRight(gestureState)) {
+			// navigate
+				console.log('pan responder end', gestureState);
+				navigation.goBack();
+			}
+
+			return true;
+		}
+	});
+
 	return (
-		<View style = { [fullWidthHeight, container] }>
+		<View style = { [fullWidthHeight, container] } { ...panResponder.panHandlers }>
 			{ renderSetProfilePictureModal() }
 			<NavBar navigation = { navigation } screenName = 'Account' />
 

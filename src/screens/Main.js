@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Pressable, Animated, Modal, ActivityIndicator, KeyboardAvoidingView, Text, Image, Dimensions, Alert } from 'react-native';
+import { View, Pressable, Animated, Modal, ActivityIndicator, KeyboardAvoidingView, Text, Image, Dimensions, Alert, PanResponder } from 'react-native';
 import { Button } from 'react-native-elements';
 import Svg, { Circle } from 'react-native-svg';
 import { Book, Flash, FlipCamera } from '../assets/images';
@@ -119,8 +119,22 @@ export const Main = ({ navigation, initialProps }) => {
 		);
 	};
 
+	const swipedRight = ({ dx }) => (dx > 50 ? true : false);
+	const panResponder = PanResponder.create({
+		onStartShouldSetPanResponder: () => true,
+		onPanResponderEnd: (e, gestureState) => {
+			if (swipedRight(gestureState)) {
+			// navigate
+				console.log('pan responder end', gestureState);
+				navigation.goBack();
+			}
+
+			return true;
+		}
+	});
+
 	return (
-		<View style = { container }>
+		<View style = { container } { ...panResponder.panHandlers }>
 			<Modal animationType = 'slide' transparent = { true } visible = { modalVisible } >
 				<KeyboardAvoidingView behavior = 'height' enabled>
 					<View style = { modalStyles.centeredBottom }>
