@@ -188,11 +188,16 @@ Added point system functionality to app. User's who scan new dog breeds get poin
 *[Demonstration](https://youtu.be/sqI6_mb06kU)*
 
 **Diego Cruces**  
+Did automated testing to check proper functionality of Petfinder application. Helped set up Petfinder API 
 
 **Pablo Cuervo**  
+Added partial swipe between screen functionality in the app that ultimately was removed due to lack of compatibility from key components in app to accept the swipe between screens property used
 
 **Lucas Saber**  
+Added camera shutter sound for interactive feedback. Added dynamic size change to shutter button for interactive feedback. Added animated transition between pressing shutter button and loading breed classification result. Added Activity Indicator to transition screen to indicate data processing. Updated styling and refactored code for main, account, and login pages. Fixed password modal so its size doesn't change when the keyboard is used to enter text
 
 **Jordan Schneider**  
+Set up link from backend to frontend to pull information about dogs from Petfinder API and send as JS object format to display on separate cards on Sheltered dog list. Further stylized pages to add more depth instead of making the app look flat. Completely overhauled the information section on Dogopedia page by having a cleaner UI, match the theming of the app, and overall better UX. Added loading pages between each page that requires pulling data. Put the number of breed that we stored to use by showing it in Dogopedia page so the user knows how many of each breed was scanned. Revised Dogopedia page to fit the overall theming of the app (jarring change between a dark/light mode). Randomized unknown dog images with 5 random images that could appear by clicking on a breed you haven't scanned in Dogopedia page.
 
 **Cristobal Sepulveda**  
+Added breed adoption search functionality using Petfinder API in back-end. Connected Petfinder function calls to front-end using fetch requests. Added location permissions request to get user's device location. Send user location and requested breed name to Petfinder API to find local adoptable dogs in their area. Allow users to see details about adoptable dogs in their area, such as name, age, distance, etc. Updated breed data JSON file to include new point values for each breed
