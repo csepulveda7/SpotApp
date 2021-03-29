@@ -8,7 +8,10 @@ import { TextBox, NavBar } from '../src/components';
 import { Splash } from '../src/screens/Splash';
 import { Login } from '../src/screens/Login';
 import { SignUp } from '../src/screens/SignUp';
+import { DogShelterList } from '../src/screens/DogShelterList';
 
+
+jest.mock('../src/screens/DogShelterList');
 
 jest.mock('../src/screens/Collection.js', () => {
 	const mockComponent = require('react-native/jest/mockComponent');
@@ -56,6 +59,13 @@ let breed = {
 			metric: "3 - 6"
 		}
 };
+
+jest.mock('../src/services/userServices');
+jest.mock('../src/services/breedServices');
+
+let userFrontEnd = require('../src/services/userServices');
+let breedFrontEnd = require('../src/services/breedServices');
+
 
 // ================ //
 // BACKEND TESTING //
@@ -440,4 +450,210 @@ describe('Frontend Testing', () => {
 		expect(testableComponent(getCurrentUserAccount, {INITIAL_STATE})).toBeTruthy();
 	});
 	
+	test('User is able to take a picture and scan it', () => {
+
+		const mockUpload = {
+			image: 'payload',
+			uploaded: true
+		}
+		userFrontEnd.uploadImage.mockResolvedValue(mockUpload.uploaded);
+
+		return expect(userFrontEnd.uploadImage(mockUpload)).resolves.toBe(true);
+	});
+
+	test('User is able to create an account in registration page', () => {
+
+		const mockNewUserRegistration = {
+			name: 'username',
+			email: 'email@email.email',
+			password: 'password',
+			picture: '',
+			score: 0,
+			collectedBreeds: {
+				total: 0
+			},
+			success: true
+		};
+
+		userFrontEnd.createUser.mockResolvedValue(mockNewUserRegistration.success);
+
+		return expect(userFrontEnd.createUser(mockNewUserRegistration)).resolves.toBeTruthy();
+	});
+
+	test('User is able to log in to the app', () => {
+
+		const userIsLogged = true;
+		const mockUserCredentials = {
+			email: 'email@email.email',
+			password: 'password'
+		};
+
+		let userStatus = false;
+		function setUserstatus(){
+			return !userStatus;
+		}
+		userFrontEnd.loginUser.mockResolvedValue(setUserstatus());
+
+		return expect(userFrontEnd.loginUser(mockUserCredentials)).resolves.toBe(userIsLogged);
+	});
+
+	test('After log in user can view their stats', () => {
+
+		const userIsLogged = true;
+		const mockUserCredentials = {
+			email: 'email@email.email',
+			password: 'password'
+		};
+
+		let userStatus = false;
+		function setUserstatus(){
+			return !userStatus;
+		}
+		userFrontEnd.loginUser.mockResolvedValue(setUserstatus());
+
+		expect(userFrontEnd.loginUser(mockUserCredentials)).resolves.toBe(userIsLogged);
+
+		if(userStatus){
+
+			const mockUserStats = {
+				name: 'name', 
+				email: 'email@email.email', 
+				score: 10,
+				picture: 'payload', 
+				CollectedBreeds: {
+					score: 10,
+				}
+			};
+			userFrontEnd.loadUserData.mockResolvedValue(mockUserStats);
+
+			expect(userFrontEnd.loadUserData()).resolves.toEqual(mockUserStats);
+
+
+		}
+	});
+
+	test('User is able request a password reset', () => {
+
+		const hasBeenApproved = true;
+		const mockUserCredentials = {
+			email: 'email@email.email',
+		};
+
+		let requestApproved = false;
+
+		function resetPassword(){
+			return !requestApproved;
+		}
+
+			
+		userFrontEnd.resetPassword.mockResolvedValue(resetPassword());
+
+		return expect(userFrontEnd.resetPassword(mockUserCredentials)).resolves.toEqual(hasBeenApproved);
+	});
+
+
+	test('User is able to view dog breed for adoption near them', () => {
+
+		const mockBreed = breed;
+		const mockGeolocation = {
+			getCurrentPosition: jest.fn(),
+			watchPosition: jest.fn()
+		};
+
+		const mocklistItemResult = {
+			name: mockBreed.name,
+			breed: mockBreed.breed_group,
+			type: mockBreed.Height,
+			distance: mockGeolocation.getCurrentPosition()
+		};
+		
+		const mockShelterResult = {
+			 list: [
+				mocklistItemResult
+			]
+		};
+			
+		breedFrontEnd.findBreed.mockResolvedValue(mockShelterResult);
+
+		return expect(breedFrontEnd.findBreed(mockBreed, mockGeolocation)).resolves.toEqual(mockShelterResult);
+	});
+
+
+	test('User is able to access adoptable dogs page', () => {
+
+		const getLoggedUserState = true;
+		const getLoadingState = false;
+		let currentActiveUser = {
+			user: 'userName'
+		};
+
+		const INITIAL_STATE = {
+			isLoggedIn: getLoggedUserState,
+			isLoading: getLoadingState,
+			activeUser: currentActiveUser
+		};
+
+		const getCurrentShelterList = <DogShelterList />;
+
+		const ShelterComponent = testableComponent(getCurrentShelterList, {INITIAL_STATE});
+		
+		expect(ShelterComponent).toBeTruthy();	
+	});
+
+	test('User is able to see details of adoptable dogs near them', () => {
+
+		const getLoggedUserState = true;
+		const getLoadingState = false;
+		let currentActiveUser = {
+			user: 'userName'
+		};
+
+		const INITIAL_STATE = {
+			isLoggedIn: getLoggedUserState,
+			isLoading: getLoadingState,
+			activeUser: currentActiveUser
+		};
+
+		const getCurrentShelterList = <DogShelterList />;
+
+		const ShelterComponent = testableComponent(getCurrentShelterList, {INITIAL_STATE});
+
+		const mockBreed = breed;
+		const mockGeolocation = {
+			getCurrentPosition: jest.fn(),
+			watchPosition: jest.fn()
+		};
+
+		const mocklistItemResult = {
+			name: mockBreed.name,
+			breed: mockBreed.breed_group,
+			type: mockBreed.Height,
+			gender: 'male',
+			distance: mockGeolocation.getCurrentPosition()
+		};
+		
+		const mockShelterResult = {
+			 list: [
+				mocklistItemResult
+			]
+		};
+
+		breedFrontEnd.getBreedInfo.mockResolvedValue(mockShelterResult);
+		return expect(ShelterComponent).toBeTruthy() && expect(breedFrontEnd.getBreedInfo()).resolves.toEqual(mockShelterResult);	
+	});
+
+
+	test('User is able to scan and classify breeds', () => {
+		const mockUpload = {
+			image: 'payload',
+			uploaded: true
+		}
+
+		const mockBreed = breed;
+
+		breedFrontEnd.classifyBreed.mockResolvedValue(mockBreed.name);
+		return expect(breedFrontEnd.classifyBreed(mockUpload)).resolves.toEqual(breed.name);	
+	});
+
+
 });

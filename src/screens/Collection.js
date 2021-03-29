@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, ScrollView, Pressable, Modal, Image } from 'react-native';
-import { ListItem } from 'react-native-elements';
-import { colors } from '../styles';
-import NavBar from '../components/NavBar';
+import { View, Text, ScrollView, Pressable, Modal, Image, Dimensions, ActivityIndicator, Alert } from 'react-native';
+import { ListItem, Button } from 'react-native-elements';
+import { styles, colors } from '../styles';
+import { NavBar } from '../components';
 import { getBreeds, getBreedInfo, getBreedName, getBreedPhoto } from '../services/breedServices';
-import { CapturedIcon } from '../assets/images/';
 import { useDispatch, useSelector } from 'react-redux';
-import { userStatus, loadUser } from '../ducks';
+import { loadUser } from '../ducks';
+import { CapturedIcon, bredFor, breedGroup, height, lifeSpan, temperament, weight } from '../assets/images/';
+import GetLocation from 'react-native-get-location';
 
-// @cris: look at line 101 for where to put if dog is captured
+const { width } = Dimensions.get('screen');
+
 export const Collection = ({ navigation }) => {
 	const {
 		container,
@@ -20,21 +22,52 @@ export const Collection = ({ navigation }) => {
 		breedItemContainer,
 		breedItemText,
 		capturedBox,
-		captureIconStyle
+		captureIconStyle,
+		breedName,
+		center,
+		numberText
 	} = collectionStyles;
 
 	let [breedsLoaded, setBreedsLoaded] = useState(false);
 	let [showTopModal, setShowTopModal] = useState(false);
 	let [info, setInfo] = useState({});
 	let [breedImage, setBreedImage] = useState('');
+	const [entries, setEntries] = useState([]);
 	const { activeUser } = useSelector(state => state.user);
 	const dispatch = useDispatch();
 
-	const [entries, setEntries] = useState([]);
+	const information = [
+		{ prefix: 'Bred For: ', 	key: info.bredFor,			icon: bredFor },
+		{ prefix: 'Breed Group: ', 	key: info.breedGroup,		icon: breedGroup },
+		{ prefix: 'Height: ', 		key: info.height + ' in', 	icon: height },
+		{ prefix: 'Life Span: ', 	key: info.lifeSpan,			icon: lifeSpan },
+		{ prefix: 'Temperament: ', 	key: info.temperament,		icon: temperament },
+		{ prefix: 'Weight: ', 		key: info.weight + ' lbs',	icon: weight }
+	];
+
+	const unknownDogs = [
+		{ url: 'https://i.ibb.co/M16vd5X/unknown1.png' },
+		{ url: 'https://i.ibb.co/hY2PGMj/unknown2.png' },
+		{ url: 'https://i.ibb.co/FBbXWw4/unknown3.png' },
+		{ url: 'https://i.ibb.co/NscdN4n/unknown4.png' },
+		{ url: 'https://i.ibb.co/K5HqGPC/unknown5.png' }
+	];
+
+	const randomUnknown = () => unknownDogs[Math.floor(unknownDogs.length * Math.random())];
 
 	useEffect(async () => {
 		dispatch(loadUser());
 		setEntries(await getBreeds());
+
+		// load first dog if user has scanned it
+		if (userHasBreed('Affenpinscher')) {
+			setBreedImage(await loadPhoto(1));
+			setInfo(await loadInfo(1));
+		}
+		else {
+			setInfo(await loadName(1));
+			setBreedImage(randomUnknown());
+		}
 
 		setBreedsLoaded(true);
 	}, []);
@@ -50,20 +83,60 @@ export const Collection = ({ navigation }) => {
 			<Modal
 				visible = { showTopModal }
 				transparent = { true }
-				animationType = { 'fade' }
+				animationType = { 'slide' }
 			>
 				<Pressable
 					style = { modalStyles.background }
 					onPress = { () => setShowTopModal(false) }
 				/>
-				<View style = { modalStyles.container }>
-					<Text style = { modalStyles.heading } > { info.breed } </Text>
-					<Text style = { modalStyles.paragraph } > Bred For: { info.bredFor } </Text>
-					<Text style = { modalStyles.paragraph } > Breed Group: { info.breedGroup } </Text>
-					<Text style = { modalStyles.paragraph } > Height: { info.height } in</Text>
-					<Text style = { modalStyles.paragraph } > Life Span: { info.lifeSpan } </Text>
-					<Text style = { modalStyles.paragraph } > Temperament: { info.temperament } </Text>
-					<Text style = { modalStyles.paragraph } > Weight: { info.weight } lbs </Text>
+				<View style = { modalStyles.bottom }>
+					<View style = { modalStyles.container }>
+						<Text style = { modalStyles.heading } > { info.breed } </Text>
+						<ScrollView style = { modalStyles.scrollView }>
+							{ information.map(information =>
+								<View style = { modalStyles.infoContainer }>
+									<Image style = { modalStyles.infoIcon } source = { information.icon } />
+									<View style = { modalStyles.infoTextContainer }>
+										<Text style = { modalStyles.textPrefix } >{ information.prefix }</Text>
+										<Text style = { modalStyles.textInfo } >{ information.key }</Text>
+									</View>
+								</View>
+							) }
+						</ScrollView>
+						<View style = { modalStyles.buttonsContainer }>
+							<Button
+								title = 'Back to Collection'
+								containerStyle = { modalStyles.buttonContainer }
+								buttonStyle = { styles.fullWidthHeight }
+								onPress = { () => {
+									setShowTopModal(false);
+								} }
+							/>
+							<Button
+								title = 'Find Nearby Dogs'
+								containerStyle = { modalStyles.buttonContainer }
+								buttonStyle = { styles.fullWidthHeight }
+								onPress = { () => {
+									setShowTopModal(false);
+									GetLocation.getCurrentPosition({
+										enableHighAccuracy: true,
+										timeout: 15000
+									})
+										.then(location => {
+											const coordinates = `${location.latitude},${location.longitude}`;
+
+											navigation.navigate('DogShelterList', { breed: info.breed, location: coordinates });
+										})
+										.catch(error => {
+											const { code, message } = error;
+
+											Alert.alert(`Error ${code}`, message);
+											console.warn(code, message);
+										});
+								} }
+							/>
+						</View>
+					</View>
 				</View>
 			</Modal>
 		);
@@ -71,17 +144,24 @@ export const Collection = ({ navigation }) => {
 
 	// this is going to be where loading animation goes
 	if (!breedsLoaded) {
-		return <View />;
+		return (
+			<View style = { container }>
+				<ActivityIndicator
+					color = { colors.primaryDark }
+					size = { 60 }
+				/>
+			</View>
+		);
 	}
 	else {
 		return (
 			<View style = { container }>
-				<NavBar navigation = { navigation } screenName = 'Collections' />
+				<NavBar navigation = { navigation } screenName = 'Dogopedia' />
 				<Pressable
 					style = { topContainer }
 					onPress = { () => {
 						// If the field bredFor exists, the user has the dog scanned
-						if (info.bredFor !== undefined)
+						if (info.breedGroup !== undefined)
 							setShowTopModal(true);
 					} }
 				>
@@ -92,7 +172,7 @@ export const Collection = ({ navigation }) => {
 					/>
 				</Pressable>
 				<View style = { divider }>
-					<Text style = { modalStyles.paragraph }>{ info.breed }</Text>
+					<Text style = { breedName }>{ info.breed }</Text>
 				</View>
 				<ScrollView style = { bottomContainer }>
 					{
@@ -109,7 +189,7 @@ export const Collection = ({ navigation }) => {
 										}
 										else {
 											setInfo(await loadName(dog.id));
-											setBreedImage({ url: 'https://i.ibb.co/F3r2QZF/unknown-Dog.png' });
+											setBreedImage(randomUnknown());
 										}
 									}
 									catch (e) {
@@ -118,7 +198,16 @@ export const Collection = ({ navigation }) => {
 								} }
 							>
 								<View style = { capturedBox }>
-									{ userHasBreed(dog.breed) ? <CapturedIcon style = { captureIconStyle } /> : <></> }
+									{ userHasBreed(dog.breed)
+										?
+										<View style = { center }>
+											<CapturedIcon style = { captureIconStyle } />
+											<Text style = { numberText }>
+												{ (activeUser.CollectedBreeds[dog.breed] > 9) ? '9+' : activeUser.CollectedBreeds[dog.breed] }
+											</Text>
+										</View>
+										: <></>
+									}
 								</View>
 								<ListItem.Content style = { contentStyle }>
 									<ListItem.Title style = { breedItemText }>{ dog.breed }</ListItem.Title>
@@ -133,38 +222,114 @@ export const Collection = ({ navigation }) => {
 };
 
 const modalStyles = {
-	container: {
-		marginTop: '17%',
-		height: '41%',
-		width: '100%',
-		backgroundColor: colors.primaryLight
-	},
 	background: {
 		position: 'absolute',
 		backgroundColor: 'rgba(0, 0, 0, 0.5)',
 		height: '100%',
 		width: '100%'
 	},
+	container: {
+		height: '90%',
+		width: '100%',
+		alignItems: 'center',
+		justifyContent: 'space-around',
+		overflow: 'hidden',
+		borderTopLeftRadius: 20,
+		borderTopRightRadius: 20,
+		backgroundColor: colors.offWhite
+	},
+	bottom: {
+		justifyContent: 'flex-end',
+		alignItems: 'flex-end',
+		flex: 1
+	},
+	scrollView: {
+		width: '100%',
+		flex: 1
+	},
 	breedImage: {
 		width: '100%',
 		height: '100%'
 	},
-	heading: {
-		fontSize: 24,
-		textAlign: 'center'
+	infoContainer: {
+		width: '90%',
+		flexGrow: 1,
+		marginVertical: '1%',
+		flexDirection: 'row',
+		alignItems: 'center',
+		alignSelf: 'center',
+		borderRadius: 10,
+		backgroundColor: colors.primaryDark
 	},
-	paragraph: {
+	infoTextContainer: {
+		flex: 1,
+		paddingVertical: '3%'
+	},
+	infoIcon: {
+		width: width / 10,
+		aspectRatio: 1,
+		marginVertical: '3%',
+		marginHorizontal: '3%'
+	},
+	heading: {
+		width: '100%',
+		fontSize: 32,
+		fontWeight: '100',
+		letterSpacing: 2,
+		fontVariant: ['small-caps'],
+		textAlign: 'center',
+		marginBottom: '5%',
+		paddingTop: '15%',
+		backgroundColor: colors.dark,
+		color: colors.primaryLight,
+		borderBottomWidth: 6,
+		borderBottomColor: colors.secondaryLight
+	},
+	textPrefix: {
 		fontSize: 20,
-		textAlign: 'left'
+		textAlign: 'left',
+		fontWeight: 'bold',
+		color: 'black',
+		fontVariant: ['small-caps']
+	},
+	textInfo: {
+		fontSize: 18,
+		textAlign: 'left',
+		color: 'black'
+	},
+	buttonContainer: {
+		width: '50%',
+		height: '100%',
+		marginHorizontal: '2%',
+		zIndex: 10,
+
+		shadowColor: 'black',
+		shadowOffset: {
+			width: 0,
+			height: 50
+		},
+		shadowOpacity: 1,
+		shadowRadius: 5,
+
+		elevation: 10
+	},
+	buttonsContainer: {
+		width: '90%',
+		height: '8%',
+		marginBottom: '10%',
+		marginTop: '5%',
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'center'
 	}
 };
 
 const collectionStyles = {
 	container: {
-		backgroundColor: colors.dark,
+		backgroundColor: colors.offWhite,
 		height: '100%',
 		width: '100%',
-		justifyContent: 'flex-start',
+		justifyContent: 'center',
 		alignItems: 'center',
 		position: 'relative'
 	},
@@ -192,7 +357,7 @@ const collectionStyles = {
 		alignItems: 'center'
 	},
 	divider: {
-		backgroundColor: colors.offWhite,
+		backgroundColor: colors.primaryLight,
 		height: '4%',
 		width: '100%',
 		alignItems: 'center',
@@ -209,6 +374,10 @@ const collectionStyles = {
 
 		elevation: 10
 	},
+	breedName: {
+		fontSize: 20,
+		letterSpacing: 1
+	},
 	breedItem: {
 		width: '85%',
 		height: 48,
@@ -222,13 +391,13 @@ const collectionStyles = {
 
 		shadowColor: 'black',
 		shadowOffset: {
-			width: 15,
-			height: 8
+			width: 0,
+			height: 4
 		},
 		shadowOpacity: 1,
-		shadowRadius: 10,
+		shadowRadius: 5,
 
-		elevation: 16
+		elevation: 6
 	},
 	breedItemContainer: {
 		width: '100%',
@@ -246,9 +415,9 @@ const collectionStyles = {
 			height: 8
 		},
 		shadowOpacity: 1,
-		shadowRadius: 10,
+		shadowRadius: 2,
 
-		elevation: 16
+		elevation: 3
 	},
 	breedItemText: {
 		fontSize: 18
@@ -263,7 +432,17 @@ const collectionStyles = {
 		justifyContent: 'center'
 	},
 	captureIconStyle: {
-		height: '60%',
+		height: '87%',
 		aspectRatio: 1
+	},
+	center: {
+		alignItems: 'center',
+		justifyContent: 'center'
+	},
+	numberText: {
+		fontSize: 18,
+		fontWeight: 'bold',
+		color: colors.dark,
+		position: 'absolute'
 	}
 };

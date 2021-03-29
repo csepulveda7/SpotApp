@@ -4,7 +4,7 @@ import { colors } from '../styles';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
-const NavBar = ({ navigation, screenName }) => {
+export const NavBar = ({ navigation, screenName }) => {
 	const { navBar, centerItems, backIcon, headerText } = styles;
 
 	return (

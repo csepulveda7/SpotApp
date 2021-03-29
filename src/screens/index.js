@@ -4,3 +4,4 @@ export { SignUp } from './SignUp';
 export { Main } from './Main';
 export { Collection } from './Collection';
 export { Account } from './Account';
+export { DogShelterList } from './DogShelterList';

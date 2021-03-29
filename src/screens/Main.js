@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Pressable, Modal, KeyboardAvoidingView, Text, Image, Dimensions, Alert } from 'react-native';
+import { View, Pressable, Animated, Modal, ActivityIndicator, KeyboardAvoidingView, Text, Image, Dimensions, Alert } from 'react-native';
 import { Button } from 'react-native-elements';
 import Svg, { Circle } from 'react-native-svg';
 import { Book, Flash, FlipCamera } from '../assets/images';
@@ -16,12 +16,21 @@ const { height, width } = Dimensions.get('screen');
 export const Main = ({ navigation, initialProps }) => {
 	const [modalVisible, setModalVisible ] = useState(false);
 	const [capturedImage, setCapturedImage] = useState('');
+	const [flash, setFlash] = useState(RNCamera.Constants.FlashMode.off);
+	const [isReady, setIsReady] = useState(false);
+	const [animatedHeight] = useState(new Animated.Value(30));
+	const [buttonSize, setButtonSize] = useState(35);
 	const [breedFound, setBreedFound] = useState(true);
 	const [breedName, setBreedName] = useState('');
 	const { activeUser } = useSelector(state => state.user);
 	const dispatch = useDispatch();
 
-	const capturedImageScale = 0.5;
+	const interpolatedHeight = animatedHeight.interpolate({
+		inputRange: [0, 100],
+		outputRange: ['0%', '100%']
+	});
+
+	const capturedImageScale = 0.45;
 
 	const {
 		container,
@@ -38,8 +47,8 @@ export const Main = ({ navigation, initialProps }) => {
 	} = mainStyles;
 
 	const [
-		{ cameraRef, type, ratio, autoFocus, autoFocusPoint, flash },
-		{ toggleFacing, setFlash, takePicture }
+		{ cameraRef, type, ratio, autoFocus, autoFocusPoint },
+		{ toggleFacing, takePicture }
 	] = useCamera(initialProps);
 
 	useEffect(() => {
@@ -54,15 +63,33 @@ export const Main = ({ navigation, initialProps }) => {
 		);
 	};
 
+	const animateModal = () => {
+		Animated.spring(animatedHeight, {
+			toValue: 80,
+			duration: 1000,
+			useNativeDriver: false
+		}).start();
+	};
+
+	const resetModalStates = () => {
+		setModalVisible(false);
+		setBreedName('');
+		setIsReady(false);
+		animatedHeight.resetAnimation();
+	};
+
 	const classificationModal = () => {
 		return (
 			<View style = { modalStyles.contentContainer }>
-				{ breedFound ? <Text style = { modalStyles.headerText }> { breedName } Spotted!</Text>
-					: <Text style = { modalStyles.headerText }> Couldn't Recognize the Breed...</Text> }
-				<View style = { modalStyles.infoContainer }>
+				<View style = { modalStyles.photoTextContainer }>
+					{ breedFound ? <Text style = { modalStyles.headerText }> { breedName } Spotted!</Text>
+						: <Text style = { modalStyles.headerText }> Couldn't Recognize the Breed...</Text> }
+				</View>
+				<View style = { modalStyles.dividerLine } />
+				<View style = { modalStyles.infoContainer } >
 					{ showCapturedPicture() }
 				</View>
-				<View style = { modalStyles.modalButtons }>
+				<View style = { modalStyles.modalButtonContainer }>
 					{ breedFound ? <Button
 						title = 'Add to Collection'
 						containerStyle = { [styles.buttonContainer, modalStyles.buttonHeight] }
@@ -71,18 +98,14 @@ export const Main = ({ navigation, initialProps }) => {
 							updateCollectedBreeds(breedName)
 								.then(() => Alert.alert(`${breedName} added to collection!`))
 								.catch(() => Alert.alert('Error', `Unable to add ${breedName} to collection. Try again`));
-							setModalVisible(false);
-							setBreedName('');
+							resetModalStates();
 						} }
 					/> : false }
 					<Button
 						title = 'Retake Photo'
 						containerStyle = { [styles.buttonContainer, modalStyles.buttonHeight] }
 						buttonStyle = { styles.fullWidthHeight }
-						onPress = { () => {
-							setModalVisible(false);
-							setBreedName('');
-						} }
+						onPress = { () => resetModalStates() }
 					/>
 				</View>
 			</View>
@@ -102,9 +125,10 @@ export const Main = ({ navigation, initialProps }) => {
 				<KeyboardAvoidingView behavior = 'height' enabled>
 					<View style = { modalStyles.centeredBottom }>
 						<Image source = {{ uri: capturedImage }} style = { modalStyles.imageStyle } />
-						<View style = { modalStyles.modalView }>
-							{ classificationModal() }
-						</View>
+						<Animated.View style = { [modalStyles.modalView, { height: interpolatedHeight }] }>
+							{ isReady ? classificationModal()
+								: <ActivityIndicator color = { colors.primaryDark } size = { 60 } /> }
+						</Animated.View>
 					</View>
 				</KeyboardAvoidingView>
 			</Modal>
@@ -115,6 +139,8 @@ export const Main = ({ navigation, initialProps }) => {
 				ratio = { ratio }
 				autoFocus = { autoFocus }
 				style = { cameraContainer }
+				playSoundOnCapture = { true }
+				flashMode = { flash }
 			>
 				<View style = { iconContainer }>
 					<Pressable style = { verticalIconContainer } onPress = { () => toggleFacing() }>
@@ -122,18 +148,18 @@ export const Main = ({ navigation, initialProps }) => {
 					</Pressable>
 					<Pressable style = { verticalIconContainer } onPress = { () => {
 						switch (flash) {
-							case 'on':
-								setFlash('off');
+							case RNCamera.Constants.FlashMode.on:
+								setFlash(RNCamera.Constants.FlashMode.off);
 								break;
-							case 'off':
-								setFlash('on');
+							case RNCamera.Constants.FlashMode.off:
+								setFlash(RNCamera.Constants.FlashMode.on);
 								break;
 							default:
-								setFlash('off');
+								setFlash(RNCamera.Constants.FlashMode.on);
 								break;
 						}
 					} }>
-						<Flash style = { icon } isOff = { (flash === 'off') ? '100' : '0' } />
+						<Flash style = { icon } isOff = { (flash === RNCamera.Constants.FlashMode.off) ? '100' : '0' } />
 					</Pressable>
 				</View>
 				<View style = { buttons }>
@@ -142,33 +168,39 @@ export const Main = ({ navigation, initialProps }) => {
 						<Book style = { icon } />
 					</Pressable>
 
-					<Pressable style = { largeButtonContainer } onPress = { async () => {
-						try {
-							const options = { base64: true };
-							const data = await takePicture(options);
+					<Pressable style = { largeButtonContainer }
+						onPress = { async () => {
+							try {
+								const options = { base64: true };
+								const data = await takePicture(options);
 
-							setCapturedImage(data.uri);
-							classifyBreed({ uri: data.uri, type: 'image/jpeg', name: 'breedImage' })
-								.then(breed => {
-									if (!breed) {
-										setBreedFound(false);
-										setModalVisible(true);
-									}
-									else {
-										setBreedFound(true);
-										setBreedName(breed);
-										setModalVisible(true);
-									}
-								})
-								.catch(() => {
-									setBreedName('');
-									setModalVisible(true);
-								});
-						}
-						catch (error) { console.warn(error) }
-					} }>
+								setCapturedImage(data.uri);
+								setModalVisible(true);
+								classifyBreed({ uri: data.uri, type: 'image/jpeg', name: 'breedImage' })
+									.then(breed => {
+										if (!breed) {
+											setBreedFound(false);
+											setIsReady(true);
+											animateModal();
+										}
+										else {
+											setBreedFound(true);
+											setBreedName(breed);
+											setIsReady(true);
+											animateModal();
+										}
+									})
+									.catch(() => {
+										setBreedName('');
+									});
+							}
+							catch (error) { console.warn(error) }
+						} }
+						onPressIn = { () => setButtonSize(40) }
+						onPressOut = { () => setButtonSize(35) }
+					>
 						<Svg style = { centerItems } width = '100%' height = '100%'>
-							<Circle cx = '50%' cy = '50%' r = '40%' stroke = 'rgb(255, 255, 255)' strokeWidth = '4%' />
+							<Circle cx = '50%' cy = '50%' r = { buttonSize + '%' } stroke = 'rgb(255, 255, 255)' strokeWidth = '4%' />
 						</Svg>
 					</Pressable>
 					<Pressable style = { smallButtonContainer } onPress = { () => navigation.navigate('Account') }>
@@ -201,17 +233,27 @@ const modalStyles = {
 		width: '100%',
 		borderTopRightRadius: 20,
 		borderTopLeftRadius: 20,
-		zIndex: 1
+		zIndex: 1,
+		justifyContent: 'center',
+		alignItems: 'center'
+	},
+	photoTextContainer: {
+		height: '17%',
+		width: '100%',
+		justifyContent: 'center',
+		alignItems: 'center'
 	},
 	headerText: {
 		fontSize: 24,
 		padding: '4%',
+		textAlign: 'center'
+	},
+	dividerLine: {
+		height: '.5%',
+		width: '80%',
+		marginTop: '-10%',
 		borderBottomColor: colors.dark,
 		borderBottomWidth: 1
-	},
-	photoText: {
-		marginTop: '6%',
-		fontSize: 18
 	},
 	infoContainer: {
 		height: '50%',
@@ -229,23 +271,26 @@ const modalStyles = {
 		zIndex: 0
 	},
 	buttonHeight: {
-		height: '55%',
-		width: '40%'
+		height: '80%',
+		width: '40%',
+		marginTop: '0%'
 	},
-	modalButtons: {
-		height: '15%',
+	modalButtonContainer: {
+		height: '12%',
 		width: '100%',
 		flexDirection: 'row',
 		justifyContent: 'space-around',
-		marginBottom: '5%'
+		alignItems: 'center',
+		marginBottom: '5%',
+		marginTop: '2%'
 	}
 };
 
 const mainStyles = {
 	container: {
-		backgroundColor: 'grey',
 		height: '100%',
 		width: '100%',
+		backgroundColor: 'grey',
 		alignItems: 'center',
 		justifyContent: 'flex-end',
 		flexDirection: 'column',
@@ -286,7 +331,8 @@ const mainStyles = {
 		flex: 1
 	},
 	cameraContainer: {
-		height: '100%', width: '100%',
+		height: '100%',
+		width: '100%',
 		alignItems: 'center',
 		justifyContent: 'flex-end',
 		flexDirection: 'column',
@@ -298,6 +344,7 @@ const mainStyles = {
 		width: '13%',
 		height: '20%',
 		marginLeft: '80%',
+		marginTop: '3%',
 		marginBottom: '100%',
 		alignItems: 'center'
 	},
