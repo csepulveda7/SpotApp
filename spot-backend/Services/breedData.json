@@ -16,7 +16,7 @@
 		"life_span": "10 - 12 years",
 		"name": "Affenpinscher",
 		"origin": "Germany, France",
-		"points": 10,
+		"points": 20,
 		"reference_image_id": "BJa4kxc4X",
 		"temperament": "Stubborn, Curious, Playful, Adventurous, Active, Fun-loving",
 		"weight": {
@@ -42,7 +42,7 @@
 		"life_span": "10 - 13 years",
 		"name": "Afghan Hound",
 		"origin": "Afghanistan, Iran, Pakistan",
-		"points": 10,
+		"points": 15,
 		"reference_image_id": "hMyT4CDXR",
 		"temperament": "Aloof, Clownish, Dignified, Independent, Happy",
 		"weight": {
@@ -92,7 +92,7 @@
 		},
 		"life_span": "12 - 15 years",
 		"name": "American Staffordshire Terrier",
-		"points": 10,
+		"points": 8,
 		"reference_image_id": "rJIakgc4m",
 		"temperament": "Tenacious, Friendly, Devoted, Loyal, Attentive, Courageous",
 		"weight": {
@@ -115,7 +115,7 @@
 		},
 		"life_span": "12 – 14 years",
 		"name": "Appenzeller",
-		"points": 10,
+		"points": 13,
 		"reference_image_id": "HkNkxlqEX",
 		"temperament": "Reliable, Fearless, Energetic, Lively, Self-assured",
 		"weight": {
@@ -140,7 +140,7 @@
 		},
 		"life_span": "15 years",
 		"name": "Australian Terrier",
-		"points": 10,
+		"points": 7,
 		"reference_image_id": "r1Ylge5Vm",
 		"temperament": "Spirited, Alert, Loyal, Companionable, Even Tempered, Courageous",
 		"weight": {
@@ -164,7 +164,7 @@
 		},
 		"life_span": "10 - 12 years",
 		"name": "Basenji",
-		"points": 10,
+		"points": 23,
 		"reference_image_id": "H1dGlxqNQ",
 		"temperament": "Affectionate, Energetic, Alert, Curious, Playful, Intelligent",
 		"weight": {
@@ -188,7 +188,7 @@
 		},
 		"life_span": "12 - 15 years",
 		"name": "Basset Hound",
-		"points": 10,
+		"points": 13,
 		"reference_image_id": "Sy57xx9EX",
 		"temperament": "Tenacious, Friendly, Affectionate, Devoted, Sweet-Tempered, Gentle",
 		"weight": {
@@ -212,7 +212,7 @@
 		},
 		"life_span": "13 - 16 years",
 		"name": "Beagle",
-		"points": 10,
+		"points": 5,
 		"reference_image_id": "Syd4xxqEm",
 		"temperament": "Amiable, Even Tempered, Excitable, Determined, Gentle, Intelligent",
 		"weight": {
@@ -236,7 +236,7 @@
 		},
 		"life_span": "14 - 16 years",
 		"name": "Bedlington Terrier",
-		"points": 10,
+		"points": 30,
 		"reference_image_id": "ByK8gx947",
 		"temperament": "Affectionate, Spirited, Intelligent, Good-tempered",
 		"weight": {
@@ -260,7 +260,7 @@
 		},
 		"life_span": "7 - 10 years",
 		"name": "Bernese Mountain Dog",
-		"points": 10,
+		"points": 25,
 		"reference_image_id": "S1fFlx5Em",
 		"temperament": "Affectionate, Loyal, Intelligent, Faithful",
 		"weight": {
@@ -284,7 +284,7 @@
 		},
 		"life_span": "10 - 12 years",
 		"name": "Black-and-tan Coonhound",
-		"points": 10,
+		"points": 35,
 		"reference_image_id": "HJAFgxcNQ",
 		"temperament": "Easygoing, Gentle, Adaptable, Trusting, Even Tempered, Lovable",
 		"weight": {
@@ -308,7 +308,7 @@
 		},
 		"life_span": "10 - 14 years",
 		"name": "Blenheim Spaniel",
-		"points": 10,
+		"points": 30,
 		"reference_image_id": "HJRBbe94Q",
 		"temperament": "Fearless, Affectionate, Sociable, Patient, Playful, Adaptable",
 		"weight": {
@@ -332,7 +332,7 @@
 		},
 		"life_span": "8 - 10 years",
 		"name": "Bloodhound",
-		"points": 10,
+		"points": 20,
 		"reference_image_id": "Skdcgx9VX",
 		"temperament": "Stubborn, Affectionate, Gentle, Even Tempered",
 		"weight": {
@@ -356,7 +356,7 @@
 		},
 		"life_span": "12 - 14 years",
 		"name": "Bluetick",
-		"points": 10,
+		"points": 33,
 		"reference_image_id": "rJxieg9VQ",
 		"temperament": "Friendly, Intelligent, Active",
 		"weight": {
@@ -452,7 +452,7 @@
 		},
 		"life_span": "10 - 15 years",
 		"name": "Bouvier des Flandres",
-		"points": 10,
+		"points": 40,
 		"reference_image_id": "Byd0xl5VX",
 		"temperament": "Protective, Loyal, Gentle, Intelligent, Familial, Rational",
 		"weight": {
@@ -500,7 +500,7 @@
 		},
 		"life_span": "10 - 12 years",
 		"name": "Briard",
-		"points": 10,
+		"points": 20,
 		"reference_image_id": "rkVlblcEQ",
 		"temperament": "Fearless, Loyal, Obedient, Intelligent, Faithful, Protective",
 		"weight": {
@@ -524,7 +524,7 @@
 		},
 		"life_span": "12 - 14 years",
 		"name": "Brittany Spaniel",
-		"points": 10,
+		"points": 18,
 		"reference_image_id": "HJWZZxc4X",
 		"temperament": "Agile, Adaptable, Quick, Intelligent, Attentive, Happy",
 		"weight": {
@@ -548,7 +548,7 @@
 		},
 		"life_span": "8 - 12 years",
 		"name": "Bull Mastiff",
-		"points": 10,
+		"points": 20,
 		"reference_image_id": "r1ifZl5E7",
 		"temperament": "Docile, Reliable, Devoted, Alert, Loyal, Reserved, Loving, Protective, Powerful, Calm, Courageous",
 		"weight": {
@@ -572,7 +572,7 @@
 		},
 		"life_span": "14 - 15 years",
 		"name": "Cairn",
-		"points": 10,
+		"points": 15,
 		"reference_image_id": "Sk7Qbg9E7",
 		"temperament": "Hardy, Fearless, Assertive, Gay, Intelligent, Active",
 		"weight": {
@@ -596,7 +596,7 @@
 		},
 		"life_span": "12 - 14 years",
 		"name": "Cardigan Welsh Corgi",
-		"points": 10,
+		"points": 20,
 		"reference_image_id": "SyXN-e9NX",
 		"temperament": "Affectionate, Devoted, Alert, Companionable, Intelligent, Active",
 		"weight": {
@@ -2106,7 +2106,7 @@
 		},
 		"life_span": "10 - 14 years",
 		"name": "Tibetan Mastiff",
-		"points": 10,
+		"points": 30,
 		"reference_image_id": "SkM9sec47",
 		"temperament": "Strong Willed, Tenacious, Aloof, Stubborn, Intelligent, Protective",
 		"weight": {
@@ -2364,7 +2364,7 @@
 		},
 		"life_span": "12 - 14 years",
 		"name": "Xoloitzcuintli",
-		"points": 10,
+		"points": 25,
 		"reference_image_id": "HkNS3gqEm",
 		"temperament": "Cheerful, Alert, Companionable, Intelligent, Protective, Calm",
 		"weight": {
