@@ -80,7 +80,7 @@ export const SignUp = ({ navigation }) => {
 			{ renderError() }
 			<Button
 				title = 'Sign Up'
-				containerStyle = { buttonContainer }
+				containerStyle = { [buttonContainer, { marginTop: '0%' }] }
 				buttonStyle = { fullWidthHeight }
 				onPress = { registerSubmit }
 			/>
