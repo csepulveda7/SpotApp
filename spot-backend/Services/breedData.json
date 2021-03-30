@@ -1939,7 +1939,7 @@
 		},
 		"life_span": "12 - 16 years",
 		"name": "Shiba Inu",
-		"points": 10,
+		"points": 50,
 		"reference_image_id": "Zn3IjPX3f",
 		"temperament": "Charming, Fearless, Keen, Alert, Confident, Faithful",
 		"weight": {
@@ -1987,7 +1987,7 @@
 		},
 		"life_span": "12 years",
 		"name": "Siberian Husky",
-		"points": 15,
+		"points": 10,
 		"reference_image_id": "S17ZilqNm",
 		"temperament": "Outgoing, Friendly, Alert, Gentle, Intelligent",
 		"weight": {
